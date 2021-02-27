@@ -103,10 +103,10 @@ INSERT INTO `tb_contact` (`id`, `address`, `email`, `line`, `image`, `map`, `cre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_fields_truck_type`
+-- Table structure for table `tb_fields_category`
 --
 
-CREATE TABLE `tb_fields_truck_type` (
+CREATE TABLE `tb_fields_category` (
   `id` int(11) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
   `sort` int(5) NOT NULL,
@@ -116,10 +116,10 @@ CREATE TABLE `tb_fields_truck_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tb_fields_truck_type`
+-- Dumping data for table `tb_fields_category`
 --
 
-INSERT INTO `tb_fields_truck_type` (`id`, `name`, `sort`, `status`, `created`, `updated`) VALUES
+INSERT INTO `tb_fields_category` (`id`, `name`, `sort`, `status`, `created`, `updated`) VALUES
 (1, 'ARCHITECTURAL AND INTERIOR DESIGN', 8, 'on', '2020-05-21 16:25:54', '2020-05-21 16:35:00'),
 (2, 'STRUCTURAL AND CIVIL ENGINEERING', 7, 'on', '2020-05-21 16:33:26', '2020-05-21 16:35:00'),
 (3, 'MECHANICAL ENGINEERING', 6, 'on', '2020-05-21 16:33:46', '2020-05-21 16:35:00'),
@@ -229,7 +229,7 @@ INSERT INTO `tb_menu` (`id`, `_id`, `name`, `url`, `icon`, `sort`, `status`, `po
 (35, NULL, 'Our experience', '/our_experience', 'fa fa-brain', NULL, 'on', 'main', '2020-05-20 15:44:54', '2020-05-20 15:44:54', NULL),
 (36, NULL, 'Contact Us', '/contact/1', 'fa fa-map-marked-alt', NULL, 'on', 'main', '2020-05-20 15:47:22', '2020-05-21 11:51:18', NULL),
 (37, NULL, 'Silde', '/slide', 'fa fa-images', NULL, 'on', 'main', '2020-05-21 13:58:11', '2020-05-21 13:58:11', NULL),
-(38, 33, 'Category', '/fields_truck_type', NULL, NULL, 'on', 'secondary', '2020-05-21 15:27:25', '2020-05-21 15:27:25', NULL),
+(38, 33, 'Category', '/fields_category', NULL, NULL, 'on', 'secondary', '2020-05-21 15:27:25', '2020-05-21 15:27:25', NULL),
 (39, 33, 'List item', '/fields_of_specialization', NULL, NULL, 'on', 'secondary', '2020-05-21 15:28:34', '2020-05-21 15:28:34', NULL);
 
 -- --------------------------------------------------------
@@ -355,9 +355,9 @@ ALTER TABLE `tb_contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_fields_truck_type`
+-- Indexes for table `tb_fields_category`
 --
-ALTER TABLE `tb_fields_truck_type`
+ALTER TABLE `tb_fields_category`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -419,9 +419,9 @@ ALTER TABLE `tb_contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tb_fields_truck_type`
+-- AUTO_INCREMENT for table `tb_fields_category`
 --
-ALTER TABLE `tb_fields_truck_type`
+ALTER TABLE `tb_fields_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --

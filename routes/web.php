@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 |
 */
 //หน้าบ้าน
-
 
 
 
@@ -46,6 +46,16 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/destroy','Webpanel\Slide@destroy');
         	Route::post('/dragsort','Webpanel\Slide@dragsort');
         	Route::get('/status/{id}','Webpanel\Slide@status')->where(['id'=>'[0-9]+']);
+		});
+		Route::prefix('trucktype')->group(function(){
+			Route::get('/','Webpanel\TrucktypeController@index');
+			Route::get('/create','Webpanel\TrucktypeController@create');
+        	Route::put('/create','Webpanel\TrucktypeController@store');
+			Route::get('/{id}','Webpanel\TrucktypeController@show')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
+        	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
+        	Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
 		});
 
 		Route::prefix('our_experience')->group(function(){

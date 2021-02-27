@@ -49,26 +49,15 @@
                                 <div class="tab-pane active" id="th" role="tabpanel">                                                             
                                     <div class="row" style="margin-bottom:5px;">
                                         
+                                       
                                             <div class="col-md-12">
-                                                <label>ประเภท</label><span style="color:red">*</span><br />
-                                                <select id="_id" name="_id" class="form-control">
-                                                        <option value="">กรุณาเลือก</option>
-                                                        @php $list = \App\Fields_categoryModel::where('status','on')->get(); @endphp
-                                                        @if($list)
-                                                            @foreach($list as $list)
-                                                                <option value="{{$list->id}}" @if($row->_id == $list->id) selected @endif>{{$list->name}}</option>
-                                                            @endforeach
-                                                        @endif
-                                                    </select>
-                                                </div>
-                                        
-    
-    
-                                        
-                                            <div class="col-md-12">
-                                                <label>รายละเอียดหัวข้อย่อย</label><span style="color:red">*</span><br />
-                                            <input id="list_detail" name="list_detail" type="text" class="form-control" value="{{$row->list_detail}}" autocomplete="off">
+                                                <label>ชื่อ</label><span style="color:red">*</span><br />
+                                            <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
                                             </div>
+                                        
+    
+    
+                                        
                                         
                                     </div>
                                 </div>

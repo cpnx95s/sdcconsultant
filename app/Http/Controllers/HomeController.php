@@ -7,7 +7,7 @@ use App\GalleryModel;
 use App\Fields_of_specializationModel;
 use App\Our_experienceModel;
 use App\ContactModel;
-use App\fields_truck_typeModel;
+use App\Fields_categoryModel;
 use App\ServicesModel;
 use Illuminate\Http\Request;
 
@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         return view('fields_of_specialization', [
             'row'=>Fields_of_specializationModel::where('status','on')->orderby('sort','asc')->get(),
-            'category' => fields_truck_typeModel::where('status','on')->orderby('sort','asc')->get(),
+            'category' => Fields_categoryModel::where('status','on')->orderby('sort','asc')->get(),
             
 
             ]);
