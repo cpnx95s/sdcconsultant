@@ -1,0 +1,1 @@
+$('textarea[name="map"]').on('keyup',function(){$(".map-preview").html($(this).val())});

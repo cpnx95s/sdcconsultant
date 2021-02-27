@@ -1,0 +1,424 @@
+
+#bootstrap-touch-slider {
+    background: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bs-slider{
+    overflow: hidden;
+    position: relative;
+    background: transparent;
+}
+.bs-slider:hover {
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.bs-slider:active {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.bs-slider .bs-slider-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.40);
+}
+.bs-slider > .carousel-inner > .item > img,
+.bs-slider > .carousel-inner > .item > a > img {
+    margin: auto;
+    /*width: 100% !important;*/
+}
+
+/********************
+*****Slide effect
+**********************/
+
+.fade {
+    opacity: 1;
+}
+.fade .item {
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    left: 0 !important;
+    display: block !important;
+    -webkit-transition: opacity ease-in-out 2s;
+    -moz-transition: opacity ease-in-out 2s;
+    -ms-transition: opacity ease-in-out 2s;
+    -o-transition: opacity ease-in-out 2s;
+    transition: opacity ease-in-out 2s;
+}
+.fade .item:first-child {
+    top: auto;
+    position: relative;
+}
+.fade .item.active {
+    opacity: 1;
+    z-index: 2;
+    -webkit-transition: opacity ease-in-out 1.5s;
+    -moz-transition: opacity ease-in-out 1.5s;
+    -ms-transition: opacity ease-in-out 1.5s;
+    -o-transition: opacity ease-in-out 1.5s;
+    transition: opacity ease-in-out 1.5s;
+}
+
+
+/*
+@-webkit-keyframes immortalkenburns
+{
+    0%
+    {
+        -webkit-transform:scale(1);
+        -webkit-transition:-webkit-transform 20000ms linear 0s
+    }
+    100%
+    {
+        -webkit-transform:scale(1.2);
+        -webkit-transition:-webkit-transform 20000ms linear 0s
+    }
+
+}
+@-moz-keyframes immortalkenburns
+{
+    0%
+    {
+        -moz-transform:scale(1);
+        -moz-transition:-moz-transform 20000ms linear 0s
+    }
+    100%
+    {
+        -moz-transform:scale(1.2);
+        -moz-transition:-moz-transform 20000ms linear 0s
+    }
+
+}
+@-ms-keyframes immortalkenburns
+{
+    0%
+    {
+        -ms-transform:scale(1);
+        -ms-transition:-ms-transform 20000ms linear 0s
+    }
+    100%
+    {
+        -ms-transform:scale(1.2);
+        -ms-transition:-ms-transform 20000ms linear 0s
+    }
+
+}
+@-o-keyframes immortalkenburns
+{
+    0%
+    {
+        -o-transform:scale(1);
+        -o-transition:-o-transform 20000ms linear 0s
+    }
+    100%
+    {
+        -o-transform:scale(1.2);
+        -o-transition:-o-transform 20000ms linear 0s
+    }
+
+}
+@keyframes immortalkenburns
+{
+    0%
+    {
+        transform:scale(1);
+        transition:transform 20000ms linear 0s
+    }
+    100%
+    {
+        transform:scale(1.2);
+        transition:transform 20000ms linear 0s
+    }
+}
+.fade .item img {
+    width:100%;
+    -webkit-transform-origin:100% 0;
+    -moz-transform-origin:100% 0;
+    -ms-transform-origin:100% 0;
+    -o-transform-origin:100% 0;
+    transform-origin:100% 0;
+    -webkit-animation:immortalkenburns 20000ms linear 0s infinite alternate;
+    animation:immortalkenburns 20000ms linear 0s infinite alternate;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------- LEFT/RIGHT ROUND CONTROL ----------*/
+.control-round .carousel-control {
+    top: 47%;
+    opacity: 0;
+    width: 37px;
+    height: 45px;
+    z-index: 100;
+    color: #ffffff;
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 46px;
+    text-shadow: none;
+    position: absolute;
+    font-weight: normal;
+    background: transparent;
+    -webkit-border-radius: 100px;
+    border-radius: 0px;
+}
+.control-round:hover .carousel-control{
+    opacity: 1;
+}
+.control-round .carousel-control.left {
+    left: 1%;
+}
+.control-round .carousel-control.right {
+    right: 1%;
+}
+.control-round .carousel-control.left:hover,
+.control-round .carousel-control.right:hover{
+    color: #fdfdfd;
+    background: #d90708;
+    border: 0px transparent;
+}
+.control-round .carousel-control.left>span:nth-child(1){
+    left: 45%;
+}
+.control-round .carousel-control.right>span:nth-child(1){
+    right: 45%;
+}
+
+
+
+
+
+/*---------- INDICATORS CONTROL ----------*/
+
+
+/*---------- SLIDE CAPTION ----------*/
+.slide_style_left {
+    text-align: left !important;
+}
+.slide_style_right {
+    text-align: right !important;
+}
+.slide_style_center {
+    text-align: center !important;
+}
+
+.slide-text {
+    /*left: 0;*/
+    bottom: 50vh;
+    right: 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    margin: auto;
+    position: absolute;
+    text-align: left;
+    /*padding: 10px 85px;*/
+}
+
+.slide-text h1 {
+ padding: 0;
+ color: #ffffff;
+ font-size: 35px;
+ font-style: normal;
+ line-height: 55px;
+ margin-bottom: 20px;
+ letter-spacing: 0px;
+ display: block;
+ font-weight: 400;
+ -webkit-animation-delay: 0.3s;
+ animation-delay: 0.3s;
+}
+
+
+.slide-text h2 {
+
+   color: #ffffff;
+   float: right;
+   font-size: 20px;
+   font-style: normal;
+   line-height: 40px;
+   font-weight: 400;
+   margin-bottom: 30px;
+   letter-spacing: 1px;
+   display: inline-block;
+   -webkit-animation-delay: 0.7s;
+   animation-delay: 0.7s;
+}
+
+.object-fit_cover {
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+
+/*------------------------------------------------------*/
+/* RESPONSIVE
+/*------------------------------------------------------*/
+
+
+@media (min-width: 1800px) {
+    .bs-slider {
+        overflow: hidden;
+        height: 100vh;
+        position: relative;
+    }
+    .bs-slider > .carousel-inner > .item > img, .bs-slider > .carousel-inner > .item > a > img {
+        margin: auto;
+        /* width: 100% !important; */
+        height: 100vh;
+    }
+}
+
+
+
+
+@media (max-width: 1800px) {
+    .bs-slider {
+        overflow: hidden;
+        height: 100vh;
+        position: relative;
+    }
+    .bs-slider > .carousel-inner > .item > img, .bs-slider > .carousel-inner > .item > a > img {
+        margin: auto;
+        /* width: 100% !important; */
+        height: 100vh!important;
+    }
+    .slide-text {
+        bottom: 300px;
+
+    }
+    .slide-text h1 {
+
+        font-size: 25px;
+        line-height: 44px;
+        margin-bottom: 10px;
+    }
+
+
+
+    .slide-text h2 {
+        font-size: 20px;
+    }
+
+    
+}
+
+
+
+@media (max-width: 992px) {
+    .bs-slider {
+        overflow: hidden;
+        height: calc(100vh - 250px);
+        position: relative;
+    }
+    .bs-slider > .carousel-inner > .item > img, .bs-slider > .carousel-inner > .item > a > img {
+        margin: auto;
+        /* width: 100% !important; */
+        height: calc(100vh - 250px)!important;
+        /*opacity: 0.5;*/
+    }
+    .slide-text {
+        bottom: 0px;
+    }
+    .slide-text h1 {
+        font-size: 20px;
+        line-height: 34px;
+        margin-bottom: 10px;
+    }
+    .slide-text h2 {
+        font-size: 18px;
+        line-height: 34px;
+    }
+}
+
+
+/*---------- MEDIA 480px ----------*/
+@media  (max-width: 768px) {
+
+    #bootstrap-touch-slider{
+        margin-top: 65px;
+    }
+    .bs-slider {
+        overflow: hidden;
+        height: calc(100vh - 270px);
+        position: relative;
+    }
+    .bs-slider > .carousel-inner > .item > img, .bs-slider > .carousel-inner > .item > a > img {
+        margin: auto;
+        /* width: 100% !important; */
+        height: calc(100vh - 270px)!important;
+    }
+    
+    .slide-text h1 {
+
+        font-size: 20px;
+        line-height: 34px;
+        margin-bottom: 10px;
+    }
+    .slide-text h2 {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+@media  (max-width: 575px) {
+
+
+
+    .bs-slider {
+        overflow: hidden;
+        height: calc(100vh - 259px);
+        position: relative;
+    }
+    .bs-slider > .carousel-inner > .item > img, .bs-slider > .carousel-inner > .item > a > img {
+        margin: auto;
+        /* width: 100% !important; */
+        height: calc(100vh - 259px)!important;
+    }
+    .slide-text h1 {
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 0px;
+    }
+
+    .slide-text h2 {
+
+
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .slide-text {
+        /* left: 0; */
+        /*bottom: 50vh;*/
+        right: 0;
+        padding: 5px 15px;
+        background: rgba(0, 0, 0, 0.60);
+        margin: auto;
+        position: absolute;
+        text-align: left;
+        /* padding: 10px 85px; */
+    }
+
+}
