@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 //หน้าบ้าน
+
 
 
 
@@ -46,16 +46,6 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/destroy','Webpanel\Slide@destroy');
         	Route::post('/dragsort','Webpanel\Slide@dragsort');
         	Route::get('/status/{id}','Webpanel\Slide@status')->where(['id'=>'[0-9]+']);
-		});
-		Route::prefix('trucktype')->group(function(){
-			Route::get('/','Webpanel\TrucktypeController@index');
-			Route::get('/create','Webpanel\TrucktypeController@create');
-        	Route::put('/create','Webpanel\TrucktypeController@store');
-			Route::get('/{id}','Webpanel\TrucktypeController@show')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
-        	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
-        	Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
 		});
 
 		Route::prefix('our_experience')->group(function(){
@@ -100,6 +90,36 @@ Route::group(['middleware'=>['Webpanel']], function(){
         	Route::post('/dragsort','Webpanel\Fields_categoryController@dragsort');
 			Route::get('/status/{id}','Webpanel\Fields_categoryController@status')->where(['id'=>'[0-9]+']);
 		});
+		Route::prefix('trucktype')->group(function(){
+			Route::get('/','Webpanel\TrucktypeController@index');
+			Route::get('/create','Webpanel\TrucktypeController@create');
+        	Route::put('/create','Webpanel\TrucktypeController@store');
+			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
+        	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
+		});
+		Route::prefix('roundtrip')->group(function(){
+			Route::get('/','Webpanel\RoundtripController@index');
+			Route::get('/create','Webpanel\RoundtripController@create');
+        	Route::put('/create','Webpanel\RoundtripController@store');
+			Route::get('/{id}','Webpanel\RoundtripController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\RoundtripController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\RoundtripController@destroy');
+        	Route::post('/dragsort','Webpanel\RoundtripController@dragsort');
+			Route::get('/status/{id}','Webpanel\RoundtripController@status')->where(['id'=>'[0-9]+']);
+		});
+		Route::prefix('tsptype')->group(function(){
+			Route::get('/','Webpanel\TsptypeController@index');
+			Route::get('/create','Webpanel\TsptypeController@create');
+        	Route::put('/create','Webpanel\TsptypeController@store');
+			Route::get('/{id}','Webpanel\TsptypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TsptypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TsptypeController@destroy');
+        	Route::post('/dragsort','Webpanel\TsptypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\TsptypeController@status')->where(['id'=>'[0-9]+']);
+		});
 		Route::prefix('about')->group(function(){
 			Route::get('/','Webpanel\AboutController@index');
 			Route::get('/create','Webpanel\AboutController@create');
@@ -131,6 +151,17 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/destroy','Webpanel\informationController@destroy');
         	Route::post('/dragsort','Webpanel\informationController@dragsort');
 			Route::get('/status/{id}','Webpanel\informationController@status')->where(['id'=>'[0-9]+']);
+		});
+
+		Route::prefix('trucktype')->group(function(){
+			Route::get('/','Webpanel\TrucktypeController@index');
+			Route::get('/create','Webpanel\TrucktypeController@create');
+        	Route::put('/create','Webpanel\TrucktypeController@store');
+			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
+        	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
 		});
 
 		//=================================================//

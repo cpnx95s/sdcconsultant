@@ -122,9 +122,9 @@ class User extends Controller
         $data->created_at = date('Y-m-d H:i:s');
         if($data->save())
         {
-            return view("$this->segment/alert/sweet/success",['url'=>url("$this->prefix/user/$data->id")]);
-        }else{
-            return view("$this->segment/alert/sweet/error",['url'=>$request->fullUrl()]);
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/user")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/user/create")]);
         }
     }
     public function update(Request $request, $id=null)

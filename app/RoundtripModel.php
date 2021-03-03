@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TrucktypeModel extends Model
+class RoundtripModel extends Model
 {
-    protected $table = 'tb_trucktype';
+    protected $table = 'tb_roundtrip';
     protected $primaryKey = 'id';
-    protected $fillable = ['id','name','created','updated'];
+    protected $fillable = ['id','name','status','sort','status','created','updated'];
     const CREATED_AT = 'created';
     const UPDATED_AT = 'updated';
     public $timestamp = false;

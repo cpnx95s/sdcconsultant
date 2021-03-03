@@ -20,12 +20,13 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทรถ</a></span>
-                        <span class="breadcrumb-item active">แบบฟอร์มประเภทรถ</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">Fields of Specialization</a></span>
+                        <span class="breadcrumb-item active">Create Form</span>
                     </div>
                     <div class="card-body">
                         @csrf
                         @method('PUT')
+                        
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
@@ -46,6 +47,39 @@
                             </div>
                         </div>
                     
+
+
+                        
+
+                        <!-- SEO FRIENDLY SYSTEM -->
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <h4><b>SEO Friendly :</b></h4>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label>Title :</label><br />
+                                <input id="seo_title" name="seo_title" value="" placeholder="<title></title>" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label>Meta Description : </label><br />
+                                <input id="seo_description" name="seo_description" value="" placeholder='<meta name="description">' class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label>Meta Keywords : </label><br />
+                                <input id="seo_keywords" name="seo_keywords" value="" placeholder='<meta name="Keywords">' class="form-control">
+                            </div>
+                        </div>
+                        <!-- End SEO FRIENDLY -->
+
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">Create</button>

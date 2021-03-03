@@ -6,15 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\TrucktypeModel;
+use App\RoundtripModel;
 use App\GalleryModel;
+use App\Roundtrip;
 
-class TrucktypeController extends Controller
+class RoundtripController extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'webpanel';
-    protected $controller = 'trucktype';
-    protected $folder = 'trucktype';
+    protected $controller = 'roundtrip';
+    protected $folder = 'roundtrip';
 
     public function ImageSize($find = null)
     {
@@ -35,27 +36,25 @@ class TrucktypeController extends Controller
 
     public function index(Request $request)
     {
-        $data = TrucktypeModel::orderBy('sort');
+        $data = RoundtripModel::orderBy('sort');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
         } else {
-            $view = ($request->view)? $request->view : 10 ;
             $rows = $data->paginate($view);
-            $rows->appends(['view'=>$request->view,'page'=>$request->page,'keywords'=>$request->keyword]);
+            $rows->appends(['view' => $request->view]);
         }
-        return view("$this->prefix.pages.menu.index",[
-            'css'=> ['back-end/css/table-responsive.css'],        
+        return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
-                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
-                ["src"=>"back-end/js/table-dragger.min.js"],
-                ["src"=>'back-end/js/sweetalert2.all.min.js'],
-                ["type"=>"text/javascript","src"=>"back-end/build/setting.js"],
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ['src' => "back-end/js/table-dragger.min.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/roundtrip.js"],
             ],
             'prefix' => $this->prefix,
-            'folder' => 'trucktype',
+            'folder' => 'roundtrip',
             'page' => 'index',
-            'segment' => "$this->segment/trucktype",
+            'segment' => "$this->segment/roundtrip",
             'rows' => $rows
         ]);
     }
@@ -65,21 +64,24 @@ class TrucktypeController extends Controller
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => 'back-end/tinymce/tinymce.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/roundtrip.js"],
             ],
             'prefix' => $this->prefix,
             'controller' => $this->controller,
             'folder' => $this->folder,
             'page' => 'add',
-            'segment' => "$this->segment/trucktype",
+            'segment' => "$this->segment/roundtrip",
             'size' => $this->ImageSize(),
         ]);
     }
     public function store(Request $request)
     {
 
-        $data = new TrucktypeModel;
+        $data = new RoundtripModel;
         $data->name = $request->name;
+        $data->short_detail = $request->short_detail;
+        $data->detail = $request->detail;
+        $data->status = 'on';
         $data->sort = 1;
         // SEO
         // $data->seo_title = $request->seo_title;
@@ -97,12 +99,12 @@ class TrucktypeController extends Controller
             $size = $this->ImageSize('cover');
 
             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/trucktype/' . $filename . '-.' . $ext;
+            $newLg = 'upload/roundtrip/' . $filename . '-.' . $ext;
             Storage::disk('public')->put($newLg, $lg);
             $data->image = $newLg;
         }
         if ($data->save()) {
-            TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
+            RoundtripModel::where('id', '!=', $data->id)->increment('sort');
             // gallery
             if ($request->gallery) {
                 $gallery = $request->gallery;
@@ -116,27 +118,27 @@ class TrucktypeController extends Controller
                     $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
                     // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
 
-                    $newLg = 'upload/trucktype/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+                    $newLg = 'upload/roundtrip/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
                     Storage::disk('public')->put($newLg, $lg);
 
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'trucktype', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                    GalleryModel::insert(['_id' => $data->id, 'type' => 'roundtrip', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
                 }
             }
-            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/trucktype")]);
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/roundtrip")]);
         } else {
-            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/trucktype/create")]);
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/roundtrip/create")]);
         }
     }
     public function edit($id)
     {
-        $row = TrucktypeModel::find($id);
+        $row = RoundtripModel::find($id);
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => "back-end/tinymce/tinymce.min.js"],
                 ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/roundtrip.js"],
             ],
             'prefix' => $this->prefix,
             'controller' => $this->controller,
@@ -144,16 +146,17 @@ class TrucktypeController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'trucktype', '_id' => $id])->get(),
+            'gallerys' => GalleryModel::where(['type' => 'roundtrip', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        $data = TrucktypeModel::find($id);
+        $data = RoundtripModel::find($id);
         $data->name = $request->name;
-        
+        $data->short_detail = $request->short_detail;
+        $data->detail = $request->detail;
         // SEO
         // $data->seo_title = $request->seo_title;
         // $data->seo_description = $request->seo_description;
@@ -172,7 +175,7 @@ class TrucktypeController extends Controller
 
             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-            $newLg = 'upload/trucktype/' . $filename . '-.' . $ext;
+            $newLg = 'upload/roundtrip/' . $filename . '-.' . $ext;
 
             Storage::disk('public')->put($newLg, $lg);
         
@@ -189,11 +192,11 @@ class TrucktypeController extends Controller
 
                 $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-                $newLg = 'upload/trucktype/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+                $newLg = 'upload/roundtrip/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
                 Storage::disk('public')->put($newLg, $lg);
 
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'trucktype', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                GalleryModel::insert(['_id' => $data->id, 'type' => 'roundtrip', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
             }
         }
         if ($data->save()) {
@@ -205,13 +208,13 @@ class TrucktypeController extends Controller
 
     public function destroy(Request $request)
     {
-        $datas = TrucktypeModel::find(explode(',', $request->id));
+        $datas = RoundtripModel::find(explode(',', $request->id));
         if (@$datas) {
             foreach ($datas as $data) {
 
-                TrucktypeModel::where('sort', '>', $data->sort)->decrement('sort');
+                RoundtripModel::where('sort', '>', $data->sort)->decrement('sort');
                 //destroy
-                $query = TrucktypeModel::destroy($data->id);
+                $query = RoundtripModel::destroy($data->id);
             }
         }
         if (@$query) {
@@ -240,7 +243,7 @@ class TrucktypeController extends Controller
 
     public function status(Request $request, $id = null)
     {
-        $get = TrucktypeModel::find($id);
+        $get = RoundtripModel::find($id);
         if (@$get->id) {
             $status = ($get->status == 'off') ? 'on' : 'off';
             $get->status = $status;
@@ -256,21 +259,16 @@ class TrucktypeController extends Controller
     {
         $from = $request->from;
         $to = $request->to;
-        $data = TrucktypeModel::find($request->id);
 
-        if($from!="" && $to !="")
-        {
-            if($from > $to){
-                TrucktypeModel::whereBetween('sort', [$to, $from])->whereNotIn('id',[$data->id])->increment('sort');
-            }else{
-                TrucktypeModel::whereBetween('sort', [$from, $to])->whereNotIn('id',[$data->id])->decrement('sort');
+        $get = RoundtripModel::find($request->id);
+        if ($from != "" && $to != "") {
+            if ($from > $to) {
+                RoundtripModel::whereBetween('sort', [$to, $from])->whereNotIn("id", [$get->id])->increment('sort', 1);
+            } else {
+                RoundtripModel::whereBetween('sort', [$from, $to])->whereNotIn("id", [$get->id])->decrement('sort', 1);
             }
-            $data->sort = $to;
-            if($data->save()){
-                return response()->json(true);
-            }else{
-                return response()->json(false);
-            }
+            $query = RoundtripModel::where('id', $get->id)->update(['sort' => $to]);
+            return response()->json($query);
         }
         return response()->json(false);
     }

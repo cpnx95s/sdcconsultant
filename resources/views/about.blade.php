@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="S.D.C. Company Limited Project Consultant & Management.">
-  <meta name="keyword" content="S.D.C. Company Limited Project Consultant & Management.">
-  <meta name="author" content="S.D.C. Company Limited Project Consultant & Management.">
+  <meta name="description" content="KDR Transport One single channel System">
+  <meta name="keyword" content="KDR Transport One single channel System">
+  <meta name="author" content="KDR Transport One single channel System">
 
-  <title>S.D.C. Company Limited Project Consultant & Management.</title>
+  <title>KDR Transport One single channel System</title>
 
   <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/animate.css">

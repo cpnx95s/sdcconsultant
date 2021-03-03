@@ -63,9 +63,9 @@
                                                 </div>
                                             </th>
                                             <th width="20%">ประเภท</th>
-                                            <th width="20%">รายละเอียดหัวข้อ</th>
+                                            
                                             <th width="15%">วันที่สร้าง</th>
-                                            <th width="10%">สถานะ</th>
+                                
                                             <th width="15%"></th>
                                         </tr>
                                     </thead>
@@ -81,13 +81,7 @@
                                                     </div>
                                                 </td>
                                                 <td>{{$row->_id}}</td>
-                                                <td>{{$row->list_detail}}</td>
                                                 <td>{{date('d-M-Y H:i:s',strtotime($row->created))}}</td>
-                                                <td>
-                                                    <label class="c-switch c-switch-label c-switch-pill c-switch-success">
-                                                        <input class="c-switch-input status" type="checkbox" data-id="{{$row->id}}" @if($row->status=='on') checked @endif><span class="c-switch-slider" data-checked="On" data-unchecked="Off"></span>
-                                                    </label>
-                                                </td>
                                                 <td>
                                                     <a href="{{url("$segment/$row->id")}}" class="btn btn-warning" title="Edit"><i style="color:white;" class="far fa-edit"></i></a>                                                
                                                     <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>

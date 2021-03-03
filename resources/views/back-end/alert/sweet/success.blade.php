@@ -23,8 +23,8 @@
 const url = '{{@$url}}';
 $(function(){
       Swal.fire({
-            title: "Good job!",
-            text: "Successfully!",
+            title: "เยี่ยมมาก!",
+            text: "สำเร็จแล้ว!",
             icon: "success",
             allowOutsideClick: false,
       }).then((result) => {
