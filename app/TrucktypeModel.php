@@ -8,7 +8,7 @@ class TrucktypeModel extends Model
 {
     protected $table = 'tb_trucktype';
     protected $primaryKey = 'id';
-    protected $fillable = ['id','name','created','updated'];
+    protected $fillable = ['id','sort','name','created','updated'];
     const CREATED_AT = 'created';
     const UPDATED_AT = 'updated';
     public $timestamp = false;

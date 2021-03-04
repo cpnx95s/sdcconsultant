@@ -42,15 +42,15 @@ class TrucktypeController extends Controller
         } else {
             $view = ($request->view)? $request->view : 10 ;
             $rows = $data->paginate($view);
-            $rows->appends(['view'=>$request->view,'page'=>$request->page,'keywords'=>$request->keyword]);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
         }
-        return view("$this->prefix.pages.menu.index",[
+        return view("$this->prefix.pages.trucktype.index",[
             'css'=> ['back-end/css/table-responsive.css'],        
             'js' => [
                 ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
                 ["src"=>"back-end/js/table-dragger.min.js"],
                 ["src"=>'back-end/js/sweetalert2.all.min.js'],
-                ["type"=>"text/javascript","src"=>"back-end/build/setting.js"],
+                ["type"=>"text/javascript","src"=>"back-end/build/trucktype.js"],
             ],
             'prefix' => $this->prefix,
             'folder' => 'trucktype',
@@ -220,6 +220,8 @@ class TrucktypeController extends Controller
             return response()->json(false);
         }
     }
+
+    
 
     public function destroygallery(Request $request)
     {

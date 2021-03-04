@@ -7,29 +7,29 @@
                         
                         <a href="{{url("$segment")}}" class="card-header-action">จัดการรถ</a>
                         <div class="card-header-actions">
-                            <button class="btn btn-default btn-sm" id="sort" data-text="Sort">เรียง</button>
-                            <a class="btn btn-sm btn-primary" href="{{url("$segment/create")}}"> เพิ่ม</a>   
-                            <button class="btn btn-sm btn-danger" type="reset" id="delSelect" disabled> ลบ</button>                                                     
+                            <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
+                            <a class="btn btn-md btn-primary" href="{{url("$segment/create")}}"> เพิ่ม</a>   
+                            <button class="btn btn-md btn-danger" type="reset" id="delSelect" disabled> ลบ</button>                                                     
                         </div>                            
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="" method="get">                            
+                        <form  action="" method="get">                            
                             <div class="row">
-                                <div class="col-lg-1">
+                                <!-- <div class="col-lg-1">
                                     <div class="form-group">    
                                         <label for="view">ดู : </label> 
                                         @php($numrows=10)
                                         <select name="view" id="view" class="form-control">
-                                            <option value="10" @if(Request::get('view')==10) selected @endif>10</option>
+                                            <option value="5" @if(Request::get('view')==10) selected @endif>5</option>
                                             @for($i=1; $i<6; $i++)
                                             <option value="{{$numrows = $numrows*2}}" @if(Request::get('view')==$numrows) selected @endif>{{$numrows}}</option>
                                             @endfor
                                             <option value="all" @if(Request::get('view')=='all') selected @endif>ทั้งหมด</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-xs-12">
+                                </div> -->
+                                <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
                                     <div class="input-group">                                        
                                         <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
@@ -43,7 +43,7 @@
                         </form>
                         <br class="d-block d-sm-none"/>
                         <div class="table-responsive">
-                            <table class="table table-striped no-footer table-res" id="sorted_table" style="border-collapse: collapse !important">
+                            <table  class="table table-striped no-footer table-res" id="sorted_table" style="border-collapse: collapse !important">
                                 <thead>
                                     <tr role="">
                                         <th width="5%" style="text-align:center;">#</th>
@@ -73,7 +73,7 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="Name of menu">
+                                            <td data-label="ชื่อประเภทรถ">
                                                 {{$row->name}}
                                                 
                                                 <div class="collapse multi-collapse{{$key}}" id="col2{{$key}}">   
