@@ -160,6 +160,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
+			Route::get('/copy','Webpanel\TrucktypeController@copy');
         	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
 		});

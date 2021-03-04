@@ -8,7 +8,9 @@
                         <a href="{{url("$segment")}}" class="card-header-action">จัดการรถ</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
-                            <a class="btn btn-md btn-primary" href="{{url("$segment/create")}}"> เพิ่ม</a>   
+                            <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
+                            <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> คัดลอก</button>  
+                            <button class="btn btn-md btn-warning text-white" type="reset" id="delEdit" disabled> แก้ไข</button>       
                             <button class="btn btn-md btn-danger" type="reset" id="delSelect" disabled> ลบ</button>                                                     
                         </div>                            
                     </div>
@@ -99,7 +101,8 @@
                                             </td>
                                             
                                             <td data-label="Action">
-                                                <a href="{{url("$segment/$row->id")}}" class="btn btn-secondary" title="Edit"><i class="far fa-edit"></i></a>                                                
+                                                <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a> 
+                                                <a href="{{url("$segment/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>                                                
                                                 <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>

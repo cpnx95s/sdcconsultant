@@ -124,7 +124,7 @@
                         
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Update</button>
+                        <button class="btn btn-primary" type="submit" name="signup">Create</button>
                         <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
                     </div>
             </form>

@@ -74,12 +74,29 @@ $('.deleteItem').on('click',function(){
 $('#delSelect').on('click',function(){
     const id = $('.ChkBox:checked').map(function(){ return $(this).val() }).get(); if(id.length>0){ destroy(id) }
 })
+
+$('#copySelect').on('click',function(){
+    const id = $('.ChkBox:checked').map(function(){ return $(this).val() }).get(); if(id.length>0){ copy(id) }
+})
+
 function destroy(id)
 {
     Swal.fire({
         title:"ลบข้อมูล",text:"คุณต้องการลบข้อมูลใช่หรือไม่?",icon:"warning",showCancelButton:true,confirmButtonColor:"#DD6B55",showLoaderOnConfirm: true,
         preConfirm: () => {
             return fetch(fullUrl+'/destroy?id='+id)
+            .then(response => response.json())
+            .then(data => location.reload())
+            .catch(error => { Swal.showValidationMessage(`Request failed: ${error}`)})
+        }
+    });
+}
+function copy(id)
+{
+    Swal.fire({
+        title:"คัดลอก",text:"คุณต้องการคัดลอกข้อมูลใช่หรือไม่?",icon:"warning",showCancelButton:true,confirmButtonColor:"#DD6B55",showLoaderOnConfirm: true,
+        preConfirm: () => {
+            return fetch(fullUrl+'/copy?id='+id)
             .then(response => response.json())
             .then(data => location.reload())
             .catch(error => { Swal.showValidationMessage(`Request failed: ${error}`)})

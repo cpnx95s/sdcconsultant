@@ -149,6 +149,11 @@ class TrucktypeController extends Controller
         ]);
     }
 
+    public function copy($id)
+    {
+        
+    }
+
     public function update(Request $request, $id)
     {
         $data = TrucktypeModel::find($id);
