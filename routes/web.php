@@ -240,6 +240,18 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/status/{id}','Webpanel\SplnameController@status')->where(['id'=>'[0-9]+']);
 		});
 
+		Route::prefix('splperf')->group(function(){
+			Route::get('/','Webpanel\SplperfController@index');
+			Route::get('/create','Webpanel\SplperfController@create');
+        	Route::put('/create','Webpanel\SplperfController@store');
+			Route::get('/{id}','Webpanel\SplperfController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\SplperfController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\SplperfController@destroy');
+			Route::get('/copy','Webpanel\SplperfController@copy');
+        	Route::post('/dragsort','Webpanel\SplperfController@dragsort');
+			Route::get('/status/{id}','Webpanel\SplperfController@status')->where(['id'=>'[0-9]+']);
+		});
+
 
 		//=================================================//
 	    //                     Setting                     //
