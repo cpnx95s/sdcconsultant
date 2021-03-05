@@ -160,10 +160,86 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
-			Route::get('/copy','Webpanel\TrucktypeController@copy');
+			//Route::get('/copy','Webpanel\TrucktypeController@cloning');
         	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
+			Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
 		});
+
+		Route::prefix('hiringtype')->group(function(){
+			Route::get('/','Webpanel\HiringtypeController@index');
+			Route::get('/create','Webpanel\HiringtypeController@create');
+        	Route::put('/create','Webpanel\HiringtypeController@store');
+			Route::get('/{id}','Webpanel\HiringtypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\HiringtypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\HiringtypeController@destroy');
+			Route::get('/copy','Webpanel\HiringtypeController@copy');
+        	Route::post('/dragsort','Webpanel\HiringtypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\HiringtypeController@status')->where(['id'=>'[0-9]+']);
+		});
+
+		Route::prefix('pjtype')->group(function(){
+			Route::get('/','Webpanel\PjtypeController@index');
+			Route::get('/create','Webpanel\PjtypeController@create');
+        	Route::put('/create','Webpanel\PjtypeController@store');
+			Route::get('/{id}','Webpanel\PjtypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\PjtypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\PjtypeController@destroy');
+			Route::get('/copy','Webpanel\PjtypeController@copy');
+        	Route::post('/dragsort','Webpanel\PjtypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\PjtypeController@status')->where(['id'=>'[0-9]+']);
+		});
+
+		
+		Route::prefix('pjname')->group(function(){
+			Route::get('/','Webpanel\PjnameController@index');
+			Route::get('/create','Webpanel\PjnameController@create');
+        	Route::put('/create','Webpanel\PjnameController@store');
+			Route::get('/{id}','Webpanel\PjnameController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\PjnameController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\PjnameController@destroy');
+			Route::get('/copy','Webpanel\PjnameController@copy');
+        	Route::post('/dragsort','Webpanel\PjnameController@dragsort');
+			Route::get('/status/{id}','Webpanel\PjnameController@status')->where(['id'=>'[0-9]+']);
+		});
+
+		Route::prefix('cusname')->group(function(){
+			Route::get('/','Webpanel\CusnameController@index');
+			Route::get('/create','Webpanel\CusnameController@create');
+        	Route::put('/create','Webpanel\CusnameController@store');
+			Route::get('/{id}','Webpanel\CusnameController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\CusnameController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\CusnameController@destroy');
+			Route::get('/copy','Webpanel\CusnameController@copy');
+        	Route::post('/dragsort','Webpanel\CusnameController@dragsort');
+			Route::get('/status/{id}','Webpanel\CusnameController@status')->where(['id'=>'[0-9]+']);
+		});
+
+		Route::prefix('pjdetail')->group(function(){
+			Route::get('/','Webpanel\PjdetailController@index');
+			Route::get('/create','Webpanel\PjdetailController@create');
+        	Route::put('/create','Webpanel\PjdetailController@store');
+			Route::get('/{id}','Webpanel\PjdetailController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\PjdetailController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\PjdetailController@destroy');
+			//Route::get('/copy','Webpanel\PjdetailController@cloning');
+        	Route::post('/dragsort','Webpanel\PjdetailController@dragsort');
+			Route::get('/status/{id}','Webpanel\PjdetailController@status')->where(['id'=>'[0-9]+']);
+			Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
+		});
+
+		Route::prefix('splname')->group(function(){
+			Route::get('/','Webpanel\SplnameController@index');
+			Route::get('/create','Webpanel\SplnameController@create');
+        	Route::put('/create','Webpanel\SplnameController@store');
+			Route::get('/{id}','Webpanel\SplnameController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\SplnameController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\SplnameController@destroy');
+			Route::get('/copy','Webpanel\SplnameController@copy');
+        	Route::post('/dragsort','Webpanel\SplnameController@dragsort');
+			Route::get('/status/{id}','Webpanel\SplnameController@status')->where(['id'=>'[0-9]+']);
+		});
+
 
 		//=================================================//
 	    //                     Setting                     //

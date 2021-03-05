@@ -4,7 +4,7 @@
 </div>                
 <ul class="c-sidebar-nav">
     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{url("webpanel/")}}"><i class="c-sidebar-nav-icon fas fa-tachometer-alt fa-fw"></i>Dashboard<span class="badge badge-info">NEW</span></a></li>
-    <li class="c-sidebar-nav-title">Front-end</li>
+    <li class="c-sidebar-nav-title">Management</li>
     @php($menu = \App\MenuModel::where(['position'=>'main','status'=>'on'])->orderBy('sort')->get())
     @foreach($menu as $i => $m)
         @php($second = \App\MenuModel::where('_id',$m->id)->get())  
