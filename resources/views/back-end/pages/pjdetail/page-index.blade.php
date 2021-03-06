@@ -55,6 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
+                                        <th width="15%">รหัส</th>
                                         <th width="15%">ชื่อโปรเจ็ค</th>
                                         <th width="15%">ชื่อลูกค้า</th>
                                         <th width="15%">ประเภทโปรเจ็ค</th>
