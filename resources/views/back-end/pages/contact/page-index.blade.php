@@ -62,7 +62,7 @@
                                                     <label class="custom-control-label" for="selectAll"></label>
                                                 </div>
                                             </th>
-                                            <th width="20%">ที่อยู่ <span class="badge badge-success">TH</span></th>
+                                            <th width="20%">ที่อยู่ </th>
                                             <th width="20%">เบอร์โทร</th>
                                             <th width="20%">อีเมล</th>
                                             <th width="20%">ไอดีไลน์</th>

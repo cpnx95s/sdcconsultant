@@ -5,7 +5,7 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการรถ</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">จัดการประเภทรถ</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
@@ -55,8 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="35%">ซัพพลายเออร์</th>
-                                        <th width="20%">ประสิทธิภาพ</th>
+                                        <th width="60%">ชื่อประเภทรถ</th>
                                         <th width="20%">วันที่สร้าง</th>
                                         <th width="20%">จัดการ</th>
                                     </tr>
@@ -76,22 +75,16 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-
-                                            <td data-label="created">
-                                                {{$row->splname}}
+                                            <td data-label="ชื่อประเภทรถ">
+                                                {{$row->name}}
                                             </td>
-
-                                            <td data-label="created">
-                                                {{$row->performance}}
-                                            </td>
-                                            
                                             <td data-label="created">
                                                 {{date('d-M-Y H:i:s',strtotime($row->created))}}
                                             </td>
                                             
                                             <td data-label="Action">
                                                 <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a> 
-                                                <a href="{{url("$segment/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>                                                
+                                                <a href="{{url("$segment/copy/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>                                                
                                                 <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>

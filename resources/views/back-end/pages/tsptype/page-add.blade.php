@@ -20,17 +20,16 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">Fields of Specialization</a></span>
-                        <span class="breadcrumb-item active">Create Form</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทการขนส่ง</a></span>
+                        <span class="breadcrumb-item active">เพิ่ม</span>
                     </div>
                     <div class="card-body">
                         @csrf
                         @method('PUT')
-                        
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย <span class="badge badge-success">TH</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ประเภทการขนส่ง</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="th" role="tabpanel">                               
@@ -46,11 +45,11 @@
                                 </div>
                             </div>
                         </div>
-
+                    
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Create</button>
-                        <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{url("$segment")}}">ยกเลิก</a>
                     </div>
                 </div>
             </form>

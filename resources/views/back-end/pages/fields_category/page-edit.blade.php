@@ -42,7 +42,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย <span class="badge badge-success">TH</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย </a></li>
                             </ul>
                             
                             <div class="tab-content">

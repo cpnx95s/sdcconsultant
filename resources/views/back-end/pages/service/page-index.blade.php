@@ -62,7 +62,7 @@
                                                     <label class="custom-control-label" for="selectAll"></label>
                                                 </div>
                                             </th>
-                                            <th width="20%">ชื่อ <span class="badge badge-success">TH</span></th>
+                                            <th width="20%">ชื่อ </th>
                                             <th width="20%">รายละเอียดย่อย</th>
                                             <th width="15%">วันที่สร้าง</th>
                                             <th width="10%">สถานะ</th>

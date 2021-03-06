@@ -4,8 +4,8 @@
             <form id="signupForm" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> Fields of Specialization </a></span>
-                        <span class="breadcrumb-item active">Edit Form</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> เที่ยวรถ </a></span>
+                        <span class="breadcrumb-item active">แก้ไข</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย <span class="badge badge-success">TH</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">เที่ยวรถ </a></li>
                             </ul>
                             
                             <div class="tab-content">
@@ -121,39 +121,11 @@
                             </div>
                         </div>  --}}
 
-                        <!-- SEO FRIENDLY SYSTEM -->
-                        <div class="row mt-4">
-                            <div class="col-md-6">
-                                <h4><b>SEO Friendly :</b></h4>
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label>Title :</label><br />
-                                <input id="seo_title" name="seo_title" value="{{$row->seo_title}}" placeholder="<title></title>" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label>Meta Description : </label><br />
-                                <input id="seo_description" name="seo_description" value="{{$row->seo_description}}" placeholder='<meta name="description">' class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row mt-3">
-                            <div class="col-md-12">
-                                <label>Meta Keywords : </label><br />
-                                <input id="seo_keywords" name="seo_keywords" value="{{$row->seo_keywords}}" placeholder='<meta name="Keywords">' class="form-control">
-                            </div>
-                        </div>
-                        <!-- End SEO FRIENDLY -->
-
+                        
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Update</button>
-                        <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{url("$segment")}}">ยกเลิก</a>
                     </div>
             </form>
         </div>

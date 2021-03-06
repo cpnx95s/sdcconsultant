@@ -24,10 +24,10 @@
     <body class="c-app flex-row">    
         <script>var c=localStorage.getItem("theme"),tag=document.getElementsByTagName('body').item(0).classList;if(c.length>0){tag.add(c);}</script>
         <div class="c-sidebar c-sidebar-light c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-            @include('back-end.layout.left-menu')
+            @include("$prefix.layout.left-menu")
         </div>
         <div class="c-wrapper">
-            @include('back-end.layout.header')
+            @include("$prefix.layout.header")
             <div class="c-body">
                 @if(@$css)
                     @foreach($css as $css)
@@ -36,13 +36,11 @@
                 @endif
                 <main class="c-main">
                     <div class="container-fluid">
-                        @include("back-end.pages.$folder.page-$page")
+                        @include("$prefix.pages.$folder.page-$page")
                     </div>
                 </main>
             </div>
             <footer class="c-footer">
-                <div><a href="https://coreui.io">CoreUI</a> © 2019 creativeLabs.</div>
-                <div class="mfs-auto">Powered by&nbsp;<a href="https://coreui.io/pro/">CoreUI Pro</a></div>
             </footer>          
         </div>
             

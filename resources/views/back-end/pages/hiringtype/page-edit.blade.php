@@ -4,8 +4,8 @@
             <form id="signupForm" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> Fields of Specialization </a></span>
-                        <span class="breadcrumb-item active">Edit Form</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> ประเภทการว่าจ้าง </a></span>
+                        <span class="breadcrumb-item active">แก้ไข</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
                     <div class="card-body">
@@ -42,7 +42,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย <span class="badge badge-success">TH</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ประเภทรถ </a></li>
                             </ul>
                             
                             <div class="tab-content">
@@ -124,8 +124,8 @@
                         
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Update</button>
-                        <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{url("$segment")}}">ยกเลิก</a>
                     </div>
             </form>
         </div>

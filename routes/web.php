@@ -90,36 +90,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
         	Route::post('/dragsort','Webpanel\Fields_categoryController@dragsort');
 			Route::get('/status/{id}','Webpanel\Fields_categoryController@status')->where(['id'=>'[0-9]+']);
 		});
-		Route::prefix('trucktype')->group(function(){
-			Route::get('/','Webpanel\TrucktypeController@index');
-			Route::get('/create','Webpanel\TrucktypeController@create');
-        	Route::put('/create','Webpanel\TrucktypeController@store');
-			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
-        	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
-			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
-		});
-		Route::prefix('roundtrip')->group(function(){
-			Route::get('/','Webpanel\RoundtripController@index');
-			Route::get('/create','Webpanel\RoundtripController@create');
-        	Route::put('/create','Webpanel\RoundtripController@store');
-			Route::get('/{id}','Webpanel\RoundtripController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\RoundtripController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\RoundtripController@destroy');
-        	Route::post('/dragsort','Webpanel\RoundtripController@dragsort');
-			Route::get('/status/{id}','Webpanel\RoundtripController@status')->where(['id'=>'[0-9]+']);
-		});
-		Route::prefix('tsptype')->group(function(){
-			Route::get('/','Webpanel\TsptypeController@index');
-			Route::get('/create','Webpanel\TsptypeController@create');
-        	Route::put('/create','Webpanel\TsptypeController@store');
-			Route::get('/{id}','Webpanel\TsptypeController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\TsptypeController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\TsptypeController@destroy');
-        	Route::post('/dragsort','Webpanel\TsptypeController@dragsort');
-			Route::get('/status/{id}','Webpanel\TsptypeController@status')->where(['id'=>'[0-9]+']);
-		});
+		
 		Route::prefix('about')->group(function(){
 			Route::get('/','Webpanel\AboutController@index');
 			Route::get('/create','Webpanel\AboutController@create');
@@ -160,10 +131,33 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
-			//Route::get('/copy','Webpanel\TrucktypeController@cloning');
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
         	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
-			Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
+		});
+
+		Route::prefix('roundtrip')->group(function(){
+			Route::get('/','Webpanel\RoundtripController@index');
+			Route::get('/create','Webpanel\RoundtripController@create');
+        	Route::put('/create','Webpanel\RoundtripController@store');
+			Route::get('/{id}','Webpanel\RoundtripController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\RoundtripController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\RoundtripController@destroy');
+        	Route::post('/dragsort','Webpanel\RoundtripController@dragsort');
+			Route::get('/status/{id}','Webpanel\RoundtripController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+		});
+
+		Route::prefix('tsptype')->group(function(){
+			Route::get('/','Webpanel\TsptypeController@index');
+			Route::get('/create','Webpanel\TsptypeController@create');
+        	Route::put('/create','Webpanel\TsptypeController@store');
+			Route::get('/{id}','Webpanel\TsptypeController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TsptypeController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TsptypeController@destroy');
+        	Route::post('/dragsort','Webpanel\TsptypeController@dragsort');
+			Route::get('/status/{id}','Webpanel\TsptypeController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('hiringtype')->group(function(){
@@ -176,6 +170,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\HiringtypeController@copy');
         	Route::post('/dragsort','Webpanel\HiringtypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\HiringtypeController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('pjtype')->group(function(){
@@ -188,6 +183,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\PjtypeController@copy');
         	Route::post('/dragsort','Webpanel\PjtypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\PjtypeController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		
@@ -201,6 +197,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\PjnameController@copy');
         	Route::post('/dragsort','Webpanel\PjnameController@dragsort');
 			Route::get('/status/{id}','Webpanel\PjnameController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('cusname')->group(function(){
@@ -213,6 +210,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\CusnameController@copy');
         	Route::post('/dragsort','Webpanel\CusnameController@dragsort');
 			Route::get('/status/{id}','Webpanel\CusnameController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('pjdetail')->group(function(){
@@ -222,10 +220,10 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/{id}','Webpanel\PjdetailController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\PjdetailController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\PjdetailController@destroy');
-			//Route::get('/copy','Webpanel\PjdetailController@cloning');
         	Route::post('/dragsort','Webpanel\PjdetailController@dragsort');
 			Route::get('/status/{id}','Webpanel\PjdetailController@status')->where(['id'=>'[0-9]+']);
 			Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('splname')->group(function(){
@@ -238,6 +236,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\SplnameController@copy');
         	Route::post('/dragsort','Webpanel\SplnameController@dragsort');
 			Route::get('/status/{id}','Webpanel\SplnameController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 		Route::prefix('splperf')->group(function(){
@@ -250,6 +249,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy','Webpanel\SplperfController@copy');
         	Route::post('/dragsort','Webpanel\SplperfController@dragsort');
 			Route::get('/status/{id}','Webpanel\SplperfController@status')->where(['id'=>'[0-9]+']);
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
 
