@@ -96,7 +96,10 @@ class PjdetailController extends Controller
     {
 
         $data = new PjdetailModel;
-        $data->name = $request->name;
+        $data->pjname = $request->pjname;
+        $data->cusname = $request->cusname;
+        $data->pjtype = $request->pjtype;
+        $data->codename = $request->codename;
         $data->sort = 1;
         // SEO
         // $data->seo_title = $request->seo_title;
