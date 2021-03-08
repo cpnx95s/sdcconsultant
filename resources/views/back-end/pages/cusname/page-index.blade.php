@@ -55,7 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">ชื่อประสิทธิภาพซัพพลายเออร์</th>
+                                        <th width="60%">ชื่อลูกค้า</th>
                                         <th width="20%">วันที่สร้าง</th>
                                         <th width="20%">จัดการ</th>
                                     </tr>

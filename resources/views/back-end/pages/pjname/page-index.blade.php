@@ -34,7 +34,7 @@
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
                                     <div class="input-group">                                        
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อชื่อโปรเจ็ค">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อโปรเจ็ค">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">ค้นหา</button>
                                         </span>
@@ -55,7 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">ชื่อชื่อโปรเจ็ค</th>
+                                        <th width="60%">ชื่อโปรเจ็ค</th>
                                         <th width="20%">วันที่สร้าง</th>
                                         <th width="20%">จัดการ</th>
                                     </tr>
@@ -75,7 +75,7 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="ชื่อชื่อโปรเจ็ค">
+                                            <td data-label="ชื่อโปรเจ็ค">
                                                 {{$row->name}}
                                             </td>
                                             <td data-label="created">
