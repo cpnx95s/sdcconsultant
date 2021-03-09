@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
-use App\SplperfModel;
+use App\TruckplanModel;
 use App\GalleryModel;
 
-class SplperfController extends Controller
+class TruckplanController extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'webpanel';
-    protected $controller = 'splperf';
-    protected $folder = 'splperf';
+    protected $controller = 'truckplan';
+    protected $folder = 'truckplan';
 
     public function ImageSize($find = null)
     {
@@ -35,7 +35,7 @@ class SplperfController extends Controller
 
     public function index(Request $request)
     {
-        $data = SplperfModel::orderBy('sort');
+        $data = TruckplanModel::orderBy('sort');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -44,18 +44,18 @@ class SplperfController extends Controller
             $rows = $data->paginate($view);
             $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
         }
-        return view("$this->prefix.pages.splperf.index", [
+        return view("$this->prefix.pages.truckplan.index", [
             'css' => ['back-end/css/table-responsive.css'],
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ["src" => "back-end/js/table-dragger.min.js"],
                 ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/splperf.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
             ],
             'prefix' => $this->prefix,
-            'folder' => 'splperf',
+            'folder' => 'truckplan',
             'page' => 'index',
-            'segment' => "$this->segment/splperf",
+            'segment' => "$this->segment/truckplan",
             'rows' => $rows
         ]);
     }
@@ -65,20 +65,20 @@ class SplperfController extends Controller
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => 'back-end/tinymce/tinymce.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/splperf.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
             ],
             'prefix' => $this->prefix,
             'controller' => $this->controller,
             'folder' => $this->folder,
             'page' => 'add',
-            'segment' => "$this->segment/splperf",
+            'segment' => "$this->segment/truckplan",
             'size' => $this->ImageSize(),
         ]);
     }
 
     public function cloning()
     {
-        $row = SplperfModel::find($id);
+        $row = TruckplanModel::find($id);
 
         $row->load('name');
 
@@ -96,7 +96,7 @@ class SplperfController extends Controller
     public function store(Request $request)
     {
 
-        $data = new SplperfModel;
+        $data = new TruckplanModel;
         $data->name = $request->name;
         $data->sort = 1;
         // SEO
@@ -115,12 +115,12 @@ class SplperfController extends Controller
             $size = $this->ImageSize('cover');
 
             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/splperf/' . $filename . '-.' . $ext;
+            $newLg = 'upload/truckplan/' . $filename . '-.' . $ext;
             Storage::disk('public')->put($newLg, $lg);
             $data->image = $newLg;
         }
         if ($data->save()) {
-            SplperfModel::where('id', '!=', $data->id)->increment('sort');
+            TruckplanModel::where('id', '!=', $data->id)->increment('sort');
             // gallery
             if ($request->gallery) {
                 $gallery = $request->gallery;
@@ -134,27 +134,27 @@ class SplperfController extends Controller
                     $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
                     // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
 
-                    $newLg = 'upload/splperf/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+                    $newLg = 'upload/truckplan/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
                     Storage::disk('public')->put($newLg, $lg);
 
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'splperf', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                    GalleryModel::insert(['_id' => $data->id, 'type' => 'truckplan', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
                 }
             }
-            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/splperf")]);
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         } else {
-            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/splperf/create")]);
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/truckplan/create")]);
         }
     }
     public function edit($id)
     {
-        $row = SplperfModel::find($id);
+        $row = TruckplanModel::find($id);
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => "back-end/tinymce/tinymce.min.js"],
                 ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/splperf.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
             ],
             'prefix' => $this->prefix,
             'controller' => $this->controller,
@@ -162,7 +162,7 @@ class SplperfController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'splperf', '_id' => $id])->get(),
+            'gallerys' => GalleryModel::where(['type' => 'truckplan', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -170,13 +170,13 @@ class SplperfController extends Controller
     public function copy($id)
     {
 
-        $row = SplperfModel::find($id);
+        $row = TruckplanModel::find($id);
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => "back-end/tinymce/tinymce.min.js"],
                 ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/splperf.js"],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
             ],
             'prefix' => $this->prefix,
             'controller' => $this->controller,
@@ -184,7 +184,7 @@ class SplperfController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'splperf', '_id' => $id])->get(),
+            'gallerys' => GalleryModel::where(['type' => 'truckplan', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -192,7 +192,7 @@ class SplperfController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = SplperfModel::find($id);
+        $data = TruckplanModel::find($id);
         $data->name = $request->name;
 
         // SEO
@@ -213,7 +213,7 @@ class SplperfController extends Controller
 
             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-            $newLg = 'upload/splperf/' . $filename . '-.' . $ext;
+            $newLg = 'upload/truckplan/' . $filename . '-.' . $ext;
 
             Storage::disk('public')->put($newLg, $lg);
 
@@ -230,11 +230,11 @@ class SplperfController extends Controller
 
                 $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-                $newLg = 'upload/splperf/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+                $newLg = 'upload/truckplan/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
                 Storage::disk('public')->put($newLg, $lg);
 
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'splperf', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                GalleryModel::insert(['_id' => $data->id, 'type' => 'truckplan', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
             }
         }
         if ($data->save()) {
@@ -245,7 +245,7 @@ class SplperfController extends Controller
     }
     // public function cpupdate(Request $request, $id)
     // {
-    //     $data = SplperfModel::find($id);
+    //     $data = TruckplanModel::find($id);
     //     $data->name = $request->name;
 
     //     // SEO
@@ -266,7 +266,7 @@ class SplperfController extends Controller
 
     //         $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-    //         $newLg = 'upload/splperf/' . $filename . '-.' . $ext;
+    //         $newLg = 'upload/truckplan/' . $filename . '-.' . $ext;
 
     //         Storage::disk('public')->put($newLg, $lg);
 
@@ -283,11 +283,11 @@ class SplperfController extends Controller
 
     //             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
 
-    //             $newLg = 'upload/splperf/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+    //             $newLg = 'upload/truckplan/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
     //             Storage::disk('public')->put($newLg, $lg);
 
-    //             GalleryModel::insert(['_id' => $data->id, 'type' => 'splperf', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+    //             GalleryModel::insert(['_id' => $data->id, 'type' => 'truckplan', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
     //         }
     //     }
     //     if ($data->save()) {
@@ -299,8 +299,8 @@ class SplperfController extends Controller
 
     public function copystore(Request $request, $id)
     {
-        $data = SplperfModel::find($id);
-        $data = new SplperfModel;
+        $data = TruckplanModel::find($id);
+        $data = new TruckplanModel;
         $data->name = $request->name;
         $data->sort = 1;
         // SEO
@@ -319,12 +319,12 @@ class SplperfController extends Controller
             $size = $this->ImageSize('cover');
 
             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/splperf/' . $filename . '-.' . $ext;
+            $newLg = 'upload/truckplan/' . $filename . '-.' . $ext;
             Storage::disk('public')->put($newLg, $lg);
             $data->image = $newLg;
         }
         if ($data->save()) {
-            SplperfModel::where('id', '!=', $data->id)->increment('sort');
+            TruckplanModel::where('id', '!=', $data->id)->increment('sort');
             // gallery
             if ($request->gallery) {
                 $gallery = $request->gallery;
@@ -338,27 +338,27 @@ class SplperfController extends Controller
                     $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
                     // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
 
-                    $newLg = 'upload/splperf/gallery/' . $gfilename . '-' . $i . '.' . $ext;
+                    $newLg = 'upload/truckplan/gallery/' . $gfilename . '-' . $i . '.' . $ext;
 
                     Storage::disk('public')->put($newLg, $lg);
 
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'splperf', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                    GalleryModel::insert(['_id' => $data->id, 'type' => 'truckplan', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
                 }
             }
-            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/splperf")]);
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         } else {
-            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/splperf/copy")]);
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/truckplan/copy")]);
         }
     }
     public function destroy(Request $request)
     {
-        $datas = SplperfModel::find(explode(',', $request->id));
+        $datas = TruckplanModel::find(explode(',', $request->id));
         if (@$datas) {
             foreach ($datas as $data) {
 
-                SplperfModel::where('sort', '>', $data->sort)->decrement('sort');
+                TruckplanModel::where('sort', '>', $data->sort)->decrement('sort');
                 //destroy
-                $query = SplperfModel::destroy($data->id);
+                $query = TruckplanModel::destroy($data->id);
             }
         }
         if (@$query) {
@@ -389,7 +389,7 @@ class SplperfController extends Controller
 
     public function status(Request $request, $id = null)
     {
-        $get = SplperfModel::find($id);
+        $get = TruckplanModel::find($id);
         if (@$get->id) {
             $status = ($get->status == 'off') ? 'on' : 'off';
             $get->status = $status;
@@ -405,13 +405,13 @@ class SplperfController extends Controller
     {
         $from = $request->from;
         $to = $request->to;
-        $data = SplperfModel::find($request->id);
+        $data = TruckplanModel::find($request->id);
 
         if ($from != "" && $to != "") {
             if ($from > $to) {
-                SplperfModel::whereBetween('sort', [$to, $from])->whereNotIn('id', [$data->id])->increment('sort');
+                TruckplanModel::whereBetween('sort', [$to, $from])->whereNotIn('id', [$data->id])->increment('sort');
             } else {
-                SplperfModel::whereBetween('sort', [$from, $to])->whereNotIn('id', [$data->id])->decrement('sort');
+                TruckplanModel::whereBetween('sort', [$from, $to])->whereNotIn('id', [$data->id])->decrement('sort');
             }
             $data->sort = $to;
             if ($data->save()) {

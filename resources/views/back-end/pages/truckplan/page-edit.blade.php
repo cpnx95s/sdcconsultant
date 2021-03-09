@@ -4,7 +4,7 @@
             <form id="signupForm" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> ประสิทธิภาพซัพพลายเออร์ </a></span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> แผนรถ </a></span>
                         <span class="breadcrumb-item active">แก้ไข</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
@@ -42,7 +42,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ประสิทธิภาพซัพพลายเออร์ </a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">แผนรถ </a></li>
                             </ul>
                             
                             <div class="tab-content">

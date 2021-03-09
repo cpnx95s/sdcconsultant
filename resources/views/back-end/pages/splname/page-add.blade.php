@@ -20,8 +20,8 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทรถ</a></span>
-                        <span class="breadcrumb-item active">แบบฟอร์มประเภทรถ</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ชื่อซัพพลายเออร์</a></span>
+                        <span class="breadcrumb-item active">เพิ่ม</span>
                     </div>
                     <div class="card-body">
                         @csrf
@@ -32,7 +32,7 @@
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ภาษาไทย </a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="th" role="tabpanel">                               
+                                <div class="tab-pane active" id="th" role="tabpanel">
 
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-md-12">
@@ -40,16 +40,26 @@
                                             <input id="name" name="name" type="text" class="form-control" value="" autocomplete="off">
                                         </div>
                                     </div>
-
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <select id="splpref" name="splpref" class="form-control">
+                                                <option value="">กรุณาเลือก</option>
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Create</button>
-                        <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{url("$segment")}}">ยกเลิก</a>
                     </div>
                 </div>
             </form>

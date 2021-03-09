@@ -5,7 +5,7 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการรถ</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">ชื่อซัพพลายเออร์</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
@@ -34,7 +34,7 @@
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
                                     <div class="input-group">                                        
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อซัพพลายเออร์">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">ค้นหา</button>
                                         </span>
@@ -55,7 +55,8 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">ชื่อประเภทรถ</th>
+                                        <th width="40%">ชื่อซัพพลายเออร์</th>
+                                        <th width="20%">ประสิทธิภาพ</th>
                                         <th width="20%">วันที่สร้าง</th>
                                         <th width="20%">จัดการ</th>
                                     </tr>
@@ -75,26 +76,11 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="ชื่อประเภทรถ">
+                                            <td data-label="ชื่อซัพพลายเออร์">
                                                 {{$row->name}}
-                                                
-                                                <div class="collapse multi-collapse{{$key}}" id="col2{{$key}}">   
-                                                    <ul class="list-group" style="margin-top:5px">
-                                                    @foreach($secondary as $col2)
-                                                        <li class="list-group-item d-flex justify-content-between p-2">
-                                                            <span>{{$col2->name}}</span>
-                                                            <div class="justify-content-end">
-                                                                <a class="badge" href="javascript:">{{date('d-M-Y H:i:s',strtotime($col2->created))}}</a>
-                                                                <a class="badge badge-dark badge-status" href="javascript:">off</a>
-                                                                <a class="badge badge-warning" href="{{url("$segment/$col2->id")}}">Edit</a>
-                                                                <a class="badge badge-danger deleteItem" data-id="{{$col2->id}}" href="javascript:">Delete</a>
-                                                            </div>
-                                                        </li>
-                                                    @endforeach  
-                                                    </ul>                               
-                                                </div>
-                                                                                
-                                                
+                                            </td>
+                                            <td data-label="ชื่อซัพพลายเออร์">
+                                                {{$row->performance}}
                                             </td>
                                             <td data-label="created">
                                                 {{date('d-M-Y H:i:s',strtotime($row->created))}}

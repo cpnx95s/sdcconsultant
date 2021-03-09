@@ -239,17 +239,16 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
-		Route::prefix('splperf')->group(function(){
-			Route::get('/','Webpanel\SplperfController@index');
-			Route::get('/create','Webpanel\SplperfController@create');
-        	Route::put('/create','Webpanel\SplperfController@store');
-			Route::get('/{id}','Webpanel\SplperfController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\SplperfController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\SplperfController@destroy');
-			Route::get('/copy','Webpanel\SplperfController@copy');
-        	Route::post('/dragsort','Webpanel\SplperfController@dragsort');
-			Route::get('/status/{id}','Webpanel\SplperfController@status')->where(['id'=>'[0-9]+']);
-			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+		Route::prefix('truckplan')->group(function(){
+			Route::get('/','Webpanel\TruckplanController@index');
+			Route::get('/create','Webpanel\TruckplanController@create');
+        	Route::put('/create','Webpanel\TruckplanController@store');
+			Route::get('/{id}','Webpanel\TruckplanController@edit')->where(['id'=>'[0-9]+']);
+			Route::post('/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
+			Route::get('/destroy','Webpanel\TruckplanController@destroy');
+			Route::get('/copy/{id}','Webpanel\TruckplanController@copy');
+        	Route::post('/dragsort','Webpanel\TruckplanController@dragsort');
+			Route::get('/status/{id}','Webpanel\TruckplanController@status')->where(['id'=>'[0-9]+']);
 		});
 
 

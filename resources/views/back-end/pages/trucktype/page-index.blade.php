@@ -5,7 +5,7 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการประเภทการว่าจ้าง</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">จัดการประเภทรถ</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
@@ -34,7 +34,7 @@
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
                                     <div class="input-group">                                        
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประสิทธิภาพซัพพลายเออร์">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">ค้นหา</button>
                                         </span>
@@ -75,7 +75,7 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="ชื่อประสิทธิภาพซัพพลายเออร์">
+                                            <td data-label="ชื่อประเภทรถ">
                                                 {{$row->name}}
                                             </td>
                                             <td data-label="created">

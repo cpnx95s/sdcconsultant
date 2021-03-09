@@ -4,8 +4,8 @@
             <form id="signupForm" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> Fields of Specialization </a></span>
-                        <span class="breadcrumb-item active">Edit Form</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> ชื่อซัพพลายเออร์ </a></span>
+                        <span class="breadcrumb-item active">คัดลอก</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
                     <div class="card-body">
@@ -124,8 +124,8 @@
                         
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">Create</button>
-                        <a class="btn btn-danger" href="{{url("$segment")}}">Cancel</a>
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{url("$segment")}}">ยกเลิก</a>
                     </div>
             </form>
         </div>
