@@ -10,118 +10,252 @@
                     </div>
                     <div class="card-body">
                         @csrf
-
-                        {{-- <div class="row">
-                            <div class="col-lg-5">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="row">
-                                            <div class="form-group col-md-12">
-                                                <h6>Cover</h6>
-                                                @if($row->image == "")
-                                                <img src="" class="img-thumbnail" id="preview">
-                                                @else
-                                                <img src="{{$row->image}}" class="img-thumbnail" id="preview">
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <small class="help-block">*รองรับไฟล์ <strong class="text-danger">(jpg, jpeg, png)</strong> เท่านั้น</small>
-                                        <small class="text-danger">Auto Resize : {{$size['cover']['lg']['x']}} x {{$size['cover']['lg']['y']}} Pixel</small>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="image" id="image">
-                                            <label class="custom-file-label" for="image">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
+                        @method('PUT')
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">แผนรถ </a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">แผนรถ</a></li>
                             </ul>
-                            
                             <div class="tab-content">
-                                <div class="tab-pane active" id="th" role="tabpanel">                                                             
-                                    <div class="row" style="margin-bottom:5px;">
-                                        
-                                       
-                                            <div class="col-md-12">
-                                                <label>ชื่อ</label><span style="color:red">*</span><br />
-                                            <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
-                                            </div>
-                                        
-    
-    
-                                        
-                                        
+                                <div class="tab-pane active" id="th" role="tabpanel">
+
+                                    <!-- <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <label>ชื่อ</label><span style="color:red">*</span><br />
+                                            <input id="name" name="name" type="text" class="form-control" value="" autocomplete="off">
+                                        </div>
+                                    </div> -->
+
+                                    <div class="form-group ">
+                                        <label class="control-label " for="startdate">
+                                            วันที่ใช้รถ
+                                        </label>
+                                        <input class="form-control" id="startdate" name="startdate" placeholder="MM/DD/YYYY" type="datetime-local" />
                                     </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="worktype">
+                                            ประเภทงาน
+                                        </label>
+                                        <select class="select form-control" id="worktype" name="worktype">
+                                            <option value="งานหลัก">
+                                                งานหลัก
+                                            </option>
+                                            <option value="งานเสริม">
+                                                งานเสริม
+                                            </option>
+                                            <option selected="selected" value="">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                    <label class="control-label " for="pjname">
+                                            ชื่อโปรเจค
+                                        </label>
+                                        <select class="select form-control" id="tsptype" name="tsptype">
+                                            <option value="First Choice">
+                                                First Choice
+                                            </option>
+                                            <option value="Second Choice">
+                                                Second Choice
+                                            </option>
+                                            <option value="Third Choice">
+                                                Third Choice
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="routecode">
+                                            รหัสสายวิ่ง
+                                        </label>
+                                        <input class="form-control" id="routecode" name="routecode" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="routename">
+                                            ชื่อเส้นทางเดินรถ
+                                        </label>
+                                        <input class="form-control" id="routename" name="routename" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="tsptype">
+                                            ประเภทการขนส่ง
+                                        </label>
+                                        <select class="select form-control" id="tsptype" name="tsptype">
+                                            <option value="First Choice">
+                                                First Choice
+                                            </option>
+                                            <option value="Second Choice">
+                                                Second Choice
+                                            </option>
+                                            <option value="Third Choice">
+                                                Third Choice
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="trucktype">
+                                            ประเภทรถ
+                                        </label>
+                                        <select class="select form-control" id="trucktype" name="trucktype">
+                                            <option value="First Choice">
+                                                First Choice
+                                            </option>
+                                            <option value="Second Choice">
+                                                Second Choice
+                                            </option>
+                                            <option value="Third Choice">
+                                                Third Choice
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="roundtrip">
+                                            เที่ยวรถ
+                                        </label>
+                                        <select class="select form-control" id="roundtrip" name="roundtrip">
+                                            <option value="First Choice">
+                                                First Choice
+                                            </option>
+                                            <option value="Second Choice">
+                                                Second Choice
+                                            </option>
+                                            <option value="Third Choice">
+                                                Third Choice
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="hiringtype">
+                                            รูปแบบการว่าจ้าง
+                                        </label>
+                                        <select class="select form-control" id="hiringtype" name="hiringtype">
+                                            <option value="First Choice">
+                                                First Choice
+                                            </option>
+                                            <option value="Second Choice">
+                                                Second Choice
+                                            </option>
+                                            <option value="Third Choice">
+                                                Third Choice
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="name3">
+                                            เลขทะเบียนรถ
+                                        </label>
+                                        <input class="form-control" id="name3" name="name3" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="driverd">
+                                            พนักงานขับรถ
+                                        </label>
+                                        <input class="form-control" id="driverd" name="driverd" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="name5">
+                                            เบอร์โทร
+                                        </label>
+                                        <input class="form-control" id="name5" name="name5" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="sbranch">
+                                            สาขาต้นทาง
+                                        </label>
+                                        <input class="form-control" id="sbranch" name="sbranch" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="dntbranch">
+                                            สาขาปลายทาง
+                                        </label>
+                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="truckrqtime">
+                                            เวลาตามรถ
+                                        </label>
+                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="dpttime">
+                                            เวลาปล่อยรถ
+                                        </label>
+                                        <input class="form-control" id="dpttime" name="dpttime" type="time" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="dnttime">
+                                            เวลากำหนดถึงปลายทาง
+                                        </label>
+                                        <input class="form-control" id="dnttime" name="dnttime" type="time" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="totaltime">
+                                            เวลาที่กำหนด(ชั่วโมง)
+                                        </label>
+                                        <input class="form-control" id="totaltime" name="totaltime" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="mntstaff">
+                                            Monitor staff(KDR)
+                                        </label>
+                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="remark">
+                                            หมายเหตุ
+                                        </label>
+                                        <input class="form-control" id="remark" name="remark" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="statusplan">
+                                            สถานะแผน
+                                        </label>
+                                        <select class="select form-control" id="statusplan" name="statusplan">
+                                            <option value="Active">
+                                                Active
+                                            </option>
+                                            <option value="Pending">
+                                                Pending
+                                            </option>
+                                            <option value="Cancel">
+                                                Cancel
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="ccremark">
+                                            สาเหตุที่ยกเลิก
+                                        </label>
+                                        <input class="form-control" id="ccremark" name="ccremark" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="author">
+                                            ผู้สร้างรายการ
+                                        </label>
+                                        <input class="form-control" id="author" name="author" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="editor">
+                                            ผู้แก้ไขรายการ
+                                        </label>
+                                        <input class="form-control" id="editor" name="editor" type="text" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="created">
+                                            วันเวลาที่ทำรายการ
+                                        </label>
+                                        <input class="form-control" id="created" name="created" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="updated">
+                                            วันเวลาที่แก้ไขรายการ
+                                        </label>
+                                        <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
 
-                         {{-- <div class="row">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="border"><br>
-                                            <div class="header">
-                                                <div class="col-lg-12">
-                                                    <strong style="font-size:18px">Gallery :</strong>
-                                                    <a class="btn btn-primary btn-sm" href="javascript:" id="add_gallery">Add</a></div>
-                                            </div>
-                                            <div id="gallery" class="form-group col-lg-4 col-md-6 col-xs-12" style="display:none;">
-                                                <br>
-                                                <div class="clearfix"></div>
-                                                <small class="help-block">*รองรับไฟล์ <strong class="text-danger">(jpg, jpeg, png)</strong> เท่านั้น</small>
-                                                <small class="text-danger">Auto Resize : {{$size['gallery']['lg']['x']}} x {{$size['gallery']['lg']['y']}} px</small>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" name="gallery[]" id="galleryUpload" multiple="" onchange="readGallery()" accept="image/jpg,image/jpeg,image/png">
-                                                        <label class="custom-file-label" for="image">Choose file</label>
-                                                    </div>
-                                                    <span class="input-group-append">
-                                                        <button class="btn btn-danger reset-upload" type="button">Reset</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="text-right pr-2 action-gallery" style="display:none;">
-                                                <button type="button" class="btn btn-secondary btn-sm cancel" data-toggle="gallerImg" role="button" disabled>Cancel</button>
-                                                <button type="button" class="btn btn-secondary btn-sm deleteGallerys" role="button" disabled>Delete</button>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="row" id="galleryPreview">
-                                                    @if($gallerys)
-                                                    @foreach($gallerys as $i => $v)
-                                                    <div class='col-lg-2 col-md-3 col-xs-6 p-2' id="gallery{{$v->id}}">
-                                                        <div class='img-thumbnail p-2'>
-                                                            <a href="javascript:" class="float-right btn-link" style="margin-bottom:5px;">
-                                                                <i class="fas fa-times fa-lg deleteGallery" data-id="{{$v->id}}"></i>
-                                                            </a>
-                                                            <div class="float-left custom-control custom-checkbox">
-                                                                <input type="checkbox" name="gallerImg" class="custom-control-input" id="gall{{$v->id}}" value="{{$v->id}}">
-                                                                <label class="custom-control-label" for="gall{{$v->id}}"></label>
-                                                            </div>
-                                                            <div class="img-preview"><img class="img-fluid" src="{{url("$v->image")}}"></div>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>  --}}
-
-                        
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>

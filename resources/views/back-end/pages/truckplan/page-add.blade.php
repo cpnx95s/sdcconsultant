@@ -20,7 +20,7 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ชื่อแผนรถ</a></span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">แผนรถ</a></span>
                         <span class="breadcrumb-item active">เพิ่ม</span>
                     </div>
                     <div class="card-body">
