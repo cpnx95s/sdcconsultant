@@ -56,12 +56,13 @@
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-md-12">
                                             <label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
-                                            <select class="form-control" name="status" id="status">
+                                            <select class="form-control" name="pjtype" id="pjtype">
                                                 <option value="" hidden>กรุณาเลือก</option>
-                                                <option value="pending" @if($row->status=='Express') selected @endif>Express</option>
-                                                <option value="inactive" @if($row->status=='Shuttle') selected @endif>Shuttle</option>
-                                                <option value="active" @if($row->status=='Consumer / Retail') selected @endif>Consumer / Retail</option>
-                                                <option value="banned" @if($row->status=='Cold chain') selected @endif>Cold chain</option>
+                                                <option value="Express" @if($row->pjtype=='Express') selected @endif>Express</option>
+                                                <option value="Shuttle" @if($row->pjtype=='Shuttle') selected @endif>Shuttle</option>
+                                                <option value="Consumer / Retail" @if($row->pjtype=='Consumer / Retail') selected @endif>Consumer / Retail</option>
+                                                <option value="Cold chain" @if($row->pjtype=='Cold chain') selected @endif>Cold chain</option>
+                                                <option value="Freight forwarder" @if($row->pjtype=='Freight forwarder') selected @endif>Freight forwarder</option>
                                             </select>
                                         </div>
                                     </div>
