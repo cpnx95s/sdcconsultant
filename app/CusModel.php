@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CusModel extends Model
 {
-    protected $table = 'tb_cusname';
+    protected $table = 'tb_cname';
     protected $primaryKey = 'id';
     protected $fillable = ['id','name','status','sort','status','created','updated'];
     const CREATED_AT = 'created';
