@@ -48,20 +48,26 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="th" role="tabpanel">                                                             
                                     <div class="row" style="margin-bottom:5px;">
-                                        
-                                       
-                                            <div class="col-md-12">
-                                                <label>ชื่อ</label><span style="color:red">*</span><br />
-                                            <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
-                                            </div>
-                                        
-    
-    
-                                        
-                                        
+                                        <div class="col-md-12">
+                                            <label>ชื่อ</label><span style="color:red">*</span><br />
+                                        <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
+                                            <select class="form-control" name="status" id="status">
+                                                <option value="" hidden>กรุณาเลือก</option>
+                                                <option value="pending" @if($row->status=='Express') selected @endif>Express</option>
+                                                <option value="inactive" @if($row->status=='Shuttle') selected @endif>Shuttle</option>
+                                                <option value="active" @if($row->status=='Consumer / Retail') selected @endif>Consumer / Retail</option>
+                                                <option value="banned" @if($row->status=='Cold chain') selected @endif>Cold chain</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                               
                         </div>
 
                          {{-- <div class="row">
