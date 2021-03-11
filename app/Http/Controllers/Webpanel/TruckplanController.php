@@ -98,6 +98,17 @@ class TruckplanController extends Controller
 
         $data = new TruckplanModel;
         $data->name = $request->name;
+        
+        $data->pjtype = $request->pjtype;
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->cusname = $request->cusname;
+        $data->splname = $request->splname;
+        $data->tsptype = $request->tsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
+        
         $data->sort = 1;
         // SEO
         // $data->seo_title = $request->seo_title;
