@@ -51,9 +51,45 @@
                                         
                                        
                                             <div class="col-md-12">
-                                                <label>ชื่อ</label><span style="color:red">*</span><br />
-                                            <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
-                                            </div>
+                                            <label>รหัส</label><span style="color:red">*</span><br />
+                                            <input id="codename" name="codename" type="text" class="form-control" value="{{$row->codename}}" autocomplete="off">
+                                        
+                                            <label>ชื่อโปรเจ็ค</label><span style="color:red">*</span><br />
+                                        <select id="pjname" name="pjname" class="form-control">
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
+                                                                                                       
+                                                    @if($list)
+                                                        @foreach($list as $list)
+                                                        <option value="{{$list->id}}" @if($row->pjname == $list->id) selected @endif>{{$list->name}}</option>    
+                                                        @endforeach
+                                                        
+                                                    @endif
+                                                </select>
+                                        <label>ชื่อลูกค้า</label><span style="color:red">*</span><br />
+                                        <select id="cusname" name="cusname" class="form-control">
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\CusModel::where('status','on')->get(); @endphp
+                                                                                                       
+                                                    @if($list)
+                                                        @foreach($list as $list)
+                                                        <option value="{{$list->id}}" @if($row->cusname == $list->id) selected @endif>{{$list->name}}</option>    
+                                                        @endforeach
+                                                        
+                                                    @endif
+                                                </select>
+                                        <label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
+                                        <select id="pjtype" name="pjtype" class="form-control">
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\PjtypeModel::where('status','on')->get(); @endphp
+                                                                                                       
+                                                    @if($list)
+                                                        @foreach($list as $list)
+                                                        <option value="{{$list->id}}" @if($row->pjtype == $list->id) selected @endif>{{$list->name}}</option>     
+                                                        @endforeach
+                                                        
+                                                    @endif
+                                                </select></div>
                                         
     
     

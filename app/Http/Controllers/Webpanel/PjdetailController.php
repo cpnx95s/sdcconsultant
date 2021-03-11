@@ -195,7 +195,10 @@ class PjdetailController extends Controller
     public function update(Request $request, $id)
     {
         $data = PjdetailModel::find($id);
-        $data->name = $request->name;
+        $data->pjname = $request->pjname;
+        $data->cusname = $request->cusname;
+        $data->pjtype = $request->pjtype;
+        $data->codename = $request->codename;
         
         // SEO
         // $data->seo_title = $request->seo_title;
