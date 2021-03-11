@@ -1,4 +1,4 @@
-var fullUrl = window.location.origin+'/webpanel/hiringtype';
+var fullUrl = window.location.origin+'/webpanel/pjdetail';
 $('#sort').on('click',function(){
     const $this = $(this), text = $this.html(); 
     if(text=='Sort'){ $this.html('Cancel'); }else{ $this.html($this.data('text')) }
