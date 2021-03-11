@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการชื่อโปรเจ็ค</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">จัดการรายละเอียดโปรเจ็ค</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
@@ -79,8 +79,8 @@
                                         <td data-label="codename">
                                             {{$row->name}}
                                         </td>
-                                        <td data-label="codename">
-                                            {{$row->pjtype}}
+                                        <td data-label="pjtype">
+                                            {{$row->showpjtype->name}}
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}

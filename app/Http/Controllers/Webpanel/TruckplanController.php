@@ -15,6 +15,7 @@ class TruckplanController extends Controller
     protected $segment = 'webpanel';
     protected $controller = 'truckplan';
     protected $folder = 'truckplan';
+    protected $dateFormat = 'Y-m-d H:i';
 
     public function ImageSize($find = null)
     {
@@ -204,7 +205,18 @@ class TruckplanController extends Controller
     public function update(Request $request, $id)
     {
         $data = TruckplanModel::find($id);
+        $data = new TruckplanModel;
         $data->name = $request->name;
+        
+        $data->pjtype = $request->pjtype;
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->cusname = $request->cusname;
+        $data->splname = $request->splname;
+        $data->tsptype = $request->tsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
 
         // SEO
         // $data->seo_title = $request->seo_title;

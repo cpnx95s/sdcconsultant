@@ -48,19 +48,17 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                    <label class="control-label " for="pjname">
-                                            ชื่อโปรเจค
-                                        </label>
-                                        <select class="select form-control" id="tsptype" name="tsptype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <label>ชื่อโปรเจค</label><span style="color:red">*</span><br />
+                                        <select id="pjname" name="pjname" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}" @if($row->pjname == $list->id) selected @endif>{{$list->name}}</option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
