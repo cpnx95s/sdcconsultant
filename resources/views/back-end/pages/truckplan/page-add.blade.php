@@ -63,19 +63,19 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                    <label class="control-label " for="pjname">
+                                        <label class="control-label " for="pjname">
                                             ชื่อโปรเจค
                                         </label>
-                                        <select class="select form-control" id="tsptype" name="tsptype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="pjname" name="pjname" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -94,64 +94,64 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select class="select form-control" id="tsptype" name="tsptype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="tsptype" name="tsptype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="trucktype">
                                             ประเภทรถ
                                         </label>
-                                        <select class="select form-control" id="trucktype" name="trucktype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="trucktype" name="trucktype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\TrucktypeModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="roundtrip">
                                             เที่ยวรถ
                                         </label>
-                                        <select class="select form-control" id="roundtrip" name="roundtrip">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="roundtrip" name="roundtrip" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\RoundtripModel ::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="hiringtype">
                                             รูปแบบการว่าจ้าง
                                         </label>
-                                        <select class="select form-control" id="hiringtype" name="hiringtype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="hiringtype" name="hiringtype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
