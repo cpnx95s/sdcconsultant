@@ -38,6 +38,18 @@
                                         <div class="col-md-12">
                                             <label>ชื่อ</label><span style="color:red">*</span><br />
                                             <input id="name" name="name" type="text" class="form-control" value="" autocomplete="off">
+                                            <label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
+                                        <select id="pjtype" name="pjtype" class="form-control">
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\PjtypeModel::where('status','on')->get(); @endphp
+                                                                                                       
+                                                    @if($list)
+                                                        @foreach($list as $list)
+                                                        <option value="{{$list->id}}"> {{$list->name}} </option>     
+                                                        @endforeach
+                                                        
+                                                    @endif
+                                                </select>
                                         </div>
                                     </div>
 

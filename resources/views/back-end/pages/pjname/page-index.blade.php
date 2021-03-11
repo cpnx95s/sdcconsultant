@@ -55,7 +55,8 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">ชื่อโปรเจ็ค</th>
+                                        <th width="30%">ชื่อโปรเจ็ค</th>
+                                        <th width="30%">ประเภทโโปรเจค</th>
                                         <th width="20%">วันที่สร้าง</th>
                                         <th width="20%">จัดการ</th>
                                     </tr>
@@ -77,6 +78,9 @@
                                         </td>
                                         <td data-label="codename">
                                             {{$row->name}}
+                                        </td>
+                                        <td data-label="codename">
+                                            {{$row->pjtype}}
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}
