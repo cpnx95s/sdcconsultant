@@ -8,7 +8,7 @@ class TruckplanModel extends Model
 {
     protected $table = 'tb_truckplan';
     protected $primaryKey = 'id';
-    protected $fillable = ['id', 'startdate', 'routecode', 'routename', 'trucknumb', 'driver', 'telnumb', 'sbranch', 'dntbranch', 'truckrqtime', 'dpttime', 'dnttime', 'totalhour', 'mntstaff', 'remark', 'statusplan', 'ccremark', 'author', 'editor', 'created', 'updated', 'name', 'sort', 'status', 'trucktype', 'roundtrip', 'cusname', 'splname', 'tsptype', 'pjname'];
+    protected $fillable = ['id', 'startdate', 'routecode', 'routename', 'trucknumb', 'driver', 'telnumb', 'sbranch', 'dntbranch', 'truckrqtime', 'dpttime', 'dnttime', 'totalhour', 'mntstaff', 'remark', 'statusplan', 'ccremark', 'author', 'editor', 'created', 'updated', 'sort', 'status', 'trucktype', 'roundtrip', 'cusname', 'splname', 'tsptype', 'pjname', 'worktype', 'hiringtype'];
     const CREATED_AT = 'created';
     const UPDATED_AT = 'updated';
     public $timestamp = false;

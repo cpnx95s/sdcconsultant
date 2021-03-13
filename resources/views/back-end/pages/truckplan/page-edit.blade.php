@@ -30,25 +30,22 @@
                                         <label class="control-label " for="startdate">
                                             วันที่ใช้รถ
                                         </label>
-                                        <input class="form-control" id="startdate" name="startdate" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                        <input class="form-control" id="startdate" name="startdate" placeholder="" value="{{$row->startdate}}" type="date" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="worktype">
                                             ประเภทงาน
                                         </label>
                                         <select class="select form-control" id="worktype" name="worktype">
-                                            <option value="งานหลัก">
-                                                งานหลัก
-                                            </option>
-                                            <option value="งานเสริม">
-                                                งานเสริม
-                                            </option>
-                                            <option selected="selected" value="">
-                                            </option>
+                                            <option value="" hidden>กรุณาเลือก</option>
+                                            <option value="งานหลัก" @if($row->worktype=='งานหลัก') selected @endif>งานหลัก</option>
+                                            <option value="งานเสริม" @if($row->worktype=='งานเสริม') selected @endif>งานเสริม</option>
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label>ชื่อโปรเจค</label><span style="color:red">*</span><br />
+                                        <label class="control-label " for="pjname">
+                                            ชื่อโปรเจค
+                                        </label>
                                         <select id="pjname" name="pjname" class="form-control">
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
@@ -56,6 +53,39 @@
                                             @if($list)
                                             @foreach($list as $list)
                                             <option value="{{$list->id}}" @if($row->pjname == $list->id) selected @endif>{{$list->name}}</option>
+                                            @endforeach
+
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="cname">
+                                            ชื่อลูกค้า
+                                        </label>
+                                        <select id="cusname" name="cusname" class="form-control">
+                                        <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\CusModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}" @if($row->cusname == $list->id) selected @endif>{{$list->name}}</option>
+                                            @endforeach
+
+                                            @endif
+                                        </select>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="splname">
+                                            ชื่อซัพพลายเออร์
+                                        </label>
+                                        <select id="splname" name="splname" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
                                             @endforeach
 
                                             @endif
@@ -77,77 +107,77 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select class="select form-control" id="tsptype" name="tsptype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="tsptype" name="tsptype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="trucktype">
                                             ประเภทรถ
                                         </label>
-                                        <select class="select form-control" id="trucktype" name="trucktype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="trucktype" name="trucktype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\TrucktypeModel::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="roundtrip">
                                             เที่ยวรถ
                                         </label>
-                                        <select class="select form-control" id="roundtrip" name="roundtrip">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="roundtrip" name="roundtrip" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\RoundtripModel ::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="hiringtype">
                                             รูปแบบการว่าจ้าง
                                         </label>
-                                        <select class="select form-control" id="hiringtype" name="hiringtype">
-                                            <option value="First Choice">
-                                                First Choice
-                                            </option>
-                                            <option value="Second Choice">
-                                                Second Choice
-                                            </option>
-                                            <option value="Third Choice">
-                                                Third Choice
-                                            </option>
+                                        <select id="hiringtype" name="hiringtype" class="form-control">
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
+
+                                            @if($list)
+                                            @foreach($list as $list)
+                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            @endforeach
+
+                                            @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="name3">
+                                        <label class="control-label " for="trucknumb">
                                             เลขทะเบียนรถ
                                         </label>
-                                        <input class="form-control" id="name3" name="name3" type="text" />
+                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text" />
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="driverd">
+                                        <label class="control-label " for="driver">
                                             พนักงานขับรถ
                                         </label>
-                                        <input class="form-control" id="driverd" name="driverd" type="text" />
+                                        <input class="form-control" id="driver" name="driver" type="text" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="name5">
@@ -186,10 +216,10 @@
                                         <input class="form-control" id="dnttime" name="dnttime" type="time" />
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="totaltime">
+                                        <label class="control-label " for="totalhour">
                                             เวลาที่กำหนด(ชั่วโมง)
                                         </label>
-                                        <input class="form-control" id="totaltime" name="totaltime" type="text" />
+                                        <input class="form-control" id="totalhour" name="totalhour" type="text" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="mntstaff">
@@ -249,6 +279,7 @@
                                         </label>
                                         <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" />
                                     </div>
+
 
                                 </div>
                             </div>

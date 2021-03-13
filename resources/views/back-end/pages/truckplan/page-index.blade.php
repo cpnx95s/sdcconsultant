@@ -100,6 +100,17 @@
                                                 <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                             </div>
                                         </td>
+                                        <!-- <td data-label="จัดการ">
+                                            <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a>
+                                            <a href="{{url("$segment/copy/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>
+                                            <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                        </td> -->
+                                        <td data-label="จัดการ">
+                                            <a href="{{url("$segment/$row->id")}}" class="text-warning" title="Edit"><i class="far fa-edit"></i></a>
+                                            <a href="{{url("$segment/copy/$row->id")}}" class="text-primary" title="Copy"><i class="far fa-copy"></i></a>
+                                            <a href="javascript:" class="text-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                        </td>
+                                        
                                         <td data-label="วันที่ใช้รถ">
                                             {{$row->startdate}}
                                         </td>
@@ -183,11 +194,7 @@
                                         </td>
 
 
-                                        <td data-label="จัดการ">
-                                            <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a>
-                                            <a href="{{url("$segment/copy/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>
-                                            <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                        
                                     </tr>
                                     @endforeach
                                     @endif

@@ -99,8 +99,35 @@ class TruckplanController extends Controller
 
         $data = new TruckplanModel;
         $data->name = $request->name;
+        $data->startdate = $request->startdate;
+        $data->routecode = $request->routecode;
+        $data->routename = $request->routename;
+        $data->trucknumb = $request->trucknumb;
+        $data->driver = $request->driver;
+        $data->telnumb = $request->telnumb;
+        $data->sbranch = $request->sbranch;
+        $data->dntbranch = $request->dntbranch;
+        $data->truckrqtime = $request->truckrqtime;
+        $data->dpttime = $request->dpttime;
+        $data->dnttime = $request->dnttime;
+        $data->totalhour = $request->totalhour;
+        $data->mntstaff = $request->mntstaff;
+        $data->remark = $request->remark;
+        $data->statusplan = $request->statusplan;
+        $data->ccremark = $request->ccremark;
+        $data->author = $request->author;
+        $data->editor = $request->editor;
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->cusname = $request->cusname;
+        $data->splname = $request->splname;
+        $data->tsptype = $request->tsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
         
-        $data->pjtype = $request->pjtype;
+        
+        //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->cusname = $request->cusname;
@@ -116,8 +143,10 @@ class TruckplanController extends Controller
         // $data->seo_description = $request->seo_description;
         // $data->seo_keywords = $request->seo_keywords;
         // End Seo
-        $data->created = date('Y-m-d H:i:s');
-        $data->updated = date('Y-m-d H:i:s');
+        //dd($data);
+        // $data->created = date('Y-m-d H:i:s');
+        // $data->updated = date('Y-m-d H:i:s');
+        
         $file = $request->image;
         if ($file) {
             $filename = date('dmY-His');
@@ -152,6 +181,7 @@ class TruckplanController extends Controller
 
                     GalleryModel::insert(['_id' => $data->id, 'type' => 'truckplan', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
                 }
+                
             }
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         } else {
@@ -208,7 +238,7 @@ class TruckplanController extends Controller
         $data = new TruckplanModel;
         $data->name = $request->name;
         
-        $data->pjtype = $request->pjtype;
+        //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->cusname = $request->cusname;
