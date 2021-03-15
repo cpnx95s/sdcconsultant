@@ -1,4 +1,4 @@
-var fullUrl = window.location.origin+'/webpanel/pjtype';
+var fullUrl = window.location.origin+'/webpanel/splname';
 $('#sort').on('click',function(){
     const $this = $(this), text = $this.html(); 
     if(text=='Sort'){ $this.html('Cancel'); }else{ $this.html($this.data('text')) }
@@ -27,8 +27,8 @@ function dragsort(id,from,to){
         success:function(data){ if(data==true){ if(confirm('Refresh to change the display effect.')==true){ location.reload();} } }
     })
 }
-if($('#hiringtypeForm').length>0){
-    $('#hiringtypeForm').validate({
+if($('#trucktypeForm').length>0){
+    $('#trucktypeForm').validate({
         ignore:[],
         rules:{
             position:{ required: true },

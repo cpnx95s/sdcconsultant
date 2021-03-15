@@ -28,10 +28,10 @@ class TruckplanModel extends Model
         return $this->belongsTo(CusModel::class, 'id');
     }
     
-    public function showpjtypename(){
-        return $this->hasOne(PjtypeModel::class,'id','pjtype');
-        //return $this->belongsTo(PjnameModel::class, 'id');
-    }
+    // public function showpjtypename(){
+    //     return $this->hasOne(PjtypeModel::class,'id','pjtype');
+    //     //return $this->belongsTo(PjnameModel::class, 'id');
+    // }
 
     public function showtsptypename(){
         return $this->hasOne(TsptypeModel::class,'id','tsptype');

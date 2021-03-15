@@ -79,8 +79,8 @@ class RoundtripController extends Controller
 
         $data = new RoundtripModel;
         $data->name = $request->name;
-        $data->short_detail = $request->short_detail;
-        $data->detail = $request->detail;
+        // $data->short_detail = $request->short_detail;
+        // $data->detail = $request->detail;
         $data->status = 'on';
         $data->sort = 1;
         // SEO
@@ -155,8 +155,8 @@ class RoundtripController extends Controller
     {
         $data = RoundtripModel::find($id);
         $data->name = $request->name;
-        $data->short_detail = $request->short_detail;
-        $data->detail = $request->detail;
+        // $data->short_detail = $request->short_detail;
+        // $data->detail = $request->detail;
         // SEO
         // $data->seo_title = $request->seo_title;
         // $data->seo_description = $request->seo_description;

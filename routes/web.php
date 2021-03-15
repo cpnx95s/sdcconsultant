@@ -244,7 +244,8 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/create','Webpanel\TruckplanController@create');
         	Route::put('/create','Webpanel\TruckplanController@store');
 			Route::get('/{id}','Webpanel\TruckplanController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
+			//Route::post('/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
+			Route::match(['put', 'patch'], '/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TruckplanController@destroy');
 			Route::get('/copy/{id}','Webpanel\TruckplanController@copy');
         	Route::post('/dragsort','Webpanel\TruckplanController@dragsort');

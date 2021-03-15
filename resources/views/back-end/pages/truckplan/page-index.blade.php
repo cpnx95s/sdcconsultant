@@ -55,6 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
+                                        <!-- <th scope="col">ACTION</th>
                                         <th scope="col">วันที่ใช้รถ</th>
                                         <th scope="col">ประเภทงาน</th>
                                         <th scope="col">ชื่อโปรเจค</th>
@@ -81,8 +82,36 @@
                                         <th scope="col">ผู้สร้างรายการ</th>
                                         <th scope="col">ผู้แก้ไขรายการ</th>
                                         <th scope="col">วันเวลาที่ทำรายการ</th>
-                                        <th scope="col">วันเวลาที่แก้ไขรายการ</th>
-                                        <th scope="col">จัดการ</th>
+                                        <th scope="col">วันเวลาที่แก้ไขรายการ</th> -->
+                                        
+                                        <th scope="col">ACTION</th>
+                                        <th scope="col">STARTDATE</th>
+                                        <th scope="col">WORKTYPE</th>
+                                        <th scope="col">PROJECT NAME</th>
+                                        <th scope="col">ROUTE CODE</th>
+                                        <th scope="col">ชื่อเส้นทางเดินรถ</th>
+                                        <th scope="col">ประเภทการขนส่ง</th>
+                                        <th scope="col">ประเภทรถ</th>
+                                        <th scope="col">เที่ยวรถ</th>
+                                        <th scope="col">SERVICETYPE</th>
+                                        <th scope="col">ซัพพลายเออร์</th>
+                                        <th scope="col">TRUCKNUMBER</th>
+                                        <th scope="col">พนักงานขับรถ</th>
+                                        <th scope="col">เบอร์โทร</th>
+                                        <th scope="col">สาขาต้นทาง</th>
+                                        <th scope="col">สาขาปลายทาง</th>
+                                        <th scope="col">เวลาตามรถ</th>
+                                        <th scope="col">เวลาปล่อยรถ</th>
+                                        <th scope="col">เวลากำหนดถึงปลายทาง</th>
+                                        <th scope="col">เวลาที่กำหนด(ชั่วโมง)</th>
+                                        <th scope="col">Monitor staff(KDR)</th>
+                                        <th scope="col">Remark</th>
+                                        <th scope="col">สถานะแผน</th>
+                                        <th scope="col">สาเหตุที่ยกเลิก</th>
+                                        <th scope="col">ผู้สร้างรายการ</th>
+                                        <th scope="col">ผู้แก้ไขรายการ</th>
+                                        <th scope="col">CREATED_DATE_TIME</th>
+                                        <th scope="col">UPDATED_DATE_TIME</th>
                                     </tr>
                                 </thead>
                                 <tbody>

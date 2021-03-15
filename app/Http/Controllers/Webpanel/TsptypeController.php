@@ -78,8 +78,8 @@ class TsptypeController extends Controller
 
         $data = new TsptypeModel;
         $data->name = $request->name;
-        $data->short_detail = $request->short_detail;
-        $data->detail = $request->detail;
+        // $data->short_detail = $request->short_detail;
+        // $data->detail = $request->detail;
         $data->status = 'on';
         $data->sort = 1;
         // SEO
@@ -154,8 +154,8 @@ class TsptypeController extends Controller
     {
         $data = TsptypeModel::find($id);
         $data->name = $request->name;
-        $data->short_detail = $request->short_detail;
-        $data->detail = $request->detail;
+        // $data->short_detail = $request->short_detail;
+        // $data->detail = $request->detail;
         // SEO
         // $data->seo_title = $request->seo_title;
         // $data->seo_description = $request->seo_description;

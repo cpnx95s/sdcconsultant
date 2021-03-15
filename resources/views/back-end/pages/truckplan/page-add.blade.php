@@ -45,13 +45,13 @@
                                         <label class="control-label " for="startdate">
                                             วันที่ใช้รถ
                                         </label>
-                                        <input class="form-control" id="startdate" name="startdate" placeholder="" type="date" />
+                                        <input class="form-control" id="startdate" name="startdate" placeholder="" type="date" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="worktype">
                                             ประเภทงาน
                                         </label>
-                                        <select class="select form-control" id="worktype" name="worktype">
+                                        <select class="select form-control" id="worktype" name="worktype" require>
                                             <option value="">กรุณาเลือก</option>
                                             <option value="งานหลัก">
                                                 งานหลัก
@@ -65,7 +65,7 @@
                                         <label class="control-label " for="pjname">
                                             ชื่อโปรเจค
                                         </label>
-                                        <select id="pjname" name="pjname" class="form-control">
+                                        <select id="pjname" name="pjname" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
 
@@ -81,7 +81,7 @@
                                         <label class="control-label " for="cname">
                                             ชื่อลูกค้า
                                         </label>
-                                        <select id="cname" name="cname" class="form-control">
+                                        <select id="cusname" name="cusname" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\CusModel::where('status','on')->get(); @endphp
 
@@ -97,7 +97,7 @@
                                         <label class="control-label " for="splname">
                                             ชื่อซัพพลายเออร์
                                         </label>
-                                        <select id="splname" name="splname" class="form-control">
+                                        <select id="splname" name="splname" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
 
@@ -113,19 +113,19 @@
                                         <label class="control-label " for="routecode">
                                             รหัสสายวิ่ง
                                         </label>
-                                        <input class="form-control" id="routecode" name="routecode" type="text" />
+                                        <input class="form-control" id="routecode" name="routecode" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="routename">
                                             ชื่อเส้นทางเดินรถ
                                         </label>
-                                        <input class="form-control" id="routename" name="routename" type="text" />
+                                        <input class="form-control" id="routename" name="routename" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select id="tsptype" name="tsptype" class="form-control">
+                                        <select id="tsptype" name="tsptype" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
 
@@ -141,7 +141,7 @@
                                         <label class="control-label " for="trucktype">
                                             ประเภทรถ
                                         </label>
-                                        <select id="trucktype" name="trucktype" class="form-control">
+                                        <select id="trucktype" name="trucktype" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\TrucktypeModel::where('status','on')->get(); @endphp
 
@@ -154,10 +154,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="roundtrip">
+                                        <label class="control-label " for="roundtrip" >
                                             เที่ยวรถ
                                         </label>
-                                        <select id="roundtrip" name="roundtrip" class="form-control">
+                                        <select id="roundtrip" name="roundtrip" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\RoundtripModel ::where('status','on')->get(); @endphp
 
@@ -173,7 +173,7 @@
                                         <label class="control-label " for="hiringtype">
                                             รูปแบบการว่าจ้าง
                                         </label>
-                                        <select id="hiringtype" name="hiringtype" class="form-control">
+                                        <select id="hiringtype" name="hiringtype" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -189,61 +189,61 @@
                                         <label class="control-label " for="trucknumb">
                                             เลขทะเบียนรถ
                                         </label>
-                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text" />
+                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="driver">
                                             พนักงานขับรถ
                                         </label>
-                                        <input class="form-control" id="driver" name="driver" type="text" />
+                                        <input class="form-control" id="driver" name="driver" type="text" require />
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="name5">
+                                        <label class="control-label " for="telnumb">
                                             เบอร์โทร
                                         </label>
-                                        <input class="form-control" id="name5" name="name5" type="text" />
+                                        <input class="form-control" id="telnumb" name="telnumb" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="sbranch">
                                             สาขาต้นทาง
                                         </label>
-                                        <input class="form-control" id="sbranch" name="sbranch" type="text" />
+                                        <input class="form-control" id="sbranch" name="sbranch" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dntbranch">
                                             สาขาปลายทาง
                                         </label>
-                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text" />
+                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="truckrqtime">
                                             เวลาตามรถ
                                         </label>
-                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time" />
+                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dpttime">
                                             เวลาปล่อยรถ
                                         </label>
-                                        <input class="form-control" id="dpttime" name="dpttime" type="time" />
+                                        <input class="form-control" id="dpttime" name="dpttime" type="time" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dnttime">
                                             เวลากำหนดถึงปลายทาง
                                         </label>
-                                        <input class="form-control" id="dnttime" name="dnttime" type="time" />
+                                        <input class="form-control" id="dnttime" name="dnttime" type="time" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="totalhour">
                                             เวลาที่กำหนด(ชั่วโมง)
                                         </label>
-                                        <input class="form-control" id="totalhour" name="totalhour" type="text" />
+                                        <input class="form-control" id="totalhour" name="totalhour" type="text" require/>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="mntstaff">
                                             Monitor staff(KDR)
                                         </label>
-                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" />
+                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" require/>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="remark">
@@ -255,7 +255,7 @@
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
                                         </label>
-                                        <select class="select form-control" id="statusplan" name="statusplan">
+                                        <select class="select form-control" id="statusplan" name="statusplan" require>
                                             <option value="Active">
                                                 Active
                                             </option>
@@ -277,25 +277,25 @@
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
                                         </label>
-                                        <input class="form-control" id="author" name="author" type="text" />
+                                        <input class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}"/>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="editor">
                                             ผู้แก้ไขรายการ
                                         </label>
-                                        <input class="form-control" id="editor" name="editor" type="text" />
+                                        <input class="form-control" id="editor" name="editor" type="text" require value="{{ Auth::user()->name }}"/>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="created">
                                             วันเวลาที่ทำรายการ
                                         </label>
-                                        <input class="form-control" id="created" name="created" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                        <input class="form-control" id="created" name="created" placeholder="MM/DD/YYYY" type="datetime-local" require/>
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="updated">
                                             วันเวลาที่แก้ไขรายการ
                                         </label>
-                                        <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                        <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" require/>
                                     </div>
 
                                 </div>

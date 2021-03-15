@@ -194,49 +194,7 @@ class TrucktypeController extends Controller
     {
         $data = TrucktypeModel::find($id);
         $data->name = $request->name;
-
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
-        $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            // $sm = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-            $newLg = 'upload/trucktype/' . $filename . '-.' . $ext;
-
-            Storage::disk('public')->put($newLg, $lg);
-
-            $data->image = $newLg;
-        }
-        if ($request->gallery) {
-            $gallery = $request->gallery;
-            $gfilename = 'gallery-' . date('dmY-His');
-            for ($i = 0; $i < count($gallery); $i++) {
-                $lg = Image::make($gallery[$i]->getRealPath());
-
-                $ext = explode("/", $lg->mime())[1];
-                $size = $this->ImageSize('gallery');
-
-                $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-                $newLg = 'upload/trucktype/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                Storage::disk('public')->put($newLg, $lg);
-
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'trucktype', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-            }
-        }
+    
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {

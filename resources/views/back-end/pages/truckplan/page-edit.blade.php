@@ -63,7 +63,7 @@
                                             ชื่อลูกค้า
                                         </label>
                                         <select id="cusname" name="cusname" class="form-control">
-                                        <option value="">กรุณาเลือก</option>
+                                            <option value="">กรุณาเลือก</option>
                                             @php $list = \App\CusModel::where('status','on')->get(); @endphp
 
                                             @if($list)
@@ -85,23 +85,23 @@
 
                                             @if($list)
                                             @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            <option value="{{$list->id}}" @if($row->splname == $list->id) selected @endif>{{$list->name}}</option>
                                             @endforeach
 
                                             @endif
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="routecode">
+                                        <label class="control-label " for="routecode" ">
                                             รหัสสายวิ่ง
                                         </label>
-                                        <input class="form-control" id="routecode" name="routecode" type="text" />
+                                        <input class=" form-control" id="routecode" name="routecode" type="text" value="{{$row->routecode}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="routename">
                                             ชื่อเส้นทางเดินรถ
                                         </label>
-                                        <input class="form-control" id="routename" name="routename" type="text" />
+                                        <input class="form-control" id="routename" name="routename" type="text" value="{{$row->routename}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="tsptype">
@@ -113,7 +113,7 @@
 
                                             @if($list)
                                             @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            <option value="{{$list->id}}" @if($row->tsptype == $list->id) selected @endif> {{$list->name}} </option>
                                             @endforeach
 
                                             @endif
@@ -129,7 +129,7 @@
 
                                             @if($list)
                                             @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            <option value="{{$list->id}}" @if($row->trucktype == $list->id) selected @endif> {{$list->name}} </option>
                                             @endforeach
 
                                             @endif
@@ -145,7 +145,7 @@
 
                                             @if($list)
                                             @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            <option value="{{$list->id}}" @if($row->roundtrip == $list->id) selected @endif > {{$list->name}} </option>
                                             @endforeach
 
                                             @endif
@@ -161,7 +161,7 @@
 
                                             @if($list)
                                             @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
+                                            <option value="{{$list->id}}" @if($row->hiringtype == $list->id) selected @endif> {{$list->name}} </option>
                                             @endforeach
 
                                             @endif
@@ -171,80 +171,80 @@
                                         <label class="control-label " for="trucknumb">
                                             เลขทะเบียนรถ
                                         </label>
-                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text" />
+                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{$row->trucknumb}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="driver">
                                             พนักงานขับรถ
                                         </label>
-                                        <input class="form-control" id="driver" name="driver" type="text" />
+                                        <input class="form-control" id="driver" name="driver" type="text" value="{{$row->driver}}" />
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="name5">
+                                        <label class="control-label " for="telnumb">
                                             เบอร์โทร
                                         </label>
-                                        <input class="form-control" id="name5" name="name5" type="text" />
+                                        <input class="form-control" id="telnumb" name="telnumb" type="text" value="{{$row->telnumb}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="sbranch">
                                             สาขาต้นทาง
                                         </label>
-                                        <input class="form-control" id="sbranch" name="sbranch" type="text" />
+                                        <input class="form-control" id="sbranch" name="sbranch" type="text" value="{{$row->sbranch}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dntbranch">
                                             สาขาปลายทาง
                                         </label>
-                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text" />
+                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text" value="{{$row->dntbranch}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="truckrqtime">
                                             เวลาตามรถ
                                         </label>
-                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time" />
+                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time" value="{{$row->truckrqtime}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dpttime">
                                             เวลาปล่อยรถ
                                         </label>
-                                        <input class="form-control" id="dpttime" name="dpttime" type="time" />
+                                        <input class="form-control" id="dpttime" name="dpttime" type="time" value="{{$row->dpttime}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="dnttime">
                                             เวลากำหนดถึงปลายทาง
                                         </label>
-                                        <input class="form-control" id="dnttime" name="dnttime" type="time" />
+                                        <input class="form-control" id="dnttime" name="dnttime" type="time" value="{{$row->dnttime}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="totalhour">
                                             เวลาที่กำหนด(ชั่วโมง)
                                         </label>
-                                        <input class="form-control" id="totalhour" name="totalhour" type="text" />
+                                        <input class="form-control" id="totalhour" name="totalhour" type="text" value="{{$row->totalhour}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="mntstaff">
                                             Monitor staff(KDR)
                                         </label>
-                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" />
+                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" value="{{$row->mntstaff}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="remark">
                                             หมายเหตุ
                                         </label>
-                                        <input class="form-control" id="remark" name="remark" type="text" />
+                                        <input class="form-control" id="remark" name="remark" type="text" value="{{$row->remark}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
                                         </label>
                                         <select class="select form-control" id="statusplan" name="statusplan">
-                                            <option value="Active">
+                                            <option value="Active" @if($row->statusplan=='Active') selected @endif>
                                                 Active
                                             </option>
-                                            <option value="Pending">
+                                            <option value="Pending" @if($row->statusplan=='Pending') selected @endif>
                                                 Pending
                                             </option>
-                                            <option value="Cancel">
+                                            <option value="Cancel" @if($row->statusplan=='Cancel') selected @endif>
                                                 Cancel
                                             </option>
                                         </select>
@@ -253,31 +253,31 @@
                                         <label class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
-                                        <input class="form-control" id="ccremark" name="ccremark" type="text" />
+                                        <input class="form-control" id="ccremark" name="ccremark" type="text" value="{{$row->ccremark}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
                                         </label>
-                                        <input class="form-control" id="author" name="author" type="text" />
+                                        <input class="form-control" id="author" name="author" type="text" value="{{$row->author}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="editor">
                                             ผู้แก้ไขรายการ
                                         </label>
-                                        <input class="form-control" id="editor" name="editor" type="text" />
+                                        <input class="form-control" id="editor" name="editor" type="text" value="{{$row->editor}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="created">
                                             วันเวลาที่ทำรายการ
                                         </label>
-                                        <input class="form-control" id="created" name="created" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                        <input class="form-control" id="created" name="created" type="text" placeholder="" value="{{$row->created}}" />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="updated">
                                             วันเวลาที่แก้ไขรายการ
                                         </label>
-                                        <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" />
+                                        <input class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{$row->updated}}" />
                                     </div>
 
 
