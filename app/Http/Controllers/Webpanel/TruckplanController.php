@@ -238,6 +238,7 @@ class TruckplanController extends Controller
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
+        
     
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);

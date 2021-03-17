@@ -227,12 +227,7 @@
                                         </label>
                                         <input class="form-control" id="mntstaff" name="mntstaff" type="text" value="{{$row->mntstaff}}" />
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="remark">
-                                            หมายเหตุ
-                                        </label>
-                                        <input class="form-control" id="remark" name="remark" type="text" value="{{$row->remark}}" />
-                                    </div>
+
                                     <div class="form-group ">
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
@@ -249,36 +244,46 @@
                                             </option>
                                         </select>
                                     </div>
+                                    
+                                    <div class="form-group ">
+                                        <label class="control-label " for="remark">
+                                            หมายเหตุ
+                                        </label>
+                                        <input class="form-control" id="remark" name="remark" type="text" value="{{$row->remark}}" />
+                                    </div>
+                                    
                                     <div class="form-group ">
                                         <label class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
                                         <input class="form-control" id="ccremark" name="ccremark" type="text" value="{{$row->ccremark}}" />
                                     </div>
-                                    <div class="form-group ">
+                                    <!-- <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
-                                        </label>
-                                        <input class="form-control" id="author" name="author" type="text" value="{{$row->author}}" />
-                                    </div>
-                                    <div class="form-group ">
+                                        </label> -->
+                                        <input hidden class="form-control" id="author" name="author" type="text" value="{{$row->author}}" />
+                                    <!-- </div> -->
+                                    <!-- <div class="form-group ">
                                         <label class="control-label " for="editor">
                                             ผู้แก้ไขรายการ
-                                        </label>
-                                        <input class="form-control" id="editor" name="editor" type="text" value="{{$row->editor}}" />
-                                    </div>
-                                    <div class="form-group ">
+                                        </label> -->
+                                        @php $username = Auth::user()->name; @endphp
+                                        <input hidden class="form-control" id="editor" name="editor" type="text" value="{{$username}}" />
+                                    <!-- </div> -->
+                                    <!-- <div class="form-group ">
                                         <label class="control-label " for="created">
                                             วันเวลาที่ทำรายการ
-                                        </label>
-                                        <input class="form-control" id="created" name="created" type="text" placeholder="" value="{{$row->created}}" />
-                                    </div>
-                                    <div class="form-group ">
+                                        </label> -->
+                                        <input hidden class="form-control" id="created" name="created" type="text" placeholder="" value="{{$row->created}}" />
+                                    <!-- </div> -->
+                                    <!-- <div class="form-group ">
                                         <label class="control-label " for="updated">
                                             วันเวลาที่แก้ไขรายการ
-                                        </label>
-                                        <input class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{$row->updated}}" />
-                                    </div>
+                                        </label> -->
+                                        @php $date = date('Y-m-d H:i:s'); @endphp
+                                        <input hidden class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{$date}}" />
+                                    <!-- </div> -->
 
 
                                 </div>

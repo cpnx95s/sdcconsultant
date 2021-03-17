@@ -246,17 +246,11 @@
                                         <input class="form-control" id="mntstaff" name="mntstaff" type="text" require/>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="remark">
-                                            หมายเหตุ
-                                        </label>
-                                        <input class="form-control" id="remark" name="remark" type="text" />
-                                    </div>
-                                    <div class="form-group ">
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
                                         </label>
-                                        <select class="select form-control" id="statusplan" name="statusplan" require>
-                                            <option value="Active">
+                                        <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
+                                            <option value="Active" >
                                                 Active
                                             </option>
                                             <option value="Pending">
@@ -268,35 +262,23 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="ccremark">
+                                        <label class="control-label " for="remark">
+                                            หมายเหตุ
+                                        </label>
+                                        <input class="form-control" id="remark" name="remark" type="text" />
+                                    </div>
+                                    <div class="form-group " id="cancelarea">
+                                        <label id="cancelarea" class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
-                                        <input class="form-control" id="ccremark" name="ccremark" type="text" />
+                                        <input class="form-control" name="ccremark" type="text" />
                                     </div>
-                                    <div class="form-group ">
+                                    <!-- <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
-                                        </label>
-                                        <input class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}"/>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="editor">
-                                            ผู้แก้ไขรายการ
-                                        </label>
-                                        <input class="form-control" id="editor" name="editor" type="text" require value="{{ Auth::user()->name }}"/>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="created">
-                                            วันเวลาที่ทำรายการ
-                                        </label>
-                                        <input class="form-control" id="created" name="created" placeholder="MM/DD/YYYY" type="datetime-local" require/>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="updated">
-                                            วันเวลาที่แก้ไขรายการ
-                                        </label>
-                                        <input class="form-control" id="updated" name="updated" placeholder="MM/DD/YYYY" type="datetime-local" require/>
-                                    </div>
+                                        </label> -->
+                                        <input hidden class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}"/>
+                                    <!-- </div> -->
 
                                 </div>
                             </div>

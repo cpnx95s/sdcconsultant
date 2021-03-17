@@ -6,7 +6,7 @@
                     <div class="card-header">
 
                         <a href="{{url("$segment")}}" class="card-header-action">จัดการแผนรถ</a>
-                        <div class="card-header-actions">
+                        <div >
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">เรียง</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> เพิ่ม</a>
                             <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> คัดลอก</button>

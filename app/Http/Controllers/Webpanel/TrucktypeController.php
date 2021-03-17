@@ -76,71 +76,17 @@ class TrucktypeController extends Controller
         ]);
     }
 
-    public function cloning()
-    {
-        $row = TrucktypeModel::find($id);
-
-        $row->load('name');
-
-        $newModel = $row->replicate();
-        $newModel->push();
-
-        foreach ($row->getRelations() as $relation => $items) {
-            foreach ($items as $item) {
-                unset($item->id);
-                $newModel->{$relation}()->create($item->toArray());
-            }
-        }
-        
-    }
+    
     public function store(Request $request)
     {
 
         $data = new TrucktypeModel;
         $data->name = $request->name;
         $data->sort = 1;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/trucktype/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
         if ($data->save()) {
             TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
-            // gallery
-            if ($request->gallery) {
-                $gallery = $request->gallery;
-                $gfilename = 'gallery-' . date('dmY-His');
-                for ($i = 0; $i < count($gallery); $i++) {
-                    $lg = Image::make($gallery[$i]->getRealPath());
-
-                    $ext = explode("/", $lg->mime())[1];
-                    $size = $this->ImageSize('gallery');
-
-                    $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-                    // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-
-                    $newLg = 'upload/trucktype/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                    Storage::disk('public')->put($newLg, $lg);
-
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'trucktype', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-                }
-            }
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/trucktype")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/trucktype/create")]);
@@ -189,12 +135,30 @@ class TrucktypeController extends Controller
         ]);
     }
 
+    public function clone(Request $request, $id)
+    {
+        //$data = TrucktypeModel::find($id);
+        $data = new TrucktypeModel;
+        $data->id = "NULL";
+        $data->name = $request->name;
+        $data->sort = 1;
+        $data->created = date('Y-m-d H:i:s');
+        $data->updated = date('Y-m-d H:i:s');
+
+        if ($data->save()) {
+            TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/trucktype")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/trucktype/copy")]);
+        }
+    }
 
     public function update(Request $request, $id)
     {
         $data = TrucktypeModel::find($id);
         $data->name = $request->name;
-    
+        $data->updated = date('Y-m-d H:i:s');
+        
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {
@@ -255,59 +219,7 @@ class TrucktypeController extends Controller
     //     }
     // }
 
-    public function copystore(Request $request, $id)
-    {
-        $data = TrucktypeModel::find($id);
-        $data = new TrucktypeModel;
-        $data->name = $request->name;
-        $data->sort = 1;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
-        $data->created = date('Y-m-d H:i:s');
-        $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
 
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/trucktype/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
-        if ($data->save()) {
-            TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
-            // gallery
-            if ($request->gallery) {
-                $gallery = $request->gallery;
-                $gfilename = 'gallery-' . date('dmY-His');
-                for ($i = 0; $i < count($gallery); $i++) {
-                    $lg = Image::make($gallery[$i]->getRealPath());
-
-                    $ext = explode("/", $lg->mime())[1];
-                    $size = $this->ImageSize('gallery');
-
-                    $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-                    // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-
-                    $newLg = 'upload/trucktype/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                    Storage::disk('public')->put($newLg, $lg);
-
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'trucktype', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-                }
-            }
-            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/trucktype")]);
-        } else {
-            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/trucktype/copy")]);
-        }
-    }
     public function destroy(Request $request)
     {
         $datas = TrucktypeModel::find(explode(',', $request->id));
