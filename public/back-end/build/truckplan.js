@@ -107,3 +107,20 @@ $('#position').on('change',function(){
     if($('option:selected',this).val()=='secondary'){ $('#_id').prop('selectedIndex',0).prop('disabled',false) }else{ $('#_id').prop('disabled',true) }
 })
 
+$("#toshow").hide();   //which element you want to hide or show
+function typeofdate(){
+var type =$("#type").val();
+
+if(type == 2 || type == 3){
+$("#toshow").show();
+}else{
+$("#toshow").hide();
+}
+
+}
+
+
+
+
+
+
