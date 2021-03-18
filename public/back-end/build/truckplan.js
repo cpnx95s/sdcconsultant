@@ -107,14 +107,14 @@ $('#position').on('change',function(){
     if($('option:selected',this).val()=='secondary'){ $('#_id').prop('selectedIndex',0).prop('disabled',false) }else{ $('#_id').prop('disabled',true) }
 })
 
-$("#toshow").hide();   //which element you want to hide or show
-function typeofdate(){
-var type =$("#type").val();
+$("#cancelarea").hide();   //which element you want to hide or show
+function fstatusplan(){
+var type =$("#statusplan").val();
 
-if(type == 2 || type == 3){
-$("#toshow").show();
+if(type == "Cancel"){
+$("#cancelarea").show();
 }else{
-$("#toshow").hide();
+$("#cancelarea").hide();
 }
 
 }

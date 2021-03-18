@@ -229,10 +229,17 @@
                                     </div>
 
                                     <div class="form-group ">
+                                        <label class="control-label " for="remark">
+                                            หมายเหตุ
+                                        </label>
+                                        <input class="form-control" id="remark" name="remark" type="text" value="{{$row->remark}}" />
+                                    </div>
+
+                                    <div class="form-group ">
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
                                         </label>
-                                        <select class="select form-control" id="statusplan" name="statusplan">
+                                        <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                             <option value="Active" @if($row->statusplan=='Active') selected @endif>
                                                 Active
                                             </option>
@@ -244,20 +251,14 @@
                                             </option>
                                         </select>
                                     </div>
-                                    
-                                    <div class="form-group ">
-                                        <label class="control-label " for="remark">
-                                            หมายเหตุ
-                                        </label>
-                                        <input class="form-control" id="remark" name="remark" type="text" value="{{$row->remark}}" />
-                                    </div>
-                                    
-                                    <div class="form-group ">
+
+                                    <div class="form-group name="cancelarea" id="cancelarea" ">
                                         <label class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
                                         <input class="form-control" id="ccremark" name="ccremark" type="text" value="{{$row->ccremark}}" />
                                     </div>
+                                    
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ

@@ -245,6 +245,14 @@
                                         </label>
                                         <input class="form-control" id="mntstaff" name="mntstaff" type="text" require/>
                                     </div>
+                                    
+                                    <div class="form-group ">
+                                        <label class="control-label " for="remark">
+                                            หมายเหตุ
+                                        </label>
+                                        <input class="form-control" id="remark" name="remark" type="text" />
+                                    </div>
+
                                     <div class="form-group ">
                                         <label class="control-label " for="statusplan">
                                             สถานะแผน
@@ -261,13 +269,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="remark">
-                                            หมายเหตุ
-                                        </label>
-                                        <input class="form-control" id="remark" name="remark" type="text" />
-                                    </div>
-                                    <div class="form-group " id="cancelarea">
+                                    <div class="form-group" name="cancelarea" id="cancelarea">
                                         <label id="cancelarea" class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
