@@ -126,6 +126,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('trucktype')->group(function(){
 			Route::get('/','Webpanel\TrucktypeController@index');
+			Route::get('/','Webpanel\TrucktypeController@search')->name('trucktype.search');
 			Route::get('/create','Webpanel\TrucktypeController@create');
         	Route::put('/create','Webpanel\TrucktypeController@store');
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);

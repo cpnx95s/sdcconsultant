@@ -16,16 +16,18 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="{{route('trucktype.search')}}" method="get">
+                        <form action="" method="get">
                             <div class="row">
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
-                                    <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
-                                        <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
-                                        </span>
-                                    </div>
+                                    <form action="{{route('trucktype.search')}}" method="get">
+                                        <div class="input-group">
+                                            <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
+                                            <span class="input-group-append">
+                                                <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            </span>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </form>
@@ -49,7 +51,7 @@
                                 <tbody>
                                     @if($rows)
                                     @foreach($rows as $key => $row)
-                                    @php($secondary = \App\MenuModel::where('_id',$row->id)->get())
+                                    @php($data = \App\MenuModel::where('_id',$row->id)->get())
                                     <tr role="row" class="odd" data-row="{{$key+1}}" data-id="{{$row->id}}">
                                         <td data-label="No.">
                                             <span class="no">{{$key+1}}</span>

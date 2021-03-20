@@ -292,4 +292,36 @@ class TrucktypeController extends Controller
         }
         return response()->json(false);
     }
+
+    public function search(Request $request)
+    {
+
+        $data = TrucktypeModel::orderBy('sort');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view) ? $request->view : 10;
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
+        }
+        //dd($request->keyword);
+        $trucktype = TrucktypeModel::where('name','LIKR','%$request->keyword%');
+
+        return view("$this->prefix.pages.trucktype.index", [
+            'css' => ['back-end/css/table-responsive.css'],
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ["src" => "back-end/js/table-dragger.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'folder' => 'trucktype',
+            'page' => 'search',
+            'segment' => "$this->segment/trucktype",
+            'trucktype' => $trucktype,
+            'rows' => $rows
+        ]);
+    }
 }
