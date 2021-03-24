@@ -34,7 +34,7 @@ class SplnameController extends Controller
     }
 
     public function index(Request $request)
-    {
+    {   
         $data = splnameModel::orderBy('sort');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
@@ -195,6 +195,7 @@ class SplnameController extends Controller
     {
         $data = splnameModel::find($id);
         $data->name = $request->name;
+        $data->score = $request->score;
 
         // SEO
         // $data->seo_title = $request->seo_title;
