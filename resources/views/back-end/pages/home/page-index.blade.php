@@ -13,6 +13,29 @@
     <div class="container-fluid">
         <h2 class="mb-4">Dashboard</h2>
         <div class="row">
+
+            <div class="col-md-12">
+                <!-- <div id="container" style="width: 75%;">
+                    <canvas id="canvas"></canvas>
+                </div> -->
+                <!-- {{$results}}
+
+                {!! $chart->container() !!} -->
+
+                <div id="app" class="col-md-12 px-2 card">
+                    {!! $chart->container() !!}
+                </div>
+                <script src="https://unpkg.com/vue"></script>
+                <script>
+                    var app = new Vue({
+                        el: '#app',
+                    });
+                </script>
+                <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
+                {!! $chart->script() !!}
+            </div>
+
+
             <div class="col-md-12">
                 <div class="row ">
                     <div class="col-md-4 bg-white pt-4">
@@ -550,65 +573,38 @@
             </div>
         </div>
     </div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script>
-        window.onload = function() {
-
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                theme: "light2",
-                title: {
-                    text: "Simple Line Chart"
-                },
-                data: [{
-                    type: "line",
-                    indexLabelFontSize: 16,
-                    dataPoints: [{
-                            y: 450
-                        },
-                        {
-                            y: 414
-                        },
-                        {
-                            y: 520,
-                            indexLabel: "\u2191 highest",
-                            markerColor: "red",
-                            markerType: "triangle"
-                        },
-                        {
-                            y: 460
-                        },
-                        {
-                            y: 450
-                        },
-                        {
-                            y: 500
-                        },
-                        {
-                            y: 480
-                        },
-                        {
-                            y: 480
-                        },
-                        {
-                            y: 410,
-                            indexLabel: "\u2193 lowest",
-                            markerColor: "DarkSlateGrey",
-                            markerType: "cross"
-                        },
-                        {
-                            y: 500
-                        },
-                        {
-                            y: 480
-                        },
-                        {
-                            y: 510
-                        }
-                    ]
-                }]
-            });
-            chart.render();
-
+    <script src="http://www.chartjs.org/dist/2.7.3/Chart.bundle.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
+    </style>
+    <script>
+        var chartdata = {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($Month); ?>,
+                // labels: month,
+                datasets: [{
+                    label: 'this year',
+                    backgroundColor: '#26B99A',
+                    borderWidth: 1,
+                    data: <?php echo json_encode($Data); ?>
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+        var ctx = document.getElementById('canvas').getContext('2d');
+        new Chart(ctx, chartdata);
     </script>

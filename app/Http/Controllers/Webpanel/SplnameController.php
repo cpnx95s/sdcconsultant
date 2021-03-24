@@ -98,6 +98,7 @@ class SplnameController extends Controller
 
         $data = new splnameModel;
         $data->name = $request->name;
+        $data->score = $request->score;
         $data->sort = 1;
         // SEO
         // $data->seo_title = $request->seo_title;

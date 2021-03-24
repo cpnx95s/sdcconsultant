@@ -34,20 +34,23 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="th" role="tabpanel">
 
-                                    <div class="row" style="margin-bottom:5px;">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
                                             <label>ชื่อ</label><span style="color:red">*</span><br />
                                             <input id="name" name="name" type="text" class="form-control" value="" autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="row" style="margin-bottom:5px;">
+                                    <div class="row mb-3">
                                         <div class="col-md-12">
-                                            <select id="splpref" name="splpref" class="form-control">
+                                            <select id="score" name="score" class="form-control">
                                                 <option value="">กรุณาเลือก</option>
-                                                <option value="A">A</option>
-                                                <option value="B">B</option>
-                                                <option value="C">C</option>
-                                                <option value="D">D</option>
+                                                <option value="4.0">A</option>
+                                                <option value="3.5">B+</option>
+                                                <option value="3.0">B</option>
+                                                <option value="2.5">C+</option>
+                                                <option value="2.0">C</option>
+                                                <option value="1.5">D+</option>
+                                                <option value="1.0">D</option>
                                             </select>
                                         </div>
                                     </div>

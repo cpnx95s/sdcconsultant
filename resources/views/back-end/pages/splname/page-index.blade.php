@@ -79,7 +79,7 @@
                                             <td data-label="ชื่อซัพพลายเออร์">
                                                 {{$row->name}}
                                             </td>
-                                            <td data-label="ชื่อซัพพลายเออร์">
+                                            <td data-label="ประสิทธิภาพซัพพลายเออร์">
                                                 {{$row->performance}}
                                             </td>
                                             <td data-label="created">

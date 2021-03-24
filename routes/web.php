@@ -36,6 +36,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 	Route::prefix('webpanel')->group(function(){
 
 		Route::get('/','Webpanel\HomeController@index');
+		Route::get('/','Webpanel\HomeController@Chartjs');
 		
 		Route::prefix('slide')->group(function(){
 			Route::get('/','Webpanel\Slide@index');
