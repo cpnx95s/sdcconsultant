@@ -14,22 +14,10 @@
         <h2 class="mb-4">Dashboard</h2>
         <div class="row">
 
-            <div class="col-md-12">
-                <!-- <div id="container" style="width: 75%;">
-                    <canvas id="canvas"></canvas>
-                </div> -->
-                <!-- {{$results}}
-
-                {!! $chart->container() !!} -->
-
-                <div id="app" class="col-md-12 card">
-                    {!! $chart->container() !!}
-                </div>
+            <div class="col-md-12 card">
+                {!! $chart->container() !!}
                 {!! $chart->script() !!}
-
-
             </div>
-
 
             <div class="col-md-12">
                 <div class="row ">
