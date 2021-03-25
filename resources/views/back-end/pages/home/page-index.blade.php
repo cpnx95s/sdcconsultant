@@ -15,6 +15,11 @@
         <div class="row">
 
             <div class="col-md-12 card">
+                {!! $chart2->container() !!}
+                {!! $chart2->script() !!}
+            </div>
+
+            <div class="col-md-12 card">
                 {!! $chart->container() !!}
                 {!! $chart->script() !!}
             </div>

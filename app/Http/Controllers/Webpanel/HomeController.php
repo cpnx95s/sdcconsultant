@@ -32,15 +32,30 @@ class HomeController extends Controller
     public function Chartjs()
     {
 
-        $results = SplnameModel::pluck('score','name');
+        $results = SplnameModel::pluck('score', 'name');
+        //dd($results);
+        $results2 = SplnameModel::pluck('sort');
+        // /dd($results2);
         //$results -> keys();
         //$results -> values();
         $chart = new splChart;
-        $chart->labels($results -> keys());
-        $chart->dataset('score', 'bar', $results -> values())->backgroundColor('#5bc0de');
-        $chart->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
+        $chart->labels($results->keys());
+        $chart->dataset('score', 'bar', $results->values())->backgroundColor('#5bc0de');
+        $chart->title('Score By Sub-contractor', $font_size = 24, $color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        
+        // $chart2 = new splChart;
+        // $chart2->labels($results -> keys());
+        // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
+        // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
+
+        $chart2 = new splChart();
+        $chart2->labels($results->keys());
+        $chart2->dataset('score', 'line', $results->values())
+            ->options(['borderColor' => '#97d881']);
+
+        $chart2->dataset('sort', 'line', $results2->values())
+            ->options(['borderColor' => '#ff0000']);
+
         $month = array('Jan', 'Feb', 'Mar', 'Apr', 'May');
         $data = array('1', '2', '3', '4', '5');
 
@@ -58,9 +73,7 @@ class HomeController extends Controller
             'segment' => "$this->segment",
             'Month' => $month,
             'Data' => $data,
-            
-        ],compact('results','chart'));
 
-        
+        ], compact('results', 'chart', 'chart2'));
     }
 }
