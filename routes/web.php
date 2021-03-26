@@ -39,7 +39,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		Route::get('/','Webpanel\HomeController@Chartjs');
 		
 		Route::prefix('slide')->group(function(){
-			Route::get('/','Webpanel\Slide@index');
+			
 			Route::get('/create','Webpanel\Slide@create');
         	Route::put('/create','Webpanel\Slide@store');
 			Route::get('/{id}','Webpanel\Slide@show')->where(['id'=>'[0-9]+']);
