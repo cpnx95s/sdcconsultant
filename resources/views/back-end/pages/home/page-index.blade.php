@@ -49,9 +49,9 @@
                                             <td>
                                         <tr>
                                             <td>Extra</td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                            <td>{{$DHLBigC}}</td>
+                                            <td>{{$DHLBigC2}}</td>
+                                            <td>{{$ttDHLBigC}}</td>
                                         </tr>
                                         </td>
                                         </tr>

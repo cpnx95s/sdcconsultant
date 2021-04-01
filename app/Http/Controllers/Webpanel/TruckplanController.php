@@ -118,7 +118,6 @@ class TruckplanController extends Controller
         $data->editor = $request->editor;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
-        $data->cusname = $request->cusname;
         $data->splname = $request->splname;
         $data->tsptype = $request->tsptype;
         $data->pjname = $request->pjname;
@@ -129,7 +128,6 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
-        $data->cusname = $request->cusname;
         $data->splname = $request->splname;
         $data->tsptype = $request->tsptype;
         $data->pjname = $request->pjname;
@@ -221,7 +219,6 @@ class TruckplanController extends Controller
         $data->editor = $request->editor;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
-        $data->cusname = $request->cusname;
         $data->splname = $request->splname;
         $data->tsptype = $request->tsptype;
         $data->pjname = $request->pjname;
@@ -232,7 +229,6 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
-        $data->cusname = $request->cusname;
         $data->splname = $request->splname;
         $data->tsptype = $request->tsptype;
         $data->pjname = $request->pjname;

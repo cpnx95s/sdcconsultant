@@ -29,7 +29,7 @@ class AuthController extends Controller
             // }else{
             //     $url = url('webpanel');
             // }
-            return redirect('webpanel/slide');
+            return redirect('webpanel/');
         }else{
             return redirect('webpanel\login')->with(['error'=>'Username or Password is incorrect!']);
         }

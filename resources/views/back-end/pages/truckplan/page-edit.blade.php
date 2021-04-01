@@ -59,23 +59,6 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="cname">
-                                            ชื่อลูกค้า
-                                        </label>
-                                        <select id="cusname" name="cusname" class="form-control">
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\CusModel::where('status','on')->get(); @endphp
-
-                                            @if($list)
-                                            @foreach($list as $list)
-                                            <option value="{{$list->id}}" @if($row->cusname == $list->id) selected @endif>{{$list->name}}</option>
-                                            @endforeach
-
-                                            @endif
-                                        </select>
-                                        </select>
-                                    </div>
-                                    <div class="form-group ">
                                         <label class="control-label " for="splname">
                                             ชื่อซัพพลายเออร์
                                         </label>

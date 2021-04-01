@@ -38,6 +38,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		Route::get('/','Webpanel\HomeController@index');
 		Route::get('/','Webpanel\HomeController@Chartjs');
 		
+		
 		Route::prefix('slide')->group(function(){
 			
 			Route::get('/create','Webpanel\Slide@create');
@@ -203,31 +204,31 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
 		});
 
-		Route::prefix('cusname')->group(function(){
-			Route::get('/','Webpanel\CusnameController@index');
-			Route::get('/create','Webpanel\CusnameController@create');
-        	Route::put('/create','Webpanel\CusnameController@store');
-			Route::get('/{id}','Webpanel\CusnameController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\CusnameController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\CusnameController@destroy');
-			Route::get('/copy','Webpanel\CusnameController@copy');
-        	Route::post('/dragsort','Webpanel\CusnameController@dragsort');
-			Route::get('/status/{id}','Webpanel\CusnameController@status')->where(['id'=>'[0-9]+']);
-			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
-		});
+		// Route::prefix('cusname')->group(function(){
+		// 	Route::get('/','Webpanel\CusnameController@index');
+		// 	Route::get('/create','Webpanel\CusnameController@create');
+        // 	Route::put('/create','Webpanel\CusnameController@store');
+		// 	Route::get('/{id}','Webpanel\CusnameController@edit')->where(['id'=>'[0-9]+']);
+		// 	Route::post('/{id}','Webpanel\CusnameController@update')->where(['id'=>'[0-9]+']);
+		// 	Route::get('/destroy','Webpanel\CusnameController@destroy');
+		// 	Route::get('/copy','Webpanel\CusnameController@copy');
+        // 	Route::post('/dragsort','Webpanel\CusnameController@dragsort');
+		// 	Route::get('/status/{id}','Webpanel\CusnameController@status')->where(['id'=>'[0-9]+']);
+		// 	Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+		// });
 
-		Route::prefix('pjdetail')->group(function(){
-			Route::get('/','Webpanel\PjdetailController@index');
-			Route::get('/create','Webpanel\PjdetailController@create');
-        	Route::put('/create','Webpanel\PjdetailController@store');
-			Route::get('/{id}','Webpanel\PjdetailController@edit')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\PjdetailController@update')->where(['id'=>'[0-9]+']);
-			Route::get('/destroy','Webpanel\PjdetailController@destroy');
-        	Route::post('/dragsort','Webpanel\PjdetailController@dragsort');
-			Route::get('/status/{id}','Webpanel\PjdetailController@status')->where(['id'=>'[0-9]+']);
-			Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
-			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
-		});
+		// Route::prefix('pjdetail')->group(function(){
+		// 	Route::get('/','Webpanel\PjdetailController@index');
+		// 	Route::get('/create','Webpanel\PjdetailController@create');
+        // 	Route::put('/create','Webpanel\PjdetailController@store');
+		// 	Route::get('/{id}','Webpanel\PjdetailController@edit')->where(['id'=>'[0-9]+']);
+		// 	Route::post('/{id}','Webpanel\PjdetailController@update')->where(['id'=>'[0-9]+']);
+		// 	Route::get('/destroy','Webpanel\PjdetailController@destroy');
+        // 	Route::post('/dragsort','Webpanel\PjdetailController@dragsort');
+		// 	Route::get('/status/{id}','Webpanel\PjdetailController@status')->where(['id'=>'[0-9]+']);
+		// 	Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
+		// 	Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+		// });
 
 		Route::prefix('splname')->group(function(){
 			Route::get('/','Webpanel\SplnameController@index');
