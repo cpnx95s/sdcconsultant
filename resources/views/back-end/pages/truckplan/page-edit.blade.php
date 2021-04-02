@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="splname">
-                                            ชื่อซัพพลายเออร์
+                                            Subcontractor
                                         </label>
                                         <select id="splname" name="splname" class="form-control">
                                             <option value="">กรุณาเลือก</option>

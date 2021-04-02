@@ -4,7 +4,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="card">                
                         <div class="card-header"> 
-                            <a href="{{url("$segment")}}" class="card-header-action">Project Management</a>
+                            <a href="{{url("$segment")}}" class="card-header-action">Project Name</a>
                             <div class="card-header-actions">
                             </div>                            
                         </div>
@@ -64,7 +64,7 @@
                                             </th>
                                             <th width="20%">ชื่อ </th>
                                             <th width="20%">ประเภท</th>
-                                            <th width="15%">วันที่สร้าง</th>
+                                            <th width="15%">Created</th>
                                             <th width="10%">สถานะ</th>
                                             <th width="15%"></th>
                                         </tr>

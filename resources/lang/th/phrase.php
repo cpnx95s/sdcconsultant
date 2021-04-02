@@ -44,7 +44,7 @@ return [
 'index_detail_2' => 'COME TOGETHER', //COME TOGETHER
 'index_detail_3' => 'ภารกิจของเราคือการเป็นทางเลือกของลูกค้าสำหรับผู้ขายวัตถุดิบในระยะยาว ผลิตภัณฑ์คุณภาพดีการตอบสนองอย่างรวดเร็วราคายุติธรรมและความเชี่ยวชาญด้านเทคนิคดำเนินการเพื่อให้บริการที่เหนือกว่าแก่ลูกค้าของเราเท่านั้น', //Our mission is to be a customer’s choice for long-term raw material vendor.  Good quality products, quick response, fair price, and technical expertise are conducted to deliver only superior service to our customers.
 'index_detail_4' => 'ที่พร้อมมิตรเคมีเราเชื่อมั่นในกลยุทธ์ลูกค้าเป็นศูนย์กลาง บุคลากรของเราจากทุกแผนกทำงานร่วมกันเพื่อตอบสนองความต้องการและมอบประสบการณ์ที่ยอดเยี่ยมให้กับลูกค้า', //At Prommitr Chemical, we believe in customer centric strategy.  Our people from all departments are teamed up to serve needs and provide a great customer experience.
-'more' => 'อ่านเพิ่มเติม', //more
+'more' => 'อ่านAddเติม', //more
 'index_detail_5' => 'ผลิตภัณฑ์กรดกำมะถันหรือสารส้มของ บริษัท พร้อมมิตรเคมี จำกัด', //Sulfuric acid products or alum products of Prommitr Chemical Company Limited
 'index_detail_6' => 'สำหรับผู้ที่สนใจกรุณาติดต่อเพื่อขอรายละเอียด', //For those who are interested, please contact for details.
 'click' => 'คลิก', //Click 

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">ชื่อซัพพลายเออร์</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Subcontractor</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -32,11 +32,11 @@
                                     </div>
                                 </div> -->
                                 <div class="col-lg-4 col-xs-12 mb-4">
-                                    <label for="search">ค้นหา :</label>
+                                    <label for="search">Search :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อซัพพลายเออร์">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Subcontractor">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
 
@@ -55,10 +55,10 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="40%">ชื่อซัพพลายเออร์</th>
-                                        <th width="20%">ประสิทธิภาพ</th>
-                                        <th width="20%">วันที่สร้าง</th>
-                                        <th width="20%">จัดการ</th>
+                                        <th width="40%">Subcontractor</th>
+                                        <th width="20%">Score</th>
+                                        <th width="20%">Created</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,27 +77,11 @@
                                                 <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                             </div>
                                         </td>
-                                        <td data-label="ชื่อซัพพลายเออร์">
+                                        <td data-label="Subcontractor">
                                             {{$row->name}}
                                         </td>
-                                        <td data-label="ประสิทธิภาพซัพพลายเออร์">
-                                            <!-- {{$row->score}} -->
-                                            @if($row->score == 4)
-                                            A
-                                            @elseif($row->score == 3.5)
-                                            B+
-                                            @elseif($row->score == 3)
-                                            B
-                                            @elseif($row->score == 2.5)
-                                            C+
-                                            @elseif($row->score == 2)
-                                            C
-                                            @elseif($row->score == 1.5)
-                                            D+
-                                            @else
-                                            D
-                                            @endif
-                                           
+                                        <td data-label="Scoreซัพพลายเออร์">
+                                            {{$row->score}}
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการแผนรถ</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Vehicle Plan</a>
                         <div >
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -32,11 +32,11 @@
                                     </div>
                                 </div> -->
                                 <div class="col-lg-4 col-xs-12 mb-4">
-                                    <label for="search">ค้นหา :</label>
+                                    <label for="search">Search :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อแผนรถ">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Vehicle Plan">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
 
@@ -129,12 +129,12 @@
                                                 <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                             </div>
                                         </td>
-                                        <!-- <td data-label="จัดการ">
+                                        <!-- <td data-label="Action">
                                             <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a>
                                             <a href="{{url("$segment/copy/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                         </td> -->
-                                        <td data-label="จัดการ">
+                                        <td data-label="Action">
                                             <a href="{{url("$segment/$row->id")}}" class="text-warning" title="Edit"><i class="far fa-edit"></i></a>
                                             <a href="{{url("$segment/copy/$row->id")}}" class="text-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="text-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
@@ -167,7 +167,7 @@
                                         <td data-label="รูปแบบการว่าจ้าง">
                                             {{$row->showhiringtypename->name}}
                                         </td>
-                                        <td data-label="ชื่อซัพพลายเออร์">
+                                        <td data-label="Subcontractor">
                                             {{$row->showsplname->name}}
                                         </td>
                                         <td data-label="เลขทะเบียนรถ">

@@ -5,7 +5,7 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการชื่อลูกค้า</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Project Name</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -32,11 +32,11 @@
                                     </div>
                                 </div> -->
                                 <div class="col-lg-4 col-xs-12 mb-4">
-                                    <label for="search">ค้นหา :</label>
+                                    <label for="search">Search :</label>
                                     <div class="input-group">                                        
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประสิทธิภาพซัพพลายเออร์">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อScoreซัพพลายเออร์">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
                                     
@@ -56,8 +56,8 @@
                                             </div>
                                         </th>
                                         <th width="60%">ชื่อลูกค้า</th>
-                                        <th width="20%">วันที่สร้าง</th>
-                                        <th width="20%">จัดการ</th>
+                                        <th width="20%">Created</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,7 +75,7 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="ชื่อประสิทธิภาพซัพพลายเออร์">
+                                            <td data-label="ชื่อScoreซัพพลายเออร์">
                                                 {{$row->name}}
                                             </td>
                                             <td data-label="created">

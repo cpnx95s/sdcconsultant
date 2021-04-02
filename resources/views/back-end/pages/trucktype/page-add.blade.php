@@ -20,8 +20,8 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ชื่อประเภทรถ</a></span>
-                        <span class="breadcrumb-item active">เพิ่ม</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">Vehicle Type</a></span>
+                        <span class="breadcrumb-item active">Add</span>
                     </div>
                     <div class="card-body">
                         @csrf
@@ -29,7 +29,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ชื่อประเภทรถ</a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">Vehicle Type</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="th" role="tabpanel">                               

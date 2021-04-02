@@ -54,7 +54,7 @@
                                             <label>รหัส</label><span style="color:red">*</span><br />
                                             <input id="codename" name="codename" type="text" class="form-control" value="{{$row->codename}}" autocomplete="off">
                                         
-                                            <label>ชื่อโปรเจ็ค</label><span style="color:red">*</span><br />
+                                            <label>Project Name</label><span style="color:red">*</span><br />
                                         <select id="pjname" name="pjname" class="form-control">
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\PjnameModel::where('status','on')->get(); @endphp

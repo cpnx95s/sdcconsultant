@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการรายละเอียดโปรเจ็ค</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Project Name</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -32,11 +32,11 @@
                                     </div>
                                 </div> -->
                                 <div class="col-lg-4 col-xs-12 mb-4">
-                                    <label for="search">ค้นหา :</label>
+                                    <label for="search">Search :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อโปรเจ็ค">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Project Name">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
 
@@ -55,10 +55,11 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="30%">ชื่อโปรเจ็ค</th>
-                                        <th width="30%">ประเภทโโปรเจค</th>
-                                        <th width="20%">วันที่สร้าง</th>
-                                        <th width="20%">จัดการ</th>
+                                        <th width="15%">Code Name</th>
+                                        <th width="25%">Project Name</th>
+                                        <th width="20%">Project Type</th>
+                                        <th width="20%">Created</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,6 +78,9 @@
                                             </div>
                                         </td>
                                         <td data-label="codename">
+                                            {{$row->codename}}
+                                        </td>
+                                        <td data-label="name">
                                             {{$row->name}}
                                         </td>
                                         <td data-label="pjtype">

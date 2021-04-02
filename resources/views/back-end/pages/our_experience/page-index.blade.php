@@ -64,7 +64,7 @@
                                             </th>
                                             <th width="20%">ชื่อ </th>
                                             <th width="20%">รายละเอียดย่อย</th>
-                                            <th width="15%">วันที่สร้าง</th>
+                                            <th width="15%">Created</th>
                                             <th width="10%">สถานะ</th>
                                             <th width="15%"></th>
                                         </tr>

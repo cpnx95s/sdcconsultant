@@ -64,7 +64,7 @@
                                             </th>
                                             <th width="20%">ประเภท</th>
                                             
-                                            <th width="15%">วันที่สร้าง</th>
+                                            <th width="15%">Created</th>
                                 
                                             <th width="15%"></th>
                                         </tr>

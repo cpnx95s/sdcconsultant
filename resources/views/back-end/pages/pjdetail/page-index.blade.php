@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการรายละเอียดโปรเจ็ค</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Project Management</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -34,9 +34,9 @@
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">ค้นหา :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อโปรเจ็ค">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Project Name">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
 
@@ -56,11 +56,11 @@
                                             </div>
                                         </th>
                                         <th width="15%">รหัส</th>
-                                        <th width="15%">ชื่อโปรเจ็ค</th>
+                                        <th width="15%">Project Name</th>
                                         <th width="15%">ชื่อลูกค้า</th>
                                         <th width="15%">ประเภทโปรเจ็ค</th>
-                                        <th width="15%">วันที่สร้าง</th>
-                                        <th width="25%">จัดการ</th>
+                                        <th width="15%">Created</th>
+                                        <th width="25%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}">แผนรถ</a></span>
-                        <span class="breadcrumb-item active">เพิ่ม</span>
+                        <span class="breadcrumb-item active">Add</span>
                     </div>
                     <div class="card-body">
                         @csrf
@@ -29,7 +29,7 @@
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">ชื่อแผนรถ</a></li>
+                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">Vehicle Plan</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="th" role="tabpanel">
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="splname">
-                                            ชื่อซัพพลายเออร์
+                                            Subcontractor
                                         </label>
                                         <select id="splname" name="splname" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>

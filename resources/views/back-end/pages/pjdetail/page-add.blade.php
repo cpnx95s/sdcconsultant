@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}">รายละเอียดโปรเจ็ค</a></span>
-                        <span class="breadcrumb-item active">เพิ่ม</span>
+                        <span class="breadcrumb-item active">Add</span>
                     </div>
                     <div class="card-body">
                         @csrf
@@ -39,7 +39,7 @@
                                         <label>รหัส</label><span style="color:red">*</span><br />
                                             <input id="codename" name="codename" type="text" class="form-control" value="" autocomplete="off">
                                         
-                                        <label>ชื่อโปรเจ็ค</label><span style="color:red">*</span><br />
+                                        <label>Project Name</label><span style="color:red">*</span><br />
                                                 <select id="pjname" name="pjname" class="form-control">
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\PjnameModel::where('status','on')->get(); @endphp

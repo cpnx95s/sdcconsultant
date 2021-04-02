@@ -20,8 +20,8 @@
             <form id="formEดdit" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ชื่อซัพพลายเออร์</a></span>
-                        <span class="breadcrumb-item active">เพิ่ม</span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">Subcontractor</a></span>
+                        <span class="breadcrumb-item active">Add</span>
                     </div>
                     <div class="card-body">
                         @csrf
@@ -41,18 +41,10 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <div class="col-md-12">
-                                            <select id="score" name="score" class="form-control">
-                                                <option value="">กรุณาเลือก</option>
-                                                <option value="4.0">A</option>
-                                                <option value="3.5">B+</option>
-                                                <option value="3.0">B</option>
-                                                <option value="2.5">C+</option>
-                                                <option value="2.0">C</option>
-                                                <option value="1.5">D+</option>
-                                                <option value="1.0">D</option>
-                                            </select>
-                                        </div>
+                                            <div class="col-md-12">
+                                                <label>คะแนน</label><span style="color:red">*</span><br />
+                                                <input id="score" name="score" type="text" class="form-control" value="" autocomplete="off">
+                                            </div>
                                     </div>
 
                                 </div>

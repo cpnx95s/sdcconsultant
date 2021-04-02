@@ -66,7 +66,7 @@
                                             <th width="20%">เบอร์โทร</th>
                                             <th width="20%">อีเมล</th>
                                             <th width="20%">ไอดีไลน์</th>
-                                            <th width="15%">วันที่สร้าง</th>
+                                            <th width="15%">Created</th>
                                             <th width="10%">สถานะ</th>
                                             <th width="15%"></th>
                                         </tr>

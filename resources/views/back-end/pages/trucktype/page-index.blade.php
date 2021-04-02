@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">จัดการประเภทรถ</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Truck Type</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -19,11 +19,11 @@
                         <form action="{{route('trucktype.search')}}" method="get">
                             <div class="row">
                                 <div class="col-lg-4 col-xs-12 mb-4">
-                                    <label for="search">ค้นหา :</label>
+                                    <label for="search">Search :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="ชื่อประเภทรถ">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Vehicle Type">
                                         <span class="input-group-append">
-                                            <button class="btn btn-secondary" type="submit">ค้นหา</button>
+                                            <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">ชื่อประเภทรถ</th>
-                                        <th width="20%">วันที่สร้าง</th>
-                                        <th width="20%">จัดการ</th>
+                                        <th width="60%">Vehicle Type</th>
+                                        <th width="20%">Created</th>
+                                        <th width="20%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -61,7 +61,7 @@
                                                 <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                             </div>
                                         </td>
-                                        <td data-label="ชื่อประเภทรถ">
+                                        <td data-label="Vehicle Type">
                                             {{$row->name}}
                                         </td>
                                         <td data-label="created">
