@@ -98,6 +98,7 @@ class PjnameController extends Controller
         $data = new PjnameModel;
         $data->name = $request->name;
         $data->pjtype = $request->pjtype;
+        $data->codename = $request->codename;
         $data->sort = 1;
         // SEO
         // $data->seo_title = $request->seo_title;
@@ -195,6 +196,7 @@ class PjnameController extends Controller
         $data = PjnameModel::find($id);
         $data->name = $request->name;
         $data->pjtype = $request->pjtype;
+        $data->codename = $request->codename;
         // SEO
         // $data->seo_title = $request->seo_title;
         // $data->seo_description = $request->seo_description;

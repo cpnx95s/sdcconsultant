@@ -49,13 +49,19 @@
                                 <div class="tab-pane active" id="th" role="tabpanel">                                                             
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-md-12">
-                                            <label>ชื่อ</label><span style="color:red">*</span><br />
+                                            <label>ชื่อ</label>
                                         <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-md-12">
-                                            <<label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
+                                            <label>โค้ดเนม</label>
+                                        <input id="codename" name="codename" type="text" class="form-control" value="{{$row->codename}}" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <label>ประเภทโปรเจ็ค</label>
                                         <select id="pjtype" name="pjtype" class="form-control">
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\PjtypeModel::where('status','on')->get(); @endphp

@@ -6,7 +6,7 @@
                     <div class="card-header">
 
                         <a href="{{url("$segment")}}" class="card-header-action">Vehicle Plan</a>
-                        <div >
+                        <div class="mt-2">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
                             <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> Copy</button>
@@ -55,58 +55,29 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <!-- <th scope="col">ACTION</th>
-                                        <th scope="col">วันที่ใช้รถ</th>
-                                        <th scope="col">ประเภทงาน</th>
-                                        <th scope="col">ชื่อโปรเจค</th>
-                                        <th scope="col">รหัสสายวิ่ง</th>
-                                        <th scope="col">ชื่อเส้นทางเดินรถ</th>
-                                        <th scope="col">ประเภทการขนส่ง</th>
-                                        <th scope="col">ประเภทรถ</th>
-                                        <th scope="col">เที่ยวรถ</th>
-                                        <th scope="col">รูปแบบการว่าจ้าง</th>
-                                        <th scope="col">ซัพพลายเออร์</th>
-                                        <th scope="col">เลขทะเบียนรถ</th>
-                                        <th scope="col">พนักงานขับรถ</th>
-                                        <th scope="col">เบอร์โทร</th>
-                                        <th scope="col">สาขาต้นทาง</th>
-                                        <th scope="col">สาขาปลายทาง</th>
-                                        <th scope="col">เวลาตามรถ</th>
-                                        <th scope="col">เวลาปล่อยรถ</th>
-                                        <th scope="col">เวลากำหนดถึงปลายทาง</th>
-                                        <th scope="col">เวลาที่กำหนด(ชั่วโมง)</th>
-                                        <th scope="col">Monitor staff(KDR)</th>
-                                        <th scope="col">Remark</th>
-                                        <th scope="col">สถานะแผน</th>
-                                        <th scope="col">สาเหตุที่ยกเลิก</th>
-                                        <th scope="col">ผู้สร้างรายการ</th>
-                                        <th scope="col">ผู้แก้ไขรายการ</th>
-                                        <th scope="col">วันเวลาที่ทำรายการ</th>
-                                        <th scope="col">วันเวลาที่แก้ไขรายการ</th> -->
-                                        
                                         <th scope="col">ACTION</th>
                                         <th scope="col">STARTDATE</th>
-                                        <th scope="col">WORKTYPE</th>
-                                        <th scope="col">PROJECT NAME</th>
-                                        <th scope="col">ROUTE CODE</th>
-                                        <th scope="col">ชื่อเส้นทางเดินรถ</th>
-                                        <th scope="col">ประเภทการขนส่ง</th>
-                                        <th scope="col">ประเภทรถ</th>
-                                        <th scope="col">เที่ยวรถ</th>
-                                        <th scope="col">SERVICETYPE</th>
-                                        <th scope="col">ซัพพลายเออร์</th>
+                                        <th scope="col">WORK_TYPE</th>
+                                        <th scope="col">PROJECT_NAME</th>
+                                        <th scope="col">ROUTE_CODE</th>
+                                        <th scope="col">ROUTE_NAME</th>
+                                        <th scope="col">TRANSPORT_TYPE</th>
+                                        <th scope="col">VIHICLE_TYPE</th>
+                                        <th scope="col">TRIP_TYPE</th>
+                                        <th scope="col">SERVICE_TYPE</th>
+                                        <th scope="col">SUBCONTRACTOR</th>
                                         <th scope="col">TRUCKNUMBER</th>
-                                        <th scope="col">พนักงานขับรถ</th>
-                                        <th scope="col">เบอร์โทร</th>
-                                        <th scope="col">สาขาต้นทาง</th>
-                                        <th scope="col">สาขาปลายทาง</th>
+                                        <th scope="col">DRIVER</th>
+                                        <th scope="col">TELEPHONE</th>
+                                        <th scope="col">START_ROUTE</th>
+                                        <th scope="col">DESTINATION_ROUTE</th>
                                         <th scope="col">เวลาตามรถ</th>
                                         <th scope="col">เวลาปล่อยรถ</th>
                                         <th scope="col">เวลากำหนดถึงปลายทาง</th>
-                                        <th scope="col">เวลาที่กำหนด(ชั่วโมง)</th>
-                                        <th scope="col">Monitor staff(KDR)</th>
-                                        <th scope="col">Remark</th>
-                                        <th scope="col">สถานะแผน</th>
+                                        <th scope="col">TOTAL_HOUR</th>
+                                        <th scope="col">MONITOR_STAFF</th>
+                                        <th scope="col">REMARK</th>
+                                        <th scope="col">STATUS_PLAN</th>
                                         <th scope="col">สาเหตุที่ยกเลิก</th>
                                         <th scope="col">ผู้สร้างรายการ</th>
                                         <th scope="col">ผู้แก้ไขรายการ</th>

@@ -32,32 +32,43 @@
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">Project Name</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="th" role="tabpanel">                               
+                                <div class="tab-pane active" id="th" role="tabpanel">
 
                                     <div class="row" style="margin-bottom:5px;">
                                         <div class="col-md-12">
-                                            <label>ชื่อ</label><span style="color:red">*</span><br />
+                                            <label>ชื่อ</label>
                                             <input id="name" name="name" type="text" class="form-control" value="" autocomplete="off">
-                                            <label>ประเภทโปรเจ็ค</label><span style="color:red">*</span><br />
-                                        <select id="pjtype" name="pjtype" class="form-control">
-                                                    <option value="">กรุณาเลือก</option>
-                                                    @php $list = \App\PjtypeModel::where('status','on')->get(); @endphp
-                                                                                                       
-                                                    @if($list)
-                                                        @foreach($list as $list)
-                                                        <option value="{{$list->id}}"> {{$list->name}} </option>     
-                                                        @endforeach
-                                                        
-                                                    @endif
-                                                </select>
                                         </div>
                                     </div>
 
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <label>โค้ดเนม</label>
+                                            <input id="codename" name="codename" type="text" class="form-control" value="" autocomplete="off">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:5px;">
+                                        <div class="col-md-12">
+                                            <label>ประเภทโปรเจ็ค</label>
+                                            <select id="pjtype" name="pjtype" class="form-control">
+                                                <option value="">กรุณาเลือก</option>
+                                                @php $list = \App\PjtypeModel::where('status','on')->get(); @endphp
+
+                                                @if($list)
+                                                @foreach($list as $list)
+                                                <option value="{{$list->id}}"> {{$list->name}} </option>
+                                                @endforeach
+
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>

@@ -1,18 +1,65 @@
 <div>
-    <div class="fade-in">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
 
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="container-fluid">
-        <h2 class="mb-4">Dashboard</h2>
+        <h2 class="mb-3">Dashboard</h2>
+
+
         <div class="row">
+            <div class="card col-md-12 pt-4">
+                <div class="mb-3">Date : {{$mytime}}</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+
+                            <th>Total Truck Request</th>
+                            <th>Total Main Truck</th>
+                            <th>Total Additional Truck Request</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>(2) Truck(s)</td>
+                            <td>(3) Truck (s)</td>
+                            <td>
+                                (3) Truck (s)
+                                <ul class="mt-3">
+                                    <li>On process : (5) Truck(s)</li>
+                                    <li>Fullfill : (6) Truck(s)</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <!-- <div class="row mt-4 mx-3">
+                    <div class="card col-md-4  ">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Total Truck Request : (2) Truck(s)</li>
+
+                        </ul>
+                    </div>
+
+                    <div class="card col-md-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Total Main Truck : (3) Truck (s)</li>
+
+                        </ul>
+                    </div>
+
+                    <div class="card col-md-4">
+                        <ul class="list-group list-group-flush">
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Total Additional Truck Request : (4) Truck(s)</li>
+                                <li class="list-group-item">- On process : (5) Truck(s)</li>
+                                <li class="list-group-item">- On process : (5) Truck(s)</li>
+                            </ul>
+                    </div>
+                </div> -->
+
+            </div>
+
 
             <div class="col-md-12 card">
                 {!! $chart2->container() !!}
@@ -26,124 +73,7 @@
 
             <div class="col-md-12">
                 <div class="row ">
-                    <div class="col-md-4 bg-white pt-4">
 
-                        <div class="col-md-12 mb-4 bg-primary py-2 text-white font-weight-bold text-center">
-                            <h4>Consumer / Retail</h4>
-                        </div>
-                        <div class="card">
-                            <div class="card-header text-white font-weight-bold bg-info">DHL-Big C</div>
-                            <div class="table card-cody px-4 pt-3">
-                                <table class="table  table-sm table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>On Process</th>
-                                            <th>Complete</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">DC to store</th>
-                                            <td>
-                                        <tr>
-                                            <td>Extra</td>
-                                            <td>{{$DHLBigC}}</td>
-                                            <td>{{$DHLBigC2}}</td>
-                                            <td>{{$ttDHLBigC}}</td>
-                                        </tr>
-                                        </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header text-white font-weight-bold bg-info">TWD-CJ Mart</div>
-                            <div class="table card-cody px-4 pt-3">
-                                <table class="table  table-sm table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>On Process</th>
-                                            <th>Complete</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">DC to store</th>
-                                            <td>
-                                        <tr>
-                                            <td>Main</td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                        </tr>
-                                        </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header text-white font-weight-bold bg-info">NAEVILLE FOOD SERVICE</div>
-                            <div class="table card-cody px-4 pt-3">
-                                <table class="table  table-sm table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>On Process</th>
-                                            <th>Complete</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">Delivery</th>
-                                            <td>
-                                        <tr>
-                                            <td>Main</td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                        </tr>
-                                        </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header text-white font-weight-bold bg-info">Office Mate</div>
-                            <div class="table card-cody px-4 pt-3">
-                                <table class="table  table-sm table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>On Process</th>
-                                            <th>Complete</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">DC to store</th>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-
-                    </div>
                     <div class="col-md-8 bg-white pt-4">
 
                         <div class="col-md-12 bg-primary py-2 text-white font-weight-bold text-center">
@@ -170,15 +100,15 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$FLH_LH_M1}}</td>
+                                                    <td>{{$FLH_LH_M2}}</td>
+                                                    <td>{{$FLH_LH_M}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$FLH_LH_E1}}</td>
+                                                    <td>{{$FLH_LH_E2}}</td>
+                                                    <td>{{$FLH_LH_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -187,9 +117,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$FLH_Del_E1}}</td>
+                                                    <td>{{$FLH_Del_E2}}</td>
+                                                    <td>{{$FLH_Del_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -217,9 +147,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$KEY_LH_M1}}</td>
+                                                    <td>{{$KEY_LH_M2}}</td>
+                                                    <td>{{$KEY_LH_M}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -228,9 +158,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$KEY_Del_E1}}</td>
+                                                    <td>{{$KEY_Del_E2}}</td>
+                                                    <td>{{$KEY_Del_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -258,15 +188,15 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$BES_LH_M1}}</td>
+                                                    <td>{{$BES_LH_M2}}</td>
+                                                    <td>{{$BES_LH_M1}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$BES_LH_E1}}</td>
+                                                    <td>{{$BES_LH_E2}}</td>
+                                                    <td>{{$BES_LH_E1}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -294,15 +224,15 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$SHOP_FM_M1}}</td>
+                                                    <td>{{$SHOP_FM_M2}}</td>
+                                                    <td>{{$SHOP_FM_M}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$SHOP_FM_E1}}</td>
+                                                    <td>{{$SHOP_FM_E2}}</td>
+                                                    <td>{{$SHOP_FM_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -330,9 +260,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$CJ_Del_M1}}</td>
+                                                    <td>{{$CJ_Del_M2}}</td>
+                                                    <td>{{$CJ_Del_M}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -360,9 +290,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$LAZ_FM_M1}}</td>
+                                                    <td>{{$LAZ_FM_M2}}</td>
+                                                    <td>{{$LAZ_FM_M}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -390,9 +320,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$JT_LH_E1}}</td>
+                                                    <td>{{$JT_LH_E2}}</td>
+                                                    <td>{{$JT_LH_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -420,9 +350,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Extra</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$SCG_LH_E1}}</td>
+                                                    <td>{{$SCG_LH_E2}}</td>
+                                                    <td>{{$SCG_LH_E}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -439,21 +369,13 @@
 
                     </div>
 
-
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-4 bg-white">
+                    <div class="col-md-4 bg-white pt-4">
 
                         <div class="col-md-12 mb-4 bg-primary py-2 text-white font-weight-bold text-center">
-                            <h4>Freight forwarder</h4>
+                            <h4>Consumer / Retail</h4>
                         </div>
                         <div class="card">
-                            <div class="card-header text-white font-weight-bold bg-info">K-Line</div>
+                            <div class="card-header text-white font-weight-bold bg-info">DHL-Big C</div>
                             <div class="table card-cody px-4 pt-3">
                                 <table class="table  table-sm table-borderless">
                                     <thead>
@@ -466,13 +388,13 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row">Line haul</th>
+                                            <th scope="row">DC to store</th>
                                             <td>
                                         <tr>
                                             <td>Extra</td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
+                                            <td>{{$DHLBigC_DC_E1}}</td>
+                                            <td>{{$DHLBigC_DC_E2}}</td>
+                                            <td>{{$DHLBigC_DC_E}}</td>
                                         </tr>
                                         </td>
                                         </tr>
@@ -480,7 +402,100 @@
                                 </table>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header text-white font-weight-bold bg-info">TWD-CJ Mart</div>
+                            <div class="table card-cody px-4 pt-3">
+                                <table class="table  table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>On Process</th>
+                                            <th>Complete</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">DC to store</th>
+                                            <td>
+                                        <tr>
+                                            <td>Main</td>
+                                            <td>{{$TWDCJ_DC_M1}}</td>
+                                            <td>{{$TWDCJ_DC_M2}}</td>
+                                            <td>{{$TWDCJ_DC_M}}</td>
+                                        </tr>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-white font-weight-bold bg-info">NAEVILLE FOOD SERVICE</div>
+                            <div class="table card-cody px-4 pt-3">
+                                <table class="table  table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>On Process</th>
+                                            <th>Complete</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Delivery</th>
+                                            <td>
+                                        <tr>
+                                            <td>Main</td>
+                                            <td>{{$KLine_LH_E1}}</td>
+                                            <td>{{$NEVFOOD_Del_M2}}</td>
+                                            <td>{{$NEVFOOD_Del_M}}</td>
+                                        </tr>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header text-white font-weight-bold bg-info">Office Mate</div>
+                            <div class="table card-cody px-4 pt-3">
+                                <table class="table  table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>On Process</th>
+                                            <th>Complete</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">DC to store</th>
+                                            <td>{{$Office_DC_E1}}</td>
+                                            <td>{{$Office_DC_E2}}</td>
+                                            <td>{{$Office_DC_E}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
                     </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
                     <div class="col-md-8 bg-white">
 
                         <div class="col-md-12 bg-primary py-2 text-white font-weight-bold text-center">
@@ -507,9 +522,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>Main</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>{{$TFG_DC_M1}}</td>
+                                                    <td>{{$TFG_DC_M2}}</td>
+                                                    <td>{{$TFG_DC_M}}</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -537,9 +552,9 @@
                                                     <td>
                                                 <tr>
                                                     <td>DC to store</td>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
+                                                    <td>0</td>
                                                 </tr>
                                                 </td>
                                                 </tr>
@@ -553,6 +568,41 @@
 
 
 
+                    </div>
+
+                    <div class="col-md-4 bg-white">
+
+                        <div class="col-md-12 mb-4 bg-primary py-2 text-white font-weight-bold text-center">
+                            <h4>Freight forwarder</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-header text-white font-weight-bold bg-info">K-Line</div>
+                            <div class="table card-cody px-4 pt-3">
+                                <table class="table  table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>On Process</th>
+                                            <th>Complete</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">Line haul</th>
+                                            <td>
+                                        <tr>
+                                            <td>Extra</td>
+                                            <td>{{$KLine_LH_E1}}</td>
+                                            <td>{{$KLine_LH_E2}}</td>
+                                            <td>{{$KLine_LH_E}}</td>
+                                        </tr>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
