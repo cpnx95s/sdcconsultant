@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="card col-md-12 pt-4">
-                <div class="mb-3">Date : {{$mytime}}</div>
+                <h4 class="mb-3 text-info"> DATE : {{$mytime}}</h4>
                 <table class="table">
                     <thead>
                         <tr>
