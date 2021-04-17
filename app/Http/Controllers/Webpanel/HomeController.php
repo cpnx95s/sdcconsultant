@@ -33,7 +33,8 @@ class HomeController extends Controller
     }
     public function Chartjs()
     {
-        $mytime = Carbon::now()->format('Y-d-m');
+        $mytime = Carbon::now()->format('Y-m-d');
+        //dd($mytime);
         $results = SplnameModel::pluck('score', 'name');
         //dd($results);
         $results2 = SplnameModel::pluck('sort');
@@ -65,94 +66,94 @@ class HomeController extends Controller
         //dd($ttDHLBigC);
 
         //Flash Express
-        $FLH_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_LH_M = TruckplanModel:: where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_Del_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_Del_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
-        $FLH_Del_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '1') ->where('startdate', '=', '$mytime') ->count();
+        $FLH_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_LH_M =  $FLH_LH_M1 + $FLH_LH_M2;
+        $FLH_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_LH_E =  $FLH_LH_E1 + $FLH_LH_E2;
+        $FLH_Del_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_Del_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '1') ->where('startdate', '=', $mytime)->count();
+        $FLH_Del_E = $FLH_Del_E1 + $FLH_Del_E2;
 
 
         //Kerry Express
-        $KEY_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
-        $KEY_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
-        $KEY_LH_M = TruckplanModel:: where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
-        $KEY_Del_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
-        $KEY_Del_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
-        $KEY_Del_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', '$mytime') ->count();
+        $KEY_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
+        $KEY_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
+        $KEY_LH_M = TruckplanModel:: where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
+        $KEY_Del_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
+        $KEY_Del_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
+        $KEY_Del_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '3') ->where('pjname', '=', '2') ->where('startdate', '=', $mytime)->count();
                 
 
         //Best Express
-        $BES_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', '$mytime') ->count();
-        $BES_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', '$mytime') ->count();
-        $BES_LH_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->count();                
-        $BES_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', '$mytime') ->count();
-        $BES_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', '$mytime') ->count();
-        $BES_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', '$mytime') ->count();        
+        $BES_LH_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();
+        $BES_LH_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();
+        $BES_LH_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();                
+        $BES_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();
+        $BES_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();
+        $BES_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '8') ->where('startdate', '=', $mytime)->count();        
         
         //Shopee Express
-        $SHOP_FM_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->count();
-        $SHOP_FM_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', '$mytime') ->count();
-        $SHOP_FM_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', '$mytime') ->count();        
-        $SHOP_FM_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', '$mytime') ->count();
-        $SHOP_FM_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', '$mytime') ->count();
-        $SHOP_FM_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', '$mytime') ->count();        
+        $SHOP_FM_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();        
+        $SHOP_FM_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '1') ->where('pjname', '=', '10') ->where('startdate', '=', $mytime)->count();        
 
         //CJ logistics
-        $CJ_Del_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', '$mytime') ->count();
-        $CJ_Del_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', '$mytime') ->count();
-        $CJ_Del_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', '$mytime') ->count();        
+        $CJ_Del_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', $mytime)->count();
+        $CJ_Del_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', $mytime)->count();
+        $CJ_Del_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '3') ->where('startdate', '=', $mytime)->count();        
 
         //Lazada Express
-        $LAZ_FM_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', '$mytime') ->count();
-        $LAZ_FM_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', '$mytime') ->count();
-        $LAZ_FM_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', '$mytime') ->count();        
+        $LAZ_FM_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '1') ->where('pjname', '=', '7') ->where('startdate', '=', $mytime)->count();        
 
         //J&T Express
-        $JT_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', '$mytime') ->count();
-        $JT_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', '$mytime') ->count();
-        $JT_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', '$mytime') ->count();
+        $JT_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', $mytime)->count();
+        $JT_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', $mytime)->count();
+        $JT_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '11') ->where('startdate', '=', $mytime)->count();
         
         //SCG Express
-        $SCG_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', '$mytime') ->count();
-        $SCG_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', '$mytime') ->count();
-        $SCG_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', '$mytime') ->count();
+        $SCG_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', $mytime)->count();
+        $SCG_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', $mytime)->count();
+        $SCG_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '19') ->where('startdate', '=', $mytime)->count();
         
 
         //DHL-Big C
-        $DHLBigC_DC_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('pjname', '=', '19') ->where('startdate', '=', '$mytime') ->count();
-        $DHLBigC_DC_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('pjname', '=', '19') ->where('startdate', '=', '$mytime') ->count();
+        $DHLBigC_DC_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('pjname', '=', '19') ->where('startdate', '=', $mytime)->count();
+        $DHLBigC_DC_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('pjname', '=', '19') ->where('startdate', '=', $mytime)->count();
         $DHLBigC_DC_E = $DHLBigC_DC_E1 + $DHLBigC_DC_E2;
 
         //TWD-CJ Mart
-        $TWDCJ_DC_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', '$mytime') ->count();
-        $TWDCJ_DC_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', '$mytime') ->count();
-        $TWDCJ_DC_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', '$mytime') ->count();        
+        $TWDCJ_DC_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', $mytime)->count();
+        $TWDCJ_DC_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', $mytime)->count();
+        $TWDCJ_DC_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '12') ->where('startdate', '=', $mytime)->count();        
 
         //NAEVILLE FOOD SERVICE
-        $NEVFOOD_Del_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', '$mytime') ->count();
-        $NEVFOOD_Del_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', '$mytime') ->count();
-        $NEVFOOD_Del_M = TruckplanModel:: where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', '$mytime') ->count();        
+        $NEVFOOD_Del_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', $mytime)->count();
+        $NEVFOOD_Del_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', $mytime)->count();
+        $NEVFOOD_Del_M = TruckplanModel:: where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '3') ->where('pjname', '=', '4') ->where('startdate', '=', $mytime)->count();        
 
         //Office Mate
-        $Office_DC_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->count();
-        $Office_DC_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->count();
-        $Office_DC_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->count();
+        $Office_DC_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->where('startdate', '=', $mytime)->count();
+        $Office_DC_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->where('startdate', '=', $mytime)->count();
+        $Office_DC_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '4') ->where('pjname', '=', '5') ->where('startdate', '=', $mytime)->count();
         
         //TFG
-        $TFG_DC_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->count();
-        $TFG_DC_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->count();
-        $TFG_DC_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->count();        
+        $TFG_DC_M1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->where('startdate', '=', $mytime)->count();
+        $TFG_DC_M2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->where('startdate', '=', $mytime)->count();
+        $TFG_DC_M = TruckplanModel::  where('worktype', '=', 'งานหลัก') ->where('tsptype', '=', '4') ->where('pjname', '=', '14') ->where('startdate', '=', $mytime)->count();        
 
         //DHL - Makro
 
         //K-Line
-        $KLine_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->count();
-        $KLine_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->count();
-        $KLine_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->count();        
+        $KLine_LH_E1 = TruckplanModel:: where('statusplan', '=', 'Pending') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->where('startdate', '=', $mytime)->count();
+        $KLine_LH_E2 = TruckplanModel:: where('statusplan', '=', 'Active') ->where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->where('startdate', '=', $mytime)->count();
+        $KLine_LH_E = TruckplanModel::  where('worktype', '=', 'งานเสริม') ->where('tsptype', '=', '2') ->where('pjname', '=', '15') ->where('startdate', '=', $mytime)->count();        
 
         return view("$this->prefix.pages.$this->folder.index", [
 
