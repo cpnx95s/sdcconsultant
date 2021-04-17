@@ -19,14 +19,22 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>(2) Truck(s)</td>
-                            <td>(3) Truck (s)</td>
                             <td>
-                                (3) Truck (s)
-                                <ul class="mt-3">
-                                    <li>On process : (5) Truck(s)</li>
-                                    <li>Fullfill : (6) Truck(s)</li>
-                                </ul>
+                                <h1 class="text-info p-3">2</h1>
+                            </td>
+                            <td>
+                                <h1 class="text-info p-3">3</h1>
+                            </td>
+                            <td>
+                                <div class="d-flex p-3">
+                                    <div class="mr-4">
+                                        <h1 class="text-info">4</h1>
+                                    </div>
+                                    <div>
+                                        <div class="text-success"><span class="badge badge-success">2</span> On Process </div>
+                                        <div class="text-danger"><span class="badge badge-danger">2</span> Fulfill </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
 

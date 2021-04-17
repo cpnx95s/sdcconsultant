@@ -96,7 +96,7 @@ class TruckplanController extends Controller
     // }
     public function store(Request $request)
     {
-
+        //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;

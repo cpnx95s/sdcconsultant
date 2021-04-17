@@ -110,9 +110,10 @@
                                             <a href="{{url("$segment/copy/$row->id")}}" class="text-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="text-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                         </td>
-                                        
+
                                         <td data-label="วันที่ใช้รถ">
-                                            {{$row->startdate}}
+                                            {{ \Carbon\Carbon::parse($row->startdate)->format('d/m/Y')}}
+                                            <!-- {{$row->startdate}} -->
                                         </td>
                                         <td data-label="ประเภทงาน">
                                             {{$row->worktype}}
@@ -194,7 +195,7 @@
                                         </td>
 
 
-                                        
+
                                     </tr>
                                     @endforeach
                                     @endif
