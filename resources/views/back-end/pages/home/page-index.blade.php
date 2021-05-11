@@ -8,39 +8,56 @@
         <div class="row">
             <div class="card col-md-12 pt-4">
                 <h4 class="mb-3 text-info"> DATE : {{$mytime}}</h4>
-                <table class="table">
-                    <thead>
-                        <tr>
 
-                            <th>Total Truck Request</th>
-                            <th>Total Main Truck</th>
-                            <th>Total Additional Truck Request</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <h1 class="text-info p-3">2</h1>
-                            </td>
-                            <td>
-                                <h1 class="text-info p-3">3</h1>
-                            </td>
-                            <td>
-                                <div class="d-flex p-3">
-                                    <div class="mr-4">
-                                        <h1 class="text-info">4</h1>
-                                    </div>
-                                    <div>
-                                        <div class="text-success"><span class="badge badge-success">2</span> On Process </div>
-                                        <div class="text-danger"><span class="badge badge-danger">2</span> Fulfill </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                <form id="searchForm" method="post" action="">
+                    @method('PUT')
+                    @csrf
+                    <div class="form-group row">
+                        <div class="col-2">
+                            <input class="form-control" type="date" id="example-date-input">
+                        </div>
+                        <div class="col-2">
+                            <input class="form-control" type="date" id="example-date-input">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary" type="submit" name="signup" value="Search">Search</button>
+                        </div>
+                    </div>
 
-                    </tbody>
-                </table>
-                <!-- <div class="row mt-4 mx-3">
+                    </from>
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th>Total Truck Request</th>
+                                <th>Total Main Truck</th>
+                                <th>Total Additional Truck Request</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h1 class="text-info p-3">{{$Total_Req}}</h1>
+                                </td>
+                                <td>
+                                    <h1 class="text-info p-3">{{$Total_Req_M}}</h1>
+                                </td>
+                                <td>
+                                    <div class="d-flex p-3">
+                                        <div class="mr-4">
+                                            <h1 class="text-info">{{$Total_Req_E}}</h1>
+                                        </div>
+                                        <div>
+                                            <div class="text-success"><span class="badge badge-success">{{$Total_Req_E1}}</span> On Process </div>
+                                            <div class="text-danger"><span class="badge badge-danger">{{$Total_Req_E2}}</span> Fulfill </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!-- <div class="row mt-4 mx-3">
                     <div class="card col-md-4  ">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Total Truck Request : (2) Truck(s)</li>
@@ -69,12 +86,12 @@
             </div>
 
 
-            <div class="col-md-12 card">
+            <div class="col-md-6 card">
                 {!! $chart2->container() !!}
                 {!! $chart2->script() !!}
             </div>
 
-            <div class="col-md-12 card">
+            <div class="col-md-6 card">
                 {!! $chart->container() !!}
                 {!! $chart->script() !!}
             </div>
