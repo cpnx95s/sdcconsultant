@@ -168,8 +168,7 @@ class TruckplanController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'truckplan', '_id' => $id])->get(),
-            'size' => $this->ImageSize(),
+ 
         ]);
     }
 
