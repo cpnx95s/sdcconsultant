@@ -155,6 +155,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		Route::prefix('tsptype')->group(function(){
 			Route::get('/','Webpanel\TsptypeController@index');
 			Route::get('/create','Webpanel\TsptypeController@create');
+			Route::get('/search','Webpanel\TsptypeController@search');
         	Route::put('/create','Webpanel\TsptypeController@store');
 			Route::get('/{id}','Webpanel\TsptypeController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\TsptypeController@update')->where(['id'=>'[0-9]+']);

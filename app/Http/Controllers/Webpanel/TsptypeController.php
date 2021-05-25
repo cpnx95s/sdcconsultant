@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\TsptypeModel;
 use App\GalleryModel;
@@ -270,5 +271,18 @@ class TsptypeController extends Controller
             return response()->json($query);
         }
         return response()->json(false);
+    }
+    public function search(Request $request )
+    {
+        
+            if(isset($_GET['keyword'])){
+
+               
+                $search_text = $_GET['keyword'];
+                $conutries = DB::table('tb_tsptype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+                return view('search', ['conutries'=>$conutries]);
+            }
+            else{return view('search');}
+        
     }
 }

@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form  action="" method="get">                            
+                        <form  action="{{url('/webpanel/tsptype/search')}}" method="get">                            
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    
