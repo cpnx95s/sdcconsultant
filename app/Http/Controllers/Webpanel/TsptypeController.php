@@ -146,7 +146,6 @@ class TsptypeController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'tsptype', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -274,15 +273,34 @@ class TsptypeController extends Controller
     }
     public function search(Request $request )
     {
-        
-            if(isset($_GET['keyword'])){
+        if(isset($_GET['keyword'])){
+            $data = TsptypeModel::orderBy('sort');
+            $view = ($request->view) ? $request->view() : 10;
 
-               
-                $search_text = $_GET['keyword'];
-                $conutries = DB::table('tb_tsptype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
-                return view('search', ['conutries'=>$conutries]);
-            }
-            else{return view('search');}
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view]);
+
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_tsptype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+            return  view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ['src' => "back-end/js/table-dragger.min.js"],
+                    ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'tsptype',
+                'page' => 'index',
+                'segment' => "$this->segment/tsptype",
+                'rows' => $rows
+            ]);
+            
+        }
+        
+    
+
+    
         
     }
 }

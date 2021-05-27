@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="" method="get">
+                        <form action="/webpanel/pjname/search" method="get">
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    
@@ -84,7 +84,7 @@
                                             {{$row->name}}
                                         </td>
                                         <td data-label="pjtype">
-                                            {{$row->showpjtype->name}}
+                                         
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}

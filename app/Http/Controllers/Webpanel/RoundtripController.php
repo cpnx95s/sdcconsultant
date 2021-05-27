@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\RoundtripModel;
 use App\GalleryModel;
@@ -146,7 +147,6 @@ class RoundtripController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'roundtrip', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -271,5 +271,32 @@ class RoundtripController extends Controller
             return response()->json($query);
         }
         return response()->json(false);
+    }
+    public function search(Request $request )
+    {
+        if(isset($_GET['keyword'])){
+            $data = RoundtripModel::orderBy('sort');
+            $view = ($request->view) ? $request->view() : 10;
+
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view]);
+
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_roundtrip')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+            return view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ['src' => "back-end/js/table-dragger.min.js"],
+                    ["type" => "text/javascript", "src" => "back-end/build/roundtrip.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'roundtrip',
+                'page' => 'index',
+                'segment' => "$this->segment/roundtrip",
+                'rows' => $rows
+            ]);
+            
+        }
     }
 }

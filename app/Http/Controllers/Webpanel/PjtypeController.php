@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\PjtypeModel;
 use App\GalleryModel;
@@ -161,7 +162,6 @@ class PjtypeController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'pjtype', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -422,4 +422,32 @@ class PjtypeController extends Controller
         }
         return response()->json(false);
     }
-}
+
+    public function search(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+            $data = PjtypeModel::orderBy('sort');
+            $view = ($request->view) ? $request->view() : 10;
+          
+         
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_pjtype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+
+            return view("$this->prefix.pages.pjtype.index",[
+                'css'=> ['back-end/css/table-responsive.css'],        
+                'js' => [
+                    ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                    ["src"=>"back-end/js/table-dragger.min.js"],
+                    ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                    ["type"=>"text/javascript","src"=>"back-end/build/pjtype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'pjtype',
+                'page' => 'index',
+                'segment' => "$this->segment/pjtype",
+                'rows' => $rows
+            ]);
+        }
+    }
+    }

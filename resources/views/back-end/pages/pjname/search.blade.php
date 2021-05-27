@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">Truck Type</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Project Name</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -16,16 +16,30 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="{{route('trucktype.search')}}" method="get">
+                        <form action="" method="get">
                             <div class="row">
+                                <!-- <div class="col-lg-1">
+                                    <div class="form-group">    
+                                        <label for="view">ดู : </label> 
+                                        @php($numrows=10)
+                                        <select name="view" id="view" class="form-control">
+                                            <option value="5" @if(Request::get('view')==10) selected @endif>5</option>
+                                            @for($i=1; $i<6; $i++)
+                                            <option value="{{$numrows = $numrows*2}}" @if(Request::get('view')==$numrows) selected @endif>{{$numrows}}</option>
+                                            @endfor
+                                            <option value="all" @if(Request::get('view')=='all') selected @endif>ทั้งหมด</option>
+                                        </select>
+                                    </div>
+                                </div> -->
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">Search :</label>
                                     <div class="input-group">
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Vehicle Type">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Project Name">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
@@ -41,7 +55,9 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">Vehicle Type</th>
+                                        <th width="15%">Code Name</th>
+                                        <th width="25%">Project Name</th>
+                                        <th width="20%">Project Type</th>
                                         <th width="20%">Created</th>
                                         <th width="20%">Action</th>
                                     </tr>
@@ -61,8 +77,14 @@
                                                 <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                             </div>
                                         </td>
-                                        <td data-label="Vehicle Type">
+                                        <td data-label="codename">
+                                            {{$row->codename}}
+                                        </td>
+                                        <td data-label="name">
                                             {{$row->name}}
+                                        </td>
+                                        <td data-label="pjtype">
+                                       
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}
@@ -70,7 +92,7 @@
 
                                         <td data-label="Action">
                                             <a href="{{url("$segment/$row->id")}}" class="btn btn-warning text-white" title="Edit"><i class="far fa-edit"></i></a>
-                                            <a href="{{url("$segment/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>
+                                            <a href="{{url("$segment/copy/$row->id")}}" class="btn btn-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

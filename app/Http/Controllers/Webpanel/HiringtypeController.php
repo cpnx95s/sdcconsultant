@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\HiringtypeModel;
 use App\GalleryModel;
@@ -161,7 +162,7 @@ class HiringtypeController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'hiringtype', '_id' => $id])->get(),
+         
             'size' => $this->ImageSize(),
         ]);
     }
@@ -421,5 +422,33 @@ class HiringtypeController extends Controller
             }
         }
         return response()->json(false);
+    }
+
+    public function search(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+             $data = HiringtypeModel::orderBy('sort');
+             $view = ($request->view) ? $request->view() : 10;
+          
+         
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_hiringtype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+
+            return view("$this->prefix.pages.hiringtype.index",[
+                'css'=> ['back-end/css/table-responsive.css'],        
+                'js' => [
+                    ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                    ["src"=>"back-end/js/table-dragger.min.js"],
+                    ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                    ["type"=>"text/javascript","src"=>"back-end/build/hiringtype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'hiringtype',
+                'page' => 'index',
+                'segment' => "$this->segment/hiringtype",
+                'rows' => $rows
+            ]);
+        }
     }
 }

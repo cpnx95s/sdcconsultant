@@ -5,7 +5,7 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">Transport Type</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Service Type</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form  action="/webpanel/tsptype/search" method="get">                            
+                        <form  action="" method="get">                            
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    
@@ -34,7 +34,7 @@
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">Search :</label>
                                     <div class="input-group">                                        
-                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Transport Type">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Service Type">
                                         <span class="input-group-append">
                                             <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
@@ -55,7 +55,7 @@
                                                 <label class="custom-control-label" for="selectAll"></label>
                                             </div>
                                         </th>
-                                        <th width="60%">Transport Type</th>
+                                        <th width="60%">Service Type</th>
                                         <th width="20%">Created</th>
                                         <th width="20%">Action</th>
                                     </tr>
@@ -75,7 +75,7 @@
                                                     <label class="custom-control-label" for="ChkBox{{$row->id}}"></label>
                                                 </div>
                                             </td>
-                                            <td data-label="Transport Type">
+                                            <td data-label="Service Type">
                                                 {{$row->name}}
                                             </td>
                                             <td data-label="created">
@@ -98,16 +98,9 @@
                     <div class="card-footer">
                         <strong>ทั้งหมด</strong> {{$rows->count()}} @if(Request::get('view')!='all'): <strong>จาก</strong> {{$rows->firstItem()}} - {{$rows->lastItem()}} @endif
                     </div>
-                    
-                    @if(isset($conutries))
-                    {{$segment}}
-                                @endif
-                       
-                     
-                        
                 </div>                
             </div>
         </div>                
     </div>         
 </div>
-<php?>
+    

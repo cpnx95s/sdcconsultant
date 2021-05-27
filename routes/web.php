@@ -128,7 +128,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('trucktype')->group(function(){
 			Route::get('/','Webpanel\TrucktypeController@index');
-			Route::get('/','Webpanel\TrucktypeController@search')->name('trucktype.search');
+			Route::get('/search','Webpanel\TrucktypeController@search')->name('trucktype.search');
 			Route::get('/create','Webpanel\TrucktypeController@create');
         	Route::put('/create','Webpanel\TrucktypeController@store');
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
@@ -142,6 +142,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('roundtrip')->group(function(){
 			Route::get('/','Webpanel\RoundtripController@index');
+			Route::get('/search','Webpanel\RoundtripController@search');
 			Route::get('/create','Webpanel\RoundtripController@create');
         	Route::put('/create','Webpanel\RoundtripController@store');
 			Route::get('/{id}','Webpanel\RoundtripController@edit')->where(['id'=>'[0-9]+']);
@@ -167,6 +168,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('hiringtype')->group(function(){
 			Route::get('/','Webpanel\HiringtypeController@index');
+			Route::get('/search','Webpanel\HiringtypeController@search');
 			Route::get('/create','Webpanel\HiringtypeController@create');
         	Route::put('/create','Webpanel\HiringtypeController@store');
 			Route::get('/{id}','Webpanel\HiringtypeController@edit')->where(['id'=>'[0-9]+']);
@@ -180,6 +182,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('pjtype')->group(function(){
 			Route::get('/','Webpanel\PjtypeController@index');
+			Route::get('/search','Webpanel\PjtypeController@search');
 			Route::get('/create','Webpanel\PjtypeController@create');
         	Route::put('/create','Webpanel\PjtypeController@store');
 			Route::get('/{id}','Webpanel\PjtypeController@edit')->where(['id'=>'[0-9]+']);
@@ -194,6 +197,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		
 		Route::prefix('pjname')->group(function(){
 			Route::get('/','Webpanel\PjnameController@index');
+			Route::get('/search','Webpanel\PjnameController@search');
 			Route::get('/create','Webpanel\PjnameController@create');
         	Route::put('/create','Webpanel\PjnameController@store');
 			Route::get('/{id}','Webpanel\PjnameController@edit')->where(['id'=>'[0-9]+']);

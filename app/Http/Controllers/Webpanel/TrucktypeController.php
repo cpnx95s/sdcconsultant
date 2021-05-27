@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Webpanel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\TrucktypeModel;
 use App\GalleryModel;
@@ -108,7 +109,7 @@ class TrucktypeController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'trucktype', '_id' => $id])->get(),
+            
             'size' => $this->ImageSize(),
         ]);
     }
@@ -129,8 +130,7 @@ class TrucktypeController extends Controller
             'folder' => $this->folder,
             'page' => 'copy',
             'segment' => $this->segment,
-            'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'trucktype', '_id' => $id])->get(),
+            'row' => $row,       
             'size' => $this->ImageSize(),
         ]);
     }
@@ -292,36 +292,38 @@ class TrucktypeController extends Controller
         }
         return response()->json(false);
     }
-
-    public function search(Request $request)
+    public function search(Request $request )
     {
+        if(isset($_GET['keyword'])){
+            $data = TrucktypeModel::orderBy('sort');
+            $view = ($request->view) ? $request->view() : 10;
 
-        $data = TrucktypeModel::orderBy('sort');
-        $view = ($request->view) ? $request->view() : 10;
-        if ($request->view == 'all') {
-            $rows = $data->get();
-        } else {
-            $view = ($request->view) ? $request->view : 10;
             $rows = $data->paginate($view);
-            $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
-        }
-        //dd($request->keyword);
-        $trucktype = TrucktypeModel::where('name','LIKR','%$request->keyword%');
+            $rows->appends(['view' => $request->view]);
 
-        return view("$this->prefix.pages.trucktype.index", [
-            'css' => ['back-end/css/table-responsive.css'],
-            'js' => [
-                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
-                ["src" => "back-end/js/table-dragger.min.js"],
-                ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
-            ],
-            'prefix' => $this->prefix,
-            'folder' => 'trucktype',
-            'page' => 'search',
-            'segment' => "$this->segment/trucktype",
-            'trucktype' => $trucktype,
-            'rows' => $rows
-        ]);
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_trucktype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+            return view("$this->prefix.pages.trucktype.index", [
+                'css' => ['back-end/css/table-responsive.css'],
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ["src" => "back-end/js/table-dragger.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'trucktype',
+                'page' => 'index',
+                'segment' => "$this->segment/trucktype",
+                'rows' => $rows
+            ]);
+            
+        }
+        
+    
+
+    
+        
     }
+    
 }
