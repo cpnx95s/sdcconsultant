@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="" method="get">
+                        <form action="/webpanel/pjname/search" method="get">
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    
@@ -65,7 +65,7 @@
                                 <tbody>
                                     @if($rows)
                                     @foreach($rows as $key => $row)
-                                    @php($secondary = \App\MenuModel::where('_id',$row->id)->get())
+                                   
                                     <tr role="row" class="odd" data-row="{{$key+1}}" data-id="{{$row->id}}">
                                         <td data-label="No.">
                                             <span class="no">{{$key+1}}</span>
@@ -84,7 +84,8 @@
                                             {{$row->name}}
                                         </td>
                                         <td data-label="pjtype">
-                                       
+                                        {{$row->showpjtype['name']}}
+                                            
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}

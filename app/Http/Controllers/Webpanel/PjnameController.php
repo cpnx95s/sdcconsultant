@@ -434,13 +434,19 @@ class PjnameController extends Controller
             $data = PjnameModel::orderBy('sort');
             $view = ($request->view) ? $request->view() : 10;
           
-            $rows = $data->paginate($view);
-            $rows->appends(['view' => $request->view]);
+           
+            
             
             $search_text = $_GET['keyword'];
+         
+            $data = PjnameModel::orderBy('sort');
+            $view = ($request->view) ? $request->view() : 10;
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view]);
             $rows = DB::table('tb_pjname')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
-
-             return view("$this->prefix.pages.pjname.index",[
+            
+             return view("$this->prefix.pages.pjname.index",
+             [
             'css'=> ['back-end/css/table-responsive.css'],        
             'js' => [
                 ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],

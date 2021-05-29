@@ -84,7 +84,8 @@
                                             {{$row->name}}
                                         </td>
                                         <td data-label="pjtype">
-                                         
+                                        {{$row->showpjtype['name']}}
+                                            
                                         </td>
                                         <td data-label="created">
                                             {{date('d-M-Y H:i:s',strtotime($row->created))}}

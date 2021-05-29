@@ -315,6 +315,7 @@ class HiringtypeController extends Controller
             $filename = date('dmY-His');
             $lg = Image::make($file->getRealPath());
 
+
             $ext = explode("/", $lg->mime())[1];
             $size = $this->ImageSize('cover');
 
@@ -431,6 +432,9 @@ class HiringtypeController extends Controller
              $data = HiringtypeModel::orderBy('sort');
              $view = ($request->view) ? $request->view() : 10;
           
+             $view = ($request->view)? $request->view : 10 ;
+             $rows = $data->paginate($view);
+             $rows = $data->get();
          
             $search_text = $_GET['keyword'];
             $rows = DB::table('tb_hiringtype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
@@ -451,4 +455,5 @@ class HiringtypeController extends Controller
             ]);
         }
     }
+    
 }

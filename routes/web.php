@@ -237,6 +237,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::prefix('splname')->group(function(){
 			Route::get('/','Webpanel\SplnameController@index');
+			Route::get('/search','Webpanel\SplnameController@search');
 			Route::get('/create','Webpanel\SplnameController@create');
         	Route::put('/create','Webpanel\SplnameController@store');
 			Route::get('/{id}','Webpanel\SplnameController@edit')->where(['id'=>'[0-9]+']);
