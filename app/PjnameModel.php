@@ -14,8 +14,8 @@ class PjnameModel extends Model
     public $timestamp = false;
 
     public function showpjtype(){
-        return $this->hasOne(PjtypeModel::class,'id','pjtype');
-        //return $this->belongsTo(PjnameModel::class, 'id');
+        //return $this->hasOne(PjtypeModel::class,'id','pjtype');
+        return $this->belongsTo(PjtypeModel::class, 'pjtype');
     }
 
 }

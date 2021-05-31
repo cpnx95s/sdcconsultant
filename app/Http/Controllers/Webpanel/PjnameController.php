@@ -431,22 +431,44 @@ class PjnameController extends Controller
     {
         
         if(isset($_GET['keyword'])){
-            $data = PjnameModel::orderBy('sort');
-            $view = ($request->view) ? $request->view() : 10;
+        //     $data = PjnameModel::orderBy('sort');
+        //     $view = ($request->view) ? $request->view() : 10;
           
-           
-            
-            
-            $search_text = $_GET['keyword'];
+             $search_text = $_GET['keyword'];
          
-            $data = PjnameModel::orderBy('sort');
-            $view = ($request->view) ? $request->view() : 10;
-            $rows = $data->paginate($view);
-            $rows->appends(['view' => $request->view]);
-            $rows = DB::table('tb_pjname')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+        //     $data = PjnameModel::orderBy('sort');
+        //     $view = ($request->view) ? $request->view() : 10;
+        //     $rows = $data->paginate($view);
+        //     $rows->appends(['view' => $request->view]);
+        //     $rows = DB::table('tb_pjname')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
             
-             return view("$this->prefix.pages.pjname.index",
-             [
+        //      return view("$this->prefix.pages.pjname.index",
+        //      [
+        //     'css'=> ['back-end/css/table-responsive.css'],        
+        //     'js' => [
+        //         ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+        //         ["src"=>"back-end/js/table-dragger.min.js"],
+        //         ["src"=>'back-end/js/sweetalert2.all.min.js'],
+        //         ["type"=>"text/javascript","src"=>"back-end/build/pjname.js"],
+        //     ],
+        //     'prefix' => $this->prefix,
+        //     'folder' => 'pjname',
+        //     'page' => 'index',
+        //     'segment' => "$this->segment/pjname",
+        //     'rows' => $rows
+        // ]);
+            
+
+        $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')->orderBy('sort');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view)? $request->view : 10 ;
+            $rows = $data->paginate($view);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+        }
+        return view("$this->prefix.pages.pjname.index",[
             'css'=> ['back-end/css/table-responsive.css'],        
             'js' => [
                 ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
@@ -460,7 +482,7 @@ class PjnameController extends Controller
             'segment' => "$this->segment/pjname",
             'rows' => $rows
         ]);
-            
+
         }
     }
 }
