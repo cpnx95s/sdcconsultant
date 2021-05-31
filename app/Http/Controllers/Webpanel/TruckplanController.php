@@ -425,6 +425,7 @@ class TruckplanController extends Controller
         
         if(isset($_GET['keyword'])){
         $search_text = $_GET['keyword'];
+        
         $data =TruckplanModel::where('routename', 'like', '%'.$search_text.'%')
         ->orwhere('routecode','like', '%'.$search_text.'%')
         ->orwhere('statusplan','like', '%'.$search_text.'%')
@@ -447,8 +448,9 @@ class TruckplanController extends Controller
         ->orwhere('author','like', '%'.$search_text.'%')
         ->orwhere('editor','like', '%'.$search_text.'%')
         ->orwhere('sort','like', '%'.$search_text.'%')
-        ->orwhere('editor','like', '%'.$search_text.'%')
-        ->orderBy('sort');
+        ->orwhere('worktype','like', '%'.$search_text.'%')
+        ->orderBy('sort');	
+       
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
