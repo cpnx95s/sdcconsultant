@@ -39,10 +39,18 @@
                                             <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
-
+                               
                                 </div>
                             </div>
                         </form>
+                        <form action="/webpanel/truckplan/searchdate" method="get">
+                        <div class="row">
+                        <input type = "date" class ="from-control input-sm" id = "fromDate" name = "fromDate" required/>
+                        <input type = "date" class ="from-control input-sm" id = "toDate" name = "toDate" required/>
+                            
+                                <button class="btn btn-secondary" type="submit">Search</button>
+                                </div>
+                                </form>
                         <br class="d-block d-sm-none" />
                         <div class="table-responsive">
                             <table class="table table-striped no-footer table-res" id="sorted_table" style="border-collapse: collapse !important">

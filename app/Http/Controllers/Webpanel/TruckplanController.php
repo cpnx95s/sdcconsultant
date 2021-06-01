@@ -422,11 +422,12 @@ class TruckplanController extends Controller
     }
     public function search(Request $request )
     {
-        
+      
         if(isset($_GET['keyword'])){
         $search_text = $_GET['keyword'];
-        
+        $fromDate = $request->input('fromDate');
         $data =TruckplanModel::where('routename', 'like', '%'.$search_text.'%')
+        
         ->orwhere('routecode','like', '%'.$search_text.'%')
         ->orwhere('statusplan','like', '%'.$search_text.'%')
         ->orwhere('pjname','like', '%'.$search_text.'%')
@@ -474,6 +475,41 @@ class TruckplanController extends Controller
             'rows' => $rows
         ]);
 
+        }
+      
+    }
+    public function searchdate(Request $request )
+    {
+
+     if(isset($_GET['fromDate'])){
+      
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        $data =TruckplanModel::where('startdate','>=', $fromDate)
+                                ->where('startdate','<=', $toDate)
+                                ->orderBy('sort');
+       
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view)? $request->view : 10 ;
+            $rows = $data->paginate($view);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+        }
+        return view("$this->prefix.pages.truckplan.index", [
+            'css' => ['back-end/css/table-responsive.css'],
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ["src" => "back-end/js/table-dragger.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+            ],
+            'prefix' => $this->prefix,
+            'folder' => 'truckplan',
+            'page' => 'index',
+            'segment' => "$this->segment/truckplan",
+            'rows' => $rows
+        ]);
         }
     }
 }
