@@ -39,7 +39,6 @@
                                             <button class="btn btn-secondary" type="submit">Search</button>
                                         </span>
                                     </div>
-                               
                                 </div>
                             </div>
                         </form>
@@ -47,10 +46,41 @@
                         <div class="row">
                         <input type = "date" class ="from-control input-sm" id = "fromDate" name = "fromDate" required/>
                         <input type = "date" class ="from-control input-sm" id = "toDate" name = "toDate" required/>
-                            
                                 <button class="btn btn-secondary" type="submit">Search</button>
-                                </div>
+                                
                                 </form>
+                             <dir>
+                             
+                             
+
+                                <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+                                <form action="/webpanel/truckplan/searchbox" method="get">
+                            <center>
+                                        <span> Name: </span>
+                                        <select name="box" id="nameid" style="width: 200px">
+                                        <option></option>
+                                        @foreach($rows as $row)
+                                        <option>{{$row->routename}}</option>
+                                        @endforeach
+                                        </select>
+                            </center>
+                            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+                            <script type="text/javascript">
+                            $("#nameid").select2({
+                            placeholder: "Select a Name",
+                            allowClear: true
+                            });
+                            </script>
+                           
+                             <button class="btn btn-secondary" type="submit">Search</button>
+
+                             </form>
+                             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+                                </div>
                         <br class="d-block d-sm-none" />
                         <div class="table-responsive">
                             <table class="table table-striped no-footer table-res" id="sorted_table" style="border-collapse: collapse !important">

@@ -253,6 +253,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/','Webpanel\TruckplanController@index');
 			Route::get('/search','Webpanel\TruckplanController@search');
 			Route::get('/searchdate','Webpanel\TruckplanController@searchdate');
+			Route::get('/searchbox','Webpanel\TruckplanController@searchbox');
 			Route::get('/create','Webpanel\TruckplanController@create');
         	Route::put('/create','Webpanel\TruckplanController@store');
 			Route::get('/{id}','Webpanel\TruckplanController@edit')->where(['id'=>'[0-9]+']);
