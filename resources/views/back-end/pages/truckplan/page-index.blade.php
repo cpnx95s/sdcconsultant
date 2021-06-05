@@ -42,23 +42,18 @@
                                 </div>
                             </div>
                         </form>
+                        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+                      
                         <form action="/webpanel/truckplan/searchdate" method="get">
                         <div class="row">
+                        <label for ="date" class = "">Date of STARTDATE  from :</label>
                         <input type = "date" class ="from-control input-sm" id = "fromDate" name = "fromDate" required/>
+                        <label for ="date" class = "">Date of STARTDATE to :</label>
                         <input type = "date" class ="from-control input-sm" id = "toDate" name = "toDate" required/>
-                                <button class="btn btn-secondary" type="submit">Search</button>
-                                
-                                </form>
-                             <dir>
-                             
-                             
-
-                                <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-                                <form action="/webpanel/truckplan/searchbox" method="get">
-                            <center>
-                                        <span> Name: </span>
+                        <center>
+                                        <span> ROUTE_NAME : </span>
                                         <select name="box" id="nameid" style="width: 200px">
-                                        <option></option>
+                                        <option></option>                           
                                         @foreach($rows as $row)
                                         <option>{{$row->routename}}</option>
                                         @endforeach
@@ -73,10 +68,11 @@
                             allowClear: true
                             });
                             </script>
-                           
-                             <button class="btn btn-secondary" type="submit">Search</button>
+                                <button class="btn btn-secondary" type="submit">Search</button>
+                                
+                                </form>
 
-                             </form>
+
                              <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 

@@ -481,14 +481,16 @@ class TruckplanController extends Controller
     public function searchdate(Request $request )
     {
 
-     if(isset($_GET['fromDate'])){
+    
       
         $fromDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
+        $other = $request->input('box');
         $data =TruckplanModel::where('startdate','>=', $fromDate)
                                 ->where('startdate','<=', $toDate)
+                                ->where('routename','like', '%'.$other.'%')
                                 ->orderBy('sort');
-       
+        
         if ($request->view == 'all') {
             $rows = $data->get();
         } else {
@@ -510,7 +512,7 @@ class TruckplanController extends Controller
             'segment' => "$this->segment/truckplan",
             'rows' => $rows
         ]);
-        }
+        
     }
     public function searchbox(Request $request )
     {
