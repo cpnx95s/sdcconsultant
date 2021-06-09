@@ -164,7 +164,7 @@ class PjnameController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'pjname', '_id' => $id])->get(),
+           
             'size' => $this->ImageSize(),
         ]);
     }
@@ -186,7 +186,6 @@ class PjnameController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'pjname', '_id' => $id])->get(),
             'size' => $this->ImageSize(),
         ]);
     }
@@ -237,7 +236,7 @@ class PjnameController extends Controller
 
                 Storage::disk('public')->put($newLg, $lg);
 
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'pjname', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
+                
             }
         }
         if ($data->save()) {
@@ -484,5 +483,26 @@ class PjnameController extends Controller
         ]);
 
         }
+    }
+    public function createcopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+      
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["codename"] = $request->codename;
+        $data["pjtype"] = $request->pjtype;
+        $data["sort"] = $sort;
+        DB::table('tb_pjname')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
+    
     }
 }

@@ -299,4 +299,41 @@ class RoundtripController extends Controller
             
         }
     }
+    public function copy($id)
+    {
+        $row = RoundtripModel::find($id);
+        return view("$this->prefix.pages.$this->folder.index", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => "back-end/tinymce/tinymce.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/roundtrip.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'copy',
+            'segment' => $this->segment,
+            'row' => $row,
+            'size' => $this->ImageSize(),
+        ]);
+    }
+    public function createcopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["sort"] = $sort;
+        DB::table('tb_roundtrip')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
+    
+    }
 }

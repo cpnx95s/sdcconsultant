@@ -57,9 +57,6 @@
 
       <!-- //Navigation -->
 
-      @include("slide")
-      <!-- //Page container -->
-
 
 
 

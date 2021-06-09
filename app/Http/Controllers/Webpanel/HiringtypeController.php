@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\HiringtypeModel;
-use App\GalleryModel;
+
 
 class HiringtypeController extends Controller
 {
@@ -184,7 +184,7 @@ class HiringtypeController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'hiringtype', '_id' => $id])->get(),
+          
             'size' => $this->ImageSize(),
         ]);
     }
@@ -455,5 +455,22 @@ class HiringtypeController extends Controller
             ]);
         }
     }
+    public function createcopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["sort"] = $sort;
+        DB::table('tb_hiringtype')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
     
+    }
 }

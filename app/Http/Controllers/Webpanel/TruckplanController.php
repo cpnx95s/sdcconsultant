@@ -189,7 +189,7 @@ class TruckplanController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'truckplan', '_id' => $id])->get(),
+            
             'size' => $this->ImageSize(),
         ]);
     }
@@ -570,6 +570,63 @@ class TruckplanController extends Controller
 
         }
     }
-    
+    public function createcopy(Request $request)
+    {
+        //$mytime = Carbon::now()->format('d-m-Y');
+        $data = new TruckplanModel;
+        $data->startdate = $request->startdate;
+        $data->routecode = $request->routecode;
+        $data->routename = $request->routename;
+        $data->trucknumb = $request->trucknumb;
+        $data->driver = $request->driver;
+        $data->telnumb = $request->telnumb;
+        $data->sbranch = $request->sbranch;
+        $data->dntbranch = $request->dntbranch;
+        $data->truckrqtime = $request->truckrqtime;
+        $data->dpttime = $request->dpttime;
+        $data->dnttime = $request->dnttime;
+        $data->totalhour = $request->totalhour;
+        $data->mntstaff = $request->mntstaff;
+        $data->remark = $request->remark;
+        $data->statusplan = $request->statusplan;
+        $data->ccremark = $request->ccremark;
+        $data->author = $request->author;
+        $data->editor = $request->editor;
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->splname = $request->splname;
+        $data->tsptype = $request->tsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
+        
+        
+        //$data->pjtype = $request->pjtype;
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->splname = $request->splname;
+        $data->tsptype = $request->tsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
+        
+        $data->sort = 1;
+        // SEO
+        // $data->seo_title = $request->seo_title;
+        // $data->seo_description = $request->seo_description;
+        // $data->seo_keywords = $request->seo_keywords;
+        // End Seo
+        //dd($data);
+        // $data->created = date('Y-m-d H:i:s.u');
+        // $data->updated = date('Y-m-d H:i:s.u');
+        
+        if ($data->save()) {
+            TruckplanModel::where('id', '!=', $data->id)->increment('sort');
+            
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/truckplan/create")]);
+        }
+    }
 
 }

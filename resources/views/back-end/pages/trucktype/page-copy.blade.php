@@ -1,7 +1,7 @@
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <form id="signupForm" method="GET" action="" enctype="multipart/form-data">
+            <form id="signupForm" method="GET" action="/webpanel/trucktype/{id}/create" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}"> ประเภทรถ </a></span>
@@ -10,6 +10,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
+                       
 
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">

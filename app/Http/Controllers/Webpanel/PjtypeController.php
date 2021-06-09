@@ -182,8 +182,7 @@ class PjtypeController extends Controller
             'folder' => $this->folder,
             'page' => 'copy',
             'segment' => $this->segment,
-            'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'pjtype', '_id' => $id])->get(),
+            'row' => $row,       
             'size' => $this->ImageSize(),
         ]);
     }
@@ -449,5 +448,25 @@ class PjtypeController extends Controller
                 'rows' => $rows
             ]);
         }
+    }
+    public function createcopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+     
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["name2"] = $request->name;
+        $data["sort"] = $sort;
+        DB::table('tb_pjtype')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
+    
     }
     }

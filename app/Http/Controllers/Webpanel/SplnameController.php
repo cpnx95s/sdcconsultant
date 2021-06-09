@@ -185,7 +185,7 @@ class SplnameController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            'gallerys' => GalleryModel::where(['type' => 'splname', '_id' => $id])->get(),
+            
             'size' => $this->ImageSize(),
         ]);
     }
@@ -451,6 +451,27 @@ class SplnameController extends Controller
                 'rows' => $rows
             ]);
         }
+    }
+    public function createcopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+        
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["score"] = $request->score;
+        $data["codename"] = $request->codename;
+        $data["sort"] = $sort;
+        DB::table('tb_pjname')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
+    
     }
 }
 
