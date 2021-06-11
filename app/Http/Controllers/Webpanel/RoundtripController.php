@@ -80,52 +80,16 @@ class RoundtripController extends Controller
 
         $data = new RoundtripModel;
         $data->name = $request->name;
-        // $data->short_detail = $request->short_detail;
-        // $data->detail = $request->detail;
+
         $data->status = 'on';
         $data->sort = 1;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
+
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/roundtrip/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
+        
         if ($data->save()) {
             RoundtripModel::where('id', '!=', $data->id)->increment('sort');
-            // gallery
-            if ($request->gallery) {
-                $gallery = $request->gallery;
-                $gfilename = 'gallery-' . date('dmY-His');
-                for ($i = 0; $i < count($gallery); $i++) {
-                    $lg = Image::make($gallery[$i]->getRealPath());
-
-                    $ext = explode("/", $lg->mime())[1];
-                    $size = $this->ImageSize('gallery');
-
-                    $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-                    // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-
-                    $newLg = 'upload/roundtrip/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                    Storage::disk('public')->put($newLg, $lg);
-
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'roundtrip', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-                }
-            }
+          
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/roundtrip")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/roundtrip/create")]);
@@ -155,50 +119,9 @@ class RoundtripController extends Controller
     {
         $data = RoundtripModel::find($id);
         $data->name = $request->name;
-        // $data->short_detail = $request->short_detail;
-        // $data->detail = $request->detail;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
+
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            // $sm = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-            $newLg = 'upload/roundtrip/' . $filename . '-.' . $ext;
-
-            Storage::disk('public')->put($newLg, $lg);
-        
-            $data->image = $newLg;
-        }
-        if ($request->gallery) {
-            $gallery = $request->gallery;
-            $gfilename = 'gallery-' . date('dmY-His');
-            for ($i = 0; $i < count($gallery); $i++) {
-                $lg = Image::make($gallery[$i]->getRealPath());
-
-                $ext = explode("/", $lg->mime())[1];
-                $size = $this->ImageSize('gallery');
-
-                $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-                $newLg = 'upload/roundtrip/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                Storage::disk('public')->put($newLg, $lg);
-
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'roundtrip', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-            }
-        }
+       
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {

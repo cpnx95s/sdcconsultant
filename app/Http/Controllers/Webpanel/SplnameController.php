@@ -101,48 +101,13 @@ class SplnameController extends Controller
         $data->name = $request->name;
         $data->score = $request->score;
         $data->sort = 1;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
+
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/splname/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
+        
         if ($data->save()) {
             splnameModel::where('id', '!=', $data->id)->increment('sort');
-            // gallery
-            if ($request->gallery) {
-                $gallery = $request->gallery;
-                $gfilename = 'gallery-' . date('dmY-His');
-                for ($i = 0; $i < count($gallery); $i++) {
-                    $lg = Image::make($gallery[$i]->getRealPath());
-
-                    $ext = explode("/", $lg->mime())[1];
-                    $size = $this->ImageSize('gallery');
-
-                    $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-                    // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-
-                    $newLg = 'upload/splname/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                    Storage::disk('public')->put($newLg, $lg);
-
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'splname', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-                }
-            }
+          
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/splname")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/splname/create")]);
@@ -197,107 +162,15 @@ class SplnameController extends Controller
         $data->name = $request->name;
         $data->score = $request->score;
 
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            // $sm = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-            $newLg = 'upload/splname/' . $filename . '-.' . $ext;
-
-            Storage::disk('public')->put($newLg, $lg);
-
-            $data->image = $newLg;
-        }
-        if ($request->gallery) {
-            $gallery = $request->gallery;
-            $gfilename = 'gallery-' . date('dmY-His');
-            for ($i = 0; $i < count($gallery); $i++) {
-                $lg = Image::make($gallery[$i]->getRealPath());
-
-                $ext = explode("/", $lg->mime())[1];
-                $size = $this->ImageSize('gallery');
-
-                $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-                $newLg = 'upload/splname/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                Storage::disk('public')->put($newLg, $lg);
-
-                GalleryModel::insert(['_id' => $data->id, 'type' => 'splname', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-            }
-        }
+     
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/$this->controller/" . $id)]);
         }
     }
-    // public function cpupdate(Request $request, $id)
-    // {
-    //     $data = splnameModel::find($id);
-    //     $data->name = $request->name;
-
-    //     // SEO
-    //     // $data->seo_title = $request->seo_title;
-    //     // $data->seo_description = $request->seo_description;
-    //     // $data->seo_keywords = $request->seo_keywords;
-    //     // End Seo
-    //     $data->updated = date('Y-m-d H:i:s');
-    //     $file = $request->image;
-    //     if ($file) {
-    //         $filename = date('dmY-His');
-    //         $lg = Image::make($file->getRealPath());
-
-    //         // $sm = Image::make($file->getRealPath());
-
-    //         $ext = explode("/", $lg->mime())[1];
-    //         $size = $this->ImageSize('cover');
-
-    //         $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-    //         $newLg = 'upload/splname/' . $filename . '-.' . $ext;
-
-    //         Storage::disk('public')->put($newLg, $lg);
-
-    //         $data->image = $newLg;
-    //     }
-    //     if ($request->gallery) {
-    //         $gallery = $request->gallery;
-    //         $gfilename = 'gallery-' . date('dmY-His');
-    //         for ($i = 0; $i < count($gallery); $i++) {
-    //             $lg = Image::make($gallery[$i]->getRealPath());
-
-    //             $ext = explode("/", $lg->mime())[1];
-    //             $size = $this->ImageSize('gallery');
-
-    //             $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-
-    //             $newLg = 'upload/splname/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-    //             Storage::disk('public')->put($newLg, $lg);
-
-    //             GalleryModel::insert(['_id' => $data->id, 'type' => 'splname', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-    //         }
-    //     }
-    //     if ($data->save()) {
-    //         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
-    //     } else {
-    //         return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/$this->controller/" . $id)]);
-    //     }
-    // }
+    
 
     public function copystore(Request $request, $id)
     {
@@ -305,48 +178,13 @@ class SplnameController extends Controller
         $data = new splnameModel;
         $data->name = $request->name;
         $data->sort = 1;
-        // SEO
-        // $data->seo_title = $request->seo_title;
-        // $data->seo_description = $request->seo_description;
-        // $data->seo_keywords = $request->seo_keywords;
-        // End Seo
+
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/splname/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
+        
         if ($data->save()) {
             splnameModel::where('id', '!=', $data->id)->increment('sort');
-            // gallery
-            if ($request->gallery) {
-                $gallery = $request->gallery;
-                $gfilename = 'gallery-' . date('dmY-His');
-                for ($i = 0; $i < count($gallery); $i++) {
-                    $lg = Image::make($gallery[$i]->getRealPath());
-
-                    $ext = explode("/", $lg->mime())[1];
-                    $size = $this->ImageSize('gallery');
-
-                    $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-                    // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-
-                    $newLg = 'upload/splname/gallery/' . $gfilename . '-' . $i . '.' . $ext;
-
-                    Storage::disk('public')->put($newLg, $lg);
-
-                    GalleryModel::insert(['_id' => $data->id, 'type' => 'splname', 'image' => $newLg, 'created' => date('Y-m-d H:i:s')]);
-                }
-            }
+           
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/splname")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/splname/copy")]);

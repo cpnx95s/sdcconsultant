@@ -93,28 +93,7 @@ class Member extends Controller
         $data->password = bcrypt($request->password);
         $data->status = 'on';
         $data->created_at = date('Y-m-d H:i:s');
-        if($request->image)
-        {
-            $file = $request->image;
-            
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-            // $md = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            // $md->resize($size['md']['x'],$size['md']['y'])->stream();
-            $lg->resize($size['lg']['x'],$size['lg']['y'])->stream();
-
-            $newLg = 'upload/member/'.$filename.'.'.$ext;
-            // $newMd = 'upload/member/'.$filename.'-md.'.$ext;
-
-            // Storage::disk('public')->put($newMd, $md);
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
-
+        
         if($data->save())
         {
             if($request->address){
@@ -171,27 +150,7 @@ class Member extends Controller
         $data->name = $request->name;
         $data->phone = $request->phone;
         $data->updated_at = date('Y-m-d H:i:s');
-        if($request->image){
-            $file = $request->image;
-            
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-            // $md = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            // $md->resize($size['md']['x'],$size['md']['y'])->stream();
-            $lg->resize($size['lg']['x'],$size['lg']['y'])->stream();
-
-            $newLg = 'upload/member/'.$filename.'.'.$ext;
-            // $newMd = 'upload/member/'.$filename.'-md.'.$ext;
-
-            // Storage::disk('public')->put($newMd, $md);
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
-
+        
         if($data->save()){
             $addressid = $request->address_id;
             if($addressid){

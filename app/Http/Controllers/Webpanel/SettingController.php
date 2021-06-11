@@ -77,28 +77,8 @@ class SettingController extends Controller
         $data->detail = $request->detail;
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file) {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-            $md = Image::make($file->getRealPath());
-            // $sm = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $md->resize($size['md']['x'], $size['md']['y'])->stream();
-            // $sm->resize($size['sm']['x'],$size['sm']['y'])->stream();
-            $newLg = 'upload/setting/' . $filename . '-.' . $ext;
-            $newMd = 'upload/setting/' . $filename . '-md.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            Storage::disk('public')->put($newMd, $md);
-            $data->image = $newLg;
-        }
-        if ($data->save()) 
-        {
-           
+        
+        if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/setting")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/setting/create")]);
@@ -129,20 +109,7 @@ class SettingController extends Controller
         $data = SettingModel::find($id);
         $data->detail = $request->detail;
         $data->updated = date('Y-m-d H:i:s');
-        $file = $request->image;
-        if ($file)
-        {
-            $filename = date('dmY-His');
-            $lg = Image::make($file->getRealPath());
-
-            $ext = explode("/", $lg->mime())[1];
-            $size = $this->ImageSize('cover');
-
-            $lg->resize($size['lg']['x'], $size['lg']['y'])->stream();
-            $newLg = 'upload/setting/' . $filename . '-.' . $ext;
-            Storage::disk('public')->put($newLg, $lg);
-            $data->image = $newLg;
-        }
+       
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {
