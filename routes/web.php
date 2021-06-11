@@ -166,7 +166,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
         	Route::post('/dragsort','Webpanel\TsptypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\TsptypeController@status')->where(['id'=>'[0-9]+']);
 			Route::get('/copy/{id}','Webpanel\TsptypeController@copy');
-			Route::put('/copy/{id}/create','Webpanel\TsptypeController@createcopy');
+			Route::get('/copy/{id}/create','Webpanel\TsptypeController@createcopy');
 		
 
 		});
