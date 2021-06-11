@@ -39,8 +39,8 @@ class TruckplanModel extends Model
     }
 
     public function showtrucktypename(){
-        return $this->hasOne(TrucktypeModel::class,'id','trucktype');
-        //return $this->belongsTo(PjnameModel::class, 'id');
+        //return $this->hasOne(TrucktypeModel::class,'id','trucktype');
+        return $this->belongsTo(TrucktypeModel::class, 'trucktype');
     }
 
     public function showroundtripname(){
