@@ -467,9 +467,8 @@ class SplnameController extends Controller
         $data["updated"] = $updated;
         $data["name"] = $request->name;
         $data["score"] = $request->score;
-        $data["codename"] = $request->codename;
         $data["sort"] = $sort;
-        DB::table('tb_pjname')->insert($data);
+        DB::table('tb_splname')->insert($data);
         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
     
     }
