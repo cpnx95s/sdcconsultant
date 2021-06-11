@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-Route::get('', 'HomeController@index');
+Route::get('', 'Webpanel\AuthController@getLogin');
 Route::get('index', 'HomeController@index');
 // Route::get('about', 'HomeController@about');
 // Route::get('contact', 'HomeController@contact');

@@ -1,173 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <link rel="shortcut icon" href="images/favicon.ico">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="KDR Transport One single channel System">
-  <meta name="keyword" content="KDR Transport One single channel System">
-  <meta name="author" content="KDR Transport One single channel System">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 
-  <title>KDR Transport One single channel System</title>
+    <title>{{Config::get('app.name')}} | Webpanel</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Sarabun:100,200,300,400,500,600,700,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/animate.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <link rel='stylesheet' href='css/fullpage.css'>
-  <link rel="stylesheet" href="css/coreNavigation-1.1.3.css" />
-  <link rel="stylesheet" href="css/icofont.css">
-  <link rel="stylesheet" href="css/header.css"> 
-  <link rel="stylesheet" href="css/typography.css" />
-  <link rel="stylesheet" href="css/custom.css" />
-  <link rel="stylesheet" href="css/main-custom.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-
-
-
-  <!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
-
-  <!-- Latest compiled and minified CSS -->
-
-
-  <link href="css/carousel.css" rel="stylesheet" media="all">
-  <link href="css/bootstrap-touch-slider.css" rel="stylesheet" media="all">
-
-
+    <base href="{{url('/')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+    <link rel="stylesheet" href="back-end/fontawesome-5.11.2/css/all.css">    
+    <link href="back-end/bootstrap-4.3.1/css/bootstrap.css" rel="stylesheet">
+    <link href="back-end/css/style.css" rel="stylesheet">
+    <link href="back-end/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    
+    <style>
+        .form-control.error,
+        span.select2 .error
+        {
+            border-color: #e55353;
+            background-repeat: no-repeat;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+        label.error,
+        select.error,
+        span.error
+        {
+            font-size: 12px;
+            color: #e55353;
+            margin-bottom: 0 !important;
+        }
+        select>option{
+            font-size: 15px;
+        }
+        .password-show::after{
+            content: "";
+            position: absolute;
+            top: 10px;
+            height: 16px;
+            right: 20px;
+            width: 2px;
+            background: #768192;
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        
+    </style>
 </head>
-
-<body>
-
-
-
-
-
-  <div id="fullpage">
-    <div class="section">
-
-
-
-
-
-
-
-      <!-- Navigation -->
-      @include("header")
-
-      <!-- //Navigation -->
-
-
-
-
-
-
-      <div class="name">
-        <h1>S.D.C. Company Limited<br>
-          Project Consultant & Management
-        </h1>
-      </div>
-
-
-
-
-
-      <!-- Footer -->
-
-      @include("footer")
-
-
-
-
-
-
-
-
-
+<body class="c-app flex-row">    
+    <script>var c=localStorage.getItem("theme"),tag=document.getElementsByTagName('body').item(0).classList;if(c.length>0){tag.add(c);}</script>
+    <div class="c-sidebar c-sidebar-light c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+        @include("$prefix.layout.left-menu")
     </div>
-
-
-  </div>
-
-
-
-
-
-  <script src="js/jquery.js"></script>
-  <!-- jQuery library -->
-
-  <!-- Popper JS -->
-  <script src="js/popper.min.js"></script>
-
-  <!-- Latest compiled JavaScript -->
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/coreNavigation-1.1.3.js"></script>
-  <script>
-    $('nav').coreNavigation({
-      menuPosition: "right", 
-      container: true
-    });
-  </script>
-
-  <script src="js/scrolloverflow.js"></script>
-  <script src='js/fullpage.js'></script>
-
-  <script type="text/javascript">
-    new fullpage('#fullpage', {
-    sectionsColor: ['#27313d'],
-  });
-</script>
-
-<!-- 
-<script type="text/javascript" src="js/wowslider.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
- -->
-
-
-
-<script type="text/javascript">
-
-
-  if ($('#back-to-top').length) {
-    var scrollTrigger = 100, // px
-    backToTop = function () {
-      var scrollTop = $(window).scrollTop();
-      if (scrollTop > scrollTrigger) {
-        $('#back-to-top').addClass('show');
-      } else {
-        $('#back-to-top').removeClass('show');
-      }
-    };
-    backToTop();
-    $(window).on('scroll', function () {
-      backToTop();
-    });
-    $('#back-to-top').on('click', function (e) {
-      e.preventDefault();
-      $('html,body').animate({
-        scrollTop: 0
-      }, 2800);
-    });
-  }
-
-
-
-
-</script>
-<script src="js/carousel.js"></script>
-
-<script src="js/jquery.touchSwipe.min.js"></script>
-
-
-<!-- Bootstrap bootstrap-touch-slider Slider Main JS File -->
-<script src="js/bootstrap-touch-slider.js"></script>
-
-<script type="text/javascript">
-    $('#bootstrap-touch-slider').bsTouchSlider();
-</script>
-
-
-
+    <div class="c-wrapper">
+        @include("$prefix.layout.header")
+        <div class="c-body">
+            @if(@$css)
+                @foreach($css as $css)
+                    <link href="{{$css}}" rel="stylesheet">
+                @endforeach
+            @endif
+            <main class="c-main">
+                <div class="container-fluid">
+                    @include("$prefix.pages.$folder.page-$page")
+                </div>
+            </main>
+        </div>
+        <footer class="c-footer">
+            <div><a href="https://coreui.io">CoreUI</a> © 2019 creativeLabs.</div>
+            <div class="mfs-auto">Powered by&nbsp;<a href="https://coreui.io/pro/">CoreUI Pro</a></div>
+        </footer>          
+    </div>
+        
+    <script src="back-end/vendors/pace-progress/js/pace.min.js"></script>
+    <script src="back-end/vendors/@coreui/js/coreui.bundle.min.js"></script>
+    <script>
+        var tooltipEl = document.getElementById('header-tooltip');
+        var tootltip = new coreui.Tooltip(tooltipEl);
+    </script>
+    @if(@$js)
+    @foreach($js as $key => $val)
+    <script @foreach($js[$key] as $k => $v){{$k}}="{{$v}}" @endforeach ></script>
+    @endforeach
+    @endif
+    <script src="back-end/build/build.js"></script>
 </body>
-
 </html>
