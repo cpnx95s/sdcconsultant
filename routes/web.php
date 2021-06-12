@@ -48,11 +48,10 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/{id}','Webpanel\TrucktypeController@edit')->where(['id'=>'[0-9]+']);
 			Route::post('/{id}','Webpanel\TrucktypeController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TrucktypeController@destroy');
-			Route::get('/{id}','Webpanel\TrucktypeController@copy')->where(['id'=>'[0-9]+']);
-			Route::post('/{id}','Webpanel\TrucktypeController@clone')->where(['id'=>'[0-9]+']);
         	Route::post('/dragsort','Webpanel\TrucktypeController@dragsort');
 			Route::get('/status/{id}','Webpanel\TrucktypeController@status')->where(['id'=>'[0-9]+']);
-			Route::get('/{id}/create','Webpanel\TrucktypeController@createcopy');
+			Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+			Route::get('/copy/{id}/create','Webpanel\TrucktypeController@createcopy');
 		});
 
 		Route::prefix('roundtrip')->group(function(){
