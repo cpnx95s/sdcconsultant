@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทการขนส่ง</a></span>
-                        <span class="breadcrumb-item active">เเก้ไข</span>
+                        <span class="breadcrumb-item active">คัดลอก</span>
                     </div>
                     <div class="card-body">
                         @csrf

@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <a href="{{url("$segment")}}" class="card-header-action">Truck Type</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Vihecle Type</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>

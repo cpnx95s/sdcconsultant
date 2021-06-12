@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}"> แผนรถ </a></span>
-                        <span class="breadcrumb-item active">แก้ไข</span>
+                        <span class="breadcrumb-item active">คัดลอก</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
                     <div class="card-body">

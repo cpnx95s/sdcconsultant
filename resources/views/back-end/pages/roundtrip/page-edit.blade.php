@@ -4,7 +4,7 @@
             <form id="signupForm" method="post" action="" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
-                        <span class="breadcrumb-item "><a href="{{url("$segment")}}"> เที่ยวรถ </a></span>
+                        <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทเที่ยวรถ </a></span>
                         <span class="breadcrumb-item active">แก้ไข</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small></div>
                     </div>
