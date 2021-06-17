@@ -35,7 +35,7 @@ class PjdetailController extends Controller
 
     public function index(Request $request)
     {
-        $data = PjdetailModel::orderBy('sort');
+        $data = PjdetailModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();

@@ -36,7 +36,7 @@ class TsptypeController extends Controller
 
     public function index(Request $request)
     {
-        $data = TsptypeModel::orderBy('sort');
+        $data = TsptypeModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -184,7 +184,7 @@ class TsptypeController extends Controller
     public function search(Request $request )
     {
         if(isset($_GET['keyword'])){
-            $data = TsptypeModel::orderBy('sort');
+            $data = TsptypeModel::orderBy('created', 'DESC');
             $view = ($request->view) ? $request->view() : 10;
 
             $rows = $data->paginate($view);

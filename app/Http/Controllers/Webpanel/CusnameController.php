@@ -35,7 +35,7 @@ class CusnameController extends Controller
 
     public function index(Request $request)
     {
-        $data = CusModel::orderBy('sort');
+        $data = CusModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();

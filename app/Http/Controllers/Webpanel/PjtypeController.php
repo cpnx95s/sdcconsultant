@@ -36,7 +36,7 @@ class PjtypeController extends Controller
 
     public function index(Request $request)
     {
-        $data = PjtypeModel::orderBy('sort');
+        $data = PjtypeModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -245,7 +245,7 @@ class PjtypeController extends Controller
     {
         
         if(isset($_GET['keyword'])){
-            $data = PjtypeModel::orderBy('sort');
+            $data = PjtypeModel::orderBy('created', 'DESC');
             $view = ($request->view) ? $request->view() : 10;
           
          

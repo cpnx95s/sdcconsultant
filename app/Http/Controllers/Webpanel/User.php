@@ -134,11 +134,11 @@ class User extends Controller
         $data->status = $request->status;
         $data->name = $request->name;
         $data->updated_at = date('Y-m-d H:i:s');
-        if($data->save())
-        {
-            return view("$this->segment/alert/sweet/success",['url'=>$request->fullUrl()]);
-        }else{
-            return view("$this->segment/alert/sweet/error",['url'=>$request->fullUrl()]);
+
+        if ($data->save()) {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/user")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/user/" . $id)]);
         }
     }
     public function destroy(Request $request)

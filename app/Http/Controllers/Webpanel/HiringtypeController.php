@@ -36,7 +36,7 @@ class HiringtypeController extends Controller
 
     public function index(Request $request)
     {
-        $data = HiringtypeModel::orderBy('sort');
+        $data = HiringtypeModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -247,7 +247,7 @@ class HiringtypeController extends Controller
     {
         
         if(isset($_GET['keyword'])){
-             $data = HiringtypeModel::orderBy('sort');
+             $data = HiringtypeModel::orderBy('created', 'DESC');
              $view = ($request->view) ? $request->view() : 10;
           
              $view = ($request->view)? $request->view : 10 ;

@@ -13,7 +13,7 @@ class Setting extends Controller
     protected $segment = 'webpanel';
     public function index(Request $request)
     {
-        $data = \App\MenuModel::where('position','main')->orderBy('sort');
+        $data = \App\MenuModel::where('position','main')->orderBy('created', 'DESC');
         if($request->view=='all'){
             $rows = $data->get();
         }else{

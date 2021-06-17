@@ -36,7 +36,7 @@ class SplnameController extends Controller
 
     public function index(Request $request)
     {   
-        $data = splnameModel::orderBy('sort');
+        $data = splnameModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -248,7 +248,7 @@ class SplnameController extends Controller
     {
         
         if(isset($_GET['keyword'])){
-            $data = splnameModel::orderBy('sort');
+            $data = splnameModel::orderBy('created', 'DESC');
             $view = ($request->view) ? $request->view() : 10;
          
             $search_text = $_GET['keyword'];

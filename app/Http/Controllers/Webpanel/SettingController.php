@@ -32,7 +32,7 @@ class SettingController extends Controller
 
     public function index(Request $request)
     {
-        $data = SettingModel::orderBy('sort');
+        $data = SettingModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();

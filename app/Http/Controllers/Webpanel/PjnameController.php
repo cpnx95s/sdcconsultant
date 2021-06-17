@@ -36,7 +36,7 @@ class PjnameController extends Controller
 
     public function index(Request $request)
     {
-        $data = PjnameModel::orderBy('sort');
+        $data = PjnameModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -250,12 +250,12 @@ class PjnameController extends Controller
     {
         
         if(isset($_GET['keyword'])){
-        //     $data = PjnameModel::orderBy('sort');
+        //     $data = PjnameModel::orderBy('created', 'DESC');
         //     $view = ($request->view) ? $request->view() : 10;
           
              $search_text = $_GET['keyword'];
          
-        //     $data = PjnameModel::orderBy('sort');
+        //     $data = PjnameModel::orderBy('created', 'DESC');
         //     $view = ($request->view) ? $request->view() : 10;
         //     $rows = $data->paginate($view);
         //     $rows->appends(['view' => $request->view]);
@@ -278,7 +278,7 @@ class PjnameController extends Controller
         // ]);
             
 
-        $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')->orderBy('sort');
+        $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')->orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();

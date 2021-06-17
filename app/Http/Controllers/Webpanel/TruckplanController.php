@@ -37,7 +37,7 @@ class TruckplanController extends Controller
 
     public function index(Request $request)
     {
-        $data = TruckplanModel::orderBy('sort');
+        $data = TruckplanModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -400,7 +400,7 @@ class TruckplanController extends Controller
                 ->orwhere('editor', 'like', '%' . $search_text . '%')
                 ->orwhere('sort', 'like', '%' . $search_text . '%')
                 ->orwhere('worktype', 'like', '%' . $search_text . '%')
-                ->orderBy('sort');
+                ->orderBy('created', 'DESC');
 
             $view = ($request->view) ? $request->view() : 10;
             if ($request->view == 'all') {
@@ -437,7 +437,7 @@ class TruckplanController extends Controller
         $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
             ->where('routename', 'like', '%' . $other . '%')
-            ->orderBy('sort');
+            ->orderBy('created', 'DESC');
 
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -490,7 +490,7 @@ class TruckplanController extends Controller
                 ->orwhere('editor', 'like', '%' . $search_text . '%')
                 ->orwhere('sort', 'like', '%' . $search_text . '%')
                 ->orwhere('worktype', 'like', '%' . $search_text . '%')
-                ->orderBy('sort');
+                ->orderBy('created', 'DESC');
 
             $view = ($request->view) ? $request->view() : 10;
             if ($request->view == 'all') {
