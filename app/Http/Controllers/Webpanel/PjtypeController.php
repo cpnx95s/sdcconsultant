@@ -204,25 +204,6 @@ class PjtypeController extends Controller
         }
     }
 
-    
-
-    public function destroygallery(Request $request)
-    {
-        $datas = GalleryModel::find(explode(',', $request->id));
-        if (@$datas) {
-            foreach ($datas as $data) {
-                $query = GalleryModel::destroy($data->id);
-            }
-        }
-        if (@$query) {
-            return response()->json(true);
-        } else {
-            return response()->json(false);
-        }
-    }
-
-
-
     public function status(Request $request, $id = null)
     {
         $get = PjtypeModel::find($id);
