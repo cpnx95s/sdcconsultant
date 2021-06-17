@@ -7,7 +7,7 @@
                         
                         <a href="{{url("$segment")}}" class="card-header-action">Project Name</a>
                         <div class="card-header-actions">
-                            <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button>
+                            <!-- <!-- <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button> --> -->
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
                             <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> Copy</button>  
                             <button class="btn btn-md btn-warning text-white" type="reset" id="delEdit" disabled> Edit</button>       
