@@ -37,7 +37,7 @@ class RoundtripController extends Controller
 
     public function index(Request $request)
     {
-        $data = RoundtripModel::orderBy('sort');
+        $data = RoundtripModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -147,23 +147,6 @@ class RoundtripController extends Controller
         }
     }
 
-    public function destroygallery(Request $request)
-    {
-        $datas = GalleryModel::find(explode(',', $request->id));
-        if (@$datas) {
-            foreach ($datas as $data) {
-                $query = GalleryModel::destroy($data->id);
-            }
-        }
-        if (@$query) {
-            return response()->json(true);
-        } else {
-            return response()->json(false);
-        }
-    }
-
-
-
     public function status(Request $request, $id = null)
     {
         $get = RoundtripModel::find($id);
@@ -198,7 +181,7 @@ class RoundtripController extends Controller
     public function search(Request $request )
     {
         if(isset($_GET['keyword'])){
-            $data = RoundtripModel::orderBy('sort');
+            $data = RoundtripModel::orderBy('created', 'DESC');
             $view = ($request->view) ? $request->view() : 10;
 
             $rows = $data->paginate($view);

@@ -37,7 +37,7 @@ class TruckplanController extends Controller
 
     public function index(Request $request)
     {
-        $data = TruckplanModel::orderBy('sort');
+        $data = TruckplanModel::orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -93,7 +93,7 @@ class TruckplanController extends Controller
     //             $newModel->{$relation}()->create($item->toArray());
     //         }
     //     }
-        
+
     // }
     public function store(Request $request)
     {
@@ -127,8 +127,8 @@ class TruckplanController extends Controller
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
-        
+
+
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
@@ -137,49 +137,44 @@ class TruckplanController extends Controller
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
+
         $data->sort = 1;
-       $data->save();
+        $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->get();
-            
-if ( $worktype == "งานเสริม" ){
 
-    if ($statusplan == "Pending" ) {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-        }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
+        if ($worktype == "งานเสริม") {
 
-    }
-    else if($statusplan == "Active")
-    {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+            if ($statusplan == "Pending") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            } else if ($statusplan == "Active") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            }
+        } else {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
     }
-  
-}
-else{
-    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-}
-    }
-    
-    
+
+
     public function edit($id)
     {
         $row = TruckplanModel::find($id);
@@ -196,7 +191,7 @@ else{
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
- 
+
         ]);
     }
 
@@ -217,7 +212,7 @@ else{
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-            
+
             'size' => $this->ImageSize(),
         ]);
     }
@@ -255,8 +250,8 @@ else{
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
-        
+
+
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
@@ -265,49 +260,44 @@ else{
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
+
         $data->sort = 1;
-       $data->save();
+        $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->get();
-            
-if ( $worktype == "งานเสริม" ){
 
-    if ($statusplan == "Pending" ) {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-        }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
+        if ($worktype == "งานเสริม") {
 
-    }
-    else if($statusplan == "Active")
-    {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+            if ($statusplan == "Pending") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            } else if ($statusplan == "Active") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            }
+        } else {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
     }
-  
-}
-else{
-    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-}
-    }
-    
-    
+
+
 
     public function copystore(Request $request, $id)
     {
@@ -318,10 +308,10 @@ else{
 
         $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-        
+
         if ($data->save()) {
             TruckplanModel::where('id', '!=', $data->id)->increment('sort');
-          
+
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         } else {
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segment/truckplan/copy")]);
@@ -351,25 +341,6 @@ else{
             return response()->json(false);
         }
     }
-
-
-
-    public function destroygallery(Request $request)
-    {
-        $datas = GalleryModel::find(explode(',', $request->id));
-        if (@$datas) {
-            foreach ($datas as $data) {
-                $query = GalleryModel::destroy($data->id);
-            }
-        }
-        if (@$query) {
-            return response()->json(true);
-        } else {
-            return response()->json(false);
-        }
-    }
-
-
 
     public function status(Request $request, $id = null)
     {
@@ -406,138 +377,45 @@ else{
         }
         return response()->json(false);
     }
-    public function search(Request $request )
-    {
-      
-        if(isset($_GET['keyword'])){
-        $search_text = $_GET['keyword'];
-        $fromDate = $request->input('fromDate');
-        $data =TruckplanModel::where('routename', 'like', '%'.$search_text.'%')
-        
-        ->orwhere('routecode','like', '%'.$search_text.'%')
-        ->orwhere('statusplan','like', '%'.$search_text.'%')
-        ->orwhere('pjname','like', '%'.$search_text.'%')
-        ->orwhere('tsptype','like', '%'.$search_text.'%')
-        ->orwhere('trucktype','like', '%'.$search_text.'%')
-        ->orwhere('roundtrip','like', '%'.$search_text.'%')
-        ->orwhere('hiringtype','like', '%'.$search_text.'%')
-        ->orwhere('splname','like', '%'.$search_text.'%')
-        ->orwhere('trucknumb','like', '%'.$search_text.'%')
-        ->orwhere('driver','like', '%'.$search_text.'%')
-        ->orwhere('telnumb','like', '%'.$search_text.'%')
-        ->orwhere('sbranch','like', '%'.$search_text.'%')
-        ->orwhere('dntbranch','like', '%'.$search_text.'%')
-        ->orwhere('totalhour','like', '%'.$search_text.'%')
-        ->orwhere('mntstaff','like', '%'.$search_text.'%')
-        ->orwhere('remark','like', '%'.$search_text.'%')
-        ->orwhere('ccremark','like', '%'.$search_text.'%')
-        ->orwhere('sbranch','like', '%'.$search_text.'%')
-        ->orwhere('author','like', '%'.$search_text.'%')
-        ->orwhere('editor','like', '%'.$search_text.'%')
-        ->orwhere('sort','like', '%'.$search_text.'%')
-        ->orwhere('worktype','like', '%'.$search_text.'%')
-        ->orderBy('sort');	
-       
-        $view = ($request->view) ? $request->view() : 10;
-        if ($request->view == 'all') {
-            $rows = $data->get();
-        } else {
-            $view = ($request->view)? $request->view : 10 ;
-            $rows = $data->paginate($view);
-            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
-        }
-        return view("$this->prefix.pages.truckplan.index", [
-            'css' => ['back-end/css/table-responsive.css'],
-            'js' => [
-                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
-                ["src" => "back-end/js/table-dragger.min.js"],
-                ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
-            ],
-            'prefix' => $this->prefix,
-            'folder' => 'truckplan',
-            'page' => 'index',
-            'segment' => "$this->segment/truckplan",
-            'rows' => $rows
-        ]);
-
-        }
-      
-    }
-    public function searchdate(Request $request )
+    public function search(Request $request)
     {
 
-    
-      
-        $fromDate = $request->input('fromDate');
-        $toDate = $request->input('toDate');
-        $other = $request->input('box');
-        $data =TruckplanModel::where('startdate','>=', $fromDate)
-                                ->where('startdate','<=', $toDate)
-                                ->where('routename','like', '%'.$other.'%')
-                                ->orderBy('sort');
-        
-        if ($request->view == 'all') {
-            $rows = $data->get();
-        } else {
-            $view = ($request->view)? $request->view : 10 ;
-            $rows = $data->paginate($view);
-            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
-        }
-        return view("$this->prefix.pages.truckplan.index", [
-            'css' => ['back-end/css/table-responsive.css'],
-            'js' => [
-                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
-                ["src" => "back-end/js/table-dragger.min.js"],
-                ["src" => 'back-end/js/sweetalert2.all.min.js'],
-                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
-            ],
-            'prefix' => $this->prefix,
-            'folder' => 'truckplan',
-            'page' => 'index',
-            'segment' => "$this->segment/truckplan",
-            'rows' => $rows
-        ]);
-        
-    }
-    public function searchbox(Request $request )
-    {
-        if(isset($_GET['box'])){
-            $search_text = $_GET['box'];
+        if (isset($_GET['keyword'])) {
+            $search_text = $_GET['keyword'];
             $fromDate = $request->input('fromDate');
-            $data =TruckplanModel::where('routename', 'like', '%'.$search_text.'%')
-            
-            ->orwhere('routecode','like', '%'.$search_text.'%')
-            ->orwhere('statusplan','like', '%'.$search_text.'%')
-            ->orwhere('pjname','like', '%'.$search_text.'%')
-            ->orwhere('tsptype','like', '%'.$search_text.'%')
-            ->orwhere('trucktype','like', '%'.$search_text.'%')
-            ->orwhere('roundtrip','like', '%'.$search_text.'%')
-            ->orwhere('hiringtype','like', '%'.$search_text.'%')
-            ->orwhere('splname','like', '%'.$search_text.'%')
-            ->orwhere('trucknumb','like', '%'.$search_text.'%')
-            ->orwhere('driver','like', '%'.$search_text.'%')
-            ->orwhere('telnumb','like', '%'.$search_text.'%')
-            ->orwhere('sbranch','like', '%'.$search_text.'%')
-            ->orwhere('dntbranch','like', '%'.$search_text.'%')
-            ->orwhere('totalhour','like', '%'.$search_text.'%')
-            ->orwhere('mntstaff','like', '%'.$search_text.'%')
-            ->orwhere('remark','like', '%'.$search_text.'%')
-            ->orwhere('ccremark','like', '%'.$search_text.'%')
-            ->orwhere('sbranch','like', '%'.$search_text.'%')
-            ->orwhere('author','like', '%'.$search_text.'%')
-            ->orwhere('editor','like', '%'.$search_text.'%')
-            ->orwhere('sort','like', '%'.$search_text.'%')
-            ->orwhere('worktype','like', '%'.$search_text.'%')
-            ->orderBy('sort');	
-           
+            $data = TruckplanModel::where('routename', 'like', '%' . $search_text . '%')
+
+                ->orwhere('routecode', 'like', '%' . $search_text . '%')
+                ->orwhere('statusplan', 'like', '%' . $search_text . '%')
+                ->orwhere('pjname', 'like', '%' . $search_text . '%')
+                ->orwhere('tsptype', 'like', '%' . $search_text . '%')
+                ->orwhere('trucktype', 'like', '%' . $search_text . '%')
+                ->orwhere('roundtrip', 'like', '%' . $search_text . '%')
+                ->orwhere('hiringtype', 'like', '%' . $search_text . '%')
+                ->orwhere('splname', 'like', '%' . $search_text . '%')
+                ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
+                ->orwhere('driver', 'like', '%' . $search_text . '%')
+                ->orwhere('telnumb', 'like', '%' . $search_text . '%')
+                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('dntbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('totalhour', 'like', '%' . $search_text . '%')
+                ->orwhere('mntstaff', 'like', '%' . $search_text . '%')
+                ->orwhere('remark', 'like', '%' . $search_text . '%')
+                ->orwhere('ccremark', 'like', '%' . $search_text . '%')
+                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('author', 'like', '%' . $search_text . '%')
+                ->orwhere('editor', 'like', '%' . $search_text . '%')
+                ->orwhere('sort', 'like', '%' . $search_text . '%')
+                ->orwhere('worktype', 'like', '%' . $search_text . '%')
+                ->orderBy('created', 'DESC');
+
             $view = ($request->view) ? $request->view() : 10;
             if ($request->view == 'all') {
                 $rows = $data->get();
             } else {
-                $view = ($request->view)? $request->view : 10 ;
+                $view = ($request->view) ? $request->view : 10;
                 $rows = $data->paginate($view);
-                $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+                $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
             }
             return view("$this->prefix.pages.truckplan.index", [
                 'css' => ['back-end/css/table-responsive.css'],
@@ -553,7 +431,96 @@ else{
                 'segment' => "$this->segment/truckplan",
                 'rows' => $rows
             ]);
+        }
+    }
+    public function searchdate(Request $request)
+    {
 
+
+
+        $fromDate = $request->input('fromDate');
+        $toDate = $request->input('toDate');
+        $other = $request->input('box');
+        $data = TruckplanModel::where('startdate', '>=', $fromDate)
+            ->where('startdate', '<=', $toDate)
+            ->where('routename', 'like', '%' . $other . '%')
+            ->orderBy('created', 'DESC');
+
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view) ? $request->view : 10;
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
+        }
+        return view("$this->prefix.pages.truckplan.index", [
+            'css' => ['back-end/css/table-responsive.css'],
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ["src" => "back-end/js/table-dragger.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+            ],
+            'prefix' => $this->prefix,
+            'folder' => 'truckplan',
+            'page' => 'index',
+            'segment' => "$this->segment/truckplan",
+            'rows' => $rows
+        ]);
+    }
+    public function searchbox(Request $request)
+    {
+        if (isset($_GET['box'])) {
+            $search_text = $_GET['box'];
+            $fromDate = $request->input('fromDate');
+            $data = TruckplanModel::where('routename', 'like', '%' . $search_text . '%')
+
+                ->orwhere('routecode', 'like', '%' . $search_text . '%')
+                ->orwhere('statusplan', 'like', '%' . $search_text . '%')
+                ->orwhere('pjname', 'like', '%' . $search_text . '%')
+                ->orwhere('tsptype', 'like', '%' . $search_text . '%')
+                ->orwhere('trucktype', 'like', '%' . $search_text . '%')
+                ->orwhere('roundtrip', 'like', '%' . $search_text . '%')
+                ->orwhere('hiringtype', 'like', '%' . $search_text . '%')
+                ->orwhere('splname', 'like', '%' . $search_text . '%')
+                ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
+                ->orwhere('driver', 'like', '%' . $search_text . '%')
+                ->orwhere('telnumb', 'like', '%' . $search_text . '%')
+                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('dntbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('totalhour', 'like', '%' . $search_text . '%')
+                ->orwhere('mntstaff', 'like', '%' . $search_text . '%')
+                ->orwhere('remark', 'like', '%' . $search_text . '%')
+                ->orwhere('ccremark', 'like', '%' . $search_text . '%')
+                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
+                ->orwhere('author', 'like', '%' . $search_text . '%')
+                ->orwhere('editor', 'like', '%' . $search_text . '%')
+                ->orwhere('sort', 'like', '%' . $search_text . '%')
+                ->orwhere('worktype', 'like', '%' . $search_text . '%')
+                ->orderBy('created', 'DESC');
+
+            $view = ($request->view) ? $request->view() : 10;
+            if ($request->view == 'all') {
+                $rows = $data->get();
+            } else {
+                $view = ($request->view) ? $request->view : 10;
+                $rows = $data->paginate($view);
+                $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
+            }
+            return view("$this->prefix.pages.truckplan.index", [
+                'css' => ['back-end/css/table-responsive.css'],
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ["src" => "back-end/js/table-dragger.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'truckplan',
+                'page' => 'index',
+                'segment' => "$this->segment/truckplan",
+                'rows' => $rows
+            ]);
         }
     }
     public function createcopy(Request $request)
@@ -588,8 +555,8 @@ else{
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
-        
+
+
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
@@ -598,46 +565,40 @@ else{
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-        
+
         $data->sort = 1;
-       $data->save();
+        $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->get();
-            
-if ( $worktype == "งานเสริม" ){
 
-    if ($statusplan == "Pending" ) {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-        }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
+        if ($worktype == "งานเสริม") {
 
-    }
-    else if($statusplan == "Active")
-    {
-        if(!$createdd){     
-            DB::table('tb_gchart')->insert( 
-            ['created' => date('Y-m-d'), 'on_process' => 0,'full_fill' =>0]);
-            
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+            if ($statusplan == "Pending") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            } else if ($statusplan == "Active") {
+                if (!$createdd) {
+                    DB::table('tb_gchart')->insert(
+                        ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 0]
+                    );
+
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                } else {
+                    DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+            }
+        } else {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         }
-            else{
-                DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-          }
     }
-  
-}
-else{
-    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
-}
-    }
-    
 }
