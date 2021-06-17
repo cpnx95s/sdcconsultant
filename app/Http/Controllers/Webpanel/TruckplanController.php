@@ -329,18 +329,25 @@ else{
     }
     public function destroy(Request $request)
     {
+    
         $datas = TruckplanModel::find(explode(',', $request->id));
+       
+        
+        
         if (@$datas) {
             foreach ($datas as $data) {
 
                 TruckplanModel::where('sort', '>', $data->sort)->decrement('sort');
                 //destroy
                 $query = TruckplanModel::destroy($data->id);
+                $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
             }
         }
         if (@$query) {
+          
             return response()->json(true);
         } else {
+            
             return response()->json(false);
         }
     }
