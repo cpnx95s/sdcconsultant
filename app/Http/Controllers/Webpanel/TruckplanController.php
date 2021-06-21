@@ -224,7 +224,7 @@ class TruckplanController extends Controller
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
         //$mytime = Carbon::now()->format('d-m-Y');
-        $data = new TruckplanModel;
+        $data =  TruckplanModel::find($id);
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -252,6 +252,10 @@ class TruckplanController extends Controller
         $data->hiringtype = $request->hiringtype;
 
 
+$createdd =  DB::table('tb_gchart')->where('created', $createdaa)->get();
+$worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->worktype)->get();
+$statusplanupdate =  DB::table('tb_truckplan')->where('id', $id)->where('statusplan',$request->statusplan)->get();
+$data->save();
         //$data->pjtype = $request->pjtype;
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
@@ -262,10 +266,45 @@ class TruckplanController extends Controller
         $data->hiringtype = $request->hiringtype;
 
         $data->sort = 1;
-        $data->save();
+        
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
-        $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->get();
+     
+      
+        if(  $worktypeupdate){
+           
+            if( !$statusplanupdate){
+                if ($statusplan == "Pending") {
+
+                    if (!$createdd) {
+                        DB::table('tb_gchart')->insert(
+                            ['created' => date('Y-m-d'), 'on_process' => 1, 'full_fill' => 0]
+                        );
+                      
+                        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                    } else {
+                        DB::table('tb_gchart')->where('created', $createdaa)->decrement('full_fill', 1);
+                        DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
+                        
+                        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                    }
+                } else if ($statusplan == "Active") {
+                    if (!$createdd) {
+                        DB::table('tb_gchart')->insert(
+                            ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 1]
+                        );
+                      return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                    } else {
+                        DB::table('tb_gchart')->where('created', $createdaa)->decrement('on_process', 1);
+                        DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
+                      
+                        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                    }
+            }
+        }
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+    }
+    else if( !$worktypeupdate){
 
         if ($worktype == "งานเสริม") {
 
@@ -274,10 +313,11 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->insert(
                         ['created' => date('Y-m-d'), 'on_process' => 1, 'full_fill' => 0]
                     );
-
+                    
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
+                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
             } else if ($statusplan == "Active") {
@@ -285,42 +325,48 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->insert(
                         ['created' => date('Y-m-d'), 'on_process' => 0, 'full_fill' => 1]
                     );
-
+                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
+                 
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
             }
-        }  else if($worktype == "งานเสริม") {
+        } 
+        else if($worktype == "งานหลัก"){
             if ($statusplan == "Pending") {
                 if (!$createdd) {
                     
-
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
                     DB::table('tb_gchart')->where('created', $createdaa)->decrement('on_process', 1);
+            
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
             } else if ($statusplan == "Active") {
                 if (!$createdd) {
-                   
 
+                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
                     DB::table('tb_gchart')->where('created', $createdaa)->decrement('full_fill', 1);
+                  
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
             }
-           
         }
-        else{
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+    }
+       else{
+       
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         }
     }
 
 
 
+    
     public function copystore(Request $request, $id)
     {
         $data = TruckplanModel::find($id);
