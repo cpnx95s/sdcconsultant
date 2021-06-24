@@ -251,7 +251,7 @@ class TrucktypeController extends Controller
         
     
 
-    
+    // add
         
     }
     public function createcopy(Request $request)
