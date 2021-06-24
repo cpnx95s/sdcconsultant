@@ -65,7 +65,7 @@ class HomeController extends Controller
         $month = array('Jan', 'Feb', 'Mar', 'Apr', 'May');
         $data = array('1', '2', '3', '4', '5');
 
-        //Flash Express
+        //Flash Express 1
         $FLH_LH_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '2')->where('pjname', '=', '1')->where('startdate', '=', $mytime)->count();
         $FLH_LH_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '2')->where('pjname', '=', '1')->where('startdate', '=', $mytime)->count();
         $FLH_LH_M =  $FLH_LH_M1 + $FLH_LH_M2;
