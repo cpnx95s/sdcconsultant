@@ -19,5 +19,3 @@ class PjnameModel extends Model
     }
 
 }
-
-

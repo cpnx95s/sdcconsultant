@@ -325,4 +325,5 @@ class PjnameController extends Controller
         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
     
     }
+    
 }
