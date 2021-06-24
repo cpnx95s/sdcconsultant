@@ -123,14 +123,14 @@ class HomeController extends Controller
         $JT_Req = $JT_LH_E;
 
         //SCG Express
-        $SCG_LH_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '18')->where('startdate', '=', $mytime)->count();
-        $SCG_LH_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '18')->where('startdate', '=', $mytime)->count();
+        $SCG_LH_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCG_LH_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
 
         //DHL-Big C
-        $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
-        $DHLBigC_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
+        $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $DHLBigC_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
         $DHLBigC_DC_E = $DHLBigC_DC_E1 + $DHLBigC_DC_E2;
         $DHLBigC_Req = $DHLBigC_DC_E;
 
@@ -154,7 +154,7 @@ class HomeController extends Controller
 
         //TFG
         $TFG_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '14')->where('startdate', '=', $mytime)->count();
-        $TFG_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '14')->where('startdate', '=', $mytime)->count();
+        $TFG_DC_M2 = $TFG_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '14')->count();
         $TFG_DC_M = $TFG_DC_M1 +  $TFG_DC_M2;
         $TFG_Req = $TFG_DC_M;
 
