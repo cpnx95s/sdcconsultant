@@ -15,6 +15,9 @@
 	<div class ="form-group">
 			<select class="province" name="province" id="province" class= "form-control">
 						<option value=""> เลือกเลย </option>
+						@foreach($lise as $row )
+						<option value="$row->pjname_id">$row->roundtrip == $list->id </option>
+						@endforeach
 			</select>
 	</div>
 	</div>
