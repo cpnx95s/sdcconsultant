@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|---------------------------------------------------------------------------
+|-----------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
@@ -38,9 +38,9 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::get('/','Webpanel\HomeController@index');
 		Route::get('/','Webpanel\HomeController@Chartjs');
-		
-		
-	
+
+
+
 		Route::prefix('trucktype')->group(function(){
 			Route::get('/','Webpanel\TrucktypeController@index');
 			Route::get('/search','Webpanel\TrucktypeController@search')->name('trucktype.search');
@@ -81,7 +81,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/status/{id}','Webpanel\TsptypeController@status')->where(['id'=>'[0-9]+']);
 			Route::get('/copy/{id}','Webpanel\TsptypeController@copy');
 			Route::get('/copy/{id}/create','Webpanel\TsptypeController@createcopy');
-		
+
 
 		});
 
@@ -115,7 +115,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy/{id}/create','Webpanel\PjtypeController@createcopy');
 		});
 
-		
+
 		Route::prefix('pjname')->group(function(){
 			Route::get('/','Webpanel\PjnameController@index');
 			Route::get('/search','Webpanel\PjnameController@search');
@@ -207,7 +207,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		    Route::post('/exist','Webpanel\User@exist');
 		    Route::get('/exist-on-reset','Webpanel\User@checkUserOnReset');
 		});
-		
+
 	    Route::prefix('menu')->group(function(){
 		    Route::get('/','Webpanel\Setting@index');
 		    Route::get('/create','Webpanel\Setting@create');
@@ -220,6 +220,6 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		});
 
 	});
-	
+
 
 });
