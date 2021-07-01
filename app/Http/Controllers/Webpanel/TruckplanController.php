@@ -184,6 +184,7 @@ class TruckplanController extends Controller
     public function edit($id)
     {
         $row = TruckplanModel::find($id);
+        $rows= DB::table('tb_pjname')->get();
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -197,6 +198,7 @@ class TruckplanController extends Controller
             'page' => 'edit',
             'segment' => $this->segment,
             'row' => $row,
+            'rows' => $rows,
 
         ]);
     }
@@ -205,6 +207,7 @@ class TruckplanController extends Controller
     {
 
         $row = TruckplanModel::find($id);
+        $rows= DB::table('tb_pjname')->get();
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -218,7 +221,7 @@ class TruckplanController extends Controller
             'page' => 'copy',
             'segment' => $this->segment,
             'row' => $row,
-
+            'rows' => $rows,
             'size' => $this->ImageSize(),
         ]);
     }
