@@ -64,6 +64,8 @@ class TruckplanController extends Controller
     }
     public function create()
     {
+        $rows= DB::table('tb_pjname')->get();
+      
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -74,6 +76,7 @@ class TruckplanController extends Controller
             'controller' => $this->controller,
             'folder' => $this->folder,
             'page' => 'add',
+            'rows' => $rows,
             'segment' => "$this->segment/truckplan",
             'size' => $this->ImageSize(),
         ]);
@@ -843,4 +846,23 @@ class TruckplanController extends Controller
         dd($dateupdate);
         return view('test')->with('lise',$lise);
     }
+    public function fetct(Request $request){
+         $id= $request->get('select');
+         $result=array();
+         $query=DB::table('tb_pjname')
+        ->join ('tb_dropdown','tb_pjname.id','=', 'tb_dropdown.name_id')
+        ->select('tb_dropdown.name')
+        ->where ('tb_pjname.id',$id)
+        ->groupBY('tb_dropdown.name')
+        ->get();
+        $output='<option value="">ประเภทการขนส่ง</option>';
+        foreach ($query as $row){
+            $output.='<option value=""'.$row->name.'">'.$row->name.'</option>';
+        }
+        echo $output;
+        }
+    public function test(){
+        $list= DB::table('tb_pjname')->get();
+        return view('test')->with('list', $list);
+    }  
 }

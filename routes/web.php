@@ -187,7 +187,8 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::get('/copy/{id}/create','Webpanel\TruckplanController@createcopy');
         	Route::post('/dragsort','Webpanel\TruckplanController@dragsort');
 			Route::get('/status/{id}','Webpanel\TruckplanController@status')->where(['id'=>'[0-9]+']);
-			Route::get('/test','Webpanel\TruckplanController@dorpdows');
+			Route::get('/test','Webpanel\TruckplanController@test');
+			Route::post('/dorpdows', 'Webpanel\TruckplanController@fetct')->name("droupdown.fetch");
 		});
 
 

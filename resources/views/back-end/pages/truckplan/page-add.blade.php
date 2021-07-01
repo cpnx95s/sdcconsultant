@@ -13,7 +13,9 @@
         text-align: center;
     }
 </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -65,16 +67,15 @@
                                         <label class="control-label " for="pjname">
                                             ชื่อโปรเจค
                                         </label>
-                                        <select id="pjname" name="pjname" class="form-control" require>
+                                        <select id="province" name="province" class="form-control province" require>
                                             <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\PjnameModel::where('status','on')->get(); @endphp
-
-                                            @if($list)
-                                            @foreach($list as $list)
+                                       
+                                        
+                                            @foreach($rows as $list)
                                             <option value="{{$list->id}}"> {{$list->name}} </option>
                                             @endforeach
 
-                                            @endif
+                                      
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -109,16 +110,11 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select id="tsptype" name="tsptype" class="form-control" require>
+                                        <select id="province" name="province" class="form-control amphures" require>
                                             <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
-
-                                            @if($list)
-                                            @foreach($list as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
-                                            @endforeach
-
-                                            @endif
+                                         
+                                         
+                                         
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -281,3 +277,19 @@
     </div>
 </div>
 </div>
+<script>
+    $('.province').change(function(){
+        var select=$(this).val();
+        var _token=$('input[name="_token"]').val();
+
+        $.ajax({
+            url:"{{ Route ('droupdown.fetch') }}",
+            method:"POST",
+            data:{select:select,_token:_token},
+            success:function(result){
+                $('.amphures').html(result);
+            }
+
+        })
+    });
+</script>
