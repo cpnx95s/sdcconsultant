@@ -437,7 +437,7 @@ class TruckplanController extends Controller
                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
-                    DB::table('tb_gchart')->where('created', $createdaa)->decrement('full_fill', 1);
+                    DB::table('tb_gchart')->where('created', $datedefault)->decrement('full_fill', 1);
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
                     
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
@@ -449,7 +449,7 @@ class TruckplanController extends Controller
                     );
                   return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
-                    DB::table('tb_gchart')->where('created', $createdaa)->decrement('on_process', 1);
+                    DB::table('tb_gchart')->where('created', $datedefault)->decrement('on_process', 1);
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
