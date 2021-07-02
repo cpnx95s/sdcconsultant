@@ -153,7 +153,7 @@
                                             {{$row->worktype}}
                                         </td>
                                         <td data-label="ชื่อโปรเจค">
-                                            {{$row->showpjname->name}}
+                                            {{$row->showpjname->name ?? 'None'}}
                                         </td>
                                         <td data-label="รหัสสายวิ่ง">
                                             {{$row->routecode}}
@@ -162,19 +162,19 @@
                                             {{$row->routename}}
                                         </td>
                                         <td data-label="ประเภทการขนส่ง">
-                                            {{$row->showtsptypename->name}}
+                                            {{$row->showtsptypename->name ?? 'None'}}
                                         </td>
                                         <td data-label="ประเภทรถ">
-                                            {{$row->showtrucktypename->name}}
+                                            {{$row->showtrucktypename->name ?? 'None'}}
                                         </td>
                                         <td data-label="เที่ยวรถ">
-                                            {{$row->showroundtripname->name}}
+                                            {{$row->showroundtripname->name ?? 'None'}}
                                         </td>
                                         <td data-label="รูปแบบการว่าจ้าง">
-                                            {{$row->showhiringtypename->name}}
+                                            {{$row->showhiringtypename->name ?? 'None'}}
                                         </td>
                                         <td data-label="Subcontractor">
-                                            {{$row->showsplname->name}}
+                                            {{$row->showsplname->name ?? 'None'}}
                                         </td>
                                         <td data-label="เลขทะเบียนรถ">
                                             {{$row->trucknumb}}

@@ -41,6 +41,14 @@ class HomeController extends Controller
         //dd($results);
         $results2 = GchartModel::pluck('created', 'on_process');
         $results3 = GchartModel::pluck('full_fill');
+
+        // SELECT startdate,worktype,statusplan,count(*)
+        // FROM tb_truckplan
+        // where worktype = 'งานเสริม'
+        // GROUP BY startdate,statusplan
+        // ORDER BY startdate
+
+
         // /dd($results2);
         //$results -> keys();
         //$results -> values();
@@ -170,7 +178,9 @@ class HomeController extends Controller
         $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
         $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
         $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
+        //fullfill Active
         $Total_Req_E2 = $FLH_LH_E2 + $FLH_Del_E2 + $KEY_Del_E2 + $BES_LH_E2 + $SHOP_FM_E2 + $JT_LH_E2 + $SCG_LH_E2 + $DHLBigC_DC_E2 + $Office_DC_E2 + $KLine_LH_E2;
 
         return view("$this->prefix.pages.$this->folder.index", [
