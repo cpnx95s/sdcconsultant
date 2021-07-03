@@ -14,8 +14,8 @@
     }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -67,15 +67,15 @@
                                         <label class="control-label " for="pjname">
                                             ชื่อโปรเจค
                                         </label>
-                                        <select id="province" name="province" class="form-control province" require>
+                                        <select id="pjname" name="pjname" class="form-control province" require>
                                             <option value="">กรุณาเลือก</option>
-                                       
-                                        
+
+
                                             @foreach($rows as $list)
                                             <option value="{{$list->id}}"> {{$list->name}} </option>
                                             @endforeach
 
-                                      
+
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -110,11 +110,10 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select id="province" name="province" class="form-control amphures" require>
+                                        <select id="province" name="tsptype" class="form-control amphures" require>
                                             <option value="">กรุณาเลือก</option>
                                          
-                                         
-                                         
+
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -134,7 +133,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="roundtrip" >
+                                        <label class="control-label " for="roundtrip">
                                             เที่ยวรถ
                                         </label>
                                         <select id="roundtrip" name="roundtrip" class="form-control" require>
@@ -217,15 +216,15 @@
                                         <label class="control-label " for="totalhour">
                                             เวลาที่กำหนด(ชั่วโมง)
                                         </label>
-                                        <input class="form-control" id="totalhour" name="totalhour" type="text" require/>
+                                        <input class="form-control" id="totalhour" name="totalhour" type="text" require />
                                     </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="mntstaff">
                                             Monitor staff(KDR)
                                         </label>
-                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" require/>
+                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text" require />
                                     </div>
-                                    
+
                                     <div class="form-group ">
                                         <label class="control-label " for="remark">
                                             หมายเหตุ
@@ -238,7 +237,7 @@
                                             สถานะแผน
                                         </label>
                                         <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
-                                            <option value="Active" >
+                                            <option value="Active">
                                                 Active
                                             </option>
                                             <option value="Pending">
@@ -259,13 +258,31 @@
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
                                         </label> -->
-                                        <input hidden class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}"/>
+                                    <input hidden class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}" />
                                     <!-- </div> -->
 
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            $('.province').change(function() {
+                                var select = $(this).val();
+                                var _token = $('input[name="_token"]').val();
 
+                                $.ajax({
+                                    url: "{{ Route ('droupdown.fetch') }}",
+                                    method: "POST",
+                                    data: {
+                                        select: select,
+                                        _token: _token
+                                    },
+                                    success: function(result) {
+                                        $('.amphures').html(result);
+                                    }
+
+                                })
+                            });
+                        </script>
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
@@ -277,19 +294,3 @@
     </div>
 </div>
 </div>
-<script>
-    $('.province').change(function(){
-        var select=$(this).val();
-        var _token=$('input[name="_token"]').val();
-
-        $.ajax({
-            url:"{{ Route ('droupdown.fetch') }}",
-            method:"POST",
-            data:{select:select,_token:_token},
-            success:function(result){
-                $('.amphures').html(result);
-            }
-
-        })
-    });
-</script>

@@ -38,12 +38,12 @@ class TruckplanController extends Controller
     public function index(Request $request)
     {
         $data = TruckplanModel::orderBy('created', 'DESC');
-        $view = ($request->view) ? $request->view() : 10;
+     
         if ($request->view == 'all') {
             $rows = $data->get();
         } else {
             $view = ($request->view) ? $request->view : 10;
-            $rows = $data->paginate($view);
+            $rows = $data->paginate(10);
             $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
         }
         return view("$this->prefix.pages.truckplan.index", [
@@ -100,7 +100,8 @@ class TruckplanController extends Controller
 
     // }
     public function store(Request $request)
-    {
+    {   
+        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -127,7 +128,7 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
+        $data->tsptype = $datatsptype;
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
@@ -137,7 +138,7 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
+        $data->tsptype = $datatsptype;
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
@@ -229,11 +230,22 @@ class TruckplanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $data = TruckplanModel::find($id);
+        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->pjname)->count();
+        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa = $request->startdate;
+       $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
+       $worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->worktype)->count();
+       $statusplanupdate =  DB::table('tb_truckplan')->where('id', $id)->where('statusplan',$request->statusplan)->count();
+       $dateupdate =  DB::table('tb_truckplan')->where('id', $id)->where('startdate',$request->startdate)->count();
+       $datedefault =  DB::table('tb_truckplan')->where('id', $id)->value('startdate' );
+
+       $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
+        $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
         //$mytime = Carbon::now()->format('d-m-Y');
-        $data =  TruckplanModel::find($id);
+        
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -255,29 +267,22 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
 
+     
 
-       $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
-       $worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->worktype)->count();
-       $statusplanupdate =  DB::table('tb_truckplan')->where('id', $id)->where('statusplan',$request->statusplan)->count();
-       $dateupdate =  DB::table('tb_truckplan')->where('id', $id)->where('startdate',$request->startdate)->count();
-       $datedefault =  DB::table('tb_truckplan')->where('id', $id)->value('startdate' );
-
-       $data->save();
         //$data->pjtype = $request->pjtype;
-        $data->trucktype = $request->trucktype;
-        $data->roundtrip = $request->roundtrip;
-        $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
-        $data->hiringtype = $request->hiringtype;
-
         $data->sort = 1;
+        //$data->pjtype = $request->pjtype;
+        if($defaultpjname == 1){
+           $data->tsptype = $request->tsptype;
+        }
+        else if($defaultpjname == 0){
+            $data->tsptype = $datatsptype;
+         }
+        $data->save();
         
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
@@ -752,8 +757,11 @@ class TruckplanController extends Controller
             ]);
         }
     }
-    public function createcopy(Request $request)
+    public function createcopy(Request $request ,$id)
     {
+       
+        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->pjname)->count();
+        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -780,22 +788,19 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
+      
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
 
 
         //$data->pjtype = $request->pjtype;
-        $data->trucktype = $request->trucktype;
-        $data->roundtrip = $request->roundtrip;
-        $data->splname = $request->splname;
-        $data->tsptype = $request->tsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
-        $data->hiringtype = $request->hiringtype;
-
+       
         $data->sort = 1;
+     
+            $data->tsptype = $request->tsptype;
+      
+       
         $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
@@ -860,12 +865,19 @@ class TruckplanController extends Controller
         ->get();
         $output='<option value="">ประเภทการขนส่ง</option>';
         foreach ($query as $row){
-            $output.='<option value=""'.$row->name.'">'.$row->name.'</option>';
+          
+            $output.='<option name="output">'.$row->name.'</option>';
+          
         }
-        echo $output;
-        }
-    public function test(){
-        $list= DB::table('tb_pjname')->get();
+       echo $output;
+   
+    
+    
+    }
+    public function test(Request $request){
+        $list= $request->tsptype;
+        $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
+        dd($jo);
         return view('test')->with('list', $list);
     }  
 }

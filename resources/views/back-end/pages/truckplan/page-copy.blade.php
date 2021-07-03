@@ -1,6 +1,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                       
+
                         <div class="nav-tabs-boxed">
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#th" role="tab" aria-controls="th">แผนรถ</a></li>
@@ -48,10 +48,10 @@
                                         <label class="control-label " for="pjname">
                                             ชื่อโปรเจค
                                         </label>
-                                        <select id="province" name="province" class="form-control province" require>
+                                        <select id="pjname" name="pjname" class="form-control province" require>
                                             <option value="">กรุณาเลือก</option>
-                                          
-                                                
+
+
                                             @foreach($rows as $list)
                                             <option value="{{$list->id}}" @if($row->pjname == $list->id) selected @endif>{{$list->name}}</option>
                                             @endforeach
@@ -90,7 +90,7 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select id="province" name="province" class="form-control amphures" require>
+                                        <select id="province" name="tsptype" class="form-control amphures" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
 
@@ -235,45 +235,63 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group name="cancelarea" id="cancelarea" ">
-                                        <label class="control-label " for="ccremark">
-                                            สาเหตุที่ยกเลิก
+                                    <div class="form-group name=" cancelarea" id="cancelarea" ">
+                                        <label class=" control-label " for=" ccremark">
+                                        สาเหตุที่ยกเลิก
                                         </label>
                                         <input class="form-control" id="ccremark" name="ccremark" type="text" value="{{$row->ccremark}}" />
                                     </div>
-                                    
+
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
                                         </label> -->
-                                        <input hidden class="form-control" id="author" name="author" type="text" value="{{$row->author}}" />
+                                    <input hidden class="form-control" id="author" name="author" type="text" value="{{$row->author}}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="editor">
                                             ผู้แก้ไขรายการ
                                         </label> -->
-                                        @php $username = Auth::user()->name; @endphp
-                                        <input hidden class="form-control" id="editor" name="editor" type="text" value="{{$username}}" />
+                                    @php $username = Auth::user()->name; @endphp
+                                    <input hidden class="form-control" id="editor" name="editor" type="text" value="{{$username}}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="created">
                                             วันเวลาที่ทำรายการ
                                         </label> -->
-                                        <input hidden class="form-control" id="created" name="created" type="text" placeholder="" value="{{$row->created}}" />
+                                    <input hidden class="form-control" id="created" name="created" type="text" placeholder="" value="{{$row->created}}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="updated">
                                             วันเวลาที่แก้ไขรายการ
                                         </label> -->
-                                        @php $date = date('Y-m-d H:i:s'); @endphp
-                                        <input hidden class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{$date}}" />
+                                    @php $date = date('Y-m-d H:i:s'); @endphp
+                                    <input hidden class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{$date}}" />
                                     <!-- </div> -->
 
 
                                 </div>
                             </div>
                         </div>
+                        <script>
+                            $('.province').change(function() {
+                                var select = $(this).val();
+                                var _token = $('input[name="_token"]').val();
 
+                                $.ajax({
+                                    url: "{{ Route ('droupdown.fetch') }}",
+                                    method: "POST",
+                                    data: {
+                                        select: select,
+                                        _token: _token
+                                    },
+                                    success: function(result) {
+                                        $('.amphures').html(result);
+                                    }
+
+                                })
+                            });
+                        </script>
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
@@ -284,19 +302,3 @@
     </div>
 </div>
 </div>
-<script>
-    $('.province').change(function(){
-        var select=$(this).val();
-        var _token=$('input[name="_token"]').val();
-
-        $.ajax({
-            url:"{{ Route ('droupdown.fetch') }}",
-            method:"POST",
-            data:{select:select,_token:_token},
-            success:function(result){
-                $('.amphures').html(result);
-            }
-
-        })
-    });
-</script>
