@@ -241,6 +241,7 @@ class TruckplanController extends Controller
        $datedefault =  DB::table('tb_truckplan')->where('id', $id)->value('startdate' );
 
        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
+       $statusplandefault =  DB::table('tb_truckplan')->where('id', $id)->value('statusplan' );
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -288,6 +289,7 @@ class TruckplanController extends Controller
         // $data->updated = date('Y-m-d H:i:s.u');
      
       if ($dateupdate >= 1){
+          
         if( $worktypeupdate >= 1){
            
             if( $statusplanupdate==0){
@@ -352,7 +354,7 @@ class TruckplanController extends Controller
             }
         } 
         else if($worktype == "งานหลัก"){
-            if ($statusplan == "Pending") {
+            if ($statusplandefault == "Pending") {
                 if ($createdd == 0) {
                     
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
@@ -361,7 +363,7 @@ class TruckplanController extends Controller
             
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
-            } else if ($statusplan == "Active") {
+            } else if ($statusplandefault == "Active") {
                 if ($createdd == 0) {
 
                    
@@ -537,11 +539,12 @@ class TruckplanController extends Controller
 
                 TruckplanModel::where('sort', '>', $data->sort)->decrement('sort');
                 //destroy
+              
                 $query = TruckplanModel::destroy($data->id);
-
                 if($data->worktype == "งานเสริม"){
                     if($data->statusplan == "Pending"){
-                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
+                          DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
+                          $query = TruckplanModel::destroy($data->id);
                     if (@$query) {
           
                         return response()->json(true);
@@ -551,7 +554,8 @@ class TruckplanController extends Controller
                     }
                     }
                     else  if($data->statusplan == "Active"){
-                        $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
+                         DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
+                        $query = TruckplanModel::destroy($data->id);
                         if (@$query) {
           
                             return response()->json(true);
@@ -617,6 +621,13 @@ class TruckplanController extends Controller
         if (isset($_GET['keyword'])) {
             $search_text = $_GET['keyword'];
             $fromDate = $request->input('fromDate');
+            $spjname =  DB::table('tb_pjname')->where('name','like','%'.$search_text."%")->value('id');
+            $stsptype =  DB::table('tb_tsptype')->where('name','like','%'.$search_text."%")->value('id');
+            $strucktype =  DB::table('tb_trucktype')->where('name','like','%'.$search_text."%")->value('id');
+            $sroundtrip =  DB::table('tb_roundtrip')->where('name','like','%'.$search_text."%")->value('id');
+            $shiringtype =  DB::table('tb_hiringtype')->where('name','like','%'.$search_text."%")->value('id');
+            $ssplname =  DB::table('tb_splname')->where('name','like','%'.$search_text."%")->value('id');
+            $ssplname =  DB::table('tb_splname')->where('name','like','%'.$search_text."%")->value('id');
             $data = TruckplanModel::where('routename', 'like', '%' . $search_text . '%')
 
                 ->orwhere('routecode', 'like', '%' . $search_text . '%')
@@ -627,6 +638,12 @@ class TruckplanController extends Controller
                 ->orwhere('roundtrip', 'like', '%' . $search_text . '%')
                 ->orwhere('hiringtype', 'like', '%' . $search_text . '%')
                 ->orwhere('splname', 'like', '%' . $search_text . '%')
+                ->orwhere('pjname', '=', $spjname)
+                ->orwhere('tsptype', '=', $stsptype)
+                ->orwhere('trucktype', '=', $strucktype)
+                ->orwhere('roundtrip', '=', $sroundtrip)
+                ->orwhere('hiringtype', '=', $shiringtype)
+                ->orwhere('splname', '=', $ssplname)
                 ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
                 ->orwhere('driver', 'like', '%' . $search_text . '%')
                 ->orwhere('telnumb', 'like', '%' . $search_text . '%')

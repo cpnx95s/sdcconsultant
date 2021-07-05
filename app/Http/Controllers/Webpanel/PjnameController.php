@@ -277,8 +277,10 @@ class PjnameController extends Controller
         //     'rows' => $rows
         // ]);
             
-
-        $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')->orderBy('created', 'DESC');
+        $spjtype = DB::table('tb_pjtype')->where('name', 'like', '%'.$search_text.'%')->value('id');
+        $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')
+                            ->orwhere('pjtype','=',$spjtype)
+                            ->orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
         if ($request->view == 'all') {
             $rows = $data->get();
