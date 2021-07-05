@@ -239,9 +239,8 @@ class TruckplanController extends Controller
        $statusplanupdate =  DB::table('tb_truckplan')->where('id', $id)->where('statusplan',$request->statusplan)->count();
        $dateupdate =  DB::table('tb_truckplan')->where('id', $id)->where('startdate',$request->startdate)->count();
        $datedefault =  DB::table('tb_truckplan')->where('id', $id)->value('startdate' );
-
-       $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
        $statusplandefault =  DB::table('tb_truckplan')->where('id', $id)->value('statusplan' );
+       $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -539,12 +538,11 @@ class TruckplanController extends Controller
 
                 TruckplanModel::where('sort', '>', $data->sort)->decrement('sort');
                 //destroy
-              
                 $query = TruckplanModel::destroy($data->id);
+
                 if($data->worktype == "งานเสริม"){
                     if($data->statusplan == "Pending"){
-                          DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
-                          $query = TruckplanModel::destroy($data->id);
+                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
                     if (@$query) {
           
                         return response()->json(true);
@@ -554,8 +552,7 @@ class TruckplanController extends Controller
                     }
                     }
                     else  if($data->statusplan == "Active"){
-                         DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
-                        $query = TruckplanModel::destroy($data->id);
+                        $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
                         if (@$query) {
           
                             return response()->json(true);
@@ -621,6 +618,7 @@ class TruckplanController extends Controller
         if (isset($_GET['keyword'])) {
             $search_text = $_GET['keyword'];
             $fromDate = $request->input('fromDate');
+            $fromDate = $request->input('fromDate');
             $spjname =  DB::table('tb_pjname')->where('name','like','%'.$search_text."%")->value('id');
             $stsptype =  DB::table('tb_tsptype')->where('name','like','%'.$search_text."%")->value('id');
             $strucktype =  DB::table('tb_trucktype')->where('name','like','%'.$search_text."%")->value('id');
@@ -638,14 +636,14 @@ class TruckplanController extends Controller
                 ->orwhere('roundtrip', 'like', '%' . $search_text . '%')
                 ->orwhere('hiringtype', 'like', '%' . $search_text . '%')
                 ->orwhere('splname', 'like', '%' . $search_text . '%')
+                ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
+                ->orwhere('driver', 'like', '%' . $search_text . '%')
                 ->orwhere('pjname', '=', $spjname)
                 ->orwhere('tsptype', '=', $stsptype)
                 ->orwhere('trucktype', '=', $strucktype)
                 ->orwhere('roundtrip', '=', $sroundtrip)
                 ->orwhere('hiringtype', '=', $shiringtype)
                 ->orwhere('splname', '=', $ssplname)
-                ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
-                ->orwhere('driver', 'like', '%' . $search_text . '%')
                 ->orwhere('telnumb', 'like', '%' . $search_text . '%')
                 ->orwhere('sbranch', 'like', '%' . $search_text . '%')
                 ->orwhere('dntbranch', 'like', '%' . $search_text . '%')
@@ -805,19 +803,22 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-      
+        $data->tsptype = $datatsptype;
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
 
 
         //$data->pjtype = $request->pjtype;
-       
+        $data->trucktype = $request->trucktype;
+        $data->roundtrip = $request->roundtrip;
+        $data->splname = $request->splname;
+        $data->tsptype = $datatsptype;
+        $data->pjname = $request->pjname;
+        $data->worktype = $request->worktype;
+        $data->hiringtype = $request->hiringtype;
+
         $data->sort = 1;
-     
-            $data->tsptype = $request->tsptype;
-      
-       
         $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
