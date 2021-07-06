@@ -543,35 +543,21 @@ class TruckplanController extends Controller
                 if($data->worktype == "งานเสริม"){
                     if($data->statusplan == "Pending"){
                          $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
-                    if (@$query) {
-          
-                        return response()->json(true);
-                    } else {
-                        
-                        return response()->json(false);
-                    }
+                  
                     }
                     else  if($data->statusplan == "Active"){
                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
-                        if (@$query) {
-          
-                            return response()->json(true);
-                        } else {
-                            
-                            return response()->json(false);
-                        }
+                      
                     }
                 }
-                else{
-                    if (@$query) {
+               
+            }
+            if (@$query) {
           
-                        return response()->json(true);
-                    } else {
-                        
-                        return response()->json(false);
-                    }
-
-                }
+                return response()->json(true);
+            } else {
+                
+                return response()->json(false);
             }
         }
         
@@ -803,25 +789,24 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
         $data->pjname = $request->pjname;
         $data->worktype = $request->worktype;
         $data->hiringtype = $request->hiringtype;
-
-
-        //$data->pjtype = $request->pjtype;
-        $data->trucktype = $request->trucktype;
-        $data->roundtrip = $request->roundtrip;
-        $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
-        $data->hiringtype = $request->hiringtype;
-
-        $data->sort = 1;
-        $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
+               
+        $data->sort = 1;
+        //$data->pjtype = $request->pjtype;
+   if($request->tsptype == "1" || $request->tsptype == "2" ||$request->tsptype == "3" || $request->tsptype == "4"){
+    $data->tsptype = $request->tsptype;
+
+   }
+   else{
+           
+           $data->tsptype = $datatsptype;
+   }
+        $data->save();
+        
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
         
         if ($worktype == "งานเสริม") {
@@ -893,9 +878,9 @@ class TruckplanController extends Controller
     
     }
     public function test(Request $request){
-        $list= $request->tsptype;
+        $list = TruckplanModel::find(explode(',', $request->id));
         $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
-        dd($jo);
+        dd($list);
         return view('test')->with('list', $list);
     }  
 }
