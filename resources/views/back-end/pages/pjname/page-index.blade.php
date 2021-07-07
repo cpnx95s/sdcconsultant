@@ -100,7 +100,7 @@
                                     @endif
                                 </tbody>
                             </table>
-                            @if(Request::get('view')!='all') {{$rows->links()}} @endif
+                            @if(Request::get('view')!='all')  {{$rows->appends(Request::all())->links()}} @endif
                         </div>
                     </div>
                     <div class="card-footer">
