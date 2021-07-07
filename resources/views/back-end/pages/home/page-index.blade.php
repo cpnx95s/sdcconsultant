@@ -645,6 +645,7 @@
             -ms-user-select: none;
         }
     </style>
+{{--
     <script>
         var chartdata = {
             type: 'bar',
@@ -670,4 +671,4 @@
         }
         var ctx = document.getElementById('canvas').getContext('2d');
         new Chart(ctx, chartdata);
-    </script>
+    </script> --}}
