@@ -290,7 +290,7 @@ class TruckplanController extends Controller
       if ($dateupdate >= 1){
           
         if( $worktypeupdate >= 1){
-           
+           if($worktype  == "งานเสริม"){
             if( $statusplanupdate==0){
                 if ($statusplan == "Pending") {
 
@@ -320,7 +320,8 @@ class TruckplanController extends Controller
                     }
             }
         }
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+    }
+    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
     }
     else if( $worktypeupdate == 0){
 
@@ -390,11 +391,11 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->insert(
                         ['created' => $createdaa, 'on_process' => 1, 'full_fill' => 0]
                     );
-                      DB::table('tb_gchart')->where('created', $datedefault)->decrement('on_process', 1);
+                    
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('on_process', 1);
-                    DB::table('tb_gchart')->where('created', $datedefault)->decrement('on_process', 1);
+               
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
             } else if ($statusplan == "Active") {
@@ -402,10 +403,10 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->insert(
                         ['created' => $createdaa, 'on_process' => 0, 'full_fill' => 1]
                     );
-                    DB::table('tb_gchart')->where('created', $datedefault)->decrement('full_fill', 1);
+                   
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 } else {
-                   DB::table('tb_gchart')->where('created', $datedefault)->decrement('full_fill', 1);
+                  
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
@@ -413,7 +414,7 @@ class TruckplanController extends Controller
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
         } 
         else if($worktype == "งานหลัก"){
-            if ($statusplan == "Pending") {
+            if ($statusplandefault == "Pending") {
                 if ($createdd == 0) {
                     DB::table('tb_gchart')->where('created', $datedefault)->decrement('on_process', 1);
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
@@ -422,7 +423,7 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->where('created', $datedefault)->decrement('on_process', 1);
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                 }
-            } else if ($statusplan == "Active") {
+            } else if ($statusplandefault == "Active") {
                 if ($createdd == 0) {
 
                     DB::table('tb_gchart')->where('created', $datedefault)->decrement('full_fill', 1);
