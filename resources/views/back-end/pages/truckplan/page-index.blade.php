@@ -144,7 +144,7 @@
                                             <a href="{{url("$segment/copy/$row->id")}}" class="text-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="text-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                         </td>
-
+                                       
                                         <td data-label="วันที่ใช้รถ">
                                             {{ \Carbon\Carbon::parse($row->startdate)->format('d/m/Y')}}
                                             <!-- {{$row->startdate}} -->
@@ -235,7 +235,8 @@
                                     @endif
                                 </tbody>
                             </table>
-                            @if(Request::get('view')!='all') {{$rows->links()}} @endif
+                        
+                            @if(Request::get('view')!='all')  {{$rows->appends(Request::all())->links()}} @endif
                         </div>
                     </div>
                     <div class="card-footer">

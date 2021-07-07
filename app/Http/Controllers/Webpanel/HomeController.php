@@ -64,10 +64,11 @@ class HomeController extends Controller
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
         $chart2 = new gChart();
-        $chart2->labels($results2->values());
+        $chart2->labels($results2->values(''));
         $chart2->dataset('On Process', 'line', $results2->keys())
             ->options(['borderColor' => 'green']);
-        $chart2->dataset('Fulfill', 'line', $results3->values())
+            
+        $chart2->dataset('Fulfill', 'line', $results3->values(''))
             ->options(['borderColor' => 'red']);
 
         $month = array('Jan', 'Feb', 'Mar', 'Apr', 'May');
