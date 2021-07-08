@@ -38,6 +38,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 		Route::get('/','Webpanel\HomeController@index');
 		Route::get('/','Webpanel\HomeController@Chartjs');
+		Route::post('/searchChart','Webpanel\HomeController@searchChart');
 
 
 

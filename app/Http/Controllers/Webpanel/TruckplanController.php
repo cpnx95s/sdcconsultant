@@ -37,13 +37,14 @@ class TruckplanController extends Controller
 
     public function index(Request $request)
     {
-        $data = TruckplanModel::orderBy('created', 'DESC');
-     
+        $data = TruckplanModel::distinct()->orderBy('created', 'DESC');
+        $worktype =TruckplanModel::select('worktype')->distinct()->get();
+        $pjname =TruckplanModel::select('pjname')->distinct()->get();
         if ($request->view == 'all') {
-            $rows = $data->get();
+            $rows = $data->distinct()->get();
         } else {
             $view = ($request->view) ? $request->view : 10;
-            $rows = $data->paginate(10);
+            $rows = $data->distinct()->paginate(10);
             $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
         }
         return view("$this->prefix.pages.truckplan.index", [
@@ -58,8 +59,10 @@ class TruckplanController extends Controller
             'folder' => 'truckplan',
             'page' => 'index',
             'segment' => "$this->segment/truckplan",
-            'rows' => $rows
-        ]);
+            'rows' => $rows,
+            'worktype'=>$worktype,
+            'pjname'=> $pjname
+        ])->with('worktype',$worktype);
      
     }
     public function create()
@@ -600,7 +603,8 @@ class TruckplanController extends Controller
         return response()->json(false);
     }
     public function search(Request $request)
-    {
+    {    $worktype =TruckplanModel::select('worktype')->distinct()->get();
+        $pjname =TruckplanModel::select('pjname')->distinct()->get();
 
         if (isset($_GET['keyword'])) {
             $search_text = $_GET['keyword'];
@@ -665,7 +669,9 @@ class TruckplanController extends Controller
                 'folder' => 'truckplan',
                 'page' => 'index',
                 'segment' => "$this->segment/truckplan",
-                'rows' => $rows
+                'rows' => $rows,
+                'pjname' => $pjname,
+                'worktype'=>$worktype
             ]);
         }
     }
@@ -676,12 +682,30 @@ class TruckplanController extends Controller
 
         $fromDate = $request->input('fromDate');
         $toDate = $request->input('toDate');
-        $other = $request->input('box');
+        $worktype =TruckplanModel::select('worktype')->distinct()->get();
+        $pjname =TruckplanModel::select('pjname')->distinct()->get();
+        $worktypebox = $request->input('worktypebox');
+        $pjnamebox = DB::table('tb_pjname')->where('name',$request->input('pjnamebox'))->value('id');
+       
+        if(isset($_GET['worktypebox']) && $pjnamebox == ""){
         $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
-            ->where('routename', 'like', '%' . $other . '%')
+            ->where('worktype', 'like',$worktypebox)
             ->orderBy('created', 'DESC');
-
+        }
+        else  if(isset($_GET['pjnamebox']) && $worktypebox == ""){
+            $data = TruckplanModel::where('startdate', '>=', $fromDate)
+            ->where('startdate', '<=', $toDate)
+            ->where('pjname', '=', $pjnamebox )
+            ->orderBy('created', 'DESC');
+        }
+        else {
+            $data = TruckplanModel::where('startdate', '>=', $fromDate)
+                ->where('startdate', '<=', $toDate)
+                ->where('worktype', '=',$worktypebox)
+                ->where('pjname', '=', $pjnamebox )
+                ->orderBy('created', 'DESC');
+            }
         if ($request->view == 'all') {
             $rows = $data->get();
         } else {
@@ -701,7 +725,9 @@ class TruckplanController extends Controller
             'folder' => 'truckplan',
             'page' => 'index',
             'segment' => "$this->segment/truckplan",
-            'rows' => $rows
+            'rows' => $rows,
+            'pjname' => $pjname,
+            'worktype'=>$worktype
         ]);
     }
     public function searchbox(Request $request)
@@ -711,29 +737,7 @@ class TruckplanController extends Controller
             $fromDate = $request->input('fromDate');
             $data = TruckplanModel::where('routename', 'like', '%' . $search_text . '%')
 
-                ->orwhere('routecode', 'like', '%' . $search_text . '%')
-                ->orwhere('statusplan', 'like', '%' . $search_text . '%')
-                ->orwhere('pjname', 'like', '%' . $search_text . '%')
-                ->orwhere('tsptype', 'like', '%' . $search_text . '%')
-                ->orwhere('trucktype', 'like', '%' . $search_text . '%')
-                ->orwhere('roundtrip', 'like', '%' . $search_text . '%')
-                ->orwhere('hiringtype', 'like', '%' . $search_text . '%')
-                ->orwhere('splname', 'like', '%' . $search_text . '%')
-                ->orwhere('trucknumb', 'like', '%' . $search_text . '%')
-                ->orwhere('driver', 'like', '%' . $search_text . '%')
-                ->orwhere('telnumb', 'like', '%' . $search_text . '%')
-                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
-                ->orwhere('dntbranch', 'like', '%' . $search_text . '%')
-                ->orwhere('totalhour', 'like', '%' . $search_text . '%')
-                ->orwhere('mntstaff', 'like', '%' . $search_text . '%')
-                ->orwhere('remark', 'like', '%' . $search_text . '%')
-                ->orwhere('ccremark', 'like', '%' . $search_text . '%')
-                ->orwhere('sbranch', 'like', '%' . $search_text . '%')
-                ->orwhere('author', 'like', '%' . $search_text . '%')
-                ->orwhere('editor', 'like', '%' . $search_text . '%')
-                ->orwhere('sort', 'like', '%' . $search_text . '%')
-                ->orwhere('worktype', 'like', '%' . $search_text . '%')
-                ->orderBy('created', 'DESC');
+            ->distinct();
 
             $view = ($request->view) ? $request->view() : 10;
             if ($request->view == 'all') {
@@ -880,8 +884,9 @@ class TruckplanController extends Controller
     }
     public function test(Request $request){
         $list = TruckplanModel::find(explode(',', $request->id));
+        $worktypebox = $request->input('worktypebox');
         $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
-        dd($list);
+        dd($worktypebox);
         return view('test')->with('list', $list);
     }  
 }

@@ -9,16 +9,13 @@
             <div class="card col-md-12 pt-4">
                 <h4 class="mb-3 text-info"> DATE : {{$mytime}}</h4>
 
-                <form id="searchForm" method="post" action="">
-                    @method('PUT')
+                <form id="searchForm" method="post" action="/webpanel/searchChart">
                     @csrf
                     <div class="form-group row">
                         <div class="col-2">
-                            <input class="form-control" type="date" id="example-date-input">
+                            <input class="form-control" name = "DATE" type="date" id="example-date-input">
                         </div>
-                        <div class="col-2">
-                            <input class="form-control" type="date" id="example-date-input">
-                        </div>
+                      
                         <div class="col-2">
                             <button class="btn btn-primary" type="submit" name="signup" value="Search">Search</button>
                         </div>

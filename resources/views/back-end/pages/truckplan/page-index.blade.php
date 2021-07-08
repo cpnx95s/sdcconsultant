@@ -51,13 +51,30 @@
                         <label for ="date" class = "">Date of STARTDATE to :</label>
                         <input type = "date" class ="from-control input-sm" id = "toDate" name = "toDate" required/>
                         <center>
-                                        <span> ROUTE_NAME : </span>
-                                        <select name="box" id="nameid" style="width: 200px">
-                                        <option></option>                           
-                                        @foreach($rows as $row)
-                                        <option>{{$row->routename}}</option>
+                                        <span> WORK_TYPE : </span>
+                                        <select name="worktypebox" id="nameid" style="width: 200px">
+                                        <option></option>        
+                                        
+                                          
+                                     
+                                        @foreach($worktype as $row)
+                                        <option >{{$row->worktype }}</option>
                                         @endforeach
                                         </select>
+        
+                            </center>
+                            <center>
+                                        <span> PROJECT_NAME	 : </span>
+                                        <select name="pjnamebox" id="nameids" style="width: 200px">
+                                        <option></option>        
+                                        
+                                          
+                                     
+                                        @foreach($pjname as $row)
+                                        <option >{{$row->showpjname->name }}</option>
+                                        @endforeach
+                                        </select>
+        
                             </center>
                             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -66,7 +83,11 @@
                             $("#nameid").select2({
                             placeholder: "Select a Name",
                             allowClear: true
-                            });
+                            }); 
+                            $("#nameids").select2({
+                            placeholder: "Select a Name",
+                            allowClear: true
+                            });                          
                             </script>
                                 <button class="btn btn-secondary" type="submit">Search</button>
                                 
