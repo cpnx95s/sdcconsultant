@@ -37,7 +37,7 @@ class TruckplanController extends Controller
 
     public function index(Request $request)
     {
-        $data = TruckplanModel::distinct()->orderBy('created', 'DESC');
+        $data = TruckplanModel::distinct()->orderBy('startdate', 'DESC');
         $worktype =TruckplanModel::select('worktype')->distinct()->get();
         $pjname =TruckplanModel::select('pjname')->distinct()->get();
         if ($request->view == 'all') {
@@ -243,6 +243,7 @@ class TruckplanController extends Controller
        $dateupdate =  DB::table('tb_truckplan')->where('id', $id)->where('startdate',$request->startdate)->count();
        $datedefault =  DB::table('tb_truckplan')->where('id', $id)->value('startdate' );
        $statusplandefault =  DB::table('tb_truckplan')->where('id', $id)->value('statusplan' );
+
        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
@@ -321,6 +322,17 @@ class TruckplanController extends Controller
                       
                         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
                     }
+            }
+            else if ($statusplan == "Cancel") {
+                if($statusplandefault == "Pending"){
+                DB::table('tb_gchart')->where('created', $createdaa)->decrement('on_process', 1);
+                return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+                else if ($statusplandefault == "Active"){
+                    DB::table('tb_gchart')->where('created', $createdaa)->decrement('full_fill', 1);
+                    return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
+                }
+                return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/truckplan")]);
             }
         }
     }

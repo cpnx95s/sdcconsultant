@@ -13,9 +13,9 @@
                     @csrf
                     <div class="form-group row">
                         <div class="col-2">
-                            <input class="form-control" name = "DATE" type="date" id="example-date-input">
+                            <input class="form-control" name="DATE" type="date" id="example-date-input">
                         </div>
-                      
+
                         <div class="col-2">
                             <button class="btn btn-primary" type="submit" name="signup" value="Search">Search</button>
                         </div>
@@ -498,9 +498,14 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">DC to store</th>
+                                            <td>
+                                        <tr>
+                                            <td>Main</td>
                                             <td>{{$Office_DC_E1}}</td>
                                             <td>{{$Office_DC_E2}}</td>
                                             <td>{{$Office_DC_E}}</td>
+                                        </tr>
+                                        </td>
                                         </tr>
                                     </tbody>
                                 </table>
