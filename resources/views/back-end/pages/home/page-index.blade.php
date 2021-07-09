@@ -500,7 +500,7 @@
                                             <th scope="row">DC to store</th>
                                             <td>
                                         <tr>
-                                            <td>Main</td>
+                                            <td>Extra</td>
                                             <td>{{$Office_DC_E1}}</td>
                                             <td>{{$Office_DC_E2}}</td>
                                             <td>{{$Office_DC_E}}</td>
