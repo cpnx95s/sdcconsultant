@@ -138,7 +138,7 @@
                                                     <th scope="row">Delivery</th>
                                                     <td>
                                                 <tr>
-                                                    <td>Main</td>
+                                                    <td>Extra</td>
                                                     <td>{{$FLH_Del_E1}}</td>
                                                     <td>{{$FLH_Del_E2}}</td>
                                                     <td>{{$FLH_Del_E}}</td>
