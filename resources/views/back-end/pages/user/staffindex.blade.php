@@ -56,7 +56,7 @@
 <body class="c-app flex-row">    
     <script>var c=localStorage.getItem("theme"),tag=document.getElementsByTagName('body').item(0).classList;if(c.length>0){tag.add(c);}</script>
     <div class="c-sidebar c-sidebar-light c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-        @include("$prefix.layout.left-menuadmin")
+    @include("$prefix.layout.left-menustaff")
     </div>
     <div class="c-wrapper">
         @include("$prefix.layout.header")

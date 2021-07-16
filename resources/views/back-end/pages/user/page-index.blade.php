@@ -7,7 +7,7 @@
                     <div class="card-header"> 
                         <a href="{{url("$prefix/$controller")}}" class="card-header-action">User Management</a>
                         <div class="card-header-actions">
-                            <a class="btn btn-sm btn-primary" href="{{url("$segment/$controller/create")}}"> Create</a>
+                            <a class="btn btn-sm btn-primary" href="{{url("$segment/user/create")}}"> Create</a>
                             <button class="btn btn-sm btn-danger" type="button" id="delSelect" disabled> Delete</button>
                             @csrf
                         </div>                            
@@ -63,7 +63,7 @@
                                             <td>
                                                 <a href="{{url("$segment/$controller/$row->id")}}" class="btn btn-success" title="Edit"><i class="far fa-edit"></i></a>
                                                 <a href="{{url("$segment/$controller/reset/$row->id")}}" class="btn btn-info" title="Reset Password"><i class="fas fa-sync-alt"></i></a>
-                                                <a href="javascript:" class="btn btn-danger deleteItem" title="Delete"><i class="far fa-trash-alt"></i></a>
+                                                <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

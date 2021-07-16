@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="{{route('trucktype.search')}}" method="get">
+                        <form action="{{url("$segment/search")}}" method="get">
                             <div class="row">
                                 <div class="col-lg-4 col-xs-12 mb-4">
                                     <label for="search">Search :</label>

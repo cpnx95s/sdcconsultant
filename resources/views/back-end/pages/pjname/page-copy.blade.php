@@ -1,7 +1,7 @@
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <form id="signupForm" method="GET" action="/webpanel/pjname/copy/{id}/create" enctype="multipart/form-data">
+            <form id="signupForm" method="GET" action="{{url("$segment/pjname/copy/{id}/create")}}" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}">ชื่อโปรเจ็ค</a></span>

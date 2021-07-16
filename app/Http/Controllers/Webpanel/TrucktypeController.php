@@ -14,6 +14,7 @@ class TrucktypeController extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'webpanel';
+    protected $segmentad = 'adminwebpanel';
     protected $controller = 'trucktype';
     protected $folder = 'trucktype';
 
@@ -270,6 +271,247 @@ class TrucktypeController extends Controller
         $data["sort"] = $sort;
         DB::table('tb_trucktype')->insert($data);
         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
+    
+    }
+    //////////////////////////////////////////////////////////////////
+    ////////////        admin         ///////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    public function adminindex(Request $request)
+    {
+        $data = TrucktypeModel::orderBy('created', 'DESC');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view) ? $request->view : 10;
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view, 'page' => $request->page, 'search' => $request->search]);
+        }
+        return view("$this->prefix.pages.trucktype.adminindex", [
+            'css' => ['back-end/css/table-responsive.css'],
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ["src" => "back-end/js/table-dragger.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'folder' => 'trucktype',
+            'page' => 'index',
+            'segment' => "$this->segmentad/trucktype",
+            'rows' => $rows
+        ]);
+    }
+    public function admincreate()
+    {
+        return view("$this->prefix.pages.$this->folder.adminindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => 'back-end/tinymce/tinymce.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'add',
+            'segment' => "$this->segmentad/trucktype",
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+    
+    public function adminstore(Request $request)
+    {
+
+        $data = new TrucktypeModel;
+        $data->name = $request->name;
+        $data->sort = 1;
+        $data->created = date('Y-m-d H:i:s');
+        $data->updated = date('Y-m-d H:i:s');
+        if ($data->save()) {
+            TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/trucktype")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentad/trucktype/create")]);
+        }
+    }
+    public function adminedit($id)
+    {
+        $row = TrucktypeModel::find($id);
+        return view("$this->prefix.pages.$this->folder.adminindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => "back-end/tinymce/tinymce.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'edit',
+            'segment' => $this->segmentad,
+            'row' => $row,
+            
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+    public function admincopy($id)
+    {
+
+        $row = TrucktypeModel::find($id);
+        return view("$this->prefix.pages.$this->folder.adminindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => "back-end/tinymce/tinymce.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'copy',
+            'segment' => $this->segmentad,
+            'row' => $row,       
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+    public function adminclone(Request $request, $id)
+    {
+        //$data = TrucktypeModel::find($id);
+        $data = new TrucktypeModel;
+        $data->id = "NULL";
+        $data->name = $request->name;
+        $data->sort = 1;
+        $data->created = date('Y-m-d H:i:s');
+        $data->updated = date('Y-m-d H:i:s');
+
+        if ($data->save()) {
+            TrucktypeModel::where('id', '!=', $data->id)->increment('sort');
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/trucktype")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentad/trucktype/copy")]);
+        }
+    }
+
+    public function adminupdate(Request $request, $id)
+    {
+        $data = TrucktypeModel::find($id);
+        $data->name = $request->name;
+        $data->updated = date('Y-m-d H:i:s');
+        
+        if ($data->save()) {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/$this->controller")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentad/$this->controller/" . $id)]);
+        }
+    }
+    
+
+
+    public function admindestroy(Request $request)
+    {
+        $datas = TrucktypeModel::find(explode(',', $request->id));
+        if (@$datas) {
+            foreach ($datas as $data) {
+
+                TrucktypeModel::where('sort', '>', $data->sort)->decrement('sort');
+                //destroy
+                $query = TrucktypeModel::destroy($data->id);
+            }
+        }
+        if (@$query) {
+            return response()->json(true);
+        } else {
+            return response()->json(false);
+        }
+    }
+
+    public function adminstatus(Request $request, $id = null)
+    {
+        $get = TrucktypeModel::find($id);
+        if (@$get->id) {
+            $status = ($get->status == 'off') ? 'on' : 'off';
+            $get->status = $status;
+            $get->save();
+            if ($get->id) {
+                return response()->json(true);
+            } else {
+                return response()->json(false);
+            }
+        }
+    }
+    public function admindragsort(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $data = TrucktypeModel::find($request->id);
+
+        if ($from != "" && $to != "") {
+            if ($from > $to) {
+                TrucktypeModel::whereBetween('sort', [$to, $from])->whereNotIn('id', [$data->id])->increment('sort');
+            } else {
+                TrucktypeModel::whereBetween('sort', [$from, $to])->whereNotIn('id', [$data->id])->decrement('sort');
+            }
+            $data->sort = $to;
+            if ($data->save()) {
+                return response()->json(true);
+            } else {
+                return response()->json(false);
+            }
+        }
+        return response()->json(false);
+    }
+    public function adminsearch(Request $request )
+    {
+        if(isset($_GET['keyword'])){
+            $data = TrucktypeModel::orderBy('created', 'DESC');
+            $view = ($request->view) ? $request->view() : 10;
+
+            $rows = $data->paginate($view);
+            $rows->appends(['view' => $request->view]);
+
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_trucktype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+            return view("$this->prefix.pages.trucktype.adminindex", [
+                'css' => ['back-end/css/table-responsive.css'],
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ["src" => "back-end/js/table-dragger.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/trucktype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'trucktype',
+                'page' => 'index',
+                'segment' => "$this->segmentad/trucktype",
+                'rows' => $rows
+            ]);
+            
+        }
+        
+    
+
+    // add
+        
+    }
+    public function admincreatecopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["sort"] = $sort;
+        DB::table('tb_trucktype')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/$this->controller")]);
     
     }
 }

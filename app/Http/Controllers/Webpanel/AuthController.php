@@ -11,7 +11,7 @@ class AuthController extends Controller
     protected $prefix = 'back-end';
     public function getLogin()
     {
-        return view("$this->prefix.auth.login",[
+        return view("$this->prefix.auth.login", [
             'css' => [""],
             'prefix' => $this->prefix
         ]);
@@ -20,26 +20,27 @@ class AuthController extends Controller
     {
         $username = $request->username;
         $password = $request->password;
-        $remember = ($request->remember=='on')? true : false ;
-        if(Auth::attempt(['email'=>$username,'password'=>$password,'status'=>'active'],$remember))
+        $remember = ($request->remember == 'on') ? true : false;
+        if (Auth::attempt(['email' => $username, 'password' => $password, 'status' => 'active'], $remember)) 
         {
-            // $disallow = url('webpanel/login');
-            // if($request->referer!='' && $request->referer!=$disallow){
-            //     $url = $request->referer;
-            // }else{
-            //     $url = url('webpanel');
-            // }
-            return redirect('webpanel/');
-        }else{
-            return redirect('webpanel\login')->with(['error'=>'Username or Password is incorrect!']);
+            if (Auth::user()->role == 'user') 
+            {
+                return redirect('webpanel/');
+            }
+            else if (Auth::user()->role == 'admin') {
+                return redirect('adminwebpanel/');  
+            }
+            else if (Auth::user()->role == 'staff') {
+                return redirect('staffuser/');  
+            }
+        } else {
+            return redirect('webpanel\login')->with(['error' => 'Username or Password is incorrect!']);
         }
-
     }
 
     public function logOut()
     {
-        if(!Auth::logout())
-        {
+        if (!Auth::logout()) {
             return redirect("webpanel\login");
         }
     }

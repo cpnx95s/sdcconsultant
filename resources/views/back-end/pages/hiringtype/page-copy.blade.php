@@ -17,7 +17,7 @@
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <form id="formEดdit" method="GET" action="/webpanel/hiringtype/copy/{id}/create" enctype="multipart/form-data">
+            <form id="formEดdit" method="GET" action="{{url("$segment/hiringtype/copy/{id}/create")}}" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{url("$segment")}}">ประเภทการว่าจ้าง</a></span>

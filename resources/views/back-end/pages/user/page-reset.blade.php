@@ -54,7 +54,7 @@
                         <hr>
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit" name="Reset">Reset</button>
-                            <a class="btn btn-danger" href="">Cancel</a>
+                            <a class="btn btn-danger" href="{{url("$segment/user")}}">Cancel</a>
                         </div>
                     </form>
                 </div>

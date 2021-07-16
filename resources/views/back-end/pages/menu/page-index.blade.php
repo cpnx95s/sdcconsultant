@@ -5,10 +5,10 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("$segment")}}" class="card-header-action">Menu Management</a>
+                        <a href="{{url("/adminwebpanel/menu")}}" class="card-header-action">Menu Management</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-sm" id="sort" data-text="Sort">Sort</button>
-                            <a class="btn btn-sm btn-primary" href="{{url("$segment/create")}}"> Create</a>   
+                            <a class="btn btn-sm btn-primary" href="{{url("/adminwebpanel/menu/create")}}"> Create</a>   
                             <button class="btn btn-sm btn-danger" type="reset" id="delSelect" disabled> Delete</button>                                                     
                         </div>                            
                     </div>

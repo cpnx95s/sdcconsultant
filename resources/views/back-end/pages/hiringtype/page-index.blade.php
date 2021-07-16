@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form  action="/webpanel/hiringtype/search" method="get">                            
+                        <form  action="{{url("$segment/search")}}" method="get">                            
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    

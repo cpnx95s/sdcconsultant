@@ -3,7 +3,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="breadcrumb-item "><a href="{{url("$segment/$folder")}}">User Mangement</a></span>
+                    <span class="breadcrumb-item "><a href="{{url("/adminwebpanel/user/")}}">User Mangement</a></span>
                     <span class="breadcrumb-item active">Create User Form</span>
                     <div class="card-header-actions"><small class="text-muted">docs</small></div>
                 </div>
@@ -12,10 +12,9 @@
                         @method('PUT')
                         @csrf
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit" name="signup" value="Create">Create</button>
-                            <a class="btn btn-danger" href="{{url("$segment/$folder")}}">Cancel</a>
+                         
                         </div>
-                        <hr>   
+                     
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
@@ -81,7 +80,7 @@
                         <hr>
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit" name="signup" value="Create">Create</button>
-                            <a class="btn btn-danger" href="">Cancel</a>
+                            <a class="btn btn-danger" href="{{url("$segment/user")}}">Cancel</a>
                         </div>
                     </form>
                 </div>

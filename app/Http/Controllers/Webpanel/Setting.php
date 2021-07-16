@@ -10,7 +10,7 @@ use App\MenuModel;
 class Setting extends Controller
 {
     protected $prefix = 'back-end';
-    protected $segment = 'webpanel';
+    protected $segment = 'adminwebpanel';
     public function index(Request $request)
     {
         $data = \App\MenuModel::where('position','main')->orderBy('created', 'DESC');

@@ -3,7 +3,7 @@
         <div class="col-lg-6 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="breadcrumb-item "><a href="{{url("$segment")}}">Menu Mangement</a></span>
+                    <span class="breadcrumb-item "><a href="{{url("/adminwebpanel/menu")}}">Menu Mangement</a></span>
                     <span class="breadcrumb-item active">Create User Form</span>
                     <div class="card-header-actions"><small class="text-muted">docs</small></div>
                 </div>
@@ -66,7 +66,7 @@
                         <hr>
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit" name="signup" value="Create">Create</button>
-                            <a class="btn btn-danger" href="">Cancel</a>
+                            <a class="btn btn-danger" href="{{url($segment)}}">Cancel</a>
                         </div>
                     </form>
                 </div>
