@@ -43,7 +43,7 @@
                         </div>
                         <div class="card-footer">
                                 <button class="btn btn-primary" type="submit" name="signup">Update</button>
-                                <a class="btn btn-danger" href="{{url("$prefix/$segment[0]")}}">Cancel</a>                    
+                                <a class="btn btn-danger" href="{{url("$segment/user")}}">Cancel</a>                    
                         </div>
                     </form>
                 </div>            

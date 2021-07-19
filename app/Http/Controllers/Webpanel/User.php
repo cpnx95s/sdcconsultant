@@ -148,8 +148,6 @@ class User extends Controller
         $datas = UserModel::find(explode(',', $request->id));
         if (@$datas) {
             foreach ($datas as $data) {
-
-              
                 $query = UserModel::destroy($data->id);
             }
         }
@@ -158,6 +156,28 @@ class User extends Controller
         } else {
             return response()->json(false);
         }
+    }
+    public function dragsort(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $data = UserModel::find($request->id);
+
+        if($from!="" && $to !="")
+        {
+            if($from > $to){
+                UserModel::whereBetween('sort', [$to, $from])->whereNotIn('id',[$data->id])->increment('sort');
+            }else{
+                UserModel::whereBetween('sort', [$from, $to])->whereNotIn('id',[$data->id])->decrement('sort');
+            }
+            $data->sort = $to;
+            if($data->save()){
+                return response()->json(true);
+            }else{
+                return response()->json(false);
+            }
+        }
+        return response()->json(false);
     }
     public function exist(Request $request)
     {

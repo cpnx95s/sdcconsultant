@@ -193,9 +193,38 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		});
 
 	
+		//=================================================//
+	    //                     Setting                     //
+	    //=================================================//
+	    Route::prefix('user')->group(function(){
+		    Route::get('/','Webpanel\User@index');
+		    Route::get('/create','Webpanel\User@create');
+		    Route::put('/create','Webpanel\User@store');
+		    Route::get('/{id}','Webpanel\User@edit')->where(['id'=>'[0-9]+']);
+		    Route::post('/{id}','Webpanel\User@update')->where(['id'=>'[0-9]+']);
+		    Route::get('/reset/{id}','Webpanel\User@reset')->where(['id'=>'[0-9]+']);
+		    Route::post('/reset/{id}','Webpanel\User@onReset')->where(['id'=>'[0-9]+']);
+		    Route::get('/destroy','Webpanel\User@destroy');
+		    Route::post('/sort','Webpanel\User@sort');
+		    Route::post('/exist','Webpanel\User@exist');
+			Route::post('/dragsort','Webpanel\User@dragsort');
+		    Route::get('/exist-on-reset','Webpanel\User@checkUserOnReset');
+		});
+
+	    Route::prefix('menu')->group(function(){
+		    Route::get('/','Webpanel\Setting@index');
+		    Route::get('/create','Webpanel\Setting@create');
+		    Route::put('/create','Webpanel\Setting@store');
+			Route::get('/search','Webpanel\Setting@search');
+		    Route::get('/{id}','Webpanel\Setting@edit')->where(['id'=>'[0-9]+']);
+		    Route::post('/{id}','Webpanel\Setting@update')->where(['id'=>'[0-9]+']);
+		    Route::get('/destroy','Webpanel\Setting@destroy')->where(['id'=>'[0-9]+']);
+		    Route::get('/status/{id}','Webpanel\Setting@status')->where(['id'=>'[0-9]+']);
+		    Route::post('/dragsort','Webpanel\Setting@dragsort')->where(['id'=>'[0-9]+']);
+		});
 	
 	/////////////////////////////////////////////////////////////////////
-	//                         user                                    //
+	//                         admin                                    //
 	/////////////////////////////////////////////////////////////////////
 
 });
@@ -370,6 +399,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		    Route::get('/destroy','Webpanel\User@destroy');
 		    Route::post('/sort','Webpanel\User@sort');
 		    Route::post('/exist','Webpanel\User@exist');
+			Route::post('/dragsort','Webpanel\User@dragsort');
 		    Route::get('/exist-on-reset','Webpanel\User@checkUserOnReset');
 		});
 
@@ -377,6 +407,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		    Route::get('/','Webpanel\Setting@index');
 		    Route::get('/create','Webpanel\Setting@create');
 		    Route::put('/create','Webpanel\Setting@store');
+			Route::get('/search','Webpanel\Setting@search');
 		    Route::get('/{id}','Webpanel\Setting@edit')->where(['id'=>'[0-9]+']);
 		    Route::post('/{id}','Webpanel\Setting@update')->where(['id'=>'[0-9]+']);
 		    Route::get('/destroy','Webpanel\Setting@destroy')->where(['id'=>'[0-9]+']);

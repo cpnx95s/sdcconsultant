@@ -5,30 +5,30 @@
                 <div class="card">                
                     <div class="card-header"> 
                         
-                        <a href="{{url("/adminwebpanel/menu")}}" class="card-header-action">Menu Management</a>
+                        <a href="{{url("$segment")}}" class="card-header-action">Menu Management</a>
                         <div class="card-header-actions">
                             <button class="btn btn-default btn-sm" id="sort" data-text="Sort">Sort</button>
-                            <a class="btn btn-sm btn-primary" href="{{url("/adminwebpanel/menu/create")}}"> Create</a>   
+                            <a class="btn btn-sm btn-primary" href="{{url("$segment/create")}}"> Create</a>   
                             <button class="btn btn-sm btn-danger" type="reset" id="delSelect" disabled> Delete</button>                                                     
                         </div>                            
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="" method="get">                            
+                        <form action="/adminwebpanel/menu/search" method="get">                            
                             <div class="row">
-                                <div class="col-lg-1">
+                           <!-- <div class="col-lg-1">
                                     <div class="form-group">    
-                                        <label for="view">View : </label> 
+                                        <label for="view">ดู : </label> 
                                         @php($numrows=10)
                                         <select name="view" id="view" class="form-control">
-                                            <option value="10" @if(Request::get('view')==10) selected @endif>10</option>
+                                            <option value="5" @if(Request::get('view')==10) selected @endif>5</option>
                                             @for($i=1; $i<6; $i++)
                                             <option value="{{$numrows = $numrows*2}}" @if(Request::get('view')==$numrows) selected @endif>{{$numrows}}</option>
                                             @endfor
-                                            <option value="all" @if(Request::get('view')=='all') selected @endif>All</option>
+                                            <option value="all" @if(Request::get('view')=='all') selected @endif>ทั้งหมด</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-lg-4 col-xs-12">
                                     <label for="search">Keyword :</label>
                                     <div class="input-group">                                        
@@ -114,11 +114,11 @@
                                     @endif
                                 </tbody>
                             </table>
-                            @if(Request::get('view')!='all') {{$rows->links()}} @endif
+                            @if(Request::get('view')!='all')  {{$rows->appends(Request::all())->links()}} @endif
                         </div>
                     </div>
                     <div class="card-footer">
-                        <strong>ทั้งหมด</strong> {{$rows->count()}} @if(Request::get('view')!='all'): <strong>จาก</strong> {{$rows->firstItem()}} - {{$rows->lastItem()}} @endif
+                    <strong>ทั้งหมด</strong> {{$rows->count()}} @if(Request::get('view')!='all'): <strong>จาก</strong> {{$rows->firstItem()}} - {{$rows->lastItem()}} @endif
                     </div>
                 </div>                
             </div>

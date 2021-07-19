@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <strong>ทั้งหมด </strong>{{$rows->count()}} : <strong>จาก</strong> {{$rows->firstItem()}} - {{$rows->lastItem()}}
+                    <strong>ทั้งหมด</strong> {{$rows->count()}} @if(Request::get('view')!='all'): <strong>จาก</strong> {{$rows->firstItem()}} - {{$rows->lastItem()}} @endif
                     </div>
                 </div>                
             </div>

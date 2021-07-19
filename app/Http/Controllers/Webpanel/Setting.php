@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\MenuModel;
+use Illuminate\Support\Facades\DB;
 
 class Setting extends Controller
 {
@@ -151,13 +152,51 @@ class Setting extends Controller
         if($data->save()){ return response()->json(true); }else{ return response()->json(false); }
     }
 
-    public function destroy($id=null)
+    public function destroy( Request $request)
     {
-        $data = \App\MenuModel::destroy($id);
-        if($data){
+       
+        $datas = MenuModel::find(explode(',', $request->id));
+        if (@$datas) {
+            foreach ($datas as $data) {
+                $query = MenuModel::destroy($data->id);
+            }
+        }
+        if (@$query) {
             return response()->json(true);
-        }else{
+        } else {
             return response()->json(false);
+        }
+    }
+    public function search(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+             $search_text = $_GET['keyword'];      
+     
+        $data = MenuModel::where('name', 'like', '%'.$search_text.'%')
+                            ->orderBy('created', 'DESC');
+       
+            if($request->view=='all'){
+                $rows = $data->get();
+            }else{
+                $view = ($request->view)? $request->view : 10 ;
+                $rows = $data->paginate($view);
+                $rows->appends(['view'=>$request->view,'page'=>$request->page,'keywords'=>$request->keyword]);
+            }
+            return view("$this->prefix.pages.menu.index",[
+                'css'=> ['back-end/css/table-responsive.css'],        
+                'js' => [
+                    ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                    ["src"=>"back-end/js/table-dragger.min.js"],
+                    ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                    ["type"=>"text/javascript","src"=>"back-end/build/setting.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'menu',
+                'page' => 'index',
+                'segment' => "$this->segment/menu",
+                'rows' => $rows
+            ]);
         }
     }
 }

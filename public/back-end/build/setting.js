@@ -1,4 +1,4 @@
-var fullUrl = window.location.origin+'/webpanel';
+var fullUrl = window.location.origin+'/webpanel/menu';
 $('#sort').on('click',function(){
     const $this = $(this), text = $this.html(); 
     if(text=='Sort'){ $this.html('Cancel'); }else{ $this.html($this.data('text')) }
@@ -23,12 +23,12 @@ if($('#sorted_table').length>0)
 }
 function dragsort(id,from,to){
     $.ajax({
-        url:fullUrl+'/menu/dragsort', type:'post', data:{id:id, from:from, to:to, _token:$('input[name="_token"]').val()}, dataType:'json',
+        url:fullUrl+'/dragsort', type:'post', data:{id:id, from:from, to:to, _token:$('input[name="_token"]').val()}, dataType:'json',
         success:function(data){ if(data==true){ if(confirm('Refresh to change the display effect.')==true){ location.reload();} } }
     })
 }
-if($('#menuForm').length>0){
-    $('#menuForm').validate({
+if($('#hiringtypeForm').length>0){
+    $('#hiringtypeForm').validate({
         ignore:[],
         rules:{
             position:{ required: true },
@@ -54,7 +54,7 @@ $('#icon').on('keyup',function(){
 });
 $('.status').on('click',function(){
     const $this = $(this), id = $(this).data('id');
-    $.ajax({type:'get',url:fullUrl+'/menu/status/'+id,success:function(res){if(res==false){$(this).prop('checked',false)}}});
+    $.ajax({type:'get',url:fullUrl+'/status/'+id,success:function(res){if(res==false){$(this).prop('checked',false)}}});
 })
 $('.badge-status').on('click',function(){
     
@@ -71,12 +71,32 @@ $('.deleteItem').on('click',function(){
     const id =[$(this).data('id')];
     if(id.length>0){ destroy(id) }
 })
+$('#delSelect').on('click',function(){
+    const id = $('.ChkBox:checked').map(function(){ return $(this).val() }).get(); if(id.length>0){ destroy(id) }
+})
+
+$('#copySelect').on('click',function(){
+    const id = $('.ChkBox:checked').map(function(){ return $(this).val() }).get(); if(id.length>0){ copy(id) }
+})
+
 function destroy(id)
 {
     Swal.fire({
         title:"ลบข้อมูล",text:"คุณต้องการลบข้อมูลใช่หรือไม่?",icon:"warning",showCancelButton:true,confirmButtonColor:"#DD6B55",showLoaderOnConfirm: true,
         preConfirm: () => {
-            return fetch(fullUrl+'/menu/destroy/'+id)
+            return fetch(fullUrl+'/destroy?id='+id)
+            .then(response => response.json())
+            .then(data => location.reload())
+            .catch(error => { Swal.showValidationMessage(`Request failed: ${error}`)})
+        }
+    });
+}
+function copy(id)
+{
+    Swal.fire({
+        title:"คัดลอก",text:"คุณต้องการคัดลอกข้อมูลใช่หรือไม่?",icon:"warning",showCancelButton:true,confirmButtonColor:"#DD6B55",showLoaderOnConfirm: true,
+        preConfirm: () => {
+            return fetch(fullUrl+'/copy?id='+id)
             .then(response => response.json())
             .then(data => location.reload())
             .catch(error => { Swal.showValidationMessage(`Request failed: ${error}`)})
@@ -86,4 +106,3 @@ function destroy(id)
 $('#position').on('change',function(){
     if($('option:selected',this).val()=='secondary'){ $('#_id').prop('selectedIndex',0).prop('disabled',false) }else{ $('#_id').prop('disabled',true) }
 })
-
