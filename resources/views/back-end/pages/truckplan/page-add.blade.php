@@ -1,3 +1,4 @@
+
 <style>
     .img-preview {
         width: 100%;
@@ -13,9 +14,11 @@
         text-align: center;
     }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{{asset('back-end/build/jquery10.js')}}"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -49,33 +52,32 @@
                                         </label>
                                         <input class="form-control" id="startdate" name="startdate" placeholder="" type="date" require />
                                     </div>
+
                                     <div class="form-group ">
-                                        <label class="control-label " for="worktype">
-                                            ประเภทงาน
+                                        <label class="control-label " for="pjname" >
+                                            ชื่อโปรเจค
                                         </label>
-                                        <select class="select form-control" id="worktype" name="worktype" require>
+                                        <select id="country" name="category_id"  class="form-control">
+                                            <option value="" selected disabled>กรุณาเลือก</option>
+                                             @foreach($countries as $key => $country)
+                                             <option value="{{$key}}"> {{$country}}</option>
+                                             @endforeach
+                                             </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="tsptype" >
+                                            ประเภทการขนส่ง
+                                        </label>
+                                        <select id="state" name="state" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
-                                            <option value="งานหลัก">
-                                                งานหลัก
-                                            </option>
-                                            <option value="งานเสริม">
-                                                งานเสริม
-                                            </option>
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="pjname">
-                                            ชื่อโปรเจค
+                                        <label class="control-label" for="worktype">
+                                            ประเภทงาน
                                         </label>
-                                        <select id="pjname" name="pjname" class="form-control province" require>
+                                        <select id="city" name="city" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
-
-
-                                            @foreach($rows as $list)
-                                            <option value="{{$list->id}}"> {{$list->name}} </option>
-                                            @endforeach
-
-
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -106,16 +108,7 @@
                                         </label>
                                         <input class="form-control" id="routename" name="routename" type="text" require />
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="tsptype">
-                                            ประเภทการขนส่ง
-                                        </label>
-                                        <select id="province" name="tsptype" class="form-control amphures" require>
-                                            <option value="">กรุณาเลือก</option>
-                                         
 
-                                        </select>
-                                    </div>
                                     <div class="form-group ">
                                         <label class="control-label " for="trucktype">
                                             ประเภทรถ
@@ -264,25 +257,58 @@
                                 </div>
                             </div>
                         </div>
-                        <script>
-                            $('.province').change(function() {
-                                var select = $(this).val();
-                                var _token = $('input[name="_token"]').val();
 
-                                $.ajax({
-                                    url: "{{ Route ('droupdown.fetch') }}",
-                                    method: "POST",
-                                    data: {
-                                        select: select,
-                                        _token: _token
-                                    },
-                                    success: function(result) {
-                                        $('.amphures').html(result);
-                                    }
 
-                                })
+                        <script type=text/javascript>
+                            $('#country').change(function(){
+                            var countryID = $(this).val();
+                            if(countryID){
+                              $.ajax({
+                                type:"GET",
+                                url:"{{url('get-state-list')}}?country_id="+countryID,
+                                success:function(res){
+                                if(res){
+                                  $("#state").empty();
+                                  $("#state").append('<option>กรุณาเลือก</option>');
+                                  $.each(res,function(key,value){
+                                    $("#state").append('<option value="'+key+'">'+value+'</option>');
+                                  });
+
+                                }else{
+                                  $("#state").empty();
+                                }
+                                }
+                              });
+                            }else{
+                              $("#state").empty();
+                              $("#city").empty();
+                            }
                             });
-                        </script>
+                            $('#state').on('change',function(){
+                            var stateID = $(this).val();
+                            if(stateID){
+                              $.ajax({
+                                type:"GET",
+                                url:"{{url('get-city-list')}}?state_id="+stateID,
+                                success:function(res){
+                                if(res){
+                                  $("#city").empty();
+                                  $.each(res,function(key,value){
+                                    $("#city").append('<option value="'+key+'">'+value+'</option>');
+                                  });
+
+                                }else{
+                                  $("#city").empty();
+                                }
+                                }
+                              });
+                            }else{
+                              $("#city").empty();
+                            }
+
+                            });
+                          </script>
+
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>

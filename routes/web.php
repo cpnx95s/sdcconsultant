@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 //หน้าบ้าน
 
+Route::get('/test','Webpanel\TruckplanController@index1');
+Route::get('/get-state-list','Webpanel\TruckplanController@getStateList');
+Route::get('/get-city-list','Webpanel\TruckplanController@getCityList');
+
 
 
 
