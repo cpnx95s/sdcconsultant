@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group. Now create something greatt!
 |
 */
 //หน้าบ้าน
@@ -192,8 +192,8 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::post('/dorpdows', 'Webpanel\TruckplanController@fetct')->name("droupdown.fetch");
 		});
 
-	
-	
+
+
 	/////////////////////////////////////////////////////////////////////
 	//                         user                                    //
 	/////////////////////////////////////////////////////////////////////
