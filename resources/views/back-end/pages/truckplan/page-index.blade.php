@@ -44,7 +44,7 @@
                         </form>
                         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
                       
-                        <form action="/webpanel/truckplan/searchdate" method="get">
+                        <form action="{{url("$segment/searchdate")}}" method="get">
                         <div class="row">
                         <label for ="date" class = "">Date of STARTDATE  from :</label>
                         <input type = "date" class ="from-control input-sm" id = "fromDate" name = "fromDate" required/>
