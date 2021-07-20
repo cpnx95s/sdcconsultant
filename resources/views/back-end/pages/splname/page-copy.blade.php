@@ -56,16 +56,7 @@
                                     <div class="row mb-3">
                                             <div class="col-md-12">
                                                 <label>คะแนน</label><span style="color:red">*</span><br />
-                                                <select id="score" name="score" class="form-control" require>
-                                            <option value="{{$row->score}}">{{$row->score}}</option>
-                                            <option value="1"> 1</option>
-                                            <option value="1.5"> 1.5</option>
-                                            <option value="2"> 2</option>
-                                            <option value="2.5"> 2.5</option>
-                                            <option value="3"> 3</option>
-                                            <option value="3.5"> 3.5</option>
-                                            <option value="4"> 4</option>
-                                        </select>
+                                                <input id="score" name="score" type="text" class="form-control" value="{{$row->score}}" autocomplete="off">
                                     </div>
                                    
                                 </div>
