@@ -19,8 +19,8 @@
                         <form action="{{url("$segment/search")}}" method="get">
                             <div class="row">
                                 <!-- <div class="col-lg-1">
-                                    <div class="form-group">    
-                                        <label for="view">ดู : </label> 
+                                    <div class="form-group">
+                                        <label for="view">ดู : </label>
                                         @php($numrows=10)
                                         <select name="view" id="view" class="form-control">
                                             <option value="5" @if(Request::get('view')==10) selected @endif>5</option>
@@ -43,7 +43,7 @@
                             </div>
                         </form>
                         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-                      
+
                         <form action="{{url("$segment/searchdate")}}" method="get">
                         <div class="row">
                         <label for ="date" class = "">Date of STARTDATE  from :</label>
@@ -53,28 +53,28 @@
                         <center>
                                         <span> WORK_TYPE : </span>
                                         <select name="worktypebox" id="nameid" style="width: 200px">
-                                        <option></option>        
-                                        
-                                          
-                                     
+                                        <option></option>
+
+
+
                                         @foreach($worktype as $row)
                                         <option >{{$row->worktype }}</option>
                                         @endforeach
                                         </select>
-        
+
                             </center>
                             <center>
                                         <span> PROJECT_NAME	 : </span>
                                         <select name="pjnamebox" id="nameids" style="width: 200px">
-                                        <option></option>        
-                                        
-                                          
-                                     
-                                        @foreach($pjname as $row)
+                                        <option></option>
+
+
+
+                                        @foreach($rows as $row)
                                         <option >{{$row->showpjname->name }}</option>
                                         @endforeach
                                         </select>
-        
+
                             </center>
                             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
@@ -83,14 +83,14 @@
                             $("#nameid").select2({
                             placeholder: "Select a Name",
                             allowClear: true
-                            }); 
+                            });
                             $("#nameids").select2({
                             placeholder: "Select a Name",
                             allowClear: true
-                            });                          
+                            });
                             </script>
                                 <button class="btn btn-secondary" type="submit">Search</button>
-                                
+
                                 </form>
 
 
@@ -165,7 +165,7 @@
                                             <a href="{{url("$segment/copy/$row->id")}}" class="text-primary" title="Copy"><i class="far fa-copy"></i></a>
                                             <a href="javascript:" class="text-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                         </td>
-                                       
+
                                         <td data-label="วันที่ใช้รถ">
                                             {{ \Carbon\Carbon::parse($row->startdate)->format('d/m/Y')}}
                                             <!-- {{$row->startdate}} -->
@@ -256,7 +256,7 @@
                                     @endif
                                 </tbody>
                             </table>
-                        
+
                             @if(Request::get('view')!='all')  {{$rows->appends(Request::all())->links()}} @endif
                         </div>
                     </div>

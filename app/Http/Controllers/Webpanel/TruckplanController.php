@@ -192,6 +192,7 @@ class TruckplanController extends Controller
 
     public function edit($id)
     {
+        $countries = DB::table("countries")->pluck("name","id");
         $row = TruckplanModel::find($id);
         $rows= DB::table('tb_pjname')->get();
         return view("$this->prefix.pages.$this->folder.index", [
@@ -208,6 +209,7 @@ class TruckplanController extends Controller
             'segment' => $this->segment,
             'row' => $row,
             'rows' => $rows,
+            'countries'=> $countries,
 
         ]);
     }
@@ -613,7 +615,7 @@ class TruckplanController extends Controller
 
         if (isset($_GET['keyword'])) {
             $search_text = $_GET['keyword'];
-           
+
             $spjname =  DB::table('tb_pjname')->where('name','like','%'.$search_text."%")->value('id');
             $stsptype =  DB::table('tb_tsptype')->where('name','like','%'.$search_text."%")->value('id');
             $strucktype =  DB::table('tb_trucktype')->where('name','like','%'.$search_text."%")->value('id');
