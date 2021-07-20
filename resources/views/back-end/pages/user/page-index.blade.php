@@ -5,7 +5,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card">                
                     <div class="card-header"> 
-                        <a href="{{url("$prefix/$controller")}}" class="card-header-action">User Management</a>
+                        <a href="{{url("$segment/user")}}" class="card-header-action">User Management</a>
                         <div class="card-header-actions">
                             <a class="btn btn-sm btn-primary" href="{{url("$segment/user/create")}}"> Create</a>
                             <button class="btn btn-sm btn-danger" type="button" id="delSelect" disabled> Delete</button>
@@ -13,6 +13,33 @@
                         </div>                            
                     </div>
                     <div class="card-body">
+                    <form action="{{url("$segment/user/search")}}" method="get">
+                            <div class="row">
+                                <!-- <div class="col-lg-1">
+                                    <div class="form-group">    
+                                        <label for="view">ดู : </label> 
+                                        @php($numrows=10)
+                                        <select name="view" id="view" class="form-control">
+                                            <option value="5" @if(Request::get('view')==10) selected @endif>5</option>
+                                            @for($i=1; $i<6; $i++)
+                                            <option value="{{$numrows = $numrows*2}}" @if(Request::get('view')==$numrows) selected @endif>{{$numrows}}</option>
+                                            @endfor
+                                            <option value="all" @if(Request::get('view')=='all') selected @endif>ทั้งหมด</option>
+                                        </select>
+                                    </div>
+                                </div> -->
+                                <div class="col- lg-4 col-xs-12 mb-4">
+                                    <label for="search">Search :</label>
+                                    <div class="input-group">
+                                        <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Username">
+                                        <span class="input-group-append">
+                                            <button class="btn btn-secondary" type="submit">Search</button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
                         <div class="table-responsive">
                             <table class="table table-striped no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
                                 <thead>

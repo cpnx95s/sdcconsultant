@@ -22,9 +22,9 @@
                                         <label for="role">Role</label>
                                         <select class="form-control" name="role" id="role">
                                             <option value="" hidden>Please Select</option>
-                                            <option value="user">user</option>
                                             <option value="staff">staff</option>
                                             <option value="admin">admin</option>
+                                            <option value="super admin">super admin</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">

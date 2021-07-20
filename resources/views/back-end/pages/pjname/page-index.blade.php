@@ -16,7 +16,7 @@
                     </div>
                     <div class="card-body">
                         @csrf
-                        <form action="{{url("$segment/search")}}" method="get">
+                       <form action="{{url("$segment/search")}}" method="get">
                             <div class="row">
                                 <!-- <div class="col-lg-1">
                                     <div class="form-group">    
@@ -31,7 +31,7 @@
                                         </select>
                                     </div>
                                 </div> -->
-                                <div class="col-lg-4 col-xs-12 mb-4">
+                                <div class="col- lg-4 col-xs-12 mb-4">
                                     <label for="search">Search :</label>
                                     <div class="input-group">
                                         <input type="text" name="keyword" class="form-control" id="search" value="{{Request::get('keyword')}}" placeholder="Project Name">

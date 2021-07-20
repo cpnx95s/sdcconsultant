@@ -53,21 +53,21 @@
                                             <input id="name" name="name" type="text" class="form-control" value="{{$row->name}}" autocomplete="off">
                                             </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="worktype">
-                                            Score
-                                        </label>
-                                        <select class="select form-control" id="score" name="score">
-                                            <option value="" hidden>กรุณาเลือก</option>
-                                            <option value="4" @if($row->score == '4') selected @endif>A</option>
-                                            <option value="3.5" @if($row->score == '3.5') selected @endif>B+</option>
-                                            <option value="3" @if($row->score == '3') selected @endif>B</option>
-                                            <option value="2.5" @if($row->score == '2.5') selected @endif>C+</option>
-                                            <option value="2" @if($row->score == '2') selected @endif>C</option>
-                                            <option value="1.5" @if($row->score == '1.5') selected @endif>D+</option>
-                                            <option value="1" @if($row->score == '1') selected @endif>D</option>
+                                    <div class="row mb-3">
+                                            <div class="col-md-12">
+                                                <label>คะแนน</label><span style="color:red">*</span><br />
+                                                <select id="score" name="score" class="form-control" require>
+                                            <option value="{{$row->score}}">{{$row->score}}</option>
+                                            <option value="1"> 1</option>
+                                            <option value="1.5"> 1.5</option>
+                                            <option value="2"> 2</option>
+                                            <option value="2.5"> 2.5</option>
+                                            <option value="3"> 3</option>
+                                            <option value="3.5"> 3.5</option>
+                                            <option value="4"> 4</option>
                                         </select>
                                     </div>
+                                   
                                 </div>
                             </div>
                         </div>

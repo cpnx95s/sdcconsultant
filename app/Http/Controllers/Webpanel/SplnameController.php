@@ -162,9 +162,10 @@ class SplnameController extends Controller
         $data = splnameModel::find($id);
         $data->name = $request->name;
         $data->score = $request->score;
-
+        $data->sort = 1;
+        $data->created = date('Y-m-d H:i:s');
         $data->updated = date('Y-m-d H:i:s');
-     
+        $data->save();
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
         } else {
@@ -292,9 +293,9 @@ class SplnameController extends Controller
         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
     
     }
-    ////////////////////////////////////////////////////////////////////
-    ////////          admin             ////////////////////////////////
-    ////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
+    ////////           super admin               ////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     
     public function adminindex(Request $request)
     {   
@@ -420,12 +421,13 @@ class SplnameController extends Controller
 
     public function adminupdate(Request $request, $id)
     {
+      
         $data = splnameModel::find($id);
         $data->name = $request->name;
         $data->score = $request->score;
-
+      
         $data->updated = date('Y-m-d H:i:s');
-     
+        $data->save();
         if ($data->save()) {
             return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/$this->controller")]);
         } else {
@@ -439,6 +441,7 @@ class SplnameController extends Controller
         $data = splnameModel::find($id);
         $data = new splnameModel;
         $data->name = $request->name;
+        $data->Score = $request->Score;
         $data->sort = 1;
 
         $data->created = date('Y-m-d H:i:s');

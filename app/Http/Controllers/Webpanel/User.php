@@ -203,6 +203,42 @@ class User extends Controller
             return response()->json(true);
         }
     }
+    public function search(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+    
+             $search_text = $_GET['keyword'];
+         
+      
+      
+        $data = UserModel::where('name', 'like', '%'.$search_text.'%')
+                            ->orderBy('id');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view)? $request->view : 10 ;
+            $rows = $data->paginate($view);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+        }
+        return view("$this->prefix.pages.user.index",[            
+            'js' => [
+                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.slim.min.js",'class'=>"view-script"],
+                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                ["type"=>"text/javascript","src"=>"back-end/build/user.js"],
+            ],
+            'prefix' => $this->prefix,
+            'segment' => $this->segment,
+            'folder' => 'user',
+            'page' => 'index',
+            'controller' => 'user',
+            'rows' => $rows
+        ]);
+
+        }
+    }
     ///////////////////////////////////////////////////////////////////////////////
     ///////     admin                                     ////////////////////////
     /////////////////////////////////////////////////////////////////////////////
@@ -375,6 +411,39 @@ class User extends Controller
             }
         }else{ 
             return response()->json(true);
+        }
+    }
+    
+    public function staffsearch(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+             $search_text = $_GET['keyword'];
+        $data = UserModel::where('name', 'like', '%'.$search_text.'%')
+                            ->orderBy('name');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view)? $request->view : 10 ;
+            $rows = $data->paginate($view);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+        }
+        return view("$this->prefix.pages.user.staffindex",[            
+            'js' => [
+                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.slim.min.js",'class'=>"view-script"],
+                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                ["type"=>"text/javascript","src"=>"back-end/build/user.js"],
+            ],
+            'prefix' => $this->prefix,
+            'segment' => $this->segmentst,
+            'folder' => 'user',
+            'page' => 'index',
+            'controller' => 'user',
+            'rows' => $rows
+        ]);
+
         }
     }
 }

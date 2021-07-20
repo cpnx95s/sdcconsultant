@@ -689,35 +689,29 @@ class TruckplanController extends Controller
         $pjname =TruckplanModel::select('pjname')->distinct()->get();
         $worktypebox = $request->input('worktypebox');
         $pjnamebox = DB::table('tb_pjname')->where('name',$request->input('pjnamebox'))->value('id');
-
-        if(isset($_GET['worktypebox']) && $pjnamebox == ""){
+        if ($pjnamebox == "" && $worktypebox == "" ){
+            $data = TruckplanModel::where('startdate', '>=', $fromDate)
+            ->where('startdate', '<=', $toDate)
+            ->orderBy('startdate', 'DESC');
+        }
+         else if(isset($_GET['worktypebox']) && $pjnamebox == ""){
         $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
             ->where('worktype', 'like',$worktypebox)
-            ->orderBy('created', 'DESC');
+            ->orderBy('startdate', 'DESC');
         }
-        else if($pjnamebox == "" && $worktypebox == ""){
-            $data =TruckplanModel::where('startdate','>=', $fromDate)
-            ->where('startdate','<=', $toDate)
-            ->orderBy('created', 'DESC');
-            }
         else  if(isset($_GET['pjnamebox']) && $worktypebox == ""){
             $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
             ->where('pjname', '=', $pjnamebox )
-            ->orderBy('created', 'DESC');
+            ->orderBy('startdate', 'DESC');
         }
-        else  if( isset($_GET['pjnamebox']) &&isset($_GET['worktypebox'])){
-           $data = TruckplanModel::where('startdate', '>=', $fromDate)
+        else {
+            $data = TruckplanModel::where('startdate', '>=', $fromDate)
                 ->where('startdate', '<=', $toDate)
                 ->where('worktype', '=',$worktypebox)
                 ->where('pjname', '=', $pjnamebox )
-                ->orderBy('created', 'DESC');
-        }
-        else {
-            $data =TruckplanModel::where('startdate','>=', $fromDate)
-            ->where('startdate','<=', $toDate)
-            ->orderBy('created', 'DESC');
+                ->orderBy('startdate', 'DESC');
             }
         if ($request->view == 'all') {
             $rows = $data->get();
@@ -945,9 +939,9 @@ class TruckplanController extends Controller
         return response()->json($cities);
     }
 
-    /////////////////////////////////////////////////////////////////////////////
-    //////////           admin                                 /////////////////
-    ///////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////
+    //////////            super admin                                   /////////////////
+    ////////////////////////////////////////////////////////////////////////////////////
     public function adminindex(Request $request)
     {
         $data = TruckplanModel::distinct()->orderBy('created', 'DESC');
@@ -1603,24 +1597,29 @@ class TruckplanController extends Controller
         $worktypebox = $request->input('worktypebox');
         $pjnamebox = DB::table('tb_pjname')->where('name',$request->input('pjnamebox'))->value('id');
 
-        if(isset($_GET['worktypebox']) && $pjnamebox == ""){
+        if ($pjnamebox == "" && $worktypebox == "" ){
+            $data = TruckplanModel::where('startdate', '>=', $fromDate)
+            ->where('startdate', '<=', $toDate)
+            ->orderBy('startdate', 'DESC');
+        }
+         else if(isset($_GET['worktypebox']) && $pjnamebox == ""){
         $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
             ->where('worktype', 'like',$worktypebox)
-            ->orderBy('created', 'DESC');
+            ->orderBy('startdate', 'DESC');
         }
         else  if(isset($_GET['pjnamebox']) && $worktypebox == ""){
             $data = TruckplanModel::where('startdate', '>=', $fromDate)
             ->where('startdate', '<=', $toDate)
             ->where('pjname', '=', $pjnamebox )
-            ->orderBy('created', 'DESC');
+            ->orderBy('startdate', 'DESC');
         }
         else {
             $data = TruckplanModel::where('startdate', '>=', $fromDate)
                 ->where('startdate', '<=', $toDate)
                 ->where('worktype', '=',$worktypebox)
                 ->where('pjname', '=', $pjnamebox )
-                ->orderBy('created', 'DESC');
+                ->orderBy('startdate', 'DESC');
             }
         if ($request->view == 'all') {
             $rows = $data->get();

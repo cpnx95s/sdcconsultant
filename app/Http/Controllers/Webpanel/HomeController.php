@@ -34,7 +34,7 @@ class HomeController extends Controller
             'segment' => "$this->segment",
         ]);
     }
-    public function indexuser(Request $request)
+    public function indexadmin(Request $request)
     {
         return view("$this->prefix.pages.$this->folder.userindex", [
             'js' => [
@@ -557,7 +557,11 @@ class HomeController extends Controller
 
         ], compact('results', 'chart', 'chart2'));
     }
-    public function userChartjs()
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////         super admin ///////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////// 
+    public function adminChartjs()
     {
         $mytime = Carbon::now()->format('Y-m-d');
         //dd($mytime);
@@ -808,7 +812,7 @@ class HomeController extends Controller
         ], compact('results', 'chart', 'chart2'));
     }
 
-    public function usersearchChart(Request $request)
+    public function adminsearchChart(Request $request)
     {
         $mytime =  $request->input('DATE');
         if ($mytime == '') {

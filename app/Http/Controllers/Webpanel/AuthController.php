@@ -23,14 +23,14 @@ class AuthController extends Controller
         $remember = ($request->remember == 'on') ? true : false;
         if (Auth::attempt(['email' => $username, 'password' => $password, 'status' => 'active'], $remember)) 
         {
-            if (Auth::user()->role == 'user') 
+            if (Auth::user()->role == 'staff') 
             {
                 return redirect('webpanel/');
-            }
-            else if (Auth::user()->role == 'admin') {
+            }   
+            else if (Auth::user()->role == 'super admin') {
                 return redirect('adminwebpanel/');  
             }
-            else if (Auth::user()->role == 'staff') {
+            else if (Auth::user()->role == 'admin') {
                 return redirect('staffuser/');  
             }
         } else {

@@ -222,15 +222,15 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		    Route::post('/dragsort','Webpanel\Setting@dragsort')->where(['id'=>'[0-9]+']);
 		});
 	/////////////////////////////////////////////////////////////////////
-	//                       admin                                   //
+	//                      super admin                                   //
 	/////////////////////////////////////////////////////////////////////
 
 });
 Route::group(['middleware'=>['Webpanel']], function(){
 	Route::prefix('adminwebpanel')->group(function(){
-		Route::get('/','Webpanel\HomeController@userindex');
-		Route::get('/','Webpanel\HomeController@userChartjs');
-		Route::post('/searchChart','Webpanel\HomeController@usersearchChart');
+		Route::get('/','Webpanel\HomeController@adminindex');
+		Route::get('/','Webpanel\HomeController@adminChartjs');
+		Route::post('/searchChart','Webpanel\HomeController@adminsearchChart');
 
 
 		Route::prefix('trucktype')->group(function(){
@@ -390,6 +390,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		    Route::get('/','Webpanel\User@index');
 		    Route::get('/create','Webpanel\User@create');
 		    Route::put('/create','Webpanel\User@store');
+			Route::get('/search','Webpanel\User@search');
 		    Route::get('/{id}','Webpanel\User@edit')->where(['id'=>'[0-9]+']);
 		    Route::post('/{id}','Webpanel\User@update')->where(['id'=>'[0-9]+']);
 		    Route::get('/reset/{id}','Webpanel\User@reset')->where(['id'=>'[0-9]+']);
@@ -414,7 +415,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 
 	});
 	/////////////////////////////////////////////////////////
-	////////        staff                  /////////////////
+	////////        admin                  /////////////////
 	///////////////////////////////////////////////////////
 	});
 	Route::prefix('staffuser')->group(function(){
@@ -423,6 +424,8 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		Route::get('/','Webpanel\User@staffindex');
 		Route::get('/create','Webpanel\User@staffcreate');
 		Route::put('/create','Webpanel\User@staffstore');
+
+		Route::get('/search','Webpanel\User@staffsearch');
 		Route::get('/{id}','Webpanel\User@staffedit')->where(['id'=>'[0-9]+']);
 		Route::post('/{id}','Webpanel\User@staffupdate')->where(['id'=>'[0-9]+']);
 		Route::get('/reset/{id}','Webpanel\User@staffreset')->where(['id'=>'[0-9]+']);

@@ -17,9 +17,9 @@
                                             <label for="role">Role</label>
                                             <select class="form-control" name="role" id="role">
                                                 <option value="" hidden>Please Select</option>
-                                                <option value="user" @if($row->role=='user') selected @endif>user</option>
                                                 <option value="staff" @if($row->role=='staff') selected @endif>staff</option>
                                                 <option value="admin" @if($row->role=='admin') selected @endif>admin</option>
+                                                <option value="super admin" @if($row->role=='super admin') selected @endif>super admin</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
