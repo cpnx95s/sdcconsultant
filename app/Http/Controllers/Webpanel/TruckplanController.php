@@ -192,8 +192,9 @@ class TruckplanController extends Controller
 
     public function edit($id)
     {
-        $countries = DB::table("countries")->pluck("name","id");
+
         $row = TruckplanModel::find($id);
+        $countries = DB::table("countries")->pluck("name","id");
         $rows= DB::table('tb_pjname')->get();
         return view("$this->prefix.pages.$this->folder.index", [
             'js' => [
