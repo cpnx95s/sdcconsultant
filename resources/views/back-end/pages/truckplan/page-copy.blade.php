@@ -45,7 +45,7 @@
                                             ชื่อโปรเจค
                                         </label>
                                         <select id="country" name="category_id" class="form-control province" require>
-                                            <option value="">กรุณาเลือก</option>
+                                     
                                             @foreach ($rows as $list)
                                                 <option value="{{ $list->id }}" @if ($row->pjname == $list->id) selected @endif>{{ $list->name }}</option>
                                             @endforeach
@@ -56,16 +56,8 @@
                                         <label class="control-label " for="tsptype">
                                             ประเภทการขนส่ง
                                         </label>
-                                        <select id="state" name="state" class="form-control amphures" require>
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\TsptypeModel::where('status','on')->get(); @endphp
-
-                                            @if ($list)
-                                                @foreach ($list as $list)
-                                                    <option value="{{ $list->id }}" @if ($row->tsptype == $list->id) selected @endif> {{ $list->name }} </option>
-                                                @endforeach
-
-                                            @endif
+                                        <select id="state" name="state" class="form-control amphures"    require>
+                                            <option   value="{{ $row->tsptype }}">  {{$row->showtsptypename->name }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group ">
@@ -73,9 +65,7 @@
                                             ประเภทงาน
                                         </label>
                                         <select class="select form-control" id="city" name="city">
-                                            <option value="" hidden>กรุณาเลือก</option>
-                                            <option value="งานหลัก" @if ($row->worktype == 'งานหลัก') selected @endif>งานหลัก</option>
-                                            <option value="งานเสริม" @if ($row->worktype == 'งานเสริม') selected @endif>งานเสริม</option>
+                                            <option   value="{{ $row->worktype }}">  {{$row->worktype }}</option>
                                         </select>
                                     </div>
                                     <div class="form-group ">

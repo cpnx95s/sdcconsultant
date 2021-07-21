@@ -127,11 +127,11 @@ class HomeController extends Controller
         $BEST_Req = $BES_LH_M + $BES_LH_E;
 
         //Shopee Express
-        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_M = $SHOP_FM_M1 + $SHOP_FM_M2;
-        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_E = $SHOP_FM_E1 + $SHOP_FM_E2;
         $SHOPEE_Req = $SHOP_FM_M + $SHOP_FM_E;
 
@@ -142,8 +142,8 @@ class HomeController extends Controller
         $CJ_Req = $CJ_Del_M;
 
         //Lazada Express
-        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
-        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
         $LAZ_FM_M = $LAZ_FM_M1 + $LAZ_FM_M2;
         $LAZ_Req = $LAZ_FM_M;
 
@@ -385,11 +385,11 @@ class HomeController extends Controller
         $BEST_Req = $BES_LH_M + $BES_LH_E;
 
         //Shopee Express
-        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_M = $SHOP_FM_M1 + $SHOP_FM_M2;
-        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_E = $SHOP_FM_E1 + $SHOP_FM_E2;
         $SHOPEE_Req = $SHOP_FM_M + $SHOP_FM_E;
 
@@ -400,8 +400,8 @@ class HomeController extends Controller
         $CJ_Req = $CJ_Del_M;
 
         //Lazada Express
-        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
-        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
         $LAZ_FM_M = $LAZ_FM_M1 + $LAZ_FM_M2;
         $LAZ_Req = $LAZ_FM_M;
 
@@ -639,11 +639,11 @@ class HomeController extends Controller
         $BEST_Req = $BES_LH_M + $BES_LH_E;
 
         //Shopee Express
-        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_M = $SHOP_FM_M1 + $SHOP_FM_M2;
-        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_E = $SHOP_FM_E1 + $SHOP_FM_E2;
         $SHOPEE_Req = $SHOP_FM_M + $SHOP_FM_E;
 
@@ -654,8 +654,8 @@ class HomeController extends Controller
         $CJ_Req = $CJ_Del_M;
 
         //Lazada Express
-        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
-        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
         $LAZ_FM_M = $LAZ_FM_M1 + $LAZ_FM_M2;
         $LAZ_Req = $LAZ_FM_M;
 
@@ -897,11 +897,11 @@ class HomeController extends Controller
         $BEST_Req = $BES_LH_M + $BES_LH_E;
 
         //Shopee Express
-        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_M = $SHOP_FM_M1 + $SHOP_FM_M2;
-        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
-        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '1')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
+        $SHOP_FM_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '11')->where('pjname', '=', '10')->where('startdate', '=', $mytime)->count();
         $SHOP_FM_E = $SHOP_FM_E1 + $SHOP_FM_E2;
         $SHOPEE_Req = $SHOP_FM_M + $SHOP_FM_E;
 
@@ -912,8 +912,8 @@ class HomeController extends Controller
         $CJ_Req = $CJ_Del_M;
 
         //Lazada Express
-        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
-        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '1')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
+        $LAZ_FM_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '11')->where('pjname', '=', '7')->where('startdate', '=', $mytime)->count();
         $LAZ_FM_M = $LAZ_FM_M1 + $LAZ_FM_M2;
         $LAZ_Req = $LAZ_FM_M;
 
