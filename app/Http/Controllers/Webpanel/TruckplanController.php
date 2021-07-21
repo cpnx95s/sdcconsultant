@@ -109,7 +109,6 @@ class TruckplanController extends Controller
     // }
     public function store(Request $request)
     {
-        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -136,9 +135,9 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
+        $data->tsptype = $request->state;
+        $data->pjname = $request->category_id;
+        $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
 
 
@@ -146,9 +145,9 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
+        $data->tsptype =$request->state;
+        $data->pjname =$request->state;
+        $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
 
         $data->sort = 1;
@@ -1014,7 +1013,7 @@ class TruckplanController extends Controller
     // }
     public function adminstore(Request $request)
     {
-        $datatsptype = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
+        $dataworktype = DB::table('cities')->where('id',$request->city)->value('name');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -1041,9 +1040,9 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
+        $data->tsptype = $request->state;
+        $data->pjname = $request->category_id;
+        $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
 
 
@@ -1051,9 +1050,9 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $datatsptype;
-        $data->pjname = $request->pjname;
-        $data->worktype = $request->worktype;
+        $data->tsptype =$request->state;
+        $data->pjname =$request->state;
+        $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
 
         $data->sort = 1;
@@ -1817,10 +1816,13 @@ class TruckplanController extends Controller
 
    }
     public function admintest(Request $request){
-        $list = TruckplanModel::find(explode(',', $request->id));
+        $datatsptype = DB::table('tb_tsptype')->where('name',$request->state)->value('id');
+        $dataworktype = DB::table('cities')->where('id',$request->city)->value('name');
+        $list = $request->city;
+        
         $worktypebox = $request->input('worktypebox');
         $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
-        dd($worktypebox);
+        dd($dataworktype);
         return view('test')->with('list', $list);
     }
 
