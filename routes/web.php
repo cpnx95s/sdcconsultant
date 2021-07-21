@@ -189,10 +189,10 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::match(['put', 'patch'], '/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TruckplanController@destroy');
 			Route::get('/copy/{id}','Webpanel\TruckplanController@copy');
-			Route::get('/copy/{id}/create','Webpanel\TruckplanController@createcopy');
+			Route::post('/copy/{id}/create','Webpanel\TruckplanController@createcopy');
         	Route::post('/dragsort','Webpanel\TruckplanController@dragsort');
 			Route::get('/status/{id}','Webpanel\TruckplanController@status')->where(['id'=>'[0-9]+']);
-			Route::get('/test','Webpanel\TruckplanController@test');
+			Route::post('/test','Webpanel\TruckplanController@test');
 			Route::post('/dorpdows', 'Webpanel\TruckplanController@fetct')->name("droupdown.fetch");
 		});
 
@@ -376,7 +376,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 			Route::match(['put', 'patch'], '/{id}','Webpanel\TruckplanController@adminupdate')->where(['id'=>'[0-9]+']);
 			Route::get('/destroy','Webpanel\TruckplanController@admindestroy');
 			Route::get('/copy/{id}','Webpanel\TruckplanController@admincopy');
-			Route::get('/copy/{id}/create','Webpanel\TruckplanController@admincreatecopy');
+			Route::post('/copy/{id}/create','Webpanel\TruckplanController@admincreatecopy');
         	Route::post('/dragsort','Webpanel\TruckplanController@admindragsort');
 			Route::get('/status/{id}','Webpanel\TruckplanController@adminstatus')->where(['id'=>'[0-9]+']);
 			Route::get('/test','Webpanel\TruckplanController@admintest');

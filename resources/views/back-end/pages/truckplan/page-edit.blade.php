@@ -335,7 +335,7 @@
                                             if (res) {
                                                 $("#city").empty();
                                                 $.each(res, function(key, value) {
-                                                    $("#city").append('<option value="' + key + '">' + value +
+                                                    $("#city").append('<option value="' + value + '">' + value +
                                                         '</option>');
                                                 });
 
