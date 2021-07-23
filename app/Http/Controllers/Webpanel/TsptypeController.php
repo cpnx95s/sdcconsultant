@@ -514,7 +514,7 @@ class TsptypeController extends Controller
            'size' => $this->ImageSize(),
        ]);
    }
-   public function ststore(Request $request)
+   public function staffstore(Request $request)
    {
 
        $data = new TsptypeModel;

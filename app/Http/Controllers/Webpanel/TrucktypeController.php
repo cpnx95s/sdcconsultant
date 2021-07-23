@@ -578,7 +578,7 @@ class TrucktypeController extends Controller
             return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/trucktype/create")]);
         }
     }
-    public function stedit($id)
+    public function staffedit($id)
     {
         $row = TrucktypeModel::find($id);
         return view("$this->prefix.pages.$this->folder.staffindex", [
