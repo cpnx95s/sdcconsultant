@@ -109,6 +109,8 @@ class TruckplanController extends Controller
     // }
     public function store(Request $request)
     {
+        $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
+        $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -135,22 +137,19 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->state;
         $data->pjname = $request->category_id;
         $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
-
-
-        //$data->pjtype = $request->pjtype;
-        $data->trucktype = $request->trucktype;
-        $data->roundtrip = $request->roundtrip;
-        $data->splname = $request->splname;
-        $data->tsptype =$request->state;
-        $data->pjname =$request->state;
-        $data->worktype = $request->city;
-        $data->hiringtype = $request->hiringtype;
+        // $data->created = date('Y-m-d H:i:s.u');
+        // $data->updated = date('Y-m-d H:i:s.u');
 
         $data->sort = 1;
+        //$data->pjtype = $request->pjtype;
+        
+          $data->tsptype = $datatsptypes;
+     
+ 
+ 
         $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');
@@ -1012,7 +1011,8 @@ class TruckplanController extends Controller
     // }
     public function adminstore(Request $request)
     {
-        $dataworktype = DB::table('cities')->where('id',$request->city)->value('name');
+        $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
+        $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -1039,22 +1039,19 @@ class TruckplanController extends Controller
         $data->trucktype = $request->trucktype;
         $data->roundtrip = $request->roundtrip;
         $data->splname = $request->splname;
-        $data->tsptype = $request->state;
         $data->pjname = $request->category_id;
         $data->worktype = $request->city;
         $data->hiringtype = $request->hiringtype;
-
-
-        //$data->pjtype = $request->pjtype;
-        $data->trucktype = $request->trucktype;
-        $data->roundtrip = $request->roundtrip;
-        $data->splname = $request->splname;
-        $data->tsptype =$request->state;
-        $data->pjname =$request->state;
-        $data->worktype = $request->city;
-        $data->hiringtype = $request->hiringtype;
+        // $data->created = date('Y-m-d H:i:s.u');
+        // $data->updated = date('Y-m-d H:i:s.u');
 
         $data->sort = 1;
+        //$data->pjtype = $request->pjtype;
+        
+          $data->tsptype = $datatsptypes;
+     
+ 
+ 
         $data->save();
         // $data->created = date('Y-m-d H:i:s.u');
         // $data->updated = date('Y-m-d H:i:s.u');

@@ -435,5 +435,6 @@ Route::group(['middleware'=>['Webpanel']], function(){
 		Route::post('/exist','Webpanel\User@staffexist');
 		Route::get('/exist-on-reset','Webpanel\User@staffcheckUserOnReset');
 	});
+	//////////////////////////
 });
 });
