@@ -79,17 +79,21 @@ class HomeController extends Controller
         // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        $results2 = GchartModel::pluck('created');
+        $results2 = GchartModel::orderBy('created','asc')->pluck('created');
+        // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
+
+
         $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
+        $chart2->labels($results2->values());
+
         $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'green']);
-
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
@@ -336,16 +340,19 @@ class HomeController extends Controller
         // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        $results2 = GchartModel::pluck('created');
+        $results2 = GchartModel::orderBy('created','asc')->pluck('created');
+        // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
+
+
         $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
+        $chart2->labels($results2->values());
+
         $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'green']);
-
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
 
         $month = 0;
@@ -560,7 +567,7 @@ class HomeController extends Controller
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////         super admin ///////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////////////////////////////////////// 
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     public function adminChartjs()
     {
         $mytime = Carbon::now()->format('Y-m-d');
@@ -591,16 +598,19 @@ class HomeController extends Controller
         // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        $results2 = GchartModel::pluck('created');
+        $results2 = GchartModel::orderBy('created','asc')->pluck('created');
+        // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
+
+
         $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
+        $chart2->labels($results2->values());
+
         $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'green']);
-
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
 
         $month = 0;
