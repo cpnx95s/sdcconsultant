@@ -599,7 +599,7 @@ class HomeController extends Controller
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
         $results2 = GchartModel::orderBy('created','asc')->pluck('created');
-        // $results2 = GchartModel::pluck('created');
+        // $results2 = GchartModel::pluck('created');;
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
