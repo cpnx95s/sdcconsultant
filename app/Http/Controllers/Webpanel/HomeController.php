@@ -1128,24 +1128,27 @@ class HomeController extends Controller
         // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        $results2 = GchartModel::pluck('created');
+        $results2 = GchartModel::orderBy('created','asc')->pluck('created');
+        // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
+
+
         $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
+        $chart2->labels($results2->values());
+
         $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'green']);
-
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
         $data = 0;
         //  array('1', '2', '3', '4', '5');
 
-        //Flash Express 1
         $FLH_LH_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '2')->where('pjname', '=', '1')->where('startdate', '=', $mytime)->count();
         $FLH_LH_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '2')->where('pjname', '=', '1')->where('startdate', '=', $mytime)->count();
         $FLH_LH_M =  $FLH_LH_M1 + $FLH_LH_M2;
@@ -1358,11 +1361,12 @@ class HomeController extends Controller
             $mytime =  $request->input('DATE');
         }
 
+        
         //dd($mytime);
         $results = SplnameModel::pluck('score', 'name');
         //dd($results);
-        $results2 = GchartModel::pluck('created', 'on_process');
-        $results3 = GchartModel::pluck('full_fill');
+        // $results2 = GchartModel::pluck('created', 'on_process');
+        // $results3 = GchartModel::pluck('full_fill');
 
         // SELECT startdate,worktype,statusplan,count(*)
         // FROM tb_truckplan
@@ -1385,17 +1389,21 @@ class HomeController extends Controller
         // $chart2->dataset('score', 'line', $results -> values())->backgroundColor('#5bc0de');
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
-        $results2 = GchartModel::pluck('created');
+        $results2 = GchartModel::orderBy('created','asc')->pluck('created');
+        // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::pluck('full_fill');
         $results4 = GchartModel::pluck('on_process');
 
+
+
         $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
+        $chart2->labels($results2->values());
+
         $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'green']);
-
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
