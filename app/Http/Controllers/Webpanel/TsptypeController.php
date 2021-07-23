@@ -14,6 +14,7 @@ class TsptypeController extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'webpanel';
+    protected $segmentst = 'staffwebpanel';
     protected $segmentad = 'adminwebpanel';
     protected $controller = 'tsptype';
     protected $folder = 'tsptype';
@@ -466,6 +467,225 @@ class TsptypeController extends Controller
            'folder' => $this->folder,
            'page' => 'copy',
            'segment' => $this->segmentad,
+           'row' => $row,
+           'size' => $this->ImageSize(),
+       ]);
+   }
+   ////////////////////////////////////////////////////////////////
+   //////////      admin                   ///////////////////////
+   //////////////////////////////////////////////////////////////
+   public function staffindex(Request $request)
+   {
+       $data = TsptypeModel::orderBy('created', 'DESC');
+       $view = ($request->view) ? $request->view() : 10;
+       if ($request->view == 'all') {
+           $rows = $data->get();
+       } else {
+           $rows = $data->paginate($view);
+           $rows->appends(['view' => $request->view]);
+       }
+       return view("$this->prefix.pages.$this->folder.staffindex", [
+           'js' => [
+               ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+               ["src" => 'back-end/js/sweetalert2.all.min.js'],
+               ['src' => "back-end/js/table-dragger.min.js"],
+               ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+           ],
+           'prefix' => $this->prefix,
+           'folder' => 'tsptype',
+           'page' => 'index',
+           'segment' => "$this->segmentst/tsptype",
+           'rows' => $rows
+       ]);
+   }
+   public function staffcreate()
+   {
+       return view("$this->prefix.pages.$this->folder.staffindex", [
+           'js' => [
+               ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+               ['src' => 'back-end/tinymce/tinymce.min.js'],
+               ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+           ],
+           'prefix' => $this->prefix,
+           'controller' => $this->controller,
+           'folder' => $this->folder,
+           'page' => 'add',
+           'segment' => "$this->segmentst/tsptype",
+           'size' => $this->ImageSize(),
+       ]);
+   }
+   public function ststore(Request $request)
+   {
+
+       $data = new TsptypeModel;
+       $data->name = $request->name;
+       // $data->short_detail = $request->short_detail;
+       // $data->detail = $request->detail;
+       $data->status = 'on';
+       $data->sort = 1;
+      
+       $data->created = date('Y-m-d H:i:s');
+       $data->updated = date('Y-m-d H:i:s');
+       
+       if ($data->save()) {
+           TsptypeModel::where('id', '!=', $data->id)->increment('sort');
+         
+           return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/tsptype")]);
+       } else {
+           return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/tsptype/create")]);
+       }
+   }
+   public function staffedit($id)
+   {
+       $row = TsptypeModel::find($id);
+       return view("$this->prefix.pages.$this->folder.staffindex", [
+           'js' => [
+               ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+               ['src' => "back-end/tinymce/tinymce.min.js"],
+               ["src" => 'back-end/js/sweetalert2.all.min.js'],
+               ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+           ],
+           'prefix' => $this->prefix,
+           'controller' => $this->controller,
+           'folder' => $this->folder,
+           'page' => 'edit',
+           'segment' => $this->segmentst,
+           'row' => $row,
+           'size' => $this->ImageSize(),
+       ]);
+   }
+   
+
+   public function staffupdate(Request $request, $id)
+   {
+       $data = TsptypeModel::find($id);
+       $data->name = $request->name;
+       // $data->short_detail = $request->short_detail;
+       // $data->detail = $request->detail;
+       
+       $data->updated = date('Y-m-d H:i:s');
+      
+       if ($data->save()) {
+           return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/$this->controller")]);
+       } else {
+           return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/$this->controller/" . $id)]);
+       }
+   }
+
+   public function staffdestroy(Request $request)
+   {
+       $datas = TsptypeModel::find(explode(',', $request->id));
+       if (@$datas) {
+           foreach ($datas as $data) {
+
+               TsptypeModel::where('sort', '>', $data->sort)->decrement('sort');
+               //destroy
+               $query = TsptypeModel::destroy($data->id);
+           }
+       }
+       if (@$query) {
+           return response()->json(true);
+       } else {
+           return response()->json(false);
+       }
+   }
+
+   public function staffstatus(Request $request, $id = null)
+   {
+       $get = TsptypeModel::find($id);
+       if (@$get->id) {
+           $status = ($get->status == 'off') ? 'on' : 'off';
+           $get->status = $status;
+           $get->save();
+           if ($get->id) {
+               return response()->json(true);
+           } else {
+               return response()->json(false);
+           }
+       }
+   }
+   public function staffdragsort(Request $request)
+   {
+       $from = $request->from;
+       $to = $request->to;
+
+       $get = TsptypeModel::find($request->id);
+       if ($from != "" && $to != "") {
+           if ($from > $to) {
+               TsptypeModel::whereBetween('sort', [$to, $from])->whereNotIn("id", [$get->id])->increment('sort', 1);
+           } else {
+               TsptypeModel::whereBetween('sort', [$from, $to])->whereNotIn("id", [$get->id])->decrement('sort', 1);
+           }
+           $query = TsptypeModel::where('id', $get->id)->update(['sort' => $to]);
+           return response()->json($query);
+       }
+       return response()->json(false);
+   }
+   public function staffsearch(Request $request )
+   {
+       if(isset($_GET['keyword'])){
+           $data = TsptypeModel::orderBy('created', 'DESC');
+           $view = ($request->view) ? $request->view() : 10;
+
+           $rows = $data->paginate($view);
+           $rows->appends(['view' => $request->view]);
+
+           $search_text = $_GET['keyword'];
+           $rows = DB::table('tb_tsptype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+           return  view("$this->prefix.pages.$this->folder.staffindex", [
+               'js' => [
+                   ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                   ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                   ['src' => "back-end/js/table-dragger.min.js"],
+                   ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+               ],
+               'prefix' => $this->prefix,
+               'folder' => 'tsptype',
+               'page' => 'index',
+               'segment' => "$this->segmentst/tsptype",
+               'rows' => $rows
+           ]);
+           
+       }
+       
+   
+
+   
+       
+   }
+   public function staffcreatecopy(Request $request)
+   {
+    
+       //บันทึก
+       $sort = 2;
+       $data = array();
+       $created =  date('Y-m-d H:i:s');
+       $updated = date('Y-m-d H:i:s');
+       $status = "on";
+       $data["created"] = $created;
+       $data["status"] = $status;
+       $data["updated"] = $updated;
+       $data["name"] = $request->name;
+       $data["sort"] = $sort;
+       DB::table('tb_tsptype')->insert($data);
+       return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/$this->controller")]);
+   
+   }
+   public function staffcopy($id)
+   {
+       $row = TsptypeModel::find($id);
+       return view("$this->prefix.pages.$this->folder.index", [
+           'js' => [
+               ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+               ['src' => "back-end/tinymce/tinymce.min.js"],
+               ["src" => 'back-end/js/sweetalert2.all.min.js'],
+               ["type" => "text/javascript", "src" => "back-end/build/tsptype.js"],
+           ],
+           'prefix' => $this->prefix,
+           'controller' => $this->controller,
+           'folder' => $this->folder,
+           'page' => 'copy',
+           'segment' => $this->segmentst,
            'row' => $row,
            'size' => $this->ImageSize(),
        ]);

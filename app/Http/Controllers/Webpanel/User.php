@@ -10,7 +10,7 @@ class User extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'adminwebpanel';
-    protected $segmentst = 'staffuser';
+    protected $segmentst = 'staffwebpanel';
     public function index()
     {
         return view("$this->prefix.pages.user.index",[            

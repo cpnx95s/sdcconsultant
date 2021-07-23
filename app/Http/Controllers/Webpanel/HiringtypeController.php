@@ -14,6 +14,7 @@ class HiringtypeController extends Controller
 {
     protected $prefix = 'back-end';
     protected $segment = 'webpanel';
+    protected $segmentst = 'staffwebpanel';
     protected $segmentad = 'adminwebpanel';
     protected $controller = 'hiringtype';
     protected $folder = 'hiringtype';
@@ -289,11 +290,11 @@ class HiringtypeController extends Controller
         $data["name"] = $request->name;
         $data["sort"] = $sort;
         DB::table('tb_hiringtype')->insert($data);
-        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/$this->controller")]);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segment/$this->controller")]);
     
     }
     //////////////////////////////////////////////////////////////////////////////////////
-    ///////////             admin                    ////////////////////////////////////
+    ///////////           super  admin                    ////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////
     public function adminindex(Request $request)
     {
@@ -550,6 +551,266 @@ class HiringtypeController extends Controller
         $data["sort"] = $sort;
         DB::table('tb_hiringtype')->insert($data);
         return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/$this->controller")]);
+    
+    }
+    ////////////////////////////////////////////////////////////////////
+    ////////////    admin                 /////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    public function staffindex(Request $request)
+    {
+        $data = HiringtypeModel::orderBy('created', 'DESC');
+        $view = ($request->view) ? $request->view() : 10;
+        if ($request->view == 'all') {
+            $rows = $data->get();
+        } else {
+            $view = ($request->view)? $request->view : 10 ;
+            $rows = $data->paginate($view);
+            $rows->appends(['view'=>$request->view,'page'=>$request->page,'search'=>$request->search]);
+        }
+        return view("$this->prefix.pages.hiringtype.staffindex",[
+            'css'=> ['back-end/css/table-responsive.css'],        
+            'js' => [
+                ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                ["src"=>"back-end/js/table-dragger.min.js"],
+                ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                ["type"=>"text/javascript","src"=>"back-end/build/hiringtype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'folder' => 'hiringtype',
+            'page' => 'index',
+            'segment' => "$this->segmentst/hiringtype",
+            'rows' => $rows
+        ]);
+    }
+    public function staffcreate()
+    {
+        return view("$this->prefix.pages.$this->folder.staffindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => 'back-end/tinymce/tinymce.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/hiringtype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'add',
+            'segment' => "$this->segmentst/hiringtype",
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+    public function staffcpcreate()
+    {
+        return view("$this->prefix.pages.$this->folder.staffindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => 'back-end/tinymce/tinymce.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/hiringtype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'copy',
+            'segment' => "$this->segmentst/hiringtype",
+            'size' => $this->ImageSize(),
+        ]);
+    }
+    public function staffstore(Request $request)
+    {
+
+        $data = new HiringtypeModel;
+        $data->name = $request->name;
+        $data->sort = 1;
+       
+        $data->created = date('Y-m-d H:i:s');
+        $data->updated = date('Y-m-d H:i:s');
+       
+        if ($data->save()) {
+            HiringtypeModel::where('id', '!=', $data->id)->increment('sort');
+           
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/hiringtype")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/hiringtype/create")]);
+        }
+    }
+    public function staffedit($id)
+    {
+        $row = HiringtypeModel::find($id);
+        return view("$this->prefix.pages.$this->folder.stindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => "back-end/tinymce/tinymce.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/hiringtype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'edit',
+            'segment' => $this->segmentst,
+            'row' => $row,
+         
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+    public function staffcopy($id)
+    {
+        
+        $row = HiringtypeModel::find($id);
+        return view("$this->prefix.pages.$this->folder.staffindex", [
+            'js' => [
+                ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                ['src' => "back-end/tinymce/tinymce.min.js"],
+                ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                ["type" => "text/javascript", "src" => "back-end/build/hiringtype.js"],
+            ],
+            'prefix' => $this->prefix,
+            'controller' => $this->controller,
+            'folder' => $this->folder,
+            'page' => 'copy',
+            'segment' => $this->segmentst,
+            'row' => $row,
+          
+            'size' => $this->ImageSize(),
+        ]);
+    }
+
+
+    public function staffupdate(Request $request, $id)
+    {
+        $data = HiringtypeModel::find($id);
+        $data->name = $request->name;
+       
+        $data->updated = date('Y-m-d H:i:s');
+      
+        if ($data->save()) {
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/$this->controller")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/$this->controller/" . $id)]);
+        }
+    }
+    
+
+    public function staffcopystore(Request $request ,$id)
+    {
+        $data = HiringtypeModel::find($id);
+        $data = new HiringtypeModel;
+        $data->name = $request->name;
+        $data->sort = 1;
+     
+        $data->created = date('Y-m-d H:i:s');
+        $data->updated = date('Y-m-d H:i:s');
+       
+        if ($data->save()) {
+            HiringtypeModel::where('id', '!=', $data->id)->increment('sort');
+          
+            return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/hiringtype")]);
+        } else {
+            return view("$this->prefix/alert/sweet/error", ['url' => url("$this->segmentst/hiringtype/copy")]);
+        }
+    }
+    public function staffdestroy(Request $request)
+    {
+        $datas = HiringtypeModel::find(explode(',', $request->id));
+        if (@$datas) {
+            foreach ($datas as $data) {
+
+                HiringtypeModel::where('sort', '>', $data->sort)->decrement('sort');
+                //destroy
+                $query = HiringtypeModel::destroy($data->id);
+            }
+        }
+        if (@$query) {
+            return response()->json(true);
+        } else {
+            return response()->json(false);
+        }
+    }
+
+    public function staffstatus(Request $request, $id = null)
+    {
+        $get = HiringtypeModel::find($id);
+        if (@$get->id) {
+            $status = ($get->status == 'off') ? 'on' : 'off';
+            $get->status = $status;
+            $get->save();
+            if ($get->id) {
+                return response()->json(true);
+            } else {
+                return response()->json(false);
+            }
+        }
+    }
+    public function staffdragsort(Request $request)
+    {
+        $from = $request->from;
+        $to = $request->to;
+        $data = HiringtypeModel::find($request->id);
+
+        if($from!="" && $to !="")
+        {
+            if($from > $to){
+                HiringtypeModel::whereBetween('sort', [$to, $from])->whereNotIn('id',[$data->id])->increment('sort');
+            }else{
+                HiringtypeModel::whereBetween('sort', [$from, $to])->whereNotIn('id',[$data->id])->decrement('sort');
+            }
+            $data->sort = $to;
+            if($data->save()){
+                return response()->json(true);
+            }else{
+                return response()->json(false);
+            }
+        }
+        return response()->json(false);
+    }
+
+    public function staffsearch(Request $request )
+    {
+        
+        if(isset($_GET['keyword'])){
+             $data = HiringtypeModel::orderBy('created', 'DESC');
+             $view = ($request->view) ? $request->view() : 10;
+          
+             $view = ($request->view)? $request->view : 10 ;
+             $rows = $data->paginate($view);
+             $rows = $data->get();
+         
+            $search_text = $_GET['keyword'];
+            $rows = DB::table('tb_hiringtype')->where('name','LIKE','%'.$search_text.'%')->paginate(10);
+
+            return view("$this->prefix.pages.hiringtype.staffindex",[
+                'css'=> ['back-end/css/table-responsive.css'],        
+                'js' => [
+                    ['type'=>"text/javascript",'src'=>"back-end/js/jquery.min.js",'class'=>"view-script"],
+                    ["src"=>"back-end/js/table-dragger.min.js"],
+                    ["src"=>'back-end/js/sweetalert2.all.min.js'],
+                    ["type"=>"text/javascript","src"=>"back-end/build/hiringtype.js"],
+                ],
+                'prefix' => $this->prefix,
+                'folder' => 'hiringtype',
+                'page' => 'index',
+                'segment' => "$this->segmentst/hiringtype",
+                'rows' => $rows
+            ]);
+        }
+    }
+    public function staffcreatecopy(Request $request)
+    {
+     
+        //บันทึก
+        $sort = 2;
+        $data = array();
+        $created =  date('Y-m-d H:i:s');
+        $updated = date('Y-m-d H:i:s');
+        $status = "on";
+        $data["created"] = $created;
+        $data["status"] = $status;
+        $data["updated"] = $updated;
+        $data["name"] = $request->name;
+        $data["sort"] = $sort;
+        DB::table('tb_hiringtype')->insert($data);
+        return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentst/$this->controller")]);
     
     }
 }

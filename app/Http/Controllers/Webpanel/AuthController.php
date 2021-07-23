@@ -31,7 +31,7 @@ class AuthController extends Controller
                 return redirect('adminwebpanel/');  
             }
             else if (Auth::user()->role == 'admin') {
-                return redirect('staffuser/');  
+                return redirect('staffwebpanel/');  
             }
         } else {
             return redirect('webpanel\login')->with(['error' => 'Username or Password is incorrect!']);

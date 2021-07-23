@@ -418,23 +418,183 @@ Route::group(['middleware'=>['Webpanel']], function(){
 	////////        admin                  /////////////////
 	///////////////////////////////////////////////////////
 	});
-	Route::prefix('staffuser')->group(function(){
-		Route::get('/','Webpanel\User@staffindex');
-	Route::prefix('user')->group(function(){
-		Route::get('/','Webpanel\User@staffindex');
-		Route::get('/create','Webpanel\User@staffcreate');
-		Route::put('/create','Webpanel\User@staffstore');
 
-		Route::get('/search','Webpanel\User@staffsearch');
-		Route::get('/{id}','Webpanel\User@staffedit')->where(['id'=>'[0-9]+']);
-		Route::post('/{id}','Webpanel\User@staffupdate')->where(['id'=>'[0-9]+']);
-		Route::get('/reset/{id}','Webpanel\User@staffreset')->where(['id'=>'[0-9]+']);
-		Route::post('/reset/{id}','Webpanel\User@staffonReset')->where(['id'=>'[0-9]+']);
-		Route::get('/destroy','Webpanel\User@staffdestroy');
-		Route::post('/sort','Webpanel\User@staffsort');
-		Route::post('/exist','Webpanel\User@staffexist');
-		Route::get('/exist-on-reset','Webpanel\User@staffcheckUserOnReset');
-	});
-	//////////////////////////
+		Route::prefix('staffwebpanel')->group(function(){
+
+			Route::get('/','Webpanel\HomeController@staffindex');
+			Route::get('/','Webpanel\HomeController@staffChartjs');
+			Route::post('/searchChart','Webpanel\HomeController@staffsearchChart');
+	
+	
+	
+			Route::prefix('trucktype')->group(function(){
+				Route::get('/','Webpanel\TrucktypeController@staffindex');
+				Route::get('/search','Webpanel\TrucktypeController@staffsearch')->name('trucktype.search');
+				Route::get('/create','Webpanel\TrucktypeController@staffcreate');
+				Route::put('/create','Webpanel\TrucktypeController@staffstore');
+				Route::get('/{id}','Webpanel\TrucktypeController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\TrucktypeController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\TrucktypeController@staffdestroy');
+				Route::post('/dragsort','Webpanel\TrucktypeController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\TrucktypeController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\TrucktypeController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\TrucktypeController@staffcreatecopy');
+			});
+	
+			Route::prefix('roundtrip')->group(function(){
+				Route::get('/','Webpanel\RoundtripController@staffindex');
+				Route::get('/search','Webpanel\RoundtripController@staffsearch')->name('roundtrip.search');
+				Route::get('/create','Webpanel\RoundtripController@staffcreate');
+				Route::put('/create','Webpanel\RoundtripController@staffstore');
+				Route::get('/{id}','Webpanel\RoundtripController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\RoundtripController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\RoundtripController@staffdestroy');
+				Route::post('/dragsort','Webpanel\RoundtripController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\RoundtripController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\RoundtripController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\RoundtripController@staffcreatecopy');
+			});
+	
+			Route::prefix('tsptype')->group(function(){
+				Route::get('/','Webpanel\TsptypeController@staffindex');
+				Route::get('/create','Webpanel\TsptypeController@staffcreate');
+				Route::get('/search','Webpanel\TsptypeController@staffsearch');
+				Route::put('/create','Webpanel\TsptypeController@staffstore');
+				Route::get('/{id}','Webpanel\TsptypeController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\TsptypeController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\TsptypeController@staffdestroy');
+				Route::post('/dragsort','Webpanel\TsptypeController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\TsptypeController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\TsptypeController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\TsptypeController@staffcreatecopy');
+	
+	
+			});
+	
+			Route::prefix('hiringtype')->group(function(){
+				Route::get('/','Webpanel\HiringtypeController@staffindex');
+				Route::get('/search','Webpanel\HiringtypeController@staffsearch');
+				Route::get('/create','Webpanel\HiringtypeController@staffcreate');
+				Route::put('/create','Webpanel\HiringtypeController@staffstore');
+				Route::get('/{id}','Webpanel\HiringtypeController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\HiringtypeController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\HiringtypeController@staffdestroy');
+				Route::get('/copy','Webpanel\HiringtypeController@staffcopy');
+				Route::post('/dragsort','Webpanel\HiringtypeController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\HiringtypeController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\HiringtypeController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\HiringtypeController@staffcreatecopy');
+			});
+	
+			Route::prefix('pjtype')->group(function(){
+				Route::get('/','Webpanel\PjtypeController@staffindex');
+				Route::get('/search','Webpanel\PjtypeController@staffsearch');
+				Route::get('/create','Webpanel\PjtypeController@staffcreate');
+				Route::put('/create','Webpanel\PjtypeController@staffstore');
+				Route::get('/{id}','Webpanel\PjtypeController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\PjtypeController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\PjtypeController@staffdestroy');
+				Route::get('/copy','Webpanel\PjtypeController@staffcopy');
+				Route::post('/dragsort','Webpanel\PjtypeController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\PjtypeController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\PjtypeController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\PjtypeController@staffcreatecopy');
+			});
+	
+	
+			Route::prefix('pjname')->group(function(){
+				Route::get('/','Webpanel\PjnameController@staffindex');
+				Route::get('/search','Webpanel\PjnameController@staffsearch');
+				Route::get('/create','Webpanel\PjnameController@staffcreate');
+				Route::put('/create','Webpanel\PjnameController@staffstore');
+				Route::get('/{id}','Webpanel\PjnameController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\PjnameController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\PjnameController@staffdestroy');
+				Route::get('/copy','Webpanel\PjnameController@staffcopy');
+				Route::post('/dragsort','Webpanel\PjnameController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\PjnameController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\PjnameController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\PjnameController@staffcreatecopy');
+			});
+	
+			// Route::prefix('cusname')->group(function(){
+			// 	Route::get('/','Webpanel\CusnameController@index');
+			// 	Route::get('/create','Webpanel\CusnameController@create');
+			// 	Route::put('/create','Webpanel\CusnameController@store');
+			// 	Route::get('/{id}','Webpanel\CusnameController@edit')->where(['id'=>'[0-9]+']);
+			// 	Route::post('/{id}','Webpanel\CusnameController@update')->where(['id'=>'[0-9]+']);
+			// 	Route::get('/destroy','Webpanel\CusnameController@destroy');
+			// 	Route::get('/copy','Webpanel\CusnameController@copy');
+			// 	Route::post('/dragsort','Webpanel\CusnameController@dragsort');
+			// 	Route::get('/status/{id}','Webpanel\CusnameController@status')->where(['id'=>'[0-9]+']);
+			// 	Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+			// });
+	
+			// Route::prefix('pjdetail')->group(function(){
+			// 	Route::get('/','Webpanel\PjdetailController@index');
+			// 	Route::get('/create','Webpanel\PjdetailController@create');
+			// 	Route::put('/create','Webpanel\PjdetailController@store');
+			// 	Route::get('/{id}','Webpanel\PjdetailController@edit')->where(['id'=>'[0-9]+']);
+			// 	Route::post('/{id}','Webpanel\PjdetailController@update')->where(['id'=>'[0-9]+']);
+			// 	Route::get('/destroy','Webpanel\PjdetailController@destroy');
+			// 	Route::post('/dragsort','Webpanel\PjdetailController@dragsort');
+			// 	Route::get('/status/{id}','Webpanel\PjdetailController@status')->where(['id'=>'[0-9]+']);
+			// 	Route::get('openings/duplicate/{id}', 'OpeningsController@duplicate');
+			// 	Route::get('/copy/{id}','Webpanel\TrucktypeController@copy');
+			// });
+	
+			Route::prefix('splname')->group(function(){
+				Route::get('/','Webpanel\SplnameController@staffindex');
+				Route::get('/search','Webpanel\SplnameController@staffsearch');
+				Route::get('/create','Webpanel\SplnameController@staffcreate');
+				Route::put('/create','Webpanel\SplnameController@staffstore');
+				Route::get('/{id}','Webpanel\SplnameController@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\SplnameController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\SplnameController@staffdestroy');
+				Route::get('/copy','Webpanel\SplnameController@staffcopy');
+				Route::post('/dragsort','Webpanel\SplnameController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\SplnameController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::get('/copy/{id}','Webpanel\SplnameController@staffcopy');
+				Route::get('/copy/{id}/create','Webpanel\SplnameController@staffcreatecopy');
+			});
+	
+			Route::prefix('truckplan')->group(function(){
+				Route::get('/','Webpanel\TruckplanController@staffindex');
+				Route::get('/search','Webpanel\TruckplanController@staffsearch');
+				Route::get('/searchdate','Webpanel\TruckplanController@staffsearchdate');
+				Route::get('/searchbox','Webpanel\TruckplanController@staffsearchbox');
+				Route::get('/create','Webpanel\TruckplanController@staffcreate');
+				Route::put('/create','Webpanel\TruckplanController@staffstore');
+				Route::get('/{id}','Webpanel\TruckplanController@staffedit')->where(['id'=>'[0-9]+']);
+				//Route::post('/{id}','Webpanel\TruckplanController@update')->where(['id'=>'[0-9]+']);
+				Route::match(['put', 'patch'], '/{id}','Webpanel\TruckplanController@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\TruckplanController@staffdestroy');
+				Route::get('/copy/{id}','Webpanel\TruckplanController@staffcopy');
+				Route::post('/copy/{id}/create','Webpanel\TruckplanController@staffcreatecopy');
+				Route::post('/dragsort','Webpanel\TruckplanController@staffdragsort');
+				Route::get('/status/{id}','Webpanel\TruckplanController@staffstatus')->where(['id'=>'[0-9]+']);
+				Route::post('/test','Webpanel\TruckplanController@stafftest');
+				Route::post('/dorpdows', 'Webpanel\TruckplanController@stafffetct')->name("droupdown.fetch");
+			});
+//////////////////////////////////////////////////////
+///////////       setting          //////////////////
+////////////////////////////////////////////////////
+	
+			Route::prefix('user')->group(function(){
+				Route::get('/','Webpanel\User@staffindex');
+				Route::get('/create','Webpanel\User@staffcreate');
+				Route::put('/create','Webpanel\User@staffstore');
+				Route::get('/{id}','Webpanel\User@staffedit')->where(['id'=>'[0-9]+']);
+				Route::post('/{id}','Webpanel\User@staffupdate')->where(['id'=>'[0-9]+']);
+				Route::get('/reset/{id}','Webpanel\User@staffreset')->where(['id'=>'[0-9]+']);
+				Route::post('/reset/{id}','Webpanel\User@staffonReset')->where(['id'=>'[0-9]+']);
+				Route::get('/destroy','Webpanel\User@staffdestroy');
+				Route::post('/sort','Webpanel\User@staffsort');
+				Route::post('/exist','Webpanel\User@staffexist');
+				Route::get('/exist-on-reset','Webpanel\User@staffcheckUserOnReset');
+			});
+	
+		
+	
 });
 });
