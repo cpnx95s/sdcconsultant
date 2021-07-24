@@ -591,6 +591,7 @@ Route::group(['middleware'=>['Webpanel']], function(){
 				Route::get('/destroy','Webpanel\User@staffdestroy');
 				Route::post('/sort','Webpanel\User@staffsort');
 				Route::post('/exist','Webpanel\User@staffexist');
+				Route::get('/search','Webpanel\User@staffsearch');
 				Route::get('/exist-on-reset','Webpanel\User@staffcheckUserOnReset');
 			});
 	

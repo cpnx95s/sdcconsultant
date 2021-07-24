@@ -636,7 +636,7 @@ class HiringtypeController extends Controller
     public function staffedit($id)
     {
         $row = HiringtypeModel::find($id);
-        return view("$this->prefix.pages.$this->folder.stindex", [
+        return view("$this->prefix.pages.$this->folder.staffindex", [
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                 ['src' => "back-end/tinymce/tinymce.min.js"],

@@ -30,11 +30,11 @@
                                     <div class="form-group col-md-6">
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
-                                            <option value="" hidden>Please Select</option>
+                                            <!-- <option value="" hidden>Please Select</option>
                                             <option value="pending">Pending</option>
-                                            <option value="inactive">Inactive</option>
+                                            <option value="inactive">Inactive</option> -->
                                             <option value="active">Active</option>
-                                            <option value="banned">Banned</option>
+                                            <!-- <option value="banned">Banned</option> -->
                                         </select>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <!-- <div class="form-group col-md-6">
                                         <label class="col-form-label" for="confirm_password">Confirm password</label>
                                         <div class="input-group col-mb-6">
                                             <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Confirm password" autocomplete="off">
@@ -72,7 +72,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

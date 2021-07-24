@@ -54,7 +54,7 @@
                                         <th width="40%">Username</th>
                                         <th>Date registered</th>
                                         <th width="10%">Role</th>
-                                        <th width="10%">Status</th>
+                                        <th width="10%"></th>
                                         <th width="15%">Actions</th>
                                     </tr>
                                 </thead>
@@ -73,7 +73,7 @@
                                             <td>{{date('d-F-Y',strtotime($row->created_at))}}</td>
                                             <td>{{$row->role}}</td>
                                             <td>
-                                                @switch($row->status)
+                                                <!-- @switch($row->status)
                                                     @case('pending')
                                                         <span class="badge badge-warning">{{$row->status}}</span>
                                                         @break
@@ -85,11 +85,11 @@
                                                         @break
                                                     @default   
                                                         <span class="badge badge-danger">{{$row->status}}</span>                                                     
-                                                @endswitch
+                                                @endswitch -->
                                             </td>
                                             <td>
                                                 <a href="{{url("$segment/$controller/$row->id")}}" class="btn btn-success" title="Edit"><i class="far fa-edit"></i></a>
-                                                <a href="{{url("$segment/$controller/reset/$row->id")}}" class="btn btn-info" title="Reset Password"><i class="fas fa-sync-alt"></i></a>
+                                                <!-- <a href="{{url("$segment/$controller/reset/$row->id")}}" class="btn btn-info" title="Reset Password"><i class="fas fa-sync-alt"></i></a> -->
                                                 <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
