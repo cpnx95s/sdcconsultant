@@ -59,7 +59,7 @@
                                         <select id="country" name="category_id"  class="form-control">
                                             <option value="" selected disabled>กรุณาเลือก</option>
                                              @foreach($countries as $key => $country)
-                                             <option value="{{$key}}"> {{$country}}</option>
+                                             <option value="{{$key}}"> {{$country}}</ option>
                                              @endforeach
                                              </select>
                                     </div>
