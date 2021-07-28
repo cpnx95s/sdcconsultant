@@ -242,8 +242,10 @@ class TruckplanController extends Controller
     {
         $data = TruckplanModel::find($id);
         $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
+        
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
+
         $createdaa = $request->startdate;
        $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
        $worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->city)->count();
@@ -287,10 +289,12 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-      
-           $data->tsptype = $datatsptypes;
-    
-      
+        if($defaultpjname == 0){
+             $data->tsptype = $datatsptypes;
+        }
+        else{
+            $data->tsptype = $request->state;
+        }
         $data->save();
 
 
@@ -774,9 +778,7 @@ class TruckplanController extends Controller
     }
     public function createcopy(Request $request ,$id)
     {
-
-        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->pjname)->count();
-        
+        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $createdaa =  $request->startdate;
@@ -813,8 +815,16 @@ class TruckplanController extends Controller
 
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-    $data->tsptype = $datatsptypes;
-
+        
+      
+        if ($request->state <= 6) {
+            $data->tsptype =  $request->state;
+          }
+          else  {
+            $data->tsptype =  $datatsptypes;
+          }
+ 
+ 
         $data->save();
 
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
@@ -909,6 +919,9 @@ class TruckplanController extends Controller
     public function test(Request $request){
         $list = TruckplanModel::find(explode(',', $request->id));
         $worktypebox = $request->state;
+            
+        $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
+        $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
         dd($worktypebox);
         return view('test')->with('list', $list);
@@ -1141,8 +1154,10 @@ class TruckplanController extends Controller
     {
         $data = TruckplanModel::find($id);
         $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
+        
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
+
         $createdaa = $request->startdate;
        $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
        $worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->city)->count();
@@ -1186,9 +1201,12 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-     
+        if($defaultpjname == 0){
              $data->tsptype = $datatsptypes;
-            
+        }
+        else{
+            $data->tsptype = $request->state;
+        }
         $data->save();
 
         // $data->created = date('Y-m-d H:i:s.u');
@@ -1674,7 +1692,7 @@ class TruckplanController extends Controller
     }
     public function admincreatecopy(Request $request ,$id)
     {
-           
+        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $createdaa =  $request->startdate;
@@ -1712,8 +1730,13 @@ class TruckplanController extends Controller
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
         
-          $data->tsptype = $datatsptypes;
-     
+      
+        if ($request->state <= 6) {
+            $data->tsptype =  $request->state;
+          }
+          else  {
+            $data->tsptype =  $datatsptypes;
+          }
  
  
         $data->save();
@@ -1808,13 +1831,19 @@ class TruckplanController extends Controller
 
    }
     public function admintest(Request $request){
-        $datatsptype = DB::table('tb_tsptype')->where('name',$request->state)->value('id');
-        $dataworktype = DB::table('cities')->where('id',$request->city)->value('name');
-        $list = $request->city;
-        
+       
+        $list = $request->state;
+        $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
+        $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $worktypebox = $request->input('worktypebox');
+        if ($list <= 6) {
+          $lists =  $request->state;
+        }
+        else  {
+            $lists =  $datatsptypes;
+        }
         $jo = DB::table('tb_tsptype')->where('name',$request->tsptype)->value('id');
-        dd($dataworktype);
+        dd($lists);
         return view('test')->with('list', $list);
     }
 
@@ -1916,7 +1945,7 @@ class TruckplanController extends Controller
     public function staffstore(Request $request)
     {
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
-        $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
+        $datatsptypes = DB::table('tb_tsptype')->where('name',$request->state)->value('id');
         $createdaa =  $request->startdate;
         $statusplan =  $request->statusplan;
         $worktype = $request->worktype;
@@ -2047,8 +2076,10 @@ class TruckplanController extends Controller
     {
         $data = TruckplanModel::find($id);
         $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
+        
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
+
         $createdaa = $request->startdate;
        $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();
        $worktypeupdate =  DB::table('tb_truckplan')->where('id', $id)->where('worktype',$request->city)->count();
@@ -2092,10 +2123,12 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-      
-           $data->tsptype = $datatsptypes;
-    
-      
+        if($defaultpjname == 0){
+             $data->tsptype = $datatsptypes;
+        }
+        else{
+            $data->tsptype = $request->state;
+        }
         $data->save();
 
 
@@ -2580,8 +2613,7 @@ class TruckplanController extends Controller
     public function staffcreatecopy(Request $request ,$id)
     {
 
-        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->pjname)->count();
-        
+        $defaultpjname =  DB::table('tb_truckplan')->where('id', $id)->where('pjname', $request->category_id)->count();
         $datatsptype = DB::table('states')->where('id',$request->state)->value('name');
         $datatsptypes = DB::table('tb_tsptype')->where('name',$datatsptype)->value('id');
         $createdaa =  $request->startdate;
@@ -2618,8 +2650,16 @@ class TruckplanController extends Controller
 
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-    $data->tsptype = $datatsptypes;
-
+        
+      
+        if ($request->state <= 6) {
+            $data->tsptype =  $request->state;
+          }
+          else  {
+            $data->tsptype =  $datatsptypes;
+          }
+ 
+ 
         $data->save();
 
         $createdd =  DB::table('tb_gchart')->where('created', $createdaa)->count();

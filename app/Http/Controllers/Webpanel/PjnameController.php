@@ -578,6 +578,7 @@ class PjnameController extends Controller
             
         $spjtype = DB::table('tb_pjtype')->where('name', 'like', '%'.$search_text.'%')->value('id');
         $data = PjnameModel::where('name', 'like', '%'.$search_text.'%')
+                            ->orwhere('codename', 'like', '%'.$search_text.'%')
                             ->orwhere('pjtype','=',$spjtype)
                             ->orderBy('created', 'DESC');
         $view = ($request->view) ? $request->view() : 10;
