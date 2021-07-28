@@ -89,7 +89,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{url("$segment/$controller/$row->id")}}" class="btn btn-success" title="Edit"><i class="far fa-edit"></i></a>
-                                                <!-- <a href="{{url("$segment/$controller/reset/$row->id")}}" class="btn btn-info" title="Reset Password"><i class="fas fa-sync-alt"></i></a> -->
+                                                <a href="{{url("$segment/$controller/reset/$row->id")}}" class="btn btn-info" title="Reset Password"><i class="fas fa-sync-alt"></i></a>
                                                 <a href="javascript:" class="btn btn-danger deleteItem" data-id="{{$row->id}}" title="Delete"><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
