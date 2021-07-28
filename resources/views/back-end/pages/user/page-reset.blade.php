@@ -7,7 +7,7 @@
                     <span class="breadcrumb-item active">Reset User Form</span>
                     <div class="card-header-actions"><small class="text-muted">docs</small></div>
                 </div>
-                <div class="card-body">                                 
+                <div class="card-body ">                                 
                     <form id="resetForm" method="post" action="">
                         @csrf
 
@@ -15,25 +15,25 @@
                             <label class="col-form-label" for="old_username">Username</label>
                             <input class="form-control" id="old_username" type="text" name="old_username" placeholder="Username" autocomplete="old-username" value="{{$row->email}}" readonly>
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="col-form-label" for="new_username">
                                 <input id="new_username" type="checkbox" name="new_username"> New Username
                             </label>
                             <input class="form-control" id="username" type="text" name="username" placeholder="Username" autocomplete="new-username" disabled>
-                        </div>
+                        </div> --}}
                         
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
                                         <label class="col-form-label" for="password">Password</label>
                                         <div class="input-group col-mb-6">
                                             <input type="password" id="password" class="form-control" name="password" placeholder="Password" autocomplete="off">
-                                            <div class="input-group-append">                                            
+                                            {{-- <div class="input-group-append">                                            
                                                 <div class="input-group-text">
                                                     <span class="card-link"><i class="far fa-eye" data-id="password"></i></span>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <!-- <div class="form-group col-md-6">
