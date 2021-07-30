@@ -10,7 +10,6 @@
                 <div class="card-body ">                                 
                     <form id="resetForm" method="post" action="">
                         @csrf
-
                         <div class="form-group">
                             <label class="col-form-label" for="old_username">Username</label>
                             <input class="form-control" id="old_username" type="text" name="old_username" placeholder="Username" autocomplete="old-username" value="{{$row->email}}" readonly>
