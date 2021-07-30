@@ -8,10 +8,10 @@
                     <div class="mt-2">
                         <!-- <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button> -->
                         <a class="btn btn-md btn-success" href="{{ url("$segment/create") }}"> Add</a>
-                        <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled>
+                        {{-- <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled>
                             Copy</button>
                         <button class="btn btn-md btn-warning text-white" type="reset" id="delEdit" disabled>
-                            Edit</button>
+                            Edit</button> --}}
                         <button class="btn btn-md btn-danger" type="reset" id="delSelect" disabled>Delete</button>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                                         </select>
                                     </div>
                                 </div> -->
-                            <div class="col-lg-4 col-xs-12 mb-4">
+                            <div class="col-lg-4 col-xs-12 mb-4 ">
                                 <label for="search">Search :</label>
                                 <div class="input-group">
                                     <input type="text" name="keyword" class="form-control" id="search"

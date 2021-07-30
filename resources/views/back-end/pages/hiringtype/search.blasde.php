@@ -9,8 +9,8 @@
                         <div class="card-header-actions">
                             <!-- <button class="btn btn-default btn-md" id="sort" data-text="Sort">Sort</button> -->
                             <a class="btn btn-md btn-success" href="{{url("$segment/create")}}"> Add</a>
-                            <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> Copy</button>  
-                            <button class="btn btn-md btn-warning text-white" type="reset" id="delEdit" disabled> Edit</button>       
+                            <!-- <button class="btn btn-md btn-primary text-white" type="reset" id="delCopy" disabled> Copy</button>  
+                            <button class="btn btn-md btn-warning text-white" type="reset" id="delEdit" disabled> Edit</button>        -->
                             <button class="btn btn-md btn-danger" type="reset" id="delSelect" disabled>Delete</button>                                                     
                         </div>                            
                     </div>
