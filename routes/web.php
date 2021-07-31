@@ -31,7 +31,7 @@ Route::get('index', 'HomeController@index');
 // Route::get('experience-detail/{id}', 'HomeController@experience_detail')->where(['id'=>'[0-9]+']);
 // Route::get('our_experience', 'HomeController@our_experience');
 
-
+//tasd
 
 // Backend
 Route::get('webpanel/login','Webpanel\AuthController@getLogin');
