@@ -302,7 +302,7 @@
                                         success: function(res) {
                                             if (res) {
                                                 $("#state").empty();
-                                                $("#state").append('<option>กรุณาเลือก</option>');
+                                                $("#state").append('<option></option>');
                                                 $.each(res, function(key, value) {
                                                     $("#state").append('<option value="' + key + '">' + value +
                                                         '</option>');
@@ -395,12 +395,12 @@
         Swal.fire('กรุณาเลือก ประเภทรถ');
 		return false;
 	}
-    if(document.form1.roundtrip.value == "")
-	{
-        document.form1.roundtrip.focus();
-        Swal.fire('กรุณาเลือก เที่ยวรถ');
-		return false;
-	}
+    // if(document.form1.roundtrip.value == "")
+	// {
+    //     document.form1.roundtrip.focus();
+    //     Swal.fire('กรุณาเลือก เที่ยวรถ');
+	// 	return false;
+	// }
     if(document.form1.hiringtype.value == "")
 	{
         document.form1.hiringtype.focus();
