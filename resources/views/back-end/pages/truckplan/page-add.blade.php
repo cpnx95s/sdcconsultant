@@ -84,22 +84,6 @@
                                         </select>
                                     </div>
                                     <div class="form-group ">
-                                        <label class="control-label " for="splname">
-                                            Subcontractor
-                                        </label>
-                                        <select id="splname" name="splname" class="form-control" require>
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
-
-                                            @if ($list)
-                                                @foreach ($list as $list)
-                                                    <option value="{{ $list->id }}"> {{ $list->name }} </option>
-                                                @endforeach
-
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group ">
                                         <label class="control-label " for="routecode">
                                             รหัสสายวิ่ง
                                         </label>
@@ -153,6 +137,22 @@
                                         <select id="hiringtype" name="hiringtype" class="form-control" require>
                                             <option value="">กรุณาเลือก</option>
                                             @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
+
+                                            @if ($list)
+                                                @foreach ($list as $list)
+                                                    <option value="{{ $list->id }}"> {{ $list->name }} </option>
+                                                @endforeach
+
+                                            @endif
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label " for="splname">
+                                            Subcontractor
+                                        </label>
+                                        <select id="splname" name="splname" class="form-control" require>
+                                            <option value="">กรุณาเลือก</option>
+                                            @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
 
                                             @if ($list)
                                                 @foreach ($list as $list)
