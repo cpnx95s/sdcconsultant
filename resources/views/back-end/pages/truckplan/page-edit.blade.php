@@ -395,12 +395,12 @@
         Swal.fire('กรุณาเลือก ประเภทรถ');
 		return false;
 	}
-    if(document.form1.roundtrip.value == "")
-	{
-        document.form1.roundtrip.focus();
-        Swal.fire('กรุณาเลือก เที่ยวรถ');
-		return false;
-	}
+    // if(document.form1.roundtrip.value == "")
+	// {
+    //     document.form1.roundtrip.focus();
+    //     Swal.fire('กรุณาเลือก เที่ยวรถ');
+	// 	return false;
+	// }
     if(document.form1.hiringtype.value == "")
 	{
         document.form1.hiringtype.focus();
