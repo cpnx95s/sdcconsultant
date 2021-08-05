@@ -117,6 +117,9 @@ class TruckplanController extends Controller
         $worktype = $request->worktype;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -258,7 +261,9 @@ class TruckplanController extends Controller
         $statusplan =  $request->statusplan;
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
-
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -786,6 +791,9 @@ class TruckplanController extends Controller
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -1032,6 +1040,12 @@ class TruckplanController extends Controller
         $worktype = $request->worktype;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -1170,7 +1184,9 @@ class TruckplanController extends Controller
         $statusplan =  $request->statusplan;
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
-
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -1700,6 +1716,9 @@ class TruckplanController extends Controller
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -1951,6 +1970,9 @@ class TruckplanController extends Controller
         $worktype = $request->worktype;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -2092,7 +2114,9 @@ class TruckplanController extends Controller
         $statusplan =  $request->statusplan;
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
-
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;
@@ -2621,6 +2645,9 @@ class TruckplanController extends Controller
         $worktype = $request->city;
         //$mytime = Carbon::now()->format('d-m-Y');
         $data = new TruckplanModel;
+        $data->followdate = $request->truckrqdate;
+        $data->releasedate = $request->dptdate;
+        $data->destinationdate = $request->dntdate;
         $data->startdate = $request->startdate;
         $data->routecode = $request->routecode;
         $data->routename = $request->routename;

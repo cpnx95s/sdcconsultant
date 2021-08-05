@@ -163,8 +163,11 @@
                                 <th scope="col">TELEPHONE</th>
                                 <th scope="col">START_ROUTE</th>
                                 <th scope="col">DESTINATION_ROUTE</th>
+                                <th scope="col">วันที่ตามรถ</th>
                                 <th scope="col">เวลาตามรถ</th>
+                                <th scope="col">วันที่ปล่อยรถ</th>
                                 <th scope="col">เวลาปล่อยรถ</th>
+                                <th scope="col">วันที่กำหนดถึงปลายทาง</th>
                                 <th scope="col">เวลากำหนดถึงปลายทาง</th>
                                 <th scope="col">TOTAL_HOUR</th>
                                 <th scope="col">MONITOR_STAFF</th>
@@ -248,7 +251,7 @@
                                             {{ $row->driver }}
                                         </td>
                                         <td data-label="เบอร์โทร">
-                                            {{ $row->totalhour }}
+                                            {{ $row->telnumb }}
                                         </td>
                                         <td data-label="สาขาต้นทาง">
                                             {{ $row->sbranch }}
@@ -256,11 +259,20 @@
                                         <td data-label="สาขาปลายทาง">
                                             {{ $row->dntbranch }}
                                         </td>
+                                        <td data-label="วันที่ตามรถ">
+                                        {{ \Carbon\Carbon::parse($row->followdate)->format('d/m/Y') }}
+                                        </td>
                                         <td data-label="เวลาตามรถ">
                                             {{ $row->truckrqtime }}
                                         </td>
+                                        <td data-label="วันที่ปล่อยรถ">
+                                        {{ \Carbon\Carbon::parse($row->releasedate)->format('d/m/Y') }}
+                                        </td>
                                         <td data-label="เวลาปล่อยรถ">
                                             {{ $row->dpttime }}
+                                        </td>
+                                        <td data-label="วันที่กำหนดถึงปลายทาง">
+                                        {{ \Carbon\Carbon::parse($row->destinationdate)->format('d/m/Y') }}
                                         </td>
                                         <td data-label="เวลากำหนดถึงปลายทาง">
                                             {{ $row->dnttime }}

@@ -36,259 +36,777 @@
                                         </div>
                                     </div> -->
 
-                                    <div class="form-group ">
-                                        <label class="control-label " for="startdate">
-                                            วันที่ใช้รถ
-                                        </label>
-                                        <input class="form-control" id="startdate" name="startdate" placeholder=""
-                                            value="{{ $row->startdate }}" type="date" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label " for="pjname">
-                                            ชื่อโปรเจค
-                                        </label>
-                                        <select id="country" name="category_id" class="form-control province" require>
-                                            <option value="">กรุณาเลือก</option>
-                                            @foreach ($rows as $list)
-                                                <option value="{{ $list->id }}" @if ($row->pjname == $list->id) selected @endif>{{ $list->name }}</option>
-                                            @endforeach
+                                    <div class="form-row d-flex justify-content-between">
+                                        <div class="col-md-2">
+                                            <div class="form-group date">
+                                                <label class="control-label " for="startdate">
+                                                    วันที่ใช้รถ
+                                                </label>
+                                                <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
-                                        </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="statusplan">
+                                                    สถานะแผน
+                                                </label>
+                                                <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
+                                                    <option value="Active">
+                                                        Active
+                                                    </option>
+                                                    <option value="Pending">
+                                                        Pending
+                                                    </option>
+                                                    <option value="Cancel">
+                                                        Cancel
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="tsptype">
-                                            ประเภทการขนส่ง
+                                    <div class="form-group" name="cancelarea" id="cancelarea">
+                                        <label id="cancelarea" class="control-label " for="ccremark">
+                                            สาเหตุที่ยกเลิก
                                         </label>
-                                        <select id="state" name="state" class="form-control amphures" require>
-                                        <option   value="{{ $row->tsptype }}">  {{$row->showtsptypename->name }}</option>
-                                        </select>
+                                        <input class="form-control" name="ccremark" type="text" />
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="worktype">
-                                            ประเภทงาน
-                                        </label>
-                                        <select class="select form-control" id="city" name="city">
-                                                     <option   value="{{ $row->worktype }}">  {{$row->worktype }}</option>
-                                        </select>
+                                    <input hidden class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="pjname">
+                                                    ชื่อโปรเจค
+                                                </label>
+                                                <select id="country" name="category_id" class="form-control province">
+                                                    <option value="" selected disabled>กรุณาเลือก</option>
+                                                    @foreach ($rows as $list)
+                                                    <option value="{{ $list->id }}" @if ($row->pjname == $list->id) selected @endif>{{ $list->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="tsptype">
+                                                    ประเภทการขนส่ง
+                                                </label>
+                                                <select id="state" name="state" class="form-control amphures" require>
+                                                    <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label" for="worktype">
+                                                    ประเภทงาน
+                                                </label>
+                                                <select id="city" name="city" class="select form-control" require>
+                                                    <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="splname">
-                                            Subcontractor
-                                        </label>
-                                        <select id="splname" name="splname" class="form-control">
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="routecode">
+                                                    รหัสสายวิ่ง
+                                                </label>
+                                                <input class="form-control" id="routecode" name="routecode" type="text" value="{{ $row->routecode }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="routename">
+                                                    ชื่อเส้นทางเดินรถ
+                                                </label>
+                                                <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="trucktype">
+                                                    ประเภทรถ
+                                                </label>
+                                                <select id="trucktype" name="trucktype" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\TrucktypeModel::where('status','on')->get(); @endphp
 
-                                            @if ($list)
-                                                @foreach ($list as $list)
-                                                    <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
-                                                @endforeach
-
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="routecode" ">
-                                            รหัสสายวิ่ง
-                                        </label>
-                                        <input class=" form-control" id="routecode" name="routecode" type="text"
-                                            value="{{ $row->routecode }}" />
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="routename">
-                                            ชื่อเส้นทางเดินรถ
-                                        </label>
-                                        <input class="form-control" id="routename" name="routename" type="text"
-                                            value="{{ $row->routename }}" />
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="trucktype">
-                                            ประเภทรถ
-                                        </label>
-                                        <select id="trucktype" name="trucktype" class="form-control">
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\TrucktypeModel::where('status','on')->get(); @endphp
-
-                                            @if ($list)
-                                                @foreach ($list as $list)
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
                                                     <option value="{{ $list->id }}" @if ($row->trucktype == $list->id) selected @endif> {{ $list->name }} </option>
-                                                @endforeach
+                                                    @endforeach
 
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="roundtrip">
-                                            เที่ยวรถ
-                                        </label>
-                                        <select id="roundtrip" name="roundtrip" class="form-control">
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\RoundtripModel ::where('status','on')->get(); @endphp
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="roundtrip">
+                                                    เที่ยวรถ
+                                                </label>
+                                                <select id="roundtrip" name="roundtrip" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\RoundtripModel ::where('status','on')->get(); @endphp
 
-                                            @if ($list)
-                                                @foreach ($list as $list)
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
                                                     <option value="{{ $list->id }}" @if ($row->roundtrip == $list->id) selected @endif> {{ $list->name }} </option>
-                                                @endforeach
+                                                    @endforeach
 
-                                            @endif
-                                        </select>
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="hiringtype">
-                                            รูปแบบการว่าจ้าง
-                                        </label>
-                                        <select id="hiringtype" name="hiringtype" class="form-control">
-                                            <option value="">กรุณาเลือก</option>
-                                            @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="hiringtype">
+                                                    รูปแบบการว่าจ้าง
+                                                </label>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
-                                            @if ($list)
-                                                @foreach ($list as $list)
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
                                                     <option value="{{ $list->id }}" @if ($row->hiringtype == $list->id) selected @endif> {{ $list->name }} </option>
-                                                @endforeach
+                                                    @endforeach
 
-                                            @endif
-                                        </select>
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="trucknumb">
-                                            เลขทะเบียนรถ
-                                        </label>
-                                        <input class="form-control" id="trucknumb" name="trucknumb" type="text"
-                                            value="{{ $row->trucknumb }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="splname">
+                                                    Subcontractor
+                                                </label>
+                                                <select id="splname" name="splname" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
+                                                    <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
+                                                    @endforeach
+
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="driver">
-                                            พนักงานขับรถ
-                                        </label>
-                                        <input class="form-control" id="driver" name="driver" type="text"
-                                            value="{{ $row->driver }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="trucknumb">
+                                                    เลขทะเบียนรถ
+                                                </label>
+                                                <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="driver">
+                                                    พนักงานขับรถ
+                                                </label>
+                                                <input class="form-control" id="driver" name="driver" type="text"  value="{{ $row->driver }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="telnumb">
+                                                    เบอร์โทร
+                                                </label>
+                                                <input class="form-control" id="telnumb" name="telnumb" type="text" value="{{ $row->telnumb }}" require />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="telnumb">
-                                            เบอร์โทร
-                                        </label>
-                                        <input class="form-control" id="telnumb" name="telnumb" type="text"
-                                            value="{{ $row->telnumb }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="sbranch">
+                                                    สาขาต้นทาง
+                                                </label>
+                                                <input class="form-control" id="sbranch" name="sbranch" type="text" value="{{ $row->sbranch }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="dntbranch">
+                                                    สาขาปลายทาง
+                                                </label>
+                                                <input class="form-control" id="dntbranch" name="dntbranch" type="text" value="{{ $row->dntbranch }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="totalhour">
+                                                    เวลาที่กำหนด(ชั่วโมง)
+                                                </label>
+                                                <input class="form-control" id="totalhour" name="totalhour" type="text" value="{{ $row->totalhour }}" require />
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="sbranch">
-                                            สาขาต้นทาง
-                                        </label>
-                                        <input class="form-control" id="sbranch" name="sbranch" type="text"
-                                            value="{{ $row->sbranch }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="truckrqdate">
+                                                    วันที่ตามรถ
+                                                </label>
+                                                <input class="form-control" id="truckrqdate" name="truckrqdate" type="date" value="{{ $row->followdate }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="truckrqtime">
+                                                    เวลาตามรถ
+                                                </label>
+                                                <select class="select form-control" id="truckrqtime" name="truckrqtime" >
+                                                    <option  value="{{ $row->truckrqtime }}">
+                                                    {{ $row->truckrqtime }}
+                                                    </option>
+                                                    <option value="00:00:00">
+                                                        00:00
+                                                    </option>
+                                                    <option value="00:30:00">
+                                                        00:30
+                                                    </option>
+                                                    <option value="01:00:00">
+                                                        01:00
+                                                    </option>
+                                                    <option value="01:30:00">
+                                                        01:30
+                                                    </option>
+                                                    <option value="02:00:00">
+                                                        02:00
+                                                    </option>
+                                                    <option value="02:30:00">
+                                                        02:30
+                                                    </option>
+                                                    <option value="03:00:00">
+                                                        03:00
+                                                    </option>
+                                                    <option value="03:30:00">
+                                                        03:30
+                                                    </option>
+                                                    <option value="04:00:00">
+                                                        04:00
+                                                    </option>
+                                                    <option value="04:30:00">
+                                                        04:30
+                                                    </option>
+                                                    <option value="05:00:00">
+                                                        05:00
+                                                    </option>
+                                                    <option value="05:30:00">
+                                                        05:30
+                                                    </option>
+                                                    <option value="06:00:00">
+                                                        06:00
+                                                    </option>
+                                                    <option value="06:30:00">
+                                                        06:30
+                                                    </option>
+                                                    <option value="07:00:00">
+                                                        07:00
+                                                    </option>
+                                                    <option value="07:30:00">
+                                                        07:30
+                                                    </option>
+                                                    <option value="08:00:00">
+                                                        08:00
+                                                    </option>
+                                                    <option value="08:30:00">
+                                                        08:30
+                                                    </option>
+                                                    <option value="09:00:00">
+                                                        09:00
+                                                    </option>
+                                                    <option value="09:30:00">
+                                                        09:30
+                                                    </option>
+                                                    <option value="10:00:00">
+                                                        10:00
+                                                    </option>
+                                                    <option value="10:30:00">
+                                                        10:30
+                                                    </option>
+                                                    <option value="11:00:00">
+                                                        11:00
+                                                    </option>
+                                                    <option value="11:30:00">
+                                                        11:30
+                                                    </option>
+                                                    <option value="12:00:00">
+                                                        12:00
+                                                    </option>
+                                                    <option value="12:30:00">
+                                                        12:30
+                                                    </option>
+                                                    <option value="13:00:00">
+                                                        13:00
+                                                    </option>
+                                                    <option value="13:30:00">
+                                                        13:30
+                                                    </option>
+                                                    <option value="14:00:00">
+                                                        14:00
+                                                    </option>
+                                                    <option value="14:30:00">
+                                                        14:30
+                                                    </option>
+                                                    <option value="15:00:00">
+                                                        15:00
+                                                    </option>
+                                                    <option value="15:30:00">
+                                                        15:30
+                                                    </option>
+                                                    <option value="16:00:00">
+                                                        16:00
+                                                    </option>
+                                                    <option value="16:30:00">
+                                                        16:30
+                                                    </option>
+                                                    <option value="17:00:00">
+                                                        17:00
+                                                    </option>
+                                                    <option value="17:30:00">
+                                                        17:30
+                                                    </option>
+                                                    <option value="18:00:00">
+                                                        18:00
+                                                    </option>
+                                                    <option value="18:30:00">
+                                                        18:30
+                                                    </option>
+                                                    <option value="19:00:00">
+                                                        19:00
+                                                    </option>
+                                                    <option value="19:30:00">
+                                                        19:30
+                                                    </option>
+                                                    <option value="20:00:00">
+                                                        20:00
+                                                    </option>
+                                                    <option value="20:30:00">
+                                                        20:30
+                                                    </option>
+                                                    <option value="21:00:00">
+                                                        21:00
+                                                    </option>
+                                                    <option value="21:30:00">
+                                                        21:30
+                                                    </option>
+                                                    <option value="22:00:00">
+                                                        22:00
+                                                    </option>
+                                                    <option value="22:30:00">
+                                                        22:30
+                                                    </option>
+                                                    <option value="23:00:00">
+                                                        23:00
+                                                    </option>
+                                                    <option value="23:30:00">
+                                                        23:30
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="dntbranch">
-                                            สาขาปลายทาง
-                                        </label>
-                                        <input class="form-control" id="dntbranch" name="dntbranch" type="text"
-                                            value="{{ $row->dntbranch }}" />
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="dptdate">
+                                                    วันปล่อยรถ
+                                                </label>
+                                                <input class="form-control" id="dptdate" name="dptdate" type="date" value="{{ $row->releasedate }}" require />
+                                            </div>
+                                        </div>
+                                      <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="dpttime">
+                                                    เวลาปล่อยรถ
+                                                </label>
+                                                <select class="select form-control" id="dpttime" name="dpttime">
+                                                    <option value="{{$row ->dpttime}}">
+                                                    {{$row ->dpttime}}
+                                                    </option>
+                                                    <option value="00:00:00">
+                                                        00:00
+                                                    </option>
+                                                    <option value="00:30:00">
+                                                        00:30
+                                                    </option>
+                                                    <option value="01:00:00">
+                                                        01:00
+                                                    </option>
+                                                    <option value="01:30:00">
+                                                        01:30
+                                                    </option>
+                                                    <option value="02:00:00">
+                                                        02:00
+                                                    </option>
+                                                    <option value="02:30:00">
+                                                        02:30
+                                                    </option>
+                                                    <option value="03:00:00">
+                                                        03:00
+                                                    </option>
+                                                    <option value="03:30:00">
+                                                        03:30
+                                                    </option>
+                                                    <option value="04:00:00">
+                                                        04:00
+                                                    </option>
+                                                    <option value="04:30:00">
+                                                        04:30
+                                                    </option>
+                                                    <option value="05:00:00">
+                                                        05:00
+                                                    </option>
+                                                    <option value="05:30:00">
+                                                        05:30
+                                                    </option>
+                                                    <option value="06:00:00">
+                                                        06:00
+                                                    </option>
+                                                    <option value="06:30:00">
+                                                        06:30
+                                                    </option>
+                                                    <option value="07:00:00">
+                                                        07:00
+                                                    </option>
+                                                    <option value="07:30:00">
+                                                        07:30
+                                                    </option>
+                                                    <option value="08:00:00">
+                                                        08:00
+                                                    </option>
+                                                    <option value="08:30:00">
+                                                        08:30
+                                                    </option>
+                                                    <option value="09:00:00">
+                                                        09:00
+                                                    </option>
+                                                    <option value="09:30:00">
+                                                        09:30
+                                                    </option>
+                                                    <option value="10:00:00">
+                                                        10:00
+                                                    </option>
+                                                    <option value="10:30:00">
+                                                        10:30
+                                                    </option>
+                                                    <option value="11:00:00">
+                                                        11:00
+                                                    </option>
+                                                    <option value="11:30:00">
+                                                        11:30
+                                                    </option>
+                                                    <option value="12:00:00">
+                                                        12:00
+                                                    </option>
+                                                    <option value="12:30:00">
+                                                        12:30
+                                                    </option>
+                                                    <option value="13:00:00">
+                                                        13:00
+                                                    </option>
+                                                    <option value="13:30:00">
+                                                        13:30
+                                                    </option>
+                                                    <option value="14:00:00">
+                                                        14:00
+                                                    </option>
+                                                    <option value="14:30:00">
+                                                        14:30
+                                                    </option>
+                                                    <option value="15:00:00">
+                                                        15:00
+                                                    </option>
+                                                    <option value="15:30:00">
+                                                        15:30
+                                                    </option>
+                                                    <option value="16:00:00">
+                                                        16:00
+                                                    </option>
+                                                    <option value="16:30:00">
+                                                        16:30
+                                                    </option>
+                                                    <option value="17:00:00">
+                                                        17:00
+                                                    </option>
+                                                    <option value="17:30:00">
+                                                        17:30
+                                                    </option>
+                                                    <option value="18:00:00">
+                                                        18:00
+                                                    </option>
+                                                    <option value="18:30:00">
+                                                        18:30
+                                                    </option>
+                                                    <option value="19:00:00">
+                                                        19:00
+                                                    </option>
+                                                    <option value="19:30:00">
+                                                        19:30
+                                                    </option>
+                                                    <option value="20:00:00">
+                                                        20:00
+                                                    </option>
+                                                    <option value="20:30:00">
+                                                        20:30
+                                                    </option>
+                                                    <option value="21:00:00">
+                                                        21:00
+                                                    </option>
+                                                    <option value="21:30:00">
+                                                        21:30
+                                                    </option>
+                                                    <option value="22:00:00">
+                                                        22:00
+                                                    </option>
+                                                    <option value="22:30:00">
+                                                        22:30
+                                                    </option>
+                                                    <option value="23:00:00">
+                                                        23:00
+                                                    </option>
+                                                    <option value="23:30:00">
+                                                        23:30
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="truckrqtime">
-                                            เวลาตามรถ
-                                        </label>
-                                        <input class="form-control" id="truckrqtime" name="truckrqtime" type="time"
-                                            value="{{ $row->truckrqtime }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="dntdate">
+                                                    วันกำหนดถึงปลายทาง
+                                                </label>
+                                                <input class="form-control" id="dntdate" name="dntdate" type="date" value="{{ $row->destinationdate }}" require />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="dnttime">
+                                                    เวลากำหนดถึงปลายทาง
+                                                </label>
+                                                <select class="select form-control" id="dnttime" name="dnttime">
+                                                    <option  value="{{ $row->dnttime }}">
+                                                    {{ $row->dnttime }}
+                                                    </option>
+                                                    <option value="00:00:00">
+                                                        00:00
+                                                    </option>
+                                                    <option value="00:30:00">
+                                                        00:30
+                                                    </option>
+                                                    <option value="01:00:00">
+                                                        01:00
+                                                    </option>
+                                                    <option value="01:30:00">
+                                                        01:30
+                                                    </option>
+                                                    <option value="02:00:00">
+                                                        02:00
+                                                    </option>
+                                                    <option value="02:30:00">
+                                                        02:30
+                                                    </option>
+                                                    <option value="03:00:00">
+                                                        03:00
+                                                    </option>
+                                                    <option value="03:30:00">
+                                                        03:30
+                                                    </option>
+                                                    <option value="04:00:00">
+                                                        04:00
+                                                    </option>
+                                                    <option value="04:30:00">
+                                                        04:30
+                                                    </option>
+                                                    <option value="05:00:00">
+                                                        05:00
+                                                    </option>
+                                                    <option value="05:30:00">
+                                                        05:30
+                                                    </option>
+                                                    <option value="06:00:00">
+                                                        06:00
+                                                    </option>
+                                                    <option value="06:30:00">
+                                                        06:30
+                                                    </option>
+                                                    <option value="07:00:00">
+                                                        07:00
+                                                    </option>
+                                                    <option value="07:30:00">
+                                                        07:30
+                                                    </option>
+                                                    <option value="08:00:00">
+                                                        08:00
+                                                    </option>
+                                                    <option value="08:30:00">
+                                                        08:30
+                                                    </option>
+                                                    <option value="09:00:00">
+                                                        09:00
+                                                    </option>
+                                                    <option value="09:30:00">
+                                                        09:30
+                                                    </option>
+                                                    <option value="10:00:00">
+                                                        10:00
+                                                    </option>
+                                                    <option value="10:30:00">
+                                                        10:30
+                                                    </option>
+                                                    <option value="11:00:00">
+                                                        11:00
+                                                    </option>
+                                                    <option value="11:30:00">
+                                                        11:30
+                                                    </option>
+                                                    <option value="12:00:00">
+                                                        12:00
+                                                    </option>
+                                                    <option value="12:30:00">
+                                                        12:30
+                                                    </option>
+                                                    <option value="13:00:00">
+                                                        13:00
+                                                    </option>
+                                                    <option value="13:30:00">
+                                                        13:30
+                                                    </option>
+                                                    <option value="14:00:00">
+                                                        14:00
+                                                    </option>
+                                                    <option value="14:30:00">
+                                                        14:30
+                                                    </option>
+                                                    <option value="15:00:00">
+                                                        15:00
+                                                    </option>
+                                                    <option value="15:30:00">
+                                                        15:30
+                                                    </option>
+                                                    <option value="16:00:00">
+                                                        16:00
+                                                    </option>
+                                                    <option value="16:30:00">
+                                                        16:30
+                                                    </option>
+                                                    <option value="17:00:00">
+                                                        17:00
+                                                    </option>
+                                                    <option value="17:30:00">
+                                                        17:30
+                                                    </option>
+                                                    <option value="18:00:00">
+                                                        18:00
+                                                    </option>
+                                                    <option value="18:30:00">
+                                                        18:30
+                                                    </option>
+                                                    <option value="19:00:00">
+                                                        19:00
+                                                    </option>
+                                                    <option value="19:30:00">
+                                                        19:30
+                                                    </option>
+                                                    <option value="20:00:00">
+                                                        20:00
+                                                    </option>
+                                                    <option value="20:30:00">
+                                                        20:30
+                                                    </option>
+                                                    <option value="21:00:00">
+                                                        21:00
+                                                    </option>
+                                                    <option value="21:30:00">
+                                                        21:30
+                                                    </option>
+                                                    <option value="22:00:00">
+                                                        22:00
+                                                    </option>
+                                                    <option value="22:30:00">
+                                                        22:30
+                                                    </option>
+                                                    <option value="23:00:00">
+                                                        23:00
+                                                    </option>
+                                                    <option value="23:30:00">
+                                                        23:30
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="dpttime">
-                                            เวลาปล่อยรถ
-                                        </label>
-                                        <input class="form-control" id="dpttime" name="dpttime" type="time"
-                                            value="{{ $row->dpttime }}" />
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="dnttime">
-                                            เวลากำหนดถึงปลายทาง
-                                        </label>
-                                        <input class="form-control" id="dnttime" name="dnttime" type="time"
-                                            value="{{ $row->dnttime }}" />
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="totalhour">
-                                            เวลาที่กำหนด(ชั่วโมง)
-                                        </label>
-                                        <input class="form-control" id="totalhour" name="totalhour" type="text"
-                                            value="{{ $row->totalhour }}" />
-                                    </div>
-                                    <div class="form-group ">
-                                        <label class="control-label " for="mntstaff">
-                                            Monitor staff(KDR)
-                                        </label>
-                                        <input class="form-control" id="mntstaff" name="mntstaff" type="text"
-                                            value="{{ $row->mntstaff }}" />
+                                    <div class="form-row">
+                                        <div class="col-md-4">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="mntstaff">
+                                                    Monitor staff(KDR)
+                                                </label>
+                                                <input class="form-control" id="mntstaff" name="mntstaff" type="text" value="{{ $row->mntstaff }}" require />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="remark">
+                                                    หมายเหตุ
+                                                </label>
+                                                <input class="form-control" id="remark" name="remark" type="text" value="{{ $row->remark }}"  />
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group ">
-                                        <label class="control-label " for="remark">
-                                            หมายเหตุ
-                                        </label>
-                                        <input class="form-control" id="remark" name="remark" type="text"
-                                            value="{{ $row->remark }}" />
-                                    </div>
 
-                                    <div class="form-group ">
-                                        <label class="control-label " for="statusplan">
-                                            สถานะแผน
-                                        </label>
-                                        <select class="select form-control" id="statusplan" name="statusplan"
-                                            onchange="fstatusplan()">
-                                            <option value="Active" @if ($row->statusplan == 'Active') selected @endif>
-                                                Active
-                                            </option>
-                                            <option value="Pending" @if ($row->statusplan == 'Pending') selected @endif>
-                                                Pending
-                                            </option>
-                                            <option value="Cancel" @if ($row->statusplan == 'Cancel') selected @endif>
-                                                Cancel
-                                            </option>
-                                        </select>
-                                    </div>
 
-                                    <div class="form-group name=" cancelarea" id="cancelarea" ">
-                                        <label class=" control-label " for=" ccremark">
-                                        สาเหตุที่ยกเลิก
-                                        </label>
-                                        <input class="form-control" id="ccremark" name="ccremark" type="text"
-                                            value="{{ $row->ccremark }}" />
-                                    </div>
 
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="author">
                                             ผู้สร้างรายการ
                                         </label> -->
-                                    <input hidden class="form-control" id="author" name="author" type="text"
-                                        value="{{ $row->author }}" />
+                                    <input hidden class="form-control" id="author" name="author" type="text" value="{{ $row->author }}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="editor">
                                             ผู้แก้ไขรายการ
                                         </label> -->
                                     @php $username = Auth::user()->name; @endphp
-                                    <input hidden class="form-control" id="editor" name="editor" type="text"
-                                        value="{{ $username }}" />
+                                    <input hidden class="form-control" id="editor" name="editor" type="text" value="{{ $username }}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="created">
                                             วันเวลาที่ทำรายการ
                                         </label> -->
-                                    <input hidden class="form-control" id="created" name="created" type="text"
-                                        placeholder="" value="{{ $row->created }}" />
+                                    <input hidden class="form-control" id="created" name="created" type="text" placeholder="" value="{{ $row->created }}" />
                                     <!-- </div> -->
                                     <!-- <div class="form-group ">
                                         <label class="control-label " for="updated">
                                             วันเวลาที่แก้ไขรายการ
                                         </label> -->
                                     @php $date = date('Y-m-d H:i:s'); @endphp
-                                    <input hidden class="form-control" id="updated" name="updated" type="text"
-                                        placeholder="" value="{{ $date }}" />
+                                    <input hidden class="form-control" id="updated" name="updated" type="text" placeholder="" value="{{ $date }}" />
                                     <!-- </div> -->
 
 
                                 </div>
                             </div>
                         </div>
+
 
 
 
