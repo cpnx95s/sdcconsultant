@@ -40,7 +40,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group date">
                                                 <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ
+                                                    วันที่ใช้รถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
@@ -76,7 +76,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค
+                                                    ชื่อโปรเจค<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control province">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -89,7 +89,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง
+                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="state" name="state" class="form-control amphures" require>
                                                     <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
@@ -99,7 +99,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน
+                                                    ประเภทงาน<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="city" name="city" class="select form-control" require>
                                                     <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
@@ -119,7 +119,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ
+                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
                                             </div>
@@ -129,7 +129,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ
+                                                    ประเภทรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -147,7 +147,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ
+                                                    เที่ยวรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -165,7 +165,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง
+                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="hiringtype" name="hiringtype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -205,7 +205,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ
+                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
                                             </div>

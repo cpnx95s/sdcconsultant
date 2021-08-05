@@ -54,8 +54,8 @@
                                     <div class="form-row d-flex justify-content-between">
                                         <div class="col-md-2">
                                             <div class="form-group date">
-                                                <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ
+                                                <label class="control-label" for="startdate">
+                                                    วันที่ใช้รถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" require />
                                             </div>
@@ -64,6 +64,7 @@
                                             <div class="form-group ">
                                                 <label class="control-label " for="statusplan">
                                                     สถานะแผน
+                                                    <!-- <span class="text-danger">*</span> -->
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                                     <option value="Active">
@@ -90,7 +91,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค
+                                                    ชื่อโปรเจค<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -103,7 +104,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง
+                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="state" name="state" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -113,7 +114,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน
+                                                    ประเภทงาน<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="city" name="city" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -134,7 +135,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ
+                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" require />
                                             </div>
@@ -145,7 +146,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ
+                                                    ประเภทรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -163,7 +164,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ
+                                                    เที่ยวรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -181,7 +182,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง
+                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="hiringtype" name="hiringtype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -223,7 +224,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ
+                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" require />
                                             </div>
@@ -922,11 +923,10 @@
             Swal.fire('กรุณาเลือก ประเภทรถ');
             return false;
         }
-        if(document.form1.roundtrip.value == "")
-        {
+        if (document.form1.roundtrip.value == "") {
             document.form1.roundtrip.focus();
             Swal.fire('กรุณาเลือก เที่ยวรถ');
-        	return false;
+            return false;
         }
         if (document.form1.hiringtype.value == "") {
             document.form1.hiringtype.focus();
@@ -997,5 +997,4 @@
         // }
         document.form1.submit();
     }
-
 </script>
