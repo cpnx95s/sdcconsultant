@@ -922,16 +922,16 @@ if (document.form1.trucknumb.value == "") {
     Swal.fire('กรุณากรอก เลขทะเบียนรถ');
     return false;
 }
-if (document.form1.driver.value == "") {
-    document.form1.driver.focus();
-    Swal.fire('กรุณากรอก พนักงานขับรถ');
-    return false;
-}
-if (document.form1.telnumb.value == "") {
-    document.form1.telnumb.focus();
-    Swal.fire('กรุณากรอก เบอร์โทร');
-    return false;
-}
+// if (document.form1.driver.value == "") {
+//     document.form1.driver.focus();
+//     Swal.fire('กรุณากรอก พนักงานขับรถ');
+//     return false;
+// }
+// if (document.form1.telnumb.value == "") {
+//     document.form1.telnumb.focus();
+//     Swal.fire('กรุณากรอก เบอร์โทร');
+//     return false;
+// }
 // if (document.form1.sbranch.value == "") {
 //     document.form1.sbranch.focus();
 //     Swal.fire('กรุณากรอก สาขาต้นทาง');

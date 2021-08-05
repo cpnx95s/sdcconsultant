@@ -860,7 +860,6 @@
                             });
 
 
-<<<<<<< HEAD
 
  function fncSubmit() {
 
@@ -921,16 +920,16 @@ if (document.form1.trucknumb.value == "") {
     Swal.fire('กรุณากรอก เลขทะเบียนรถ');
     return false;
 }
-if (document.form1.driver.value == "") {
-    document.form1.driver.focus();
-    Swal.fire('กรุณากรอก พนักงานขับรถ');
-    return false;
-}
-if (document.form1.telnumb.value == "") {
-    document.form1.telnumb.focus();
-    Swal.fire('กรุณากรอก เบอร์โทร');
-    return false;
-}
+// if (document.form1.driver.value == "") {
+//     document.form1.driver.focus();
+//     Swal.fire('กรุณากรอก พนักงานขับรถ');
+//     return false;
+// }
+// if (document.form1.telnumb.value == "") {
+//     document.form1.telnumb.focus();
+//     Swal.fire('กรุณากรอก เบอร์โทร');
+//     return false;
+// }
 // if (document.form1.sbranch.value == "") {
 //     document.form1.sbranch.focus();
 //     Swal.fire('กรุณากรอก สาขาต้นทาง');
@@ -981,127 +980,6 @@ if (document.form1.statusplan.value == "") {
 document.form1.submit();
 }
 </script>
-=======
-                            function fncSubmit() {
-
-                                if (document.form1.startdate.value == "") {
-                                    document.form1.startdate.focus();
-                                    Swal.fire('กรุณาเลือก วันที่ใช้รถ');
-                                    return false;
-                                }
-                                if (document.form1.category_id.value == "") {
-                                    document.form1.category_id.focus();
-                                    Swal.fire('กรุณาเลือก ชื่อโปรเจค');
-                                    return false;
-                                }
-                                if (document.form1.state.value == "") {
-                                    document.form1.state.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทการขนส่ง');
-                                    return false;
-                                }
-                                if (document.form1.city.value == "") {
-                                    document.form1.city.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทงาน');
-                                    return false;
-                                }
-                                // if(document.form1.splname.value == "")
-                                // {
-                                //     document.form1.splname.focus();
-                                //     Swal.fire('กรุณาเลือก Subcontractor');
-                                // 	return false;
-                                // }
-                                if (document.form1.routecode.value == "") {
-                                    document.form1.routecode.focus();
-                                    Swal.fire('กรุณากรอก รหัสสายวิ่ง');
-                                    return false;
-                                }
-                                if (document.form1.routename.value == "") {
-                                    document.form1.routename.focus();
-                                    Swal.fire('กรุณากรอก ชื่อเส้นทางเดินรถ');
-                                    return false;
-                                }
-                                if (document.form1.trucktype.value == "") {
-                                    document.form1.trucktype.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทรถ');
-                                    return false;
-                                }
-                                // if(document.form1.roundtrip.value == "")
-                                // {
-                                //     document.form1.roundtrip.focus();
-                                //     Swal.fire('กรุณาเลือก เที่ยวรถ');
-                                // 	return false;
-                                // }
-                                if (document.form1.hiringtype.value == "") {
-                                    document.form1.hiringtype.focus();
-                                    Swal.fire('กรุณาเลือก รูปแบบการว่าจ้าง');
-                                    return false;
-                                }
-                                if (document.form1.trucknumb.value == "") {
-                                    document.form1.trucknumb.focus();
-                                    Swal.fire('กรุณากรอก เลขทะเบียนรถ');
-                                    return false;
-                                }
-                                if (document.form1.driver.value == "") {
-                                    document.form1.driver.focus();
-                                    Swal.fire('กรุณากรอก พนักงานขับรถ');
-                                    return false;
-                                }
-                                if (document.form1.telnumb.value == "") {
-                                    document.form1.telnumb.focus();
-                                    Swal.fire('กรุณากรอก เบอร์โทร');
-                                    return false;
-                                }
-                                if (document.form1.sbranch.value == "") {
-                                    document.form1.sbranch.focus();
-                                    Swal.fire('กรุณากรอก สาขาต้นทาง');
-                                    return false;
-                                }
-                                if (document.form1.truckrqtime.value == "") {
-                                    document.form1.truckrqtime.focus();
-                                    Swal.fire('กรุณากรอก เวลาตามรถ');
-                                    return false;
-                                }
-                                if (document.form1.dpttime.value == "") {
-                                    document.form1.dpttime.focus();
-                                    Swal.fire('กรุณากรอก เวลาปล่อยรถ');
-                                    return false;
-                                }
-                                if (document.form1.dnttime.value == "") {
-                                    document.form1.dnttime.focus();
-                                    Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
-                                    return false;
-                                }
-                                if (document.form1.totalhour.value == "") {
-                                    document.form1.totalhour.focus();
-                                    Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
-                                    return false;
-                                }
-                                if (document.form1.mntstaff.value == "") {
-                                    document.form1.mntstaff.focus();
-                                    Swal.fire('กรุณากรอก Monitor staff(KDR)');
-                                    return false;
-                                }
-                                // if(document.form1.remark.value == "")
-                                // {
-                                //     document.form1.remark.focus();
-                                //     Swal.fire('กรุณากรอก Monitor หมายเหตุ');
-                                // 	return false;
-                                // }
-                                if (document.form1.statusplan.value == "") {
-                                    document.form1.statusplan.focus();
-                                    Swal.fire('กรุณากรอก สถานะแผน');
-                                    return false;
-                                }
-                                // if(document.form1.ccremark.value == "")
-                                // {
-                                //     document.form1.ccremark.focus();
-                                //     Swal.fire('กรุณากรอก สาเหตุที่ยกเลิก');
-                                // 	return false;
-                                // }
-                                document.form1.submit();
-                            }
-                        </script>
->>>>>>> f08433a0667f7f072a9d102f1a7f68243d17808a
 
                     </div>
                     <div class="card-footer">
