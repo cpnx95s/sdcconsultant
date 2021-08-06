@@ -67,6 +67,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group" name="cancelarea" id="cancel">
+                                        <label id="cancel" class="control-label " for="ccremark">
+                                            สาเหตุที่ยกเลิก
+                                        </label>
+                                        <input class="form-control" name="ccremark" type="text" value="{{ $row->ccremark }}"  />
+                                    </div>
                                     <div class="form-group" name="cancelarea" id="cancelarea">
                                         <label id="cancelarea" class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
