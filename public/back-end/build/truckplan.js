@@ -1,6 +1,6 @@
 var fullUrl = window.location.origin+'/webpanel/truckplan';
 $('#sort').on('click',function(){
-    const $this = $(this), text = $this.html(); 
+    const $this = $(this), text = $this.html();
     if(text=='Sort'){ $this.html('Cancel'); }else{ $this.html($this.data('text')) }
     $('.handle').toggle(); $('.no').toggle();
 })
@@ -38,9 +38,9 @@ if($('#trucktypeForm').length>0){
             url:{ required: true },
         },
         errorPlacement : function(error,element){
-            if(element.parent().hasClass('input-group')){ 
+            if(element.parent().hasClass('input-group')){
                 error.insertAfter(element.parent());
-            }else{ 
+            }else{
                 error.insertAfter(element);
             }
         },
@@ -57,7 +57,7 @@ $('.status').on('click',function(){
     $.ajax({type:'get',url:fullUrl+'/status/'+id,success:function(res){if(res==false){$(this).prop('checked',false)}}});
 })
 $('.badge-status').on('click',function(){
-    
+
 })
 $('#selectAll').on('click',function(){
     if($(this).is(':checked')){ $('#delSelect').prop('disabled',false);$('.ChkBox').prop('checked',true) }else{ $('#delSelect').prop('disabled',true); $('.ChkBox').prop('checked',false) }
@@ -119,6 +119,30 @@ $("#cancelarea").hide();
 
 }
 
+
+$("#splname").hide();   //which element you want to hide or show
+function fstatusplan1(){
+var type =$("#hiringtype").val();
+
+if(type == "2"){
+$("#splname").show();
+}else{
+$("#splname").hide();
+}
+
+}
+
+// $("#splname").hide();   //which element you want to hide or show
+function fstatusplan2(){
+var type =$("#hiringtype").val();
+
+if(type == "2"){
+$("#splname").show();
+}else{
+$("#splname").hide();
+}
+
+}
 
 
 

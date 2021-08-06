@@ -19,6 +19,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -180,7 +183,7 @@
                                                 <label class="control-label " for="hiringtype">
                                                     รูปแบบการว่าจ้าง
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan1()" require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -195,7 +198,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-row">
+                                    <div class="form-row splname" id="splname">
                                         <div class="col-md-12">
                                             <div class="form-group ">
                                                 <label class="control-label " for="splname">
@@ -905,19 +908,11 @@
         //     Swal.fire('กรุณาเลือก Subcontractor');
         // 	return false;
         // }
-<<<<<<< HEAD
         // if (document.form1.routecode.value == "") {
         //     document.form1.routecode.focus();
         //     Swal.fire('กรุณากรอก รหัสสายวิ่ง');
         //     return false;
         // }
-=======
-        if (document.form1.routecode.value == "") {
-            document.form1.routecode.focus();
-            Swal.fire('กรุณากรอก รหัสสายวิ่ง');
-            return false;
-        }
->>>>>>> f08433a0667f7f072a9d102f1a7f68243d17808a
         if (document.form1.routename.value == "") {
             document.form1.routename.focus();
             Swal.fire('กรุณากรอก ชื่อเส้นทางเดินรถ');
@@ -928,21 +923,12 @@
             Swal.fire('กรุณาเลือก ประเภทรถ');
             return false;
         }
-<<<<<<< HEAD
         if(document.form1.roundtrip.value == "")
         {
             document.form1.roundtrip.focus();
             Swal.fire('กรุณาเลือก เที่ยวรถ');
         	return false;
         }
-=======
-        // if(document.form1.roundtrip.value == "")
-        // {
-        //     document.form1.roundtrip.focus();
-        //     Swal.fire('กรุณาเลือก เที่ยวรถ');
-        // 	return false;
-        // }
->>>>>>> f08433a0667f7f072a9d102f1a7f68243d17808a
         if (document.form1.hiringtype.value == "") {
             document.form1.hiringtype.focus();
             Swal.fire('กรุณาเลือก รูปแบบการว่าจ้าง');
@@ -953,17 +939,16 @@
             Swal.fire('กรุณากรอก เลขทะเบียนรถ');
             return false;
         }
-        if (document.form1.driver.value == "") {
-            document.form1.driver.focus();
-            Swal.fire('กรุณากรอก พนักงานขับรถ');
-            return false;
-        }
-        if (document.form1.telnumb.value == "") {
-            document.form1.telnumb.focus();
-            Swal.fire('กรุณากรอก เบอร์โทร');
-            return false;
-        }
-<<<<<<< HEAD
+        // if (document.form1.driver.value == "") {
+        //     document.form1.driver.focus();
+        //     Swal.fire('กรุณากรอก พนักงานขับรถ');
+        //     return false;
+        // }
+        // if (document.form1.telnumb.value == "") {
+        //     document.form1.telnumb.focus();
+        //     Swal.fire('กรุณากรอก เบอร์โทร');
+        //     return false;
+        // }
         // if (document.form1.sbranch.value == "") {
         //     document.form1.sbranch.focus();
         //     Swal.fire('กรุณากรอก สาขาต้นทาง');
@@ -994,38 +979,6 @@
         //     Swal.fire('กรุณากรอก Monitor staff(KDR)');
         //     return false;
         // }
-=======
-        if (document.form1.sbranch.value == "") {
-            document.form1.sbranch.focus();
-            Swal.fire('กรุณากรอก สาขาต้นทาง');
-            return false;
-        }
-        if (document.form1.truckrqtime.value == "") {
-            document.form1.truckrqtime.focus();
-            Swal.fire('กรุณากรอก เวลาตามรถ');
-            return false;
-        }
-        if (document.form1.dpttime.value == "") {
-            document.form1.dpttime.focus();
-            Swal.fire('กรุณากรอก เวลาปล่อยรถ');
-            return false;
-        }
-        if (document.form1.dnttime.value == "") {
-            document.form1.dnttime.focus();
-            Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
-            return false;
-        }
-        if (document.form1.totalhour.value == "") {
-            document.form1.totalhour.focus();
-            Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
-            return false;
-        }
-        if (document.form1.mntstaff.value == "") {
-            document.form1.mntstaff.focus();
-            Swal.fire('กรุณากรอก Monitor staff(KDR)');
-            return false;
-        }
->>>>>>> f08433a0667f7f072a9d102f1a7f68243d17808a
         // if(document.form1.remark.value == "")
         // {
         //     document.form1.remark.focus();
@@ -1045,8 +998,6 @@
         // }
         document.form1.submit();
     }
-<<<<<<< HEAD
+
+
 </script>
-=======
-</script>
->>>>>>> f08433a0667f7f072a9d102f1a7f68243d17808a

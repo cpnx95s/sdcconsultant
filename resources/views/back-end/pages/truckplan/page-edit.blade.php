@@ -167,7 +167,7 @@
                                                 <label class="control-label " for="hiringtype">
                                                     รูปแบบการว่าจ้าง
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan2()" require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -419,7 +419,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div> 
+                                    </div>
                                     <div class="form-row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
@@ -922,16 +922,16 @@ if (document.form1.trucknumb.value == "") {
     Swal.fire('กรุณากรอก เลขทะเบียนรถ');
     return false;
 }
-if (document.form1.driver.value == "") {
-    document.form1.driver.focus();
-    Swal.fire('กรุณากรอก พนักงานขับรถ');
-    return false;
-}
-if (document.form1.telnumb.value == "") {
-    document.form1.telnumb.focus();
-    Swal.fire('กรุณากรอก เบอร์โทร');
-    return false;
-}
+// if (document.form1.driver.value == "") {
+//     document.form1.driver.focus();
+//     Swal.fire('กรุณากรอก พนักงานขับรถ');
+//     return false;
+// }
+// if (document.form1.telnumb.value == "") {
+//     document.form1.telnumb.focus();
+//     Swal.fire('กรุณากรอก เบอร์โทร');
+//     return false;
+// }
 // if (document.form1.sbranch.value == "") {
 //     document.form1.sbranch.focus();
 //     Swal.fire('กรุณากรอก สาขาต้นทาง');
