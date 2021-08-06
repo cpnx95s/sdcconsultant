@@ -51,6 +51,9 @@
                                                     สถานะแผน
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
+                                                <option value="{{$row->statusplan}}">
+                                                {{$row->statusplan}}
+                                                    </option>
                                                     <option value="Active">
                                                         Active
                                                     </option>
