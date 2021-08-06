@@ -54,8 +54,8 @@
                                     <div class="form-row d-flex justify-content-between">
                                         <div class="col-md-2">
                                             <div class="form-group date">
-                                                <label class="control-label" for="startdate">
-                                                    วันที่ใช้รถ<span class="text-danger">*</span>
+                                                <label class="control-label " for="startdate">
+                                                    วันที่ใช้รถ
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" require />
                                             </div>
@@ -64,7 +64,6 @@
                                             <div class="form-group ">
                                                 <label class="control-label " for="statusplan">
                                                     สถานะแผน
-                                                    <!-- <span class="text-danger">*</span> -->
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                                     <option value="Active">
@@ -91,7 +90,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค<span class="text-danger">*</span>
+                                                    ชื่อโปรเจค
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -104,7 +103,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
+                                                    ประเภทการขนส่ง
                                                 </label>
                                                 <select id="state" name="state" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -114,7 +113,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน<span class="text-danger">*</span>
+                                                    ประเภทงาน
                                                 </label>
                                                 <select id="city" name="city" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -135,7 +134,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
+                                                    ชื่อเส้นทางเดินรถ
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" require />
                                             </div>
@@ -146,7 +145,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ<span class="text-danger">*</span>
+                                                    ประเภทรถ
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -164,7 +163,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ<span class="text-danger">*</span>
+                                                    เที่ยวรถ
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -182,9 +181,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
+                                                    รูปแบบการว่าจ้าง
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan1()" require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -199,10 +198,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-row">
+                                    <div class="form-row splname" id="splname">
                                         <div class="col-md-12">
                                             <div class="form-group ">
-                                                <label class="control-label " for="splname">
+                                                <label class="control-label" for="splname">
                                                     Subcontractor
                                                 </label>
                                                 <select id="splname" name="splname" class="form-control" require>
@@ -224,7 +223,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
+                                                    เลขทะเบียนรถ
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" require />
                                             </div>
@@ -828,6 +827,7 @@
 </div>
 </div>
 
+
 <script type=text/javascript>
     $('#country').change(function() {
         var countryID = $(this).val();
@@ -923,10 +923,11 @@
             Swal.fire('กรุณาเลือก ประเภทรถ');
             return false;
         }
-        if (document.form1.roundtrip.value == "") {
+        if(document.form1.roundtrip.value == "")
+        {
             document.form1.roundtrip.focus();
             Swal.fire('กรุณาเลือก เที่ยวรถ');
-            return false;
+        	return false;
         }
         if (document.form1.hiringtype.value == "") {
             document.form1.hiringtype.focus();
@@ -997,4 +998,6 @@
         // }
         document.form1.submit();
     }
+
+
 </script>

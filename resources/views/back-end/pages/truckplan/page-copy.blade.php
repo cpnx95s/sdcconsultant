@@ -39,7 +39,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group date">
                                                 <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ<span class="text-danger">*</span>
+                                                    วันที่ใช้รถ
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
@@ -78,7 +78,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค<span class="text-danger">*</span>
+                                                    ชื่อโปรเจค
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control province">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -91,7 +91,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
+                                                    ประเภทการขนส่ง
                                                 </label>
                                                 <select id="state" name="state" class="form-control amphures" require>
                                                     <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
@@ -101,7 +101,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน<span class="text-danger">*</span>
+                                                    ประเภทงาน
                                                 </label>
                                                 <select id="city" name="city" class="select form-control" require>
                                                     <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
@@ -121,7 +121,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
+                                                    ชื่อเส้นทางเดินรถ
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
                                             </div>
@@ -131,7 +131,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ<span class="text-danger">*</span>
+                                                    ประเภทรถ
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -149,7 +149,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ<span class="text-danger">*</span>
+                                                    เที่ยวรถ
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -167,9 +167,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
+                                                    รูปแบบการว่าจ้าง
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan2()"require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -207,7 +207,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
+                                                    เลขทะเบียนรถ
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
                                             </div>
@@ -421,7 +421,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div> 
+                                    </div>
                                     <div class="form-row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
@@ -863,7 +863,6 @@
                             });
 
 
-
  function fncSubmit() {
 
 if (document.form1.startdate.value == "") {
@@ -983,6 +982,7 @@ if (document.form1.statusplan.value == "") {
 document.form1.submit();
 }
 </script>
+
 
                     </div>
                     <div class="card-footer">

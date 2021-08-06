@@ -170,7 +170,7 @@
                                                 <label class="control-label " for="hiringtype">
                                                     รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan2()" require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -422,7 +422,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div> 
+                                    </div>
                                     <div class="form-row">
                                         <div class="col-md-6 col-sm-6">
                                             <div class="form-group ">
@@ -865,8 +865,7 @@
                             });
 
 
-
-    function fncSubmit() {
+                            function fncSubmit() {
 
 if (document.form1.startdate.value == "") {
     document.form1.startdate.focus();
@@ -909,8 +908,7 @@ if (document.form1.trucktype.value == "") {
     Swal.fire('กรุณาเลือก ประเภทรถ');
     return false;
 }
-if(document.form1.roundtrip.value == "")
-{
+if (document.form1.roundtrip.value == "") {
     document.form1.roundtrip.focus();
     Swal.fire('กรุณาเลือก เที่ยวรถ');
     return false;
