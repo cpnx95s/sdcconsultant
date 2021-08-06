@@ -104,8 +104,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-primary" type="submit">ค้นหา</button>
-                                        <button class="btn btn-secondary" type="submit">คืนค่าค้นหา</button>
+                                        <button class="btn btn-primary" type="submit">Search</button>
+                                        <!-- <button class="btn btn-secondary" type="submit">คืนค่าค้นหา</button> -->
                                     </td>
                                 </tr>
                             </tbody>
