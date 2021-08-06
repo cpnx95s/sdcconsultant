@@ -49,7 +49,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group ">
                                                 <label class="control-label " for="statusplan">
-                                                    สถานะแผน 1
+                                                    สถานะแผน
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                                 <option value="{{$row->statusplan}}">
