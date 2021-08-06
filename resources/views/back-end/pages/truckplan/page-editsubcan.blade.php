@@ -40,7 +40,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group date">
                                                 <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ<span class="text-danger">*</span>
+                                                    วันที่ใช้รถ
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
@@ -49,7 +49,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group ">
                                                 <label class="control-label " for="statusplan">
-                                                    สถานะแผน 1
+                                                    สถานะแผน
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                                 <option value="{{$row->statusplan}}">
@@ -68,18 +68,28 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group" name="cancelarea" id="cancel">
+                                        <label id="cancel" class="control-label " for="ccremark">
+                                            สาเหตุที่ยกเลิก
+                                        </label>
+                                        <input class="form-control" name="ccremark" type="text" value="{{ $row->ccremark }}"  />
+                                    </div>
+
+
                                     <div class="form-group" name="cancelarea" id="cancelarea">
                                         <label id="cancelarea" class="control-label " for="ccremark">
                                             สาเหตุที่ยกเลิก
                                         </label>
-                                        <input class="form-control" name="ccremark" type="text" />
+                                        <input class="form-control" name="ccremark" type="text"value="{{ $row->ccremark }}" />
                                     </div>
-                                    <input hidden class="form-control" id="author" name="author" type="text" require value="{{ Auth::user()->name }}" />
+
+
+
                                     <div class="form-row">
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค<span class="text-danger">*</span>
+                                                    ชื่อโปรเจค
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control province">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -92,7 +102,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
+                                                    ประเภทการขนส่ง
                                                 </label>
                                                 <select id="state" name="state" class="form-control amphures" require>
                                                     <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
@@ -102,7 +112,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน<span class="text-danger">*</span>
+                                                    ประเภทงาน
                                                 </label>
                                                 <select id="city" name="city" class="select form-control" require>
                                                     <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
@@ -122,7 +132,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
+                                                    ชื่อเส้นทางเดินรถ
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
                                             </div>
@@ -132,7 +142,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ<span class="text-danger">*</span>
+                                                    ประเภทรถ
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -150,7 +160,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ<span class="text-danger">*</span>
+                                                    เที่ยวรถ
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -184,33 +194,52 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-row" id="splname1">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="splname1" >
+                                                    Subcontractor
+                                                </label>
+                                                <select id="splname1" name="splname" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
 
-                                <div class="form-row" id="splname">
-                                    <div class="col-md-12">
-                                        <div class="form-group ">
-                                            <label class="control-label " for="splname">
-                                                Subcontractor
-                                            </label>
-                                            <select id="splname" name="splname" class="form-control" require>
-                                                <option value="">กรุณาเลือก</option>
-                                                @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
+                                                    <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
+                                                    @endforeach
 
-                                                @if ($list)
-                                                @foreach ($list as $list)
-                                                <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
-                                                @endforeach
-
-                                                @endif
-                                            </select>
+                                                    @endif
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="form-row" id="splname">
+                                        <div class="col-md-12">
+                                            <div class="form-group ">
+                                                <label class="control-label " for="splname" >
+                                                    Subcontractor
+                                                </label>
+                                                <select id="splname" name="splname" class="form-control" require>
+                                                    <option value="">กรุณาเลือก</option>
+                                                    @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+
+                                                    @if ($list)
+                                                    @foreach ($list as $list)
+                                                    <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
+                                                    @endforeach
+
+                                                    @endif
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-row">
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
+                                                    เลขทะเบียนรถ
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
                                             </div>
@@ -814,15 +843,6 @@
 
 
 
-                    <div class="card-footer">
-                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
-                        <a class="btn btn-danger" href="{{ url("$segment") }}">ยกเลิก</a>
-                    </div>
-            </form>
-        </div>
-    </div>
-</div>
-</div>
 
                         <script type=text/javascript>
                             $('#country').change(function() {
@@ -993,6 +1013,15 @@ if (document.form1.statusplan.value == "") {
 // }
 document.form1.submit();
 }
-</script>
+                        </script>
 
 
+                    <div class="card-footer">
+                        <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
+                        <a class="btn btn-danger" href="{{ url("$segment") }}">ยกเลิก</a>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

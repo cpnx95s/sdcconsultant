@@ -145,8 +145,10 @@ var type =$("#hiringtype").val();
 
 if(type == "2"){
 $("#splname").show();
+$("#splname1").hide();
 }else{
 $("#splname").hide();
+$("#splname1").hide();
 }
 
 }
