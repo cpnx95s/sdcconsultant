@@ -19,6 +19,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.12.4.min.js'></script>
 <div class="fade-in">
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -51,8 +54,8 @@
                                     <div class="form-row d-flex justify-content-between">
                                         <div class="col-md-2">
                                             <div class="form-group date">
-                                                <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ
+                                                <label class="control-label" for="startdate">
+                                                    วันที่ใช้รถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" require />
                                             </div>
@@ -61,6 +64,7 @@
                                             <div class="form-group ">
                                                 <label class="control-label " for="statusplan">
                                                     สถานะแผน
+                                                    <!-- <span class="text-danger">*</span> -->
                                                 </label>
                                                 <select class="select form-control" id="statusplan" name="statusplan" onchange="fstatusplan()">
                                                     <option value="Active">
@@ -87,7 +91,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค
+                                                    ชื่อโปรเจค<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -100,7 +104,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง
+                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="state" name="state" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -110,7 +114,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน
+                                                    ประเภทงาน<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="city" name="city" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -131,7 +135,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ
+                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" require />
                                             </div>
@@ -142,7 +146,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ
+                                                    ประเภทรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -160,7 +164,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ
+                                                    เที่ยวรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -178,7 +182,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง
+                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="hiringtype" name="hiringtype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -220,7 +224,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ
+                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" require />
                                             </div>
@@ -824,7 +828,6 @@
 </div>
 </div>
 
-
 <script type=text/javascript>
     $('#country').change(function() {
         var countryID = $(this).val();
@@ -905,11 +908,11 @@
         //     Swal.fire('กรุณาเลือก Subcontractor');
         // 	return false;
         // }
-        if (document.form1.routecode.value == "") {
-            document.form1.routecode.focus();
-            Swal.fire('กรุณากรอก รหัสสายวิ่ง');
-            return false;
-        }
+        // if (document.form1.routecode.value == "") {
+        //     document.form1.routecode.focus();
+        //     Swal.fire('กรุณากรอก รหัสสายวิ่ง');
+        //     return false;
+        // }
         if (document.form1.routename.value == "") {
             document.form1.routename.focus();
             Swal.fire('กรุณากรอก ชื่อเส้นทางเดินรถ');
@@ -920,12 +923,11 @@
             Swal.fire('กรุณาเลือก ประเภทรถ');
             return false;
         }
-        // if(document.form1.roundtrip.value == "")
-        // {
-        //     document.form1.roundtrip.focus();
-        //     Swal.fire('กรุณาเลือก เที่ยวรถ');
-        // 	return false;
-        // }
+        if (document.form1.roundtrip.value == "") {
+            document.form1.roundtrip.focus();
+            Swal.fire('กรุณาเลือก เที่ยวรถ');
+            return false;
+        }
         if (document.form1.hiringtype.value == "") {
             document.form1.hiringtype.focus();
             Swal.fire('กรุณาเลือก รูปแบบการว่าจ้าง');
@@ -936,46 +938,46 @@
             Swal.fire('กรุณากรอก เลขทะเบียนรถ');
             return false;
         }
-        if (document.form1.driver.value == "") {
-            document.form1.driver.focus();
-            Swal.fire('กรุณากรอก พนักงานขับรถ');
-            return false;
-        }
-        if (document.form1.telnumb.value == "") {
-            document.form1.telnumb.focus();
-            Swal.fire('กรุณากรอก เบอร์โทร');
-            return false;
-        }
-        if (document.form1.sbranch.value == "") {
-            document.form1.sbranch.focus();
-            Swal.fire('กรุณากรอก สาขาต้นทาง');
-            return false;
-        }
-        if (document.form1.truckrqtime.value == "") {
-            document.form1.truckrqtime.focus();
-            Swal.fire('กรุณากรอก เวลาตามรถ');
-            return false;
-        }
-        if (document.form1.dpttime.value == "") {
-            document.form1.dpttime.focus();
-            Swal.fire('กรุณากรอก เวลาปล่อยรถ');
-            return false;
-        }
-        if (document.form1.dnttime.value == "") {
-            document.form1.dnttime.focus();
-            Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
-            return false;
-        }
-        if (document.form1.totalhour.value == "") {
-            document.form1.totalhour.focus();
-            Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
-            return false;
-        }
-        if (document.form1.mntstaff.value == "") {
-            document.form1.mntstaff.focus();
-            Swal.fire('กรุณากรอก Monitor staff(KDR)');
-            return false;
-        }
+        // if (document.form1.driver.value == "") {
+        //     document.form1.driver.focus();
+        //     Swal.fire('กรุณากรอก พนักงานขับรถ');
+        //     return false;
+        // }
+        // if (document.form1.telnumb.value == "") {
+        //     document.form1.telnumb.focus();
+        //     Swal.fire('กรุณากรอก เบอร์โทร');
+        //     return false;
+        // }
+        // if (document.form1.sbranch.value == "") {
+        //     document.form1.sbranch.focus();
+        //     Swal.fire('กรุณากรอก สาขาต้นทาง');
+        //     return false;
+        // }
+        // if (document.form1.truckrqtime.value == "") {
+        //     document.form1.truckrqtime.focus();
+        //     Swal.fire('กรุณากรอก เวลาตามรถ');
+        //     return false;
+        // }
+        // if (document.form1.dpttime.value == "") {
+        //     document.form1.dpttime.focus();
+        //     Swal.fire('กรุณากรอก เวลาปล่อยรถ');
+        //     return false;
+        // }
+        // if (document.form1.dnttime.value == "") {
+        //     document.form1.dnttime.focus();
+        //     Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
+        //     return false;
+        // }
+        // if (document.form1.totalhour.value == "") {
+        //     document.form1.totalhour.focus();
+        //     Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
+        //     return false;
+        // }
+        // if (document.form1.mntstaff.value == "") {
+        //     document.form1.mntstaff.focus();
+        //     Swal.fire('กรุณากรอก Monitor staff(KDR)');
+        //     return false;
+        // }
         // if(document.form1.remark.value == "")
         // {
         //     document.form1.remark.focus();

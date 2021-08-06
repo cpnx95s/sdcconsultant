@@ -39,7 +39,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group date">
                                                 <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ
+                                                    วันที่ใช้รถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
@@ -75,7 +75,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค
+                                                    ชื่อโปรเจค<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control province">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -88,7 +88,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง
+                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="state" name="state" class="form-control amphures" require>
                                                     <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
@@ -98,7 +98,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน
+                                                    ประเภทงาน<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="city" name="city" class="select form-control" require>
                                                     <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
@@ -118,7 +118,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ
+                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
                                             </div>
@@ -128,7 +128,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ
+                                                    ประเภทรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -146,7 +146,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ
+                                                    เที่ยวรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -164,7 +164,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง
+                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="hiringtype" name="hiringtype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -204,7 +204,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ
+                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
                                             </div>
@@ -860,125 +860,126 @@
                             });
 
 
-                            function fncSubmit() {
 
-                                if (document.form1.startdate.value == "") {
-                                    document.form1.startdate.focus();
-                                    Swal.fire('กรุณาเลือก วันที่ใช้รถ');
-                                    return false;
-                                }
-                                if (document.form1.category_id.value == "") {
-                                    document.form1.category_id.focus();
-                                    Swal.fire('กรุณาเลือก ชื่อโปรเจค');
-                                    return false;
-                                }
-                                if (document.form1.state.value == "") {
-                                    document.form1.state.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทการขนส่ง');
-                                    return false;
-                                }
-                                if (document.form1.city.value == "") {
-                                    document.form1.city.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทงาน');
-                                    return false;
-                                }
-                                // if(document.form1.splname.value == "")
-                                // {
-                                //     document.form1.splname.focus();
-                                //     Swal.fire('กรุณาเลือก Subcontractor');
-                                // 	return false;
-                                // }
-                                if (document.form1.routecode.value == "") {
-                                    document.form1.routecode.focus();
-                                    Swal.fire('กรุณากรอก รหัสสายวิ่ง');
-                                    return false;
-                                }
-                                if (document.form1.routename.value == "") {
-                                    document.form1.routename.focus();
-                                    Swal.fire('กรุณากรอก ชื่อเส้นทางเดินรถ');
-                                    return false;
-                                }
-                                if (document.form1.trucktype.value == "") {
-                                    document.form1.trucktype.focus();
-                                    Swal.fire('กรุณาเลือก ประเภทรถ');
-                                    return false;
-                                }
-                                // if(document.form1.roundtrip.value == "")
-                                // {
-                                //     document.form1.roundtrip.focus();
-                                //     Swal.fire('กรุณาเลือก เที่ยวรถ');
-                                // 	return false;
-                                // }
-                                if (document.form1.hiringtype.value == "") {
-                                    document.form1.hiringtype.focus();
-                                    Swal.fire('กรุณาเลือก รูปแบบการว่าจ้าง');
-                                    return false;
-                                }
-                                if (document.form1.trucknumb.value == "") {
-                                    document.form1.trucknumb.focus();
-                                    Swal.fire('กรุณากรอก เลขทะเบียนรถ');
-                                    return false;
-                                }
-                                if (document.form1.driver.value == "") {
-                                    document.form1.driver.focus();
-                                    Swal.fire('กรุณากรอก พนักงานขับรถ');
-                                    return false;
-                                }
-                                if (document.form1.telnumb.value == "") {
-                                    document.form1.telnumb.focus();
-                                    Swal.fire('กรุณากรอก เบอร์โทร');
-                                    return false;
-                                }
-                                if (document.form1.sbranch.value == "") {
-                                    document.form1.sbranch.focus();
-                                    Swal.fire('กรุณากรอก สาขาต้นทาง');
-                                    return false;
-                                }
-                                if (document.form1.truckrqtime.value == "") {
-                                    document.form1.truckrqtime.focus();
-                                    Swal.fire('กรุณากรอก เวลาตามรถ');
-                                    return false;
-                                }
-                                if (document.form1.dpttime.value == "") {
-                                    document.form1.dpttime.focus();
-                                    Swal.fire('กรุณากรอก เวลาปล่อยรถ');
-                                    return false;
-                                }
-                                if (document.form1.dnttime.value == "") {
-                                    document.form1.dnttime.focus();
-                                    Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
-                                    return false;
-                                }
-                                if (document.form1.totalhour.value == "") {
-                                    document.form1.totalhour.focus();
-                                    Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
-                                    return false;
-                                }
-                                if (document.form1.mntstaff.value == "") {
-                                    document.form1.mntstaff.focus();
-                                    Swal.fire('กรุณากรอก Monitor staff(KDR)');
-                                    return false;
-                                }
-                                // if(document.form1.remark.value == "")
-                                // {
-                                //     document.form1.remark.focus();
-                                //     Swal.fire('กรุณากรอก Monitor หมายเหตุ');
-                                // 	return false;
-                                // }
-                                if (document.form1.statusplan.value == "") {
-                                    document.form1.statusplan.focus();
-                                    Swal.fire('กรุณากรอก สถานะแผน');
-                                    return false;
-                                }
-                                // if(document.form1.ccremark.value == "")
-                                // {
-                                //     document.form1.ccremark.focus();
-                                //     Swal.fire('กรุณากรอก สาเหตุที่ยกเลิก');
-                                // 	return false;
-                                // }
-                                document.form1.submit();
-                            }
-                        </script>
+ function fncSubmit() {
+
+if (document.form1.startdate.value == "") {
+    document.form1.startdate.focus();
+    Swal.fire('กรุณาเลือก วันที่ใช้รถ');
+    return false;
+}
+if (document.form1.category_id.value == "") {
+    document.form1.category_id.focus();
+    Swal.fire('กรุณาเลือก ชื่อโปรเจค');
+    return false;
+}
+if (document.form1.state.value == "") {
+    document.form1.state.focus();
+    Swal.fire('กรุณาเลือก ประเภทการขนส่ง');
+    return false;
+}
+if (document.form1.city.value == "") {
+    document.form1.city.focus();
+    Swal.fire('กรุณาเลือก ประเภทงาน');
+    return false;
+}
+// if(document.form1.splname.value == "")
+// {
+//     document.form1.splname.focus();
+//     Swal.fire('กรุณาเลือก Subcontractor');
+// 	return false;
+// }
+// if (document.form1.routecode.value == "") {
+//     document.form1.routecode.focus();
+//     Swal.fire('กรุณากรอก รหัสสายวิ่ง');
+//     return false;
+// }
+if (document.form1.routename.value == "") {
+    document.form1.routename.focus();
+    Swal.fire('กรุณากรอก ชื่อเส้นทางเดินรถ');
+    return false;
+}
+if (document.form1.trucktype.value == "") {
+    document.form1.trucktype.focus();
+    Swal.fire('กรุณาเลือก ประเภทรถ');
+    return false;
+}
+if(document.form1.roundtrip.value == "")
+{
+    document.form1.roundtrip.focus();
+    Swal.fire('กรุณาเลือก เที่ยวรถ');
+    return false;
+}
+if (document.form1.hiringtype.value == "") {
+    document.form1.hiringtype.focus();
+    Swal.fire('กรุณาเลือก รูปแบบการว่าจ้าง');
+    return false;
+}
+if (document.form1.trucknumb.value == "") {
+    document.form1.trucknumb.focus();
+    Swal.fire('กรุณากรอก เลขทะเบียนรถ');
+    return false;
+}
+// if (document.form1.driver.value == "") {
+//     document.form1.driver.focus();
+//     Swal.fire('กรุณากรอก พนักงานขับรถ');
+//     return false;
+// }
+// if (document.form1.telnumb.value == "") {
+//     document.form1.telnumb.focus();
+//     Swal.fire('กรุณากรอก เบอร์โทร');
+//     return false;
+// }
+// if (document.form1.sbranch.value == "") {
+//     document.form1.sbranch.focus();
+//     Swal.fire('กรุณากรอก สาขาต้นทาง');
+//     return false;
+// }
+// if (document.form1.truckrqtime.value == "") {
+//     document.form1.truckrqtime.focus();
+//     Swal.fire('กรุณากรอก เวลาตามรถ');
+//     return false;
+// }
+// if (document.form1.dpttime.value == "") {
+//     document.form1.dpttime.focus();
+//     Swal.fire('กรุณากรอก เวลาปล่อยรถ');
+//     return false;
+// }
+// if (document.form1.dnttime.value == "") {
+//     document.form1.dnttime.focus();
+//     Swal.fire('กรุณากรอก เวลากำหนดถึงปลายทาง');
+//     return false;
+// }
+// if (document.form1.totalhour.value == "") {
+//     document.form1.totalhour.focus();
+//     Swal.fire('กรุณากรอก  เวลาที่กำหนด(ชั่วโมง)');
+//     return false;
+// }
+// if (document.form1.mntstaff.value == "") {
+//     document.form1.mntstaff.focus();
+//     Swal.fire('กรุณากรอก Monitor staff(KDR)');
+//     return false;
+// }
+// if(document.form1.remark.value == "")
+// {
+//     document.form1.remark.focus();
+//     Swal.fire('กรุณากรอก Monitor หมายเหตุ');
+// 	return false;
+// }
+if (document.form1.statusplan.value == "") {
+    document.form1.statusplan.focus();
+    Swal.fire('กรุณากรอก สถานะแผน');
+    return false;
+}
+// if(document.form1.ccremark.value == "")
+// {
+//     document.form1.ccremark.focus();
+//     Swal.fire('กรุณากรอก สาเหตุที่ยกเลิก');
+// 	return false;
+// }
+document.form1.submit();
+}
+</script>
 
                     </div>
                     <div class="card-footer">
