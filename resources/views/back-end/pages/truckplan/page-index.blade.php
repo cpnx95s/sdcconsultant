@@ -32,7 +32,7 @@
                                         </select>
                                     </div>
                                 </div> -->
-                            <div class="col-lg-4 col-xs-12 mb-4 ">
+                            <!-- <div class="col-lg-4 col-xs-12 mb-4 ">
                                 <label for="search">Search :</label>
                                 <div class="input-group">
                                     <input type="text" name="keyword" class="form-control" id="search"
@@ -41,7 +41,7 @@
                                         <button class="btn btn-secondary" type="submit">Search</button>
                                     </span>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"
@@ -104,7 +104,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-secondary" type="submit">Search</button>
+                                        <button class="btn btn-primary" type="submit">ค้นหา</button>
+                                        <button class="btn btn-secondary" type="submit">คืนค่าค้นหา</button>
                                     </td>
                                 </tr>
                             </tbody>

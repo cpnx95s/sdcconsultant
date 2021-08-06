@@ -201,7 +201,7 @@
                                     <div class="form-row splname" id="splname">
                                         <div class="col-md-12">
                                             <div class="form-group ">
-                                                <label class="control-label " for="splname">
+                                                <label class="control-label" for="splname">
                                                     Subcontractor
                                                 </label>
                                                 <select id="splname" name="splname" class="form-control" require>
