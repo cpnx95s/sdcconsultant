@@ -113,9 +113,16 @@ var type =$("#statusplan").val();
 
 if(type == "Cancel"){
 $("#cancelarea").show();
-}else{
+$("#cancel").hide();
+}else if (type == "Active"){
 $("#cancelarea").hide();
+$("#cancel").hide();
 }
+else if (type == "Pending"){
+    $("#cancelarea").hide();
+    $("#cancel").hide();
+    }
+
 
 }
 
