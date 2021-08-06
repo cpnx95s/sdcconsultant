@@ -861,7 +861,7 @@
 
 
 
- function fncSubmit() {
+                            function fncSubmit() {
 
 if (document.form1.startdate.value == "") {
     document.form1.startdate.focus();
@@ -904,8 +904,7 @@ if (document.form1.trucktype.value == "") {
     Swal.fire('กรุณาเลือก ประเภทรถ');
     return false;
 }
-if(document.form1.roundtrip.value == "")
-{
+if (document.form1.roundtrip.value == "") {
     document.form1.roundtrip.focus();
     Swal.fire('กรุณาเลือก เที่ยวรถ');
     return false;
