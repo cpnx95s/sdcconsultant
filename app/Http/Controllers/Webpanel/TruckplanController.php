@@ -1881,8 +1881,10 @@ class TruckplanController extends Controller
 
                 if ($data->worktype == "งานเสริม") {
                     if ($data->statusplan == "Pending") {
+                        DB::table('tb_gchart')->where('created', $data->startdate)->decrement('total', 1);
                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
                     } else  if ($data->statusplan == "Active") {
+                        DB::table('tb_gchart')->where('created', $data->startdate)->decrement('total', 1);
                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
                     }
                 }
@@ -3005,8 +3007,10 @@ class TruckplanController extends Controller
 
                 if ($data->worktype == "งานเสริม") {
                     if ($data->statusplan == "Pending") {
+                        DB::table('tb_gchart')->where('created', $data->startdate)->decrement('total', 1);
                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('on_process', 1);
                     } else  if ($data->statusplan == "Active") {
+                        DB::table('tb_gchart')->where('created', $data->startdate)->decrement('total', 1);
                         $query = DB::table('tb_gchart')->where('created', $data->startdate)->decrement('full_fill', 1);
                     }
                 }
