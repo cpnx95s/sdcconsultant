@@ -97,7 +97,8 @@ class HomeController extends Controller
 
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+      
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
 
 
@@ -106,9 +107,9 @@ class HomeController extends Controller
         $chart2->labels($results2->values());
 
         $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
-        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
 
         $month = 0;
@@ -357,17 +358,19 @@ class HomeController extends Controller
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
 
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
-        // $results2 = GchartModel::pluck('created');;
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+     
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
-        
-        $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
-        $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
 
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+
+
+        $chart2 = new gChart();
+        $chart2->labels($results2->values());
+
+        $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
@@ -485,7 +488,7 @@ class HomeController extends Controller
         //fullfill Active
         $Total_Req_E2 = $FLH_LH_E2 + $FLH_Del_E2 + $KEY_Del_E2 + $BES_LH_E2 + $SHOP_FM_E2 + $JT_LH_E2 + $SCG_LH_E2 + $DHLBigC_DC_E2 + $Office_DC_E2 + $KLine_LH_E2;
 
-        return view("$this->prefix.pages.$this->folder.adminindex", [
+        return view("$this->prefix.pages.$this->folder.index", [
 
             'js' => [
                 ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -613,7 +616,7 @@ class HomeController extends Controller
         // $chart2->title('Score By Sub-contractor',$font_size = 24,$color = '#0275d8', $bold = true, $font_family = "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif");
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');;
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
 
 
@@ -622,9 +625,9 @@ class HomeController extends Controller
         $chart2->labels($results2->values());
 
         $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
-        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
@@ -873,16 +876,18 @@ class HomeController extends Controller
 
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');;
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
-        
-        $chart2 = new gChart();
-        $chart2->labels($results2->values(''));
-        $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
 
-        $chart2->dataset('Fulfill', 'line', $results3->values(''))
+
+
+        $chart2 = new gChart();
+        $chart2->labels($results2->values());
+
+        $chart2->dataset('On Process', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
         $month = 0;
         // array('Jan', 'Feb', 'Mar', 'Apr', 'May');
@@ -1129,7 +1134,7 @@ class HomeController extends Controller
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
       
         // $results2 = GchartModel::pluck('created');
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
 
 
@@ -1138,9 +1143,9 @@ class HomeController extends Controller
         $chart2->labels($results2->values());
 
         $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
-        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
 
         $month = 0;
@@ -1390,7 +1395,7 @@ class HomeController extends Controller
 
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');
-        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
+        $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
         $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
 
 
@@ -1399,9 +1404,9 @@ class HomeController extends Controller
         $chart2->labels($results2->values());
 
         $chart2->dataset('On Process', 'line', $results4->values())
-            ->options(['borderColor' => 'green']);
-        $chart2->dataset('Fulfill', 'line', $results3->values())
             ->options(['borderColor' => 'red']);
+        $chart2->dataset('Customer Request', 'line', $results3->values())
+            ->options(['borderColor' => 'green']);
 
 
         $month = 0;
