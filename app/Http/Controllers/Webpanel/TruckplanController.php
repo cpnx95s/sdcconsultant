@@ -196,7 +196,46 @@ class TruckplanController extends Controller
         $row = TruckplanModel::find($id);
         $countries = DB::table("countries")->pluck("name", "id");
         $rows = DB::table('tb_pjname')->get();
-        if ($row->statusplan == "Cancel") {
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
+            return view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsubcan',
+                'segment' => $this->segment,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+        }
+        else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsub',
+                'segment' => $this->segment,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+
+        }
+        else if($row->statusplan == "Cancel"){
             return view("$this->prefix.pages.$this->folder.index", [
                 'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -214,6 +253,7 @@ class TruckplanController extends Controller
                 'countries' => $countries,
 
             ]);
+
         }
         else{
             return view("$this->prefix.pages.$this->folder.index", [
@@ -236,12 +276,48 @@ class TruckplanController extends Controller
         }
     }
 
+
+
     public function copy($id)
     {
 
         $row = TruckplanModel::find($id);
         $rows = DB::table('tb_pjname')->get();
-        if ($row->statusplan == "Cancel") {
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
+            return view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysubcan',
+                'segment' => $this->segment,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.index", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysub',
+                'segment' => $this->segment,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->statusplan == "Cancel"){
             return view("$this->prefix.pages.$this->folder.index", [
                 'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -259,6 +335,7 @@ class TruckplanController extends Controller
                 'size' => $this->ImageSize(),
             ]);
         }
+
         else{
             return view("$this->prefix.pages.$this->folder.index", [
                 'js' => [
@@ -333,7 +410,7 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-        
+
         if ($request->state <= 6) {
             $data->tsptype =  $request->state;
         } else {
@@ -667,7 +744,7 @@ class TruckplanController extends Controller
                 ->orwhere('trucktype', '=', $strucktype)
                 ->orwhere('roundtrip', '=', $sroundtrip)
                 ->orwhere('hiringtype', '=', $shiringtype)
-                
+
                 ->orwhere('telnumb', 'like', '%' . $search_text . '%')
                 ->orwhere('sbranch', 'like', '%' . $search_text . '%')
                 ->orwhere('dntbranch', 'like', '%' . $search_text . '%')
@@ -1129,7 +1206,46 @@ class TruckplanController extends Controller
         $row = TruckplanModel::find($id);
         $rows = DB::table('tb_pjname')->get();
         $countries = DB::table("countries")->pluck("name", "id");
-        if ($row->statusplan == "Cancel") {
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
+            return view("$this->prefix.pages.$this->folder.adminindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsubcan',
+                'segment' => $this->segmentad,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+        }
+        else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.adminindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsub',
+                'segment' => $this->segmentad,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+
+        }
+        else if($row->statusplan == "Cancel"){
             return view("$this->prefix.pages.$this->folder.adminindex", [
                 'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -1144,9 +1260,10 @@ class TruckplanController extends Controller
                 'segment' => $this->segmentad,
                 'row' => $row,
                 'rows' => $rows,
-                'countries' => $countries
+                'countries' => $countries,
 
             ]);
+
         }
         else{
             return view("$this->prefix.pages.$this->folder.adminindex", [
@@ -1163,10 +1280,12 @@ class TruckplanController extends Controller
                 'segment' => $this->segmentad,
                 'row' => $row,
                 'rows' => $rows,
-                'countries' => $countries
+                'countries' => $countries,
 
             ]);
         }
+
+
     }
 
     public function admincopy($id)
@@ -1174,10 +1293,43 @@ class TruckplanController extends Controller
 
         $row = TruckplanModel::find($id);
         $rows = DB::table('tb_pjname')->get();
-     
-        if ($row->statusplan == "Cancel") {
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
             return view("$this->prefix.pages.$this->folder.adminindex", [
-                'js' => [ 
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysubcan',
+                'segment' => $this->segmentad,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.adminindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysub',
+                'segment' => $this->segmentad,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->statusplan == "Cancel"){
+            return view("$this->prefix.pages.$this->folder.adminindex", [
+                'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                     ['src' => "back-end/tinymce/tinymce.min.js"],
                     ["src" => 'back-end/js/sweetalert2.all.min.js'],
@@ -1193,9 +1345,10 @@ class TruckplanController extends Controller
                 'size' => $this->ImageSize(),
             ]);
         }
+
         else{
             return view("$this->prefix.pages.$this->folder.adminindex", [
-                'js' => [ 
+                'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
                     ['src' => "back-end/tinymce/tinymce.min.js"],
                     ["src" => 'back-end/js/sweetalert2.all.min.js'],
@@ -1212,6 +1365,7 @@ class TruckplanController extends Controller
             ]);
         }
     }
+
 
 
     public function adminupdate(Request $request, $id)
@@ -1267,7 +1421,7 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-       
+
         if ($request->state <= 6) {
             $data->tsptype =  $request->state;
         } else {
@@ -1820,7 +1974,7 @@ class TruckplanController extends Controller
                     DB::table('tb_gchart')->where('created', $createdaa)->increment('full_fill', 1);
                     return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/truckplan")]);
                 }
-                
+
             }
             else {
                 return view("$this->prefix/alert/sweet/success", ['url' => url("$this->segmentad/truckplan")]);
@@ -2075,7 +2229,46 @@ class TruckplanController extends Controller
         $row = TruckplanModel::find($id);
         $countries = DB::table("countries")->pluck("name", "id");
         $rows = DB::table('tb_pjname')->get();
-        if ($row->statusplan == "Cancel") {
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
+            return view("$this->prefix.pages.$this->folder.staffindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsubcan',
+                'segment' => $this->segmentst,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+        }
+        else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.staffindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'editsub',
+                'segment' => $this->segmentst,
+                'row' => $row,
+                'rows' => $rows,
+                'countries' => $countries,
+
+            ]);
+
+        }
+        else if($row->statusplan == "Cancel"){
             return view("$this->prefix.pages.$this->folder.staffindex", [
                 'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -2091,8 +2284,9 @@ class TruckplanController extends Controller
                 'row' => $row,
                 'rows' => $rows,
                 'countries' => $countries,
-    
+
             ]);
+
         }
         else{
             return view("$this->prefix.pages.$this->folder.staffindex", [
@@ -2110,9 +2304,11 @@ class TruckplanController extends Controller
                 'row' => $row,
                 'rows' => $rows,
                 'countries' => $countries,
-    
+
             ]);
         }
+
+
     }
 
     public function staffcopy($id)
@@ -2120,8 +2316,42 @@ class TruckplanController extends Controller
 
         $row = TruckplanModel::find($id);
         $rows = DB::table('tb_pjname')->get();
-        
-        if ($row->statusplan == "Cancel") {
+
+        if ($row->statusplan == "Cancel" && $row->hiringtype == "2") {
+            return view("$this->prefix.pages.$this->folder.staffindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysubcan',
+                'segment' => $this->segmentst,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->hiringtype == "2"){
+            return view("$this->prefix.pages.$this->folder.staffindex", [
+                'js' => [
+                    ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
+                    ['src' => "back-end/tinymce/tinymce.min.js"],
+                    ["src" => 'back-end/js/sweetalert2.all.min.js'],
+                    ["type" => "text/javascript", "src" => "back-end/build/truckplan.js"],
+                ],
+                'prefix' => $this->prefix,
+                'controller' => $this->controller,
+                'folder' => $this->folder,
+                'page' => 'copysub',
+                'segment' => $this->segmentst,
+                'row' => $row,
+                'rows' => $rows,
+                'size' => $this->ImageSize(),
+            ]);
+        }else if($row->statusplan == "Cancel"){
             return view("$this->prefix.pages.$this->folder.staffindex", [
                 'js' => [
                     ['type' => "text/javascript", 'src' => "back-end/js/jquery.min.js", 'class' => "view-script"],
@@ -2139,6 +2369,7 @@ class TruckplanController extends Controller
                 'size' => $this->ImageSize(),
             ]);
         }
+
         else{
             return view("$this->prefix.pages.$this->folder.staffindex", [
                 'js' => [
@@ -2213,7 +2444,7 @@ class TruckplanController extends Controller
         //$data->pjtype = $request->pjtype;
         $data->sort = 1;
         //$data->pjtype = $request->pjtype;
-       
+
         if ($request->state <= 6) {
             $data->tsptype =  $request->state;
         } else {

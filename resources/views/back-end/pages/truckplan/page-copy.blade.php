@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">
                         <span class="breadcrumb-item "><a href="{{ url("$segment") }}"> แผนรถ </a></span>
-                        <span class="breadcrumb-item active">คัดลอก</span>
+                        <span class="breadcrumb-item active">คัดลอก4445</span>
                         <div class="card-header-actions"><small class="text-muted"><a href="https://getbootstrap.com/docs/4.0/components/input-group/#custom-file-input">docs</a></small>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group date">
                                                 <label class="control-label " for="startdate">
-                                                    วันที่ใช้รถ
+                                                    วันที่ใช้รถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control " id="startdate" name="startdate" placeholder="" type="date" value="{{ $row->startdate }}" type="date" require />
 
@@ -78,7 +78,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="pjname">
-                                                    ชื่อโปรเจค
+                                                    ชื่อโปรเจค<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="country" name="category_id" class="form-control province">
                                                     <option value="" selected disabled>กรุณาเลือก</option>
@@ -91,7 +91,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="tsptype">
-                                                    ประเภทการขนส่ง
+                                                    ประเภทการขนส่ง<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="state" name="state" class="form-control amphures" require>
                                                     <option value="{{ $row->tsptype }}"> {{$row->showtsptypename->name }}</option>
@@ -101,7 +101,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label" for="worktype">
-                                                    ประเภทงาน
+                                                    ประเภทงาน<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="city" name="city" class="select form-control" require>
                                                     <option value="{{ $row->worktype }}"> {{$row->worktype }}</option>
@@ -121,7 +121,7 @@
                                         <div class="col-md-8">
                                             <div class="form-group ">
                                                 <label class="control-label " for="routename">
-                                                    ชื่อเส้นทางเดินรถ
+                                                    ชื่อเส้นทางเดินรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="routename" name="routename" type="text" value="{{ $row->routename }}" require />
                                             </div>
@@ -131,7 +131,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucktype">
-                                                    ประเภทรถ
+                                                    ประเภทรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="trucktype" name="trucktype" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -149,7 +149,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="roundtrip">
-                                                    เที่ยวรถ
+                                                    เที่ยวรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <select id="roundtrip" name="roundtrip" class="form-control" require>
                                                     <option value="">กรุณาเลือก</option>
@@ -167,9 +167,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="hiringtype">
-                                                    รูปแบบการว่าจ้าง
+                                                    รูปแบบการว่าจ้าง<span class="text-danger">*</span>
                                                 </label>
-                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan2()"require>
+                                                <select id="hiringtype" name="hiringtype" class="form-control" onchange="fstatusplan2()" require>
                                                     <option value="">กรุณาเลือก</option>
                                                     @php $list = \App\HiringtypeModel ::where('status','on')->get(); @endphp
 
@@ -183,31 +183,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col-md-12">
-                                            <div class="form-group ">
-                                                <label class="control-label " for="splname">
-                                                    Subcontractor
-                                                </label>
-                                                <select id="splname" name="splname" class="form-control" require>
-                                                    <option value="">กรุณาเลือก</option>
-                                                    @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
+                                </div>
 
-                                                    @if ($list)
-                                                    @foreach ($list as $list)
-                                                    <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
-                                                    @endforeach
+                                <div class="form-row" id="splname">
+                                    <div class="col-md-12">
+                                        <div class="form-group ">
+                                            <label class="control-label " for="splname">
+                                                Subcontractor
+                                            </label>
+                                            <select id="splname" name="splname" class="form-control" require>
+                                                <option value="">กรุณาเลือก</option>
+                                                @php $list = \App\SplnameModel::where('status','on')->get(); @endphp
 
-                                                    @endif
-                                                </select>
-                                            </div>
+                                                @if ($list)
+                                                @foreach ($list as $list)
+                                                <option value="{{ $list->id }}" @if ($row->splname == $list->id) selected @endif>{{ $list->name }}</option>
+                                                @endforeach
+
+                                                @endif
+                                            </select>
                                         </div>
                                     </div>
+                                </div>
                                     <div class="form-row">
                                         <div class="col-md-4">
                                             <div class="form-group ">
                                                 <label class="control-label " for="trucknumb">
-                                                    เลขทะเบียนรถ
+                                                    เลขทะเบียนรถ<span class="text-danger">*</span>
                                                 </label>
                                                 <input class="form-control" id="trucknumb" name="trucknumb" type="text" value="{{ $row->trucknumb }}" require />
                                             </div>
@@ -807,7 +809,9 @@
 
                                 </div>
                             </div>
-                        </div>
+
+
+
 
 
 
@@ -984,7 +988,7 @@ document.form1.submit();
 </script>
 
 
-                    </div>
+
                     <div class="card-footer">
                         <button class="btn btn-primary" type="submit" name="signup">บันทึก</button>
                         <a class="btn btn-danger" href="{{ url("$segment") }}">ยกเลิก</a>
