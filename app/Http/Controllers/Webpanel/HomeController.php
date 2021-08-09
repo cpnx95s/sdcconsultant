@@ -99,14 +99,14 @@ class HomeController extends Controller
         // $results2 = GchartModel::pluck('created');
       
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill	', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
@@ -360,14 +360,14 @@ class HomeController extends Controller
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
      
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill	', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
@@ -617,14 +617,14 @@ class HomeController extends Controller
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');;
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
@@ -877,14 +877,14 @@ class HomeController extends Controller
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');;
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
@@ -1135,14 +1135,14 @@ class HomeController extends Controller
       
         // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
@@ -1396,14 +1396,14 @@ class HomeController extends Controller
         $results2 = GchartModel::orderBy('created','asc')->take(30)->pluck('created');
         // $results2 = GchartModel::pluck('created');
         $results3 = GchartModel::orderBy('created','asc')->take(30)->pluck('total');
-        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('on_process');
+        $results4 = GchartModel::orderBy('created','asc')->take(30)->pluck('full_fill');
 
 
 
         $chart2 = new gChart();
         $chart2->labels($results2->values());
 
-        $chart2->dataset('On Process', 'line', $results4->values())
+        $chart2->dataset('Full Fill', 'line', $results4->values())
             ->options(['borderColor' => 'red']);
         $chart2->dataset('Customer Request', 'line', $results3->values())
             ->options(['borderColor' => 'green']);
