@@ -180,6 +180,16 @@ class HomeController extends Controller
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
 
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
+
+
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
         $DHLBigC_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -317,6 +327,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }
@@ -440,6 +457,15 @@ class HomeController extends Controller
         $SCG_LH_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '18')->where('startdate', '=', $mytime)->count();
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
+
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
 
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -578,6 +604,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }
@@ -696,6 +729,15 @@ class HomeController extends Controller
         $SCG_LH_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '18')->where('startdate', '=', $mytime)->count();
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
+
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
 
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -834,6 +876,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }
@@ -958,6 +1007,15 @@ class HomeController extends Controller
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
 
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
+
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
         $DHLBigC_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -1095,6 +1153,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }
@@ -1214,6 +1279,15 @@ class HomeController extends Controller
         $SCG_LH_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '2')->where('pjname', '=', '18')->where('startdate', '=', $mytime)->count();
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
+
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
 
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -1352,6 +1426,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }
@@ -1478,6 +1559,15 @@ class HomeController extends Controller
         $SCG_LH_E = $SCG_LH_E1 + $SCG_LH_E2;
         $SCG_Req = $SCG_LH_E;
 
+        //SCGL
+        $SCGL_DC_M1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานหลัก')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_M = $SCGL_DC_M1 + $SCGL_DC_M2;
+        $SCGL_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '19')->where('startdate', '=', $mytime)->count();
+        $SCGL_DC_E = $SCGL_DC_E1 + $SCGL_DC_E2;
+        $SCGL_Req = $SCGL_DC_M + $SCGL_DC_E;
+
         //DHL-Big C
         $DHLBigC_DC_E1 = TruckplanModel::where('statusplan', '=', 'Pending')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
         $DHLBigC_DC_E2 = TruckplanModel::where('statusplan', '=', 'Active')->where('worktype', '=', 'งานเสริม')->where('tsptype', '=', '4')->where('pjname', '=', '17')->where('startdate', '=', $mytime)->count();
@@ -1615,6 +1705,13 @@ class HomeController extends Controller
             'KEY_Req' => $KEY_Req,
             'SCG_Req' => $SCG_Req,
             'TFG_Req' => $TFG_Req,
+            'SCGL_DC_M1' => $SCGL_DC_M1,
+            'SCGL_DC_M2' => $SCGL_DC_M2,
+            'SCGL_DC_M' => $SCGL_DC_M,
+            'SCGL_DC_E1' => $SCGL_DC_E1,
+            'SCGL_DC_E2' => $SCGL_DC_E2,
+            'SCGL_DC_E' => $SCGL_DC_E,
+            'SCGL_Req' => $SCGL_Req,
 
         ], compact('results', 'chart', 'chart2'));
     }

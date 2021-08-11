@@ -395,6 +395,42 @@
                         <div class="col-md-12 mb-4 bg-primary py-2 text-white font-weight-bold text-center">
                             <h4>Consumer / Retail</h4>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header text-white font-weight-bold bg-info">SCGL</div>
+                            <div class="table card-cody px-4 pt-3">
+                                <table class="table  table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>On Process</th>
+                                            <th>Complete</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">DC to store</th>
+                                            <td>
+                                                <tr>
+                                                    <td>Main</td>
+                                                    <td>{{$SCGL_DC_M1}}</td>
+                                                    <td>{{$SCGL_DC_M2}}</td>
+                                                    <td>{{$SCGL_DC_M}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Extra</td>
+                                                    <td>{{$SCGL_DC_E1}}</td>
+                                                    <td>{{$SCGL_DC_E2}}</td>
+                                                    <td>{{$SCGL_DC_E}}</td>
+                                                </tr>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <div class="card">
                             <div class="card-header text-white font-weight-bold bg-info">DHL-Big C</div>
                             <div class="table card-cody px-4 pt-3">
