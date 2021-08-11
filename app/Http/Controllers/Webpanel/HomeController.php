@@ -229,9 +229,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
@@ -506,9 +506,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
@@ -778,9 +778,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
@@ -1055,9 +1055,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
@@ -1328,9 +1328,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
@@ -1607,9 +1607,9 @@ class HomeController extends Controller
         $KLine_Req = $KLine_LH_E;
 
         //Total Head
-        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req;
-        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M;
-        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E;
+        $Total_Req = $FLASH_Req + $KEY_Req + $BEST_Req + $SHOPEE_Req + $CJ_Req + $LAZ_Req + $JT_Req + $SCG_Req + $DHLBigC_Req + $TWDCJ_Req + $NEVFOOD_Req + $OfficeMate_Req + $TFG_Req + $KLine_Req+$SCGL_Req;
+        $Total_Req_M = $FLH_LH_M + $KEY_LH_M + $BES_LH_M + $SHOP_FM_M + $CJ_Del_M + $LAZ_FM_M + $TWDCJ_DC_M + $NEVFOOD_Del_M + $TFG_DC_M+ $SCGL_DC_M;
+        $Total_Req_E = $FLH_LH_E + $FLH_Del_E + $KEY_Del_E + $BES_LH_E + $SHOP_FM_E + $JT_LH_E + $SCG_LH_E + $DHLBigC_DC_E + $Office_DC_E + $KLine_LH_E+$SCGL_DC_E;
         //onprocess Pending
         $Total_Req_E1 = $FLH_LH_E1 + $FLH_Del_E1 + $KEY_Del_E1 + $BES_LH_E1 + $SHOP_FM_E1 + $JT_LH_E1 + $SCG_LH_E1 + $DHLBigC_DC_E1 + $Office_DC_E1 + $KLine_LH_E1;
         //fullfill Active
